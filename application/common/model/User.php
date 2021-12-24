@@ -619,7 +619,7 @@ class User extends Base
         $where['msg_time'] = ['gt',$stime];
         $where['msg_code'] = ['eq',$param['code']];
         $where['msg_type'] = ['eq', $param['type'] ];
-        $res = model('msg')->infoData($where);
+        $res = model('Msg')->infoData($where);
         if($res['code'] >1){
             return ['code'=>9002,'msg'=>lang('model/user/msg_not_found')];
         }
@@ -659,7 +659,7 @@ class User extends Base
         $where['msg_time'] = ['gt',$stime];
         $where['msg_type'] = ['eq', $param['type'] ];
         $where['msg_to'] = ['eq', $param['to'] ];
-        $res = model('msg')->infoData($where);
+        $res = model('Msg')->infoData($where);
         if($res['code'] ==1){
             return ['code'=>9002,'msg'=>lang('model/user/do_not_send_frequently')];
         }
@@ -692,7 +692,7 @@ class User extends Base
             $data['msg_code'] = $code;
             $data['msg_content'] = $msg;
             $data['msg_time'] = time();
-            $res = model('msg')->saveData($data);
+            $res = model('Msg')->saveData($data);
 
             return ['code'=>1,'msg'=>lang('model/user/msg_send_ok')];
         }
@@ -851,7 +851,7 @@ class User extends Base
         $where['user_id'] = $param['uid'];
         $where['visit_ip'] = $ip;
         $where['visit_time'] = ['gt', $todayunix];
-        $cc = model('visit')->where($where)->count();
+        $cc = model('Visit')->where($where)->count();
         if ($cc>= $max_cc){
             return ['code' => 102, 'msg' => lang('model/user/visit_tip')];
         }
@@ -861,7 +861,7 @@ class User extends Base
         $data['visit_ip'] = $ip;
         $data['visit_time'] = time();
         $data['visit_ly'] = htmlspecialchars(mac_get_refer());
-        $res = model('visit')->saveData($data);
+        $res = model('Visit')->saveData($data);
 
         if ($res['code'] > 1) {
             return ['code' => 103, 'msg' => lang('model/user/visit_err')];

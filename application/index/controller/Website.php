@@ -57,8 +57,9 @@ class Website extends Base
     {
         $info = $this->label_website_detail();
         $return = [];
-        $res = Db::table('mac_point')->where(['type_id' => 11,'detail_id' => $info['website_id']])->column('score');
-        $count = Db::table('mac_point')->where(['type_id' => 11,'detail_id' => $info['website_id']])->count();
+
+        $res = model('Point')->where(['type_id' => 11,'detail_id' => $info['website_id']])->column('score');
+        $count = model('Point')->where(['type_id' => 11,'detail_id' => $info['website_id']])->count();
         $return['count'] = $count;
         $total = 0;
 

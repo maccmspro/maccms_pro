@@ -188,10 +188,10 @@ class Cash extends Base {
     }
 
     public function createTableIfNotExists() {
-        if ($this->lockTableUpdate(0) === true) {
+        if ($this->lockTableUpdate(1) === true) {
             return true;
         }
-        // 0
+        // 1
         $this->checkAndAlterTableField('cash_no', "ADD `cash_no` varchar(64) NOT NULL DEFAULT '' COMMENT '提现单号' AFTER `cash_id`");
     }
 

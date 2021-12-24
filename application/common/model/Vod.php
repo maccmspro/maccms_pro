@@ -816,4 +816,13 @@ class Vod extends Base {
         return ['code'=>1,'msg'=>lang('obtain_ok'),'data'=> join(',',$ids) ];
     }
 
+    public function createTableIfNotExists() {
+        if ($this->lockTableUpdate(1) === true) {
+            return true;
+        }
+        // 1
+        $this->checkAndAlterTableField('vod_is_trysee', "ADD `vod_is_trysee` tinyint(1) UNSIGNED NOT NULL DEFAULT 0 COMMENT '是否可以试看,1:是,0:否'");
+        $this->checkAndAlterTableField('vod_trysee_time', "ADD `vod_trysee_time` int(13) UNSIGNED NOT NULL DEFAULT 0 COMMENT '如果可以试看,试看时间'");
+    }
+
 }

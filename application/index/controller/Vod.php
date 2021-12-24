@@ -83,9 +83,8 @@ class Vod extends Base
         }
 
         $return = [];
-        $res = Db::table('mac_point')->where(['type_id' => 1,'detail_id' => $info['vod_id']])->column('score');
-        $count = Db::table('mac_point')->where(['type_id' => 1,'detail_id' => $info['vod_id']])->count();
-//        var_dump($count);die;
+        $res = model('Point')->where(['type_id' => 1,'detail_id' => $info['vod_id']])->column('score');
+        $count = model('Point')->where(['type_id' => 1,'detail_id' => $info['vod_id']])->count();
         $return['count'] = $count;
         $total = 0;
 
@@ -98,11 +97,11 @@ class Vod extends Base
         if($count){
             $return['vod_score'] = round($total/$count,2);
 
-            $_1 = Db::table('mac_point')->where(['type_id' => 1,'detail_id' => $info['vod_id']])->where('score','between',[0,2])->count();
-            $_2 = Db::table('mac_point')->where(['type_id' => 1,'detail_id' => $info['vod_id']])->where('score','between',[2,4])->count();
-            $_3 = Db::table('mac_point')->where(['type_id' => 1,'detail_id' => $info['vod_id']])->where('score','between',[4,6])->count();
-            $_4 = Db::table('mac_point')->where(['type_id' => 1,'detail_id' => $info['vod_id']])->where('score','between',[6,8])->count();
-            $_5 = Db::table('mac_point')->where(['type_id' => 1,'detail_id' => $info['vod_id']])->where('score','between',[8,10])->count();
+            $_1 = model('Point')->where(['type_id' => 1,'detail_id' => $info['vod_id']])->where('score','between',[0,2])->count();
+            $_2 = model('Point')->where(['type_id' => 1,'detail_id' => $info['vod_id']])->where('score','between',[2,4])->count();
+            $_3 = model('Point')->where(['type_id' => 1,'detail_id' => $info['vod_id']])->where('score','between',[4,6])->count();
+            $_4 = model('Point')->where(['type_id' => 1,'detail_id' => $info['vod_id']])->where('score','between',[6,8])->count();
+            $_5 = model('Point')->where(['type_id' => 1,'detail_id' => $info['vod_id']])->where('score','between',[8,10])->count();
 
             $return['0-2'] = (round($_1/$count,2)*100).'%';
             $return['2-4'] = (round($_2/$count,2)*100).'%';
@@ -128,7 +127,7 @@ class Vod extends Base
 
         $popedom = $this->check_user_popedom($info['type_id'], 3,$param,'player',$info,$trysee);
 
-        return $this->label_fetch( mac_tpl_fetch('vod',$info['vod_tpl'],'detail') , 1 ,'html', ['res' => $return,'popedom' => $popedom]);
+        return $this->label_fetch(mac_tpl_fetch('vod',$info['vod_tpl'],'detail') , 1 ,'html', ['res' => $return,'popedom' => $popedom]);
     }
 
     public function ajax_detail()

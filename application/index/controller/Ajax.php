@@ -405,9 +405,8 @@ class Ajax extends Base
             $data['score_all'] = 0;
         }
 
-        // type_id 对照
-        // [1=>'vod',2=>'art',3=>'topic',4=>'comment',5=>'gbook',6=>'user',7=>'label',8=>'actor',9=>'role',10=>'plot',11=>'website'];
-        Db::table('mac_point')->insert(['detail_id' => $id,'type_id' => $mid,'score' => $score,'create_time' => time()]);
+
+        model('Point')->insert(['detail_id' => $id,'type_id' => $mid,'score' => $score,'create_time' => time()]);
         return json(['code'=>1,'msg'=>lang_frontend('score_ok'),'data'=>$data]);
     }
 
@@ -515,7 +514,7 @@ class Ajax extends Base
             'ulog_type' => 4,
         ];
 
-        $result = Db::table('mac_ulog')->where($where)->update(['ulog_watch_progress' => $ulog_watch_progress,'ulog_time' => time()]);
+        $result = model('Ulog')->where($where)->update(['ulog_watch_progress' => $ulog_watch_progress,'ulog_time' => time()]);
 
         if ($result) {
             return json(['code' => 1,'msg' => lang_frontend('index/ajax/watch_progress/success')]);

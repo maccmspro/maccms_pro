@@ -180,4 +180,12 @@ class Ulog extends Base {
         return ['code'=>1,'msg'=>lang('set_ok')];
     }
 
+    public function createTableIfNotExists() {
+        if ($this->lockTableUpdate(1) === true) {
+            return true;
+        }
+        // 1
+        $this->checkAndAlterTableField('ulog_watch_progress', "ADD `ulog_watch_progress` tinyint(3) UNSIGNED NOT NULL DEFAULT 0");
+    }
+
 }

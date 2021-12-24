@@ -91,7 +91,7 @@ class Provide extends Base
             if ($this->_param['ac'] == 'videolist' || $this->_param['ac'] == 'detail') {
                 $field = '*';
             }
-            $res = model('vod')->listData($where, $order, $this->_param['pg'], $GLOBALS['config']['api']['vod']['pagesize'], 0, $field, 0);
+            $res = model('Vod')->listData($where, $order, $this->_param['pg'], $GLOBALS['config']['api']['vod']['pagesize'], 0, $field, 0);
 
 
             if ($this->_param['at'] == 'xml') {
@@ -326,7 +326,7 @@ class Provide extends Base
                 $field = '*';
             }
 
-            $res = model('art')->listData($where, $order, $this->_param['pg'], $GLOBALS['config']['api']['art']['pagesize'], 0, $field, 0);
+            $res = model('Art')->listData($where, $order, $this->_param['pg'], $GLOBALS['config']['api']['art']['pagesize'], 0, $field, 0);
 
             if ($res['code'] > 1) {
                 echo $res['msg'];
@@ -438,7 +438,7 @@ class Provide extends Base
                 $field = '*';
             }
 
-            $res = model('actor')->listData($where, $order, $this->_param['pg'], $GLOBALS['config']['api']['actor']['pagesize'], 0, $field, 0);
+            $res = model('Actor')->listData($where, $order, $this->_param['pg'], $GLOBALS['config']['api']['actor']['pagesize'], 0, $field, 0);
 
             if ($res['code'] > 1) {
                 echo $res['msg'];
@@ -551,7 +551,7 @@ class Provide extends Base
                 $field = '*';
             }
 
-            $res = model('role')->listData($where, $order, $this->_param['pg'], $GLOBALS['config']['api']['role']['pagesize'], 0, $field, 1);
+            $res = model('Role')->listData($where, $order, $this->_param['pg'], $GLOBALS['config']['api']['role']['pagesize'], 0, $field, 1);
 
             if ($res['code'] > 1) {
                 echo $res['msg'];
@@ -651,7 +651,7 @@ class Provide extends Base
                 $field = '*';
             }
 
-            $res = model('website')->listData($where, $order, $this->_param['pg'], $GLOBALS['config']['api']['website']['pagesize'], 0, $field, 0);
+            $res = model('Website')->listData($where, $order, $this->_param['pg'], $GLOBALS['config']['api']['website']['pagesize'], 0, $field, 0);
 
             if ($res['code'] > 1) {
                 echo $res['msg'];

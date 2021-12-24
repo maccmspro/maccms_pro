@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head><meta charset="UTF-8">
+<title>ADS</title>
+<style>
+	div{bottom:auto!important;}
+	img{width: 100%; max-width: 100%!important;max-height: 90px!important;}
+	.hidden_xs{display: block!important;}
+	.hidden_mb{display: none!important;}
+	@media (max-width: 820px){
+		.hidden_xs{display: none!important;}
+	    .hidden_mb{display: block!important;}
+	}
+</style>
+</head>
+<body>
+	<div class="bottom_ads_ifr">
+	{:config('mctheme')['theme']['ads']['bottom']['content']}
+	</div>
+</body>
+</html>

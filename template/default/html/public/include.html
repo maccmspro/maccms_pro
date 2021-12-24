@@ -1,0 +1,71 @@
+<?php $tplconfig = config('mctheme'); $static_version = system_version(); ?>
+{include file="widget/seos"}
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE10" />
+<meta name="renderer" content="webkit|ie-comp|ie-stand">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+
+<link rel="stylesheet" href="{:MAC_BASE_PATH}/static/layui/css/layui.css">
+<link rel="stylesheet" href="https://at.alicdn.com/t/font_2776795_ccq3iodsjzj.css">
+<script type="text/javascript" src="{:MAC_BASE_PATH}/static/layui/layui.js"></script>
+
+<script type="text/javascript" src="{:MAC_BASE_PATH}/template/default/asset/js/jquery.min.js"></script>
+
+
+<link href="{:MAC_BASE_PATH}/template/default/css/style.css" rel="stylesheet" type="text/css" />
+<script src="{:MAC_BASE_PATH}/template/default/js/jquery.base.js"></script>
+<script src="{:MAC_BASE_PATH}/template/default/js/jquery.i18n.properties-1.0.9.js"></script>
+<script type="text/javascript" src="{:MAC_BASE_PATH}/template/default/asset/js/home.js"></script>
+
+{include file="public/jsvar"}
+
+{php}$tplconfig=config('mctheme');{/php}
+<link rel="apple-touch-icon-precomposed" sizes="180x180" href="{$tplconfig['theme']['logo']['webapp']|mac_default=substr($maccms['path_tpl'], strlen($maccms['path'])).'asset/img/ios_fav.png'|mac_url_img}">
+<link rel="shortcut icon" href="{$tplconfig['theme']['logo']['icon']|mac_default=substr($maccms['path_tpl'], strlen($maccms['path'])).'asset/img/favicon.png'|mac_url_img}" type="image/x-icon" />
+
+<link rel="stylesheet" type="text/css" href="{:MAC_BASE_PATH}/template/default/asset/css/hlstyle.css?v={$static_version}">
+{if$tplconfig['theme']['color']['select']==green}
+<link rel="stylesheet" type="text/css" href="{:MAC_BASE_PATH}/template/default/asset/css/green.css?v={$static_version}" name="skin"> {elseif$tplconfig['theme']['color']['select']==blue}
+<link rel="stylesheet" type="text/css" href="{:MAC_BASE_PATH}/template/default/asset/css/blue.css?v={$static_version}" name="skin"> {elseif$tplconfig['theme']['color']['select']==pink}
+<link rel="stylesheet" type="text/css" href="{:MAC_BASE_PATH}/template/default/asset/css/pink.css?v={$static_version}" name="skin"> {elseif$tplconfig['theme']['color']['select']==red}
+<link rel="stylesheet" type="text/css" href="{:MAC_BASE_PATH}/template/default/asset/css/red.css?v={$static_version}" name="skin"> {elseif$tplconfig['theme']['color']['select']==gold}
+<link rel="stylesheet" type="text/css" href="{:MAC_BASE_PATH}/template/default/asset/css/gold.css?v={$static_version}" name="skin"> {else}
+<link rel="stylesheet" type="text/css" href="{:MAC_BASE_PATH}/template/default/asset/css/default.css?v={$static_version}" name="skin">{/if} {if$tplconfig['theme']['color']['ms']==black}
+<link rel="stylesheet" type="text/css" href="{:MAC_BASE_PATH}/template/default/asset/css/black.css?v={$static_version}" name="color"> {else}
+<link rel="stylesheet" type="text/css" href="{:MAC_BASE_PATH}/template/default/asset/css/white.css?v={$static_version}" name="color">{/if}
+<script type="text/javascript" src="{:MAC_BASE_PATH}/template/default/asset/js/jquery.cookie.js"></script>
+<script type="text/javascript" src="{:MAC_BASE_PATH}/template/default/asset/js/hlhtml.js?v={$static_version}"></script>
+{if$tplconfig['theme']['lazy']}
+<style type="text/css">
+    .balist_thumb,
+    .wbalist_thumb,
+    .vodlist_thumb,
+    .topiclist_thumb,
+    .artlist_thumb,
+    .artbanner_thumb,
+    .art_relates .artlr_pic,
+    .play_vlist_thumb,
+    .zbo .play_vlist_thumb.zboad,
+    .actor_pic,
+    .ranklist_thumb {
+        background-image:url("{$tplconfig['theme']['lazy']|mac_url_img}");
+        background-repeat: no-repeat;
+    }
+</style>
+{/if}{if$tplconfig['theme']['banner']['smbg']==0}
+<style type="text/css">
+    .bgi_box {
+        display: none!important;
+    }
+</style>
+{/if}{if$tplconfig['theme']['banner']['bgstyle']}
+<style type="text/css">
+    .hot_banner {
+        background: {
+            $tplconfig['theme']['banner']['bgstyle']
+        }
+        ;
+        background-size: contain;
+        background-position: center top;
+    }
+</style>{/if} {$tplconfig['theme']['head']['text']} {include file="widget/themes"}

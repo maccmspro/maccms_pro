@@ -1,0 +1,85 @@
+{include file="../../../application/admin/view/public/head" /}
+<div class="page-container p10">
+
+    <div class="layui-tab layui-tab-brief" lay-filter="tabs">
+        <ul class="layui-tab-title">
+            <li class="layui-this btn-local" data-href="{:url('market')}">{:lang('menu/market')}</li>
+        </ul>
+        <div class="layui-tab-content">
+            <div class="layui-tab-item layui-show">
+                <div class="my-toolbar-box" >
+                    <div class="center mb10">
+                        <form class="layui-form " method="post" action="{:url('market?type=plugins')}">
+                            <input type="hidden" name="type" value="plugins">
+                            <div class="layui-input-inline w300">
+                                <input type="text" autocomplete="off" placeholder="{:lang('wd')}" class="layui-input" name="title" value="{$param['title']}">
+                            </div>
+                            <button class="layui-btn mgl-20 j-search" >{:lang('btn_search')}</button>
+                        </form>
+                    </div>
+                </div>
+
+                <form class="layui-form p10 " method="post" id="pageListForm">
+                    <div class="layui-row layui-col-space15" id="addon_list">
+                        {volist name="list" id="vo"}
+                        <div class="layui-col-md3">
+                            <div class="addon">
+                                {if condition="$vo.pc_image neq ''"}
+                                <img src="{$vo.pc_image}" class="add-logo">
+                                {else/}
+                                {if condition="$vo.h5_image neq ''"}
+                                <img src="{$vo.h5_image}" class="add-logo">
+                                {else/}
+                                {if condition="$vo.pc_preview neq ''"}
+                                <img src="{$vo.pc_preview}" class="add-logo">
+                                {else/}
+                                {if condition="$vo.h5_preview neq ''"}
+                                <img src="{$vo.h5_preview}" class="add-logo">
+                                {else/}
+                                <img src="" class="add-logo">
+                                {/if}
+                                {/if}
+                                {/if}
+                                {/if}
+                                <div class="addon-caption">
+                                    <h3>{$vo.name}</h3>
+                                    <p style="text-align: right"><a class="layui-badge-rim j-iframe" data-full="1" data-href="{:url('marketinfo?id='.$vo.id)}" href="javascript:;" title="详情">查看详情页>></a></p>
+                                </div>
+                            </div>
+                        </div>
+                        {/volist}
+                    </div>
+                    <div id="pages" class="center"></div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+{include file="../../../application/admin/view/public/foot" /}
+
+<script type="text/javascript">
+    var curUrl="{:url('addon/market',$param)}";
+    layui.use(['laypage', 'layer','form'], function() {
+        var laypage = layui.laypage
+            , layer = layui.layer,
+            form = layui.form;
+
+        laypage.render({
+            elem: 'pages'
+            ,count: {$total}
+            ,limit: {$limit}
+            ,curr: {$page}
+            ,layout: ['count', 'prev', 'page', 'next', 'limit', 'skip']
+            ,jump: function(obj,first){
+                if(!first){
+                    location.href = curUrl.replace('%7Bpage%7D',obj.curr).replace('%7Blimit%7D',obj.limit);
+                }
+            }
+        });
+
+    });
+</script>
+
+</body>
+</html>

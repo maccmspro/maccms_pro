@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html>
+<head>
+	{include file="public/include"}
+	<link rel="stylesheet" href="{:MAC_BASE_PATH}/template/default/asset/css/hlactor.css" type="text/css" />
+</head>
+
+<style>
+	@media (min-width:820px) {
+		.container{
+			margin-top: 20px;
+		}
+	}
+	@media (max-width:820px) {
+		body{
+			padding-top: 0;
+		}
+		.m-nav{
+			background: transparent;
+		}
+		.m-nav .mb-title,.m-nav a{
+			color: #fff;
+		}
+		.m-nav.nav_top a,
+		.m-nav.nav_top .mb-title
+		{
+			color: #333;
+		}
+	}
+</style>
+<body >
+	<div class="show-pc">
+		{include file="public/head"}
+	</div>
+	<div id="left"  class="show-mobile">
+		<div class="m-nav mobile-nav">
+			<a href="javascript:MAC.GoBack()" class="btn-left"><i class="iconfont ico-right">&#xe625;</i></a>
+			<span class="mb-title">{$obj.actor_name}</span>
+		</div>
+	</div>
+    <div class="hot_banner actor_ber ">
+         <div class="actor_list">
+        	<!-- 详细信息 -->
+				<div class="content_actor clearfix">
+					<div class="actor_thumb">
+						<a class="vodlist_thumb lazyload" href="javascript:;" style="background: url({$obj.actor_pic|mac_url_img}) no-repeat;background-size:cover;" title="{$obj.actor_name}" data-original="{$obj.actor_pic|mac_url_img}"></a>
+					</div>
+					<div class="actor_detail">
+						<span class="text_muted pull_right">
+							<a class="digg_link" data-id="{$obj.actor_id}" data-mid="{$maccms.mid}" data-type="up" href="javascript:;" title="喜欢{$obj.actor_name}"><i class="iconfont">&#xe655;</i>&nbsp;<em class="digg_num">{$obj.actor_up}</em></a>
+						</span>
+						<h3 class="title show-pc">{$obj.actor_name}</h3>
+                        <ul>
+                        <li class="data">
+							<span class="text_muted hidden_xs">
+								<span data-lang='string_actor_csd'>{:lang_web('string_actor_csd')}</span>
+							</span>
+							{php} if($obj['actor_birtharea']){ echo $obj['actor_birtharea']; }else{ {/php}<span data-lang="unfilled">{:lang_web('unfilled')}</span>{php}}{/php}
+							<span class="split_line"></span>
+							<span class="text_muted hidden_xs"> <span data-lang="string_actor_sr">{:lang_web('string_actor_sr')}</span></span>{php} if($obj['actor_birthday']){ echo $obj['actor_birthday']; }else{ {/php}<span data-lang="unfilled">{:lang_web('unfilled')}</span>{php}}{/php}</li>
+						<li class="desc hidden_xs">
+							<span class="left text_muted"> <span data-lang="string_actor_jj">{:lang_web('string_actor_jj')}</span></span>
+							{php} if($obj['actor_blurb']){ echo $obj['actor_blurb']; }else{ {/php}<span data-lang="unfilled">{:lang_web('unfilled')}</span>{php}}{/php}</li>
+						</ul>
+					</div>
+				</div>
+			<!-- end 详细信息 -->
+         </div>
+    </div>
+   <div class="container ">
+        <div class="row">
+			<div class="pannel actor_vod clearfix">
+				<div class="tabs">
+				  <input type="radio" id="tab1" name="tab-control" checked>
+				  <input type="radio" id="tab2" name="tab-control">
+				  <input type="radio" id="tab3" name="tab-control">
+				  <ul class="title_nav">
+					<li class="tab-det" data-title="string_actor_grzl" title="{:lang_web('string_actor_grzl')}"><label for="tab1" role="button"><span data-lang="string_actor_grzl">{:lang_web('string_actor_grzl')}</span></label></li>
+					<li class="tab-det" data-title="string_actor_xgzp" title="相关作品"><label for="tab2" role="button"><span data-lang="string_actor_xgzp">{:lang_web('string_actor_xgzp')}</span></label></li>
+					{if condition="$tplconfig['theme']['role']['btn'] eq 1"}
+					<li class="tab-det" data-title="string_actor_cyjs" title="{:lang_web('string_actor_cyjs')}"><label for="tab3" role="button"><span data-lang="string_actor_cyjs">{:lang_web('string_actor_cyjs')}</span></label></li>
+					{/if}
+				  </ul>
+				  {include file="ads/ads_all"}
+				  <div class="content">
+					<section>
+					  <h2 data-lang="string_actor_grjs">{:lang_web('string_actor_grjs')}</h2>
+						<div class="content_desc clearfix">
+						<ul class="actor_text clearfix">
+						   	<li><span class="sTit" data-lang="string_actor_zwm">{:lang_web('string_actor_zwm')}</span>{$obj.actor_name}</li>
+
+						   	<li>
+							   <span class="sTit" data-lang="string_actor_biem">{:lang_web('string_actor_biem')}</span>{php} if($obj['actor_alias']){ echo $obj['actor_alias']; }else{ {/php}<span data-lang="unfilled">{:lang_web('unfilled')}</span>{php}}{/php}
+							</li>
+
+						   <li><span class="sTit" data-lang="string_actor_xb">{:lang_web('string_actor_xb')}</span>{php} if($obj['actor_sex']){ echo $obj['actor_sex']; }else{ {/php}<span data-lang="unfilled">{:lang_web('unfilled')}</span>{php}}{/php}</li>
+
+						   <li><span class="sTit" data-lang="string_actor_sg">{:lang_web('string_actor_sg')}</span>{php} if($obj['actor_height']){ echo $obj['actor_height']; }else{ {/php}<span data-lang="unfilled">{:lang_web('unfilled')}</span>{php}}{/php}</li>
+
+						   <li><span class="sTit" data-lang="string_actor_tz">{:lang_web('string_actor_tz')}</span>{php} if($obj['actor_weight']){ echo $obj['actor_weight']; }else{ {/php}<span data-lang="unfilled">{:lang_web('unfilled')}</span>{php}}{/php}</li>
+
+						   <li><span class="sTit" data-lang="string_actor_dq">{:lang_web('string_actor_dq')}</span>{php} if($obj['actor_area']){ echo $obj['actor_area']; }else{ {/php}<span data-lang="unfilled">{:lang_web('unfilled')}</span>{php}}{/php}</li>
+
+						   <li><span class="sTit" data-lang="string_actor_xz">{:lang_web('string_actor_xz')}</span>{php} if($obj['actor_starsign']){ echo $obj['actor_starsign']; }else{ {/php}<span data-lang="unfilled">{:lang_web('unfilled')}</span>{php}}{/php}</li>
+
+						   <li><span class="sTit" data-lang="string_actor_xx">{:lang_web('string_actor_xx')}</span>{php} if($obj['actor_blood']){ echo $obj['actor_blood']; }else{ {/php}<span data-lang="unfilled">{:lang_web('unfilled')}</span>{php}}{/php}</li>
+
+						   <li><span class="sTit" data-lang="string_actor_sr">{:lang_web('string_actor_sr')}</span>{php} if($obj['actor_birthday']){ echo $obj['actor_birthday']; }else{ {/php}<span data-lang="unfilled">{:lang_web('unfilled')}</span>{php}}{/php}</li>
+
+						   <li><span class="sTit" data-lang="string_actor_csd">{:lang_web('string_actor_csd')}</span>{php} if($obj['actor_birtharea']){ echo $obj['actor_birtharea']; }else{ {/php}<span data-lang="unfilled">{:lang_web('unfilled')}</span>{php}}{/php} </li>
+
+						   <li><span class="sTit" data-lang="string_actor_zy">{:lang_web('string_actor_zy')}</span>{php} if($obj['actor_remarks']){ echo $obj['actor_remarks']; }else{ {/php}<span data-lang="unfilled">{:lang_web('unfilled')}</span>{php}}{/php} </li>
+
+						   <li><span class="sTit" data-lang="string_actor_byyx">{:lang_web('string_actor_byyx')}</span>{php} if($obj['actor_school']){ echo $obj['actor_school']; }else{ {/php}<span data-lang="unfilled">{:lang_web('unfilled')}</span>{php}}{/php} </li>
+
+						   <li class="all">
+							   <span class="sTit" data-lang="string_actor_dbzp">{:lang_web('string_actor_dbzp')}</span>{php} if($obj['actor_works']){ echo $obj['actor_works']; }else{ {/php}<span data-lang="unfilled">{:lang_web('unfilled')}</span>{php}}{/php} </li>
+						 </ul>
+						 {if $obj['actor_content']}{$obj['actor_content']}{else}<span data-lang="unfilled">{:lang_web('unfilled')}</span>{/if}
+						</div>
+					</section>
+					<section>
+					  <h2 data-lang="string_actor_xgzp">{:lang_web('string_actor_xgzp')}</h2>
+						<div class="content_desc clearfix">
+						    <h3 class="vod_tit1" data-lang="string_actor_dy">{:lang_web('string_actor_dy')}</h3>
+							<ul id="vod_actor1" class="vodlist vodlist_wi list_scroll clearfix">
+								{maccms:vod type="1" actor="'.$obj['actor_name'].'" order="desc" by="time"}
+								{include file="widget/vod_box"}
+								{/maccms:vod}
+							</ul>
+							<h3 class="vod_tit2" data-lang="string_actor_dsj">{:lang_web('string_actor_dsj')}</h3>
+							<ul id="vod_actor2" class="vodlist vodlist_wi list_scroll clearfix">
+								{maccms:vod type="2" actor="'.$obj['actor_name'].'" order="desc" by="time"}
+								{include file="widget/vod_box"}
+								{/maccms:vod}
+							</ul>
+							<h3 class="vod_tit3" data-lang="string_actor_zongyi">{:lang_web('string_actor_zongyi')}</h3>
+							<ul id="vod_actor3" class="vodlist vodlist_wi list_scroll clearfix">
+								{maccms:vod type="3" actor="'.$obj['actor_name'].'" order="desc" by="time"}
+								{include file="widget/vod_box"}
+								{/maccms:vod}
+							</ul>
+						</div>
+					</section>
+					{if condition="$tplconfig['theme']['role']['btn'] eq 1"}
+					<section>
+					  <h2 data-lang="string_actor_cyjs">{:lang_web('string_actor_cyjs')}</h2>
+						<div class="clearfix">
+                   <div class="vodlist_smt clearfix">
+					<ul>
+						{maccms:role num="120" paging="no" actor="'.$obj['actor_name'].'" order="desc" by="time"}
+						<li class="ranklist_item">
+							<a href="{$vo|mac_url_role_detail}" title="{$vo.data.vod_name}">
+							<div class="ranklist_img">
+								 <div class="ranklist_thumb lazyload" data-original="{$vo.role_pic|mac_url_img}">
+								 </div>
+							</div>
+							<div class="ranklist_txt">
+								 <div class="pannel_head clearfix">
+									 <span class="vod_tname text_muted pull_right"> <span data-lang="string_actor_yy">{:lang_web('string_actor_yy')}</span> {$obj.actor_name}</span>
+									  <h4 class="title">{$vo.role_name}</h4>
+								 </div>
+								 <p class="vodlist_sub"> <span data-lang="string_actor_jj">{:lang_web('string_actor_jj')}</span> {php} if($obj['role_content']){ echo $obj['role_content']; }else{ {/php}<span data-lang="unfilled">{:lang_web('unfilled')}</span>{php}}{/php} </p>
+								 <p><span class="vodlist_sub"> <span data-lang="string_actor_pm">{:lang_web('string_actor_pm')}</span>《{$vo.data.vod_name}》</span></p>
+							</div>
+							</a>
+						</li>
+						{/maccms:role}
+					</ul>
+                </div>
+						</div>
+					</section>{/if}
+				  </div>
+				 </div>
+			</div>
+
+        </div>
+
+    </div>
+	<div style="width:30rem;margin: 2rem auto;">
+		{include file="public/friendLink" }
+	</div>
+    <script type="text/javascript">
+		var linum1 = document.getElementById('vod_actor1').getElementsByTagName("li").length;
+        if (linum1 < 1){$(".vod_tit1").css("display","none");}
+		var linum2 = document.getElementById('vod_actor2').getElementsByTagName("li").length;
+        if (linum2 < 1){$(".vod_tit2").css("display","none");}
+		var linum3 = document.getElementById('vod_actor3').getElementsByTagName("li").length;
+        if (linum3 < 1){$(".vod_tit3").css("display","none");}
+	</script>
+
+</body>
+</html>

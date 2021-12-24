@@ -1,0 +1,86 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>{$obj.type_name}{:lang_web('website_wzsl')} - {$maccms.site_name}</title>
+    <meta name="keywords" content="{$obj.type_key}" />
+    <meta name="description" content="{$obj.type_des}" />
+    {include file="public/include"}
+</head>
+<style>
+    @media screen and (max-width:820px) {
+        body{
+            padding-top: 0;
+        }
+        .filter-focus {
+            width: auto;
+            overflow: hidden;
+            margin-top: 50px;
+            margin-bottom: 0;
+            box-shadow: none;
+            padding: 20px 20px 0 20px;
+        }
+        .ui-bar{
+            width: auto;
+            padding-left: 10px;
+        }
+        .view-filter a,.view-filter a.current{
+            font-size: 17px;
+        }
+        .website-list{
+            padding:0px 20px;
+        }
+       
+    }
+</style>
+<body>
+<div class="show-pc">
+    {include file="public/head"}
+</div>
+<div class="show-mobile">
+    <div id="ui-nav" class="m-nav">
+        <a href="javascript:MAC.GoBack()" class="btn-left"><i class="iconfont ico-right">&#xe625;</i></a>
+        <span class="mb-title" data-lang="website_gjsl">{:lang_web('website_wzsl')} </span>
+    </div>
+</div>
+<!-- 搜索条件 -->
+<div class="member-wrap">
+<div class=" filter-focus">
+    <div class="ui-title"><h3>{$obj.type_name} - <span data-lang="website_gjsl">{:lang_web('website_gjsl')} </span> </h3></div>
+    <div class="ui-cnt">
+        
+        <div id="hl06">
+            <div class="scroller">
+                <ul class="screen_list clearfix">
+                    <li class="text hidden_xs"><span class="text_muted" data-lang="string_show_zm">{:lang_web('string_show_zm')} </span>
+                    </li>
+                    <li></li>
+                    <li {if condition="$param['letter'] eq ''" } class="hl tplconfig-06" {/if}><a href="{:mac_url_type($obj,['area'=>$param['area'],'lang'=>$param['lang'],'year'=>$param['year'],'level'=>$param['level'],'letter'=>'','state'=>$param['state'],'tag'=>$param['tag'],'class'=>$param['class'],'order'=>$param['order'],'by'=>$param['by'] ],'show')}" data-lang="string_show_all">{:lang_web('string_show_all')} </a>
+                    </li>
+                    {maccms:foreach name=":explode(',','A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z,0-9')" id="vo2" key="key2"}
+                    <li {if condition="$param['letter'] eq $vo2" } class="hl tplconfig-06" {/if}><a href="{:mac_url_type($obj,['area'=>$param['area'],'lang'=>$param['lang'],'year'=>$param['year'],'level'=>$param['level'],'letter'=>$vo2,'state'=>$param['state'],'tag'=>$param['tag'],'class'=>$param['class'],'order'=>$param['order'],'by'=>$param['by'] ],'show')}">{$vo2}</a>
+                    </li>
+                    {/maccms:foreach}
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- 排序方式 -->
+<div class="ui-bar fn-clear">
+    <div class="view-filter">
+        <a href="{:mac_url_type($obj,['area'=>$param['area'],'lang'=>$param['lang'],'level'=>$param['level'],'letter'=>$param['letter'],'tag'=>$param['tag'],'class'=>$param['class'],'order'=>$param['order'],'by'=>'time' ],'show')}" class="order {if condition="$param.by eq '' || $param.by eq 'time'"}current{/if}" data-lang="website_asj">{:lang_web('website_asj')} </a>
+        <a href="{:mac_url_type($obj,['area'=>$param['area'],'lang'=>$param['lang'],'level'=>$param['level'],'letter'=>$param['letter'],'tag'=>$param['tag'],'class'=>$param['class'],'order'=>$param['order'],'by'=>'hits' ],'show')}" class="order {if condition="$param.by eq 'hits'"}current{/if}" data-lang="website_arq">{:lang_web('website_arq')} </a>
+        <a href="{:mac_url_type($obj,['area'=>$param['area'],'lang'=>$param['lang'],'level'=>$param['level'],'letter'=>$param['letter'],'tag'=>$param['tag'],'class'=>$param['class'],'order'=>$param['order'],'by'=>'score' ],'show')}" class="order {if condition="$param.by eq 'score'"}current{/if}" data-lang="website_apf">{:lang_web('website_apf')} </a>
+    </div>
+</div>
+<!--列表部分-->
+{include file="website/tableList"}
+<div style="width:30rem;margin: 2.5rem auto;" class="show-pc">
+	{include file="public/friendLink" }
+</div>
+</div>
+
+{include file="public/foot"}
+</body>
+</html>

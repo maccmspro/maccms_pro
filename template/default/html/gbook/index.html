@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+       
+	{include file="public/include"}
+ 
+	<script>
+        $(function(){
+            MAC.Gbook.Login = {$gbook.login};
+            MAC.Gbook.Verify = {$gbook.verify};
+            MAC.Gbook.Init();
+        });
+    </script>
+</head>
+<style>
+    .container{
+        padding-top: 120px;
+    }
+    .zishu{
+        position: absolute;
+        top: 2rem;
+        right: 0.5rem;
+    }
+</style>
+<body id="graypage">
+    <div class="show-pc">
+        {include file="public/head"}
+    </div>
+ <div id="left" class="show-mobile">
+        <div class="m-nav">
+			<a href="javascript:MAC.GoBack()" class="btn-left"><i class="iconfont ico-right">&#xe625;</i></a>
+			<span class="mb-title" data-lang="string_gbook_wyly">{:lang_web('string_gbook_wyly')}</span>
+	    </div>
+	</div>
+ <div class="member-wrap">
+
+ <div class="container white_pal">
+     {include file="ads/ads_all"}
+      <div class="input_row">
+       <div class="pannel clearfix">
+        <!--留言开始-->
+        <div class="mac_msg_r">
+              <form class="gbook_form gbook_font">
+                <textarea class="gbook_content" name="gbook_content" data-placeholder="string_gbook_srly" placeholder="{:lang_web('string_gbook_srly')}"></textarea>
+                <div class="show-mobile zishu">
+                    <span class="is_zishu">0</span>/<span>200</span>
+                </div>
+                <div class="msg_code">
+                    <div class="remaining_w">
+                        <span data-lang="string_gbook_ts">{:lang_web('string_gbook_ts')}</span>
+                        <span class="gbook_remaining remaining">200</span> 
+                        <span data-lang="string_pinglun_zi">{:lang_web('string_pinglun_zi')}</span>
+                    </div>
+                    {if condition="$gbook.verify eq 1"}
+                    <input type="text" name="verify" data-placeholder='user_yanzhengma' placeholder="{:lang_web('user_yanzhengma')}" class="verify">
+                    <img class="comm-code" data-title='string_pinglun_kan' src="{:mac_url('verify/index')}" data-role="{:mac_url('verify/index')}" title="{:lang_web('string_pinglun_kan')}" onClick="this.src=this.src+'?v={:time()}'" />
+                    {/if}
+                    <input type="button" data-value='string_gbook_tjly' class="gbook_submit submit_btn" value="{:lang_web('string_gbook_tjly')}">
+                </div>
+            </form>
+        </div>
+        <!--留言结束-->
+        {maccms:gbook paging="yes" order="desc" by="id"}
+        {/maccms:gbook}		
+	   </div>
+    </div>
+	<div class="commlist_row">
+	    <div class="comm_list pannel clearfix">
+			{include file="gbook/ajax"}
+		</div>
+	</div>
+</div>
+</div>
+{include file="public/foot"}
+</body>
+</html>

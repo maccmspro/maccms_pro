@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>{:lang_web('string_type_hot_rank')} - {$maccms.site_name}</title>
+    <meta name="keywords" content="电影排行榜,电视剧排行榜,综艺排行榜,动漫排行榜,热播影视排行榜" />
+    <meta name="description" content="本站提供最新最全热播影视排行榜数据" /> {include file="public/include"}
+</head>
+<style>
+@media screen and (min-width:820px){
+    .container {
+        padding-top: 120px;
+    }
+    #rankpage{
+        background-image: url('{:MAC_BASE_PATH}/template/default/images/pro/rank-bg.jpg');
+        background-repeat: no-repeat;
+        background-size: 100% 13rem;
+        background-position: 100% 2.5rem;
+    }
+    .header {
+        box-shadow: 0px 0px 12px 0px rgba(0, 0, 0, 0.13);
+    }
+    .header .head_menu_a a{
+        color: #333;
+    }
+}
+@media screen and (max-width:820px){
+    #rankpage{
+        padding-top: 1.25rem !important;
+    }
+}
+</style>
+
+<body id="rankpage">
+    <div class="show-pc">
+        {include file="public/head"}
+    </div>
+    <div class="show-mobile">
+        <div id="ui-nav" class="m-nav">
+            <a href="javascript:MAC.GoBack()" class="btn-left"><i class="iconfont ico-right">&#xe625;</i></a>
+            <span class="mb-title" data-lang="string_paihangb">{:lang_web('string_paihangb')}</span>
+        </div>
+    </div>
+    <div class="container white_pal ">
+        {include file="ads/ads_all"}
+        <div class="row">
+            <div class="pannel rankpage clearfix">
+                <div class="tabs">
+                    <input type="radio" id="tab1" name="tab-control" checked>
+                    <input type="radio" id="tab2" name="tab-control">
+                    <input type="radio" id="tab3" name="tab-control">
+                    <ul class="title_nav">
+                        <li class="tab_rank"  title="周榜" data-title="string_zhoub">
+                            <label for="tab1"  role="button">
+                                <span data-lang="string_zhoub">{:lang_web('string_zhoub')}</span>
+                            </label>
+                        </li>
+                        <li class="tab_rank" data-title="string_yueb" title="{:lang_web('string_yueb')}">
+                            <label for="tab2" role="button">
+                                <span data-lang="string_yueb">{:lang_web('string_yueb')}</span>
+                            </label>
+                        </li>
+                        <li class="tab_rank" data-title="string_zongb" title="{:lang_web('string_zongb')}">
+                            <label for="tab3" role="button">
+                                <span data-lang="string_zongb">{:lang_web('string_zongb')}</span>
+                            </label>
+                        </li>
+                    </ul>
+
+                    <div class="content">
+                        <section>
+                            <h2 data-lang="string_zhoub">{:lang_web('string_zhoub')}</h2>
+                            <!-- 列表 -->
+                            {maccms:type num="'.$tplconfig['theme']['rank']['num'].'" ids="'.$tplconfig['theme']['rank']['id'].'" order="asc" by="sort" flag="vod" id=""}
+                            <div class="rank_info">
+                                <div class="list_info">
+                                    <div class="pannel_head clearfix">
+                                        <span class="text_muted pull_right"></span>
+                                        <h3 class="title">
+                                            {$vo.type_name}
+                                        </h3>
+                                    </div>
+                                    <ul class="part_rows">
+                                        {maccms:vod num="1" type="'.$vo['type_id'].'" order="desc" by="hits_week"} {include file="widget/rank_box_week"} {/maccms:vod} {maccms:vod num="9" type="'.$vo['type_id'].'" start="2" order="desc" by="hits_week"}
+                                        <li class="part_eone">
+                                            {if condition="$vo['type_id_1']==$tplconfig['theme']['type']['zb']"}
+                                            <a href="{:mac_url_vod_play($vo,['sid'=>$vo.sid,'nid'=>1])}">
+                                                {else}
+                                                {in name="vo.type_id" value="$tplconfig['theme']['type']['hb']"}
+                                                <a href="{:mac_url_vod_play($vo,['sid'=>$vo.sid,'nid'=>1])}">
+                                                {else}
+                                                <a {if condition="$tplconfig['theme']['playlink']['btn'] eq 1"}href="{:mac_url_vod_play($vo,['sid'=>$vo.sid,'nid'=>1])}"{else/}href="{:mac_url_vod_detail($vo)}"{/if}>
+                                                {/in}
+                                                {/if}
+                                                <span class="part_nums part_num{$key+1}">{$key+1}</span>
+                                                <span class="text_muted pull_right renqi">{$vo.vod_score} <span data-lang="string_fen">{:lang_web('string_fen')}</span> </span>
+                                                {$vo.vod_name}
+                                            </a>
+                                        </li>
+                                        {/maccms:vod}
+                                    </ul>
+                                </div>
+                            </div>
+                            {/maccms:type}
+                            <!-- end 列表 -->
+                        </section>
+                        <section>
+                            <h2 data-lang="string_yueb">{:lang_web('string_yueb')}</h2>
+                            <!-- 列表 -->
+                            {maccms:type num="'.$tplconfig['theme']['rank']['num'].'" ids="'.$tplconfig['theme']['rank']['id'].'" order="asc" by="sort" flag="vod" id="vo"}
+                            <div class="rank_info">
+                                <div class="list_info">
+                                    <div class="pannel_head clearfix">
+                                        <span class="text_muted pull_right"></span>
+                                        <h3 class="title">
+                                            {$vo.type_name}
+                                        </h3>
+                                    </div>
+                                    <ul class="part_rows">
+                                        {maccms:vod num="1" type="'.$vo['type_id'].'" order="desc" by="hits_month"} {include file="widget/rank_box_month"} {/maccms:vod} {maccms:vod num="9" type="'.$vo['type_id'].'" start="2" order="desc" by="hits_month"}
+                                        <li class="part_eone">
+                                            {if condition="$vo['type_id_1']==$tplconfig['theme']['type']['zb']"}
+                                            <a href="{:mac_url_vod_play($vo,['sid'=>$vo.sid,'nid'=>1])}">
+								{else}
+								{in name="vo.type_id" value="$tplconfig['theme']['type']['hb']"}
+								<a href="{:mac_url_vod_play($vo,['sid'=>$vo.sid,'nid'=>1])}">
+								{else}
+								<a {if condition="$tplconfig['theme']['playlink']['btn'] eq 1"}href="{:mac_url_vod_play($vo,['sid'=>$vo.sid,'nid'=>1])}"{else/}href="{:mac_url_vod_detail($vo)}"{/if}>
+								{/in}
+								{/if}
+								<span class="part_nums part_num{$key+1}">{$key+1}</span><span class="text_muted pull_right renqi">{$vo.vod_score}<span data-lang="string_fen">{:lang_web('string_fen')}</span></span>
+								{$vo.vod_name}</a>
+                                        </li>
+                                        {/maccms:vod}
+                                    </ul>
+                                </div>
+                            </div>
+                            {/maccms:type}
+                            <!-- end 列表 -->
+                        </section>
+                        <section>
+                            <h2 data-lang="string_zongb">{:lang_web('string_zongb')}</h2>
+                            <!-- 列表 -->
+                            {maccms:type num="'.$tplconfig['theme']['rank']['num'].'" ids="'.$tplconfig['theme']['rank']['id'].'" order="asc" by="sort" flag="vod" id="vo"}
+                            <div class="rank_info">
+                                <div class="list_info">
+                                    <div class="pannel_head clearfix">
+                                        <span class="text_muted pull_right">
+								<!-- <a href="{:mac_url_type($vo)}"><span data-lang="string_type_more2">更多</span><i class="iconfont more_i">&#xe623;</i></a> -->
+							</span>
+                                        <h3 class="title">
+                                            {$vo.type_name}
+                                        </h3>
+                                    </div>
+                                    <ul class="part_rows">
+                                        {maccms:vod num="1" type="'.$vo['type_id'].'" order="desc" by="hits"} {include file="widget/rank_box_all"} {/maccms:vod} {maccms:vod num="9" type="'.$vo['type_id'].'" start="2" order="desc" by="hits"}
+                                        <li class="part_eone">
+                                            {if condition="$vo['type_id_1']==$tplconfig['theme']['type']['zb']"}
+                                            <a href="{:mac_url_vod_play($vo,['sid'=>$vo.sid,'nid'=>1])}">
+                                            {else}
+                                            {in name="vo.type_id" value="$tplconfig['theme']['type']['hb']"}
+                                            <a href="{:mac_url_vod_play($vo,['sid'=>$vo.sid,'nid'=>1])}">
+                                            {else}
+                                            <a {if condition="$tplconfig['theme']['playlink']['btn'] eq 1"}href="{:mac_url_vod_play($vo,['sid'=>$vo.sid,'nid'=>1])}"{else/}href="{:mac_url_vod_detail($vo)}"{/if}>
+                                            {/in}
+                                            {/if}
+                                            <span class="part_nums part_num{$key+1}">{$key+1}</span><span class="text_muted pull_right renqi">{$vo.vod_score}<span data-lang="string_fen">{:lang_web('string_fen')}</span></span>
+                                            {$vo.vod_name}</a>
+                                        </li>
+                                        {/maccms:vod}
+                                    </ul>
+                                </div>
+                            </div>
+                            {/maccms:type}
+                            <!-- end 列表 -->
+                        </section>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- 友情链接 -->
+    {include file="public/friendLink"}
+    </div>
+    
+    {include file="public/foot"}
+</body>
+
+</html>

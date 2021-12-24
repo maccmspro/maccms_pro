@@ -1,0 +1,133 @@
+{include file="../../../application/admin/view/public/head" /}
+<style>
+.layui-table img{width:100%;max-width:40px;max-height: 40px;}
+</style>
+<div class="">
+
+    <div class="layui-card">
+        <div class="layui-card-body">
+            <form class="layui-form"  method="post">
+                <div class="layui-form-item">
+                    <div class="layui-form-item layui-inline">
+                        <select name="cat">
+                            <option value="">{:lang('admin/banner/index/choose_loc')}</option>
+                            {volist name="cat" id="vo"}
+                            <option value="{$vo.cat_id}" {if condition="$param['cat'] == $vo['cat_id']"}selected {/if}>{$vo.cat_title}[{$vo.cat_code}]</option>
+                            {/volist}
+                        </select>
+                    </div>
+                    <div class="layui-form-item layui-inline">
+                        <select name="status">
+                            <option value="">{:lang('admin/banner/index/choose_status')}</option>
+                            <option value="0" {if condition="$param['status'] == '0'"}selected {/if}>{:lang('admin/banner/index/close')}</option>
+                            <option value="1" {if condition="$param['status'] == '1'"}selected {/if}>{:lang('admin/banner/index/show')}</option>
+                        </select>
+                    </div>
+                    <div class="layui-form-item layui-inline">
+                        <input type="text" autocomplete="off" placeholder="{:lang('admin/banner/index/search_condition')}" class="layui-input" name="wd" value="{$param['wd']}">
+                    </div>
+                    <div class="layui-form-item layui-inline">
+                        <button class="pear-btn pear-btn-md pear-btn-primary j-search">
+                            <i class="layui-icon layui-icon-search"></i>
+                            {:lang('admin/banner/index/search')}
+                        
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="layui-card">
+        <div class="layui-card-body">
+          <table id="role-table" lay-filter="role-table"></table>
+          <div
+            class="layui-form layui-border-box layui-table-view"
+            lay-filter="LAY-table-1"
+            lay-id="role-table"
+            style=""
+          >
+            <div class="layui-table-tool">
+              <div class="layui-table-tool-temp">
+                  <a data-full="2" data-width="500px" data-height="300px" data-href="{:url('infocat')}" class="pear-btn pear-btn-primary pear-btn-md j-iframe"><i class="layui-icon">&#xe654;</i>{:lang('admin/banner/index/add_loc')}</a>
+                  <a data-full="2" data-href="{:url('info')}" class="pear-btn pear-btn-primary pear-btn-md j-iframe"><i class="layui-icon">&#xe654;</i>{:lang('admin/banner/index/add')}</a>
+                  <a data-href="{:url('del')}" class="pear-btn pear-btn-danger pear-btn-md j-page-btns confirm"><i class="layui-icon">&#xe640;</i>{:lang('admin/banner/index/del')}</a>
+              </div>
+            </div>
+            <div class="layui-table-box">
+              <div class="layui-table-header">
+				<form class="layui-form" method="post" id="pageListForm" >
+					<table
+					cellspacing="0"
+					cellpadding="0"
+					border="0"
+					class="layui-table"
+					lay-skin="line"
+					>
+					<thead>
+						<tr>
+							<th width=""><input type="checkbox" lay-skin="primary" lay-filter="allChoose"></th>
+							<th width="">{:lang('admin/banner/index/img')}</th>
+							<th >{:lang('admin/banner/index/name')}</th>
+							<th width="">{:lang('admin/banner/index/link')}</th>
+							<th width="">{:lang('admin/banner/index/show_time')}</th>
+							<th width="">{:lang('admin/banner/index/show_status')}</th>
+							<th width="">{:lang('admin/banner/index/action')}</th>
+						</tr>
+					</thead>
+					<tbody>
+						{volist name="list" id="vo"}
+						<tr>
+							<td><input type="checkbox" name="ids[]" value="{$vo.banner_id}" class="layui-checkbox checkbox-ids" lay-skin="primary"></td>
+							<td><img src="{:MAC_BASE_PATH}/{$vo.banner_pic}"></td>
+							<td>{$vo.banner_title}</td>
+							<td>{$vo.banner_link}</td>
+							<td>{$vo.banner_stime|date='Y-m-d',###} - {$vo.banner_etime|date='Y-m-d',###}</td>
+							<td>{if condition="$vo.banner_status eq 1"}<span class="layui-badge">{:lang('admin/banner/index/show')}</span>{else/}<span class="layui-badge">{:lang('admin/banner/index/close')}</span>{/if}</td>
+							<td>
+								<a class="pear-btn pear-btn-primary pear-btn-md j-iframe" data-full="2" data-href="{:url('info?id='.$vo['banner_id'])}" href="javascript:;" title="{:lang('admin/banner/index/update')}">{:lang('admin/banner/index/update')}</a>
+								<a class="pear-btn pear-btn-danger pear-btn-md j-tr-del" data-href="{:url('del?ids='.$vo['banner_id'])}" href="javascript:;" title="{:lang('admin/banner/index/del')}">{:lang('admin/banner/index/del')}</a>
+							</td>
+						</tr>
+						{/volist}
+					</tbody>
+					</table>
+				</form>
+              </div>
+              
+            </div>
+            
+            
+          </div>
+        </div>
+      </div>
+      
+    <div id="pages" class="center"></div>
+</div>
+
+{include file="../../../application/admin/view/public/foot" /}
+
+<script type="text/javascript">
+    var curUrl="{:url('banner/index',$param)}";
+    layui.use(['laypage', 'layer','form'], function() {
+        var laypage = layui.laypage
+                , layer = layui.layer,
+                form = layui.form;
+
+        laypage.render({
+            elem: 'pages'
+            ,count: {$total}
+            ,limit: {$limit}
+            ,curr: {$page}
+            ,layout: ['count', 'prev', 'page', 'next', 'limit', 'skip']
+            ,jump: function(obj,first){
+                if(!first){
+                    location.href = curUrl.replace('%7Bpage%7D',obj.curr).replace('%7Blimit%7D',obj.limit);
+                }
+            }
+        });
+
+
+    });
+</script>
+</body>
+</html>

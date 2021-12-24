@@ -1,0 +1,117 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<title>{:lang_web('user_zhaohuimima')} - {$maccms.site_name} </title>
+	<meta name="keywords" content="{$maccms.site_keywords}"/>
+	<meta name="description" content="{$maccms.site_description}"/>
+	{include file="user/include" /}
+</head>
+<body id="reg">
+	<div class="show-mobile">
+        <div id="ui-nav" class="m-nav">
+            <a href="javascript:MAC.GoBack()" class="btn-left"><i class="iconfont ico-right">&#xe625;</i></a>
+            <span class="mb-title" data-lang="user_ylwtzhmm">{:lang_web('user_ylwtzhmm')}</span>
+        </div>
+    </div>
+	<div class="reg-w">
+		<form method="post" id="fm" action="">
+			<div class="reg-group">
+				<img class="l-icon" src="{:MAC_BASE_PATH}/template/default/images/member/login-user.png" >
+				<input type="text" data-placeholder="user_place_dlzh" id="user_name" name="user_name" class="reg-control" placeholder="{:lang_web('user_place_dlzh')}">
+			</div>
+			<div class="reg-group">
+				<img class="l-icon" src="{:MAC_BASE_PATH}/template/default/images/member/login-p.png" >
+				<input type="text" data-placeholder="user_place_mbwentyi"  id="user_question" name="user_question" class="reg-control" placeholder="{:lang_web('user_place_mbwentyi')}">
+			</div>
+			<div class="reg-group">
+				<img class="l-icon" src="{:MAC_BASE_PATH}/template/default/images/member/login-d.png" >
+				<input type="text" data-placeholder="user_place_mbdaan" id="user_answer" name="user_answer" class="reg-control" placeholder="{:lang_web('user_place_mbdaan')}">
+			</div>
+			<div class="reg-group">
+				<img class="l-icon" src="{:MAC_BASE_PATH}/template/default/images/member/login-pwd.png" >
+				<input type="password" data-placeholder="user_place_xmm" id="user_pwd" name="user_pwd" class="reg-control" placeholder="{:lang_web('user_place_xmm')}">
+			</div>
+			<div class="reg-group">
+				<img class="l-icon" src="{:MAC_BASE_PATH}/template/default/images/member/login-pwd.png" >
+				<input type="password" data-placeholder="user_place_querenmm" id="user_pwd2" name="user_pwd2" class="reg-control" placeholder="{:lang_web('user_place_querenmm')}">
+			</div>
+			<div class="reg-group">
+				<img class="l-icon" src="{:MAC_BASE_PATH}/template/default/images/member/login-i.png" >
+				<input type="text" data-placeholder="user_place_yanzm" class="reg-control w150" id="verify" name="verify" placeholder="{:lang_web('user_place_yanzm')}">
+				<img class="fr m-hi" src="{:url('verify/index')}" onClick="this.src=this.src+'?'"   />
+			</div>
+			<input type="button" id="btn_submit" data-value="btn_ljzh" class="btn-brand btn-sub" value="{:lang_web('btn_ljzh')}">
+		</form>
+		<div class="reg-ts">
+			<a href="{:url('user/login')}" data-lang="user_zjdengl">{:lang_web('user_zjdengl')}</a>
+			<a href="{:url('user/findpass_msg')}?ac=email" data-lang="user_youxzh">{:lang_web('user_youxzh')}</a>
+			<a href="{:url('user/findpass_msg')}?ac=phone" data-lang="user_shoujizh">{:lang_web('user_shoujizh')}</a>
+		</div>
+		<div class="show-toast"></div>
+	</div>
+
+<script type="text/javascript">
+	function showToast(val){
+		$(".show-toast").html(val)
+		$(".show-toast").css("display",'block')
+		setTimeout(()=>{
+			$(".show-toast").css("display",'none')
+		}, 2000);
+	}
+
+	$(function(){
+		var lang=localStorage.getItem('lang')
+		$("body").bind('keyup',function(event) {
+			if(event.keyCode==13){ $('#btnLogin').click(); }
+		});
+		$('#btn_submit').click(function() {
+			if ($('#user_name').val()  == '') { 
+				showToast(MAC.GetLang('string_login_sryh'))
+				// alert('请输入用户！'); 
+				$("#user_name").focus(); 
+				return false; 
+			}
+			if ($('#user_pwd').val()  == '') { 
+				showToast(MAC.GetLang('string_login_srmm'))
+				// alert('请输入密码！');
+				$("#user_pwd").focus(); 
+				return false; 
+			}
+			if ($('#verify').val()  == '') {
+				showToast(MAC.GetLang('string_login_sryzm')) 
+				// alert('请输入验证码！'); 
+				$("#verify").focus(); 
+				return false; 
+			}
+
+			$.ajax({
+				url: "{:url('user/findpass')}",
+				type: "post",
+				dataType: "json",
+				data: $('#fm').serialize(),
+				beforeSend: function () {
+					$("#btn_submit").css("background","#fd6a6a").val("loading...");
+				},
+				success: function (r) {
+					if(r.code==1){
+						location.href="{:url('user/index')}";
+					}
+					else{
+						showToast(r.msg) 
+						// alert(r.msg);
+					}
+				},
+				complete: function () {
+					$('#verify').click();
+					$("#btn_submit").css("background","#fa4646").val(MAC.GetLang('btn_ljzh'));
+				}
+			});
+
+		});
+	});
+
+</script>
+
+</body>
+</html>

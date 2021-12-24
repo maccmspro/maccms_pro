@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>角色库高级筛选 - {$maccms.site_name}</title>
+    <meta name="keywords" content="电影角色,电视剧角色,明星主演的角色" />
+    <meta name="description" content="最新电影电视剧角色，为各位提供电视剧主要角色介绍，电影中主要角色介绍，角色名电影角色介绍，等丰富的节目主演角色介绍" /> 
+	{include file="public/include"}
+	<link rel="stylesheet" href="{:MAC_BASE_PATH}/template/default/asset/css/hlrole.css" type="text/css" />
+</head>
+<body>
+<div id="show_page">
+   {include file="public/head"}
+     <div class="container">
+        <div class="row">       	
+            <div class="pannel vod_all clearfix">
+				<!-- 筛选 -->
+				<div class="scroller" id="hl01">
+				<ul class="screen_list clearfix">
+					<li class="text hidden_xs">
+						<span class="text_muted">字母</span>
+					</li>
+					<li></li>
+					<li {if condition="$param['letter'] eq ''"} class="hl tplconfig-01"{/if}><a href="{:mac_url('role/show',['area'=>$param['area'],'lang'=>$param['lang'],'year'=>$param['year'],'level'=>$param['level'],'letter'=>'','state'=>$param['state'],'tag'=>$param['tag'],'class'=>$param['class'],'order'=>$param['order'],'by'=>$param['by'] ],'show')}">全部</a></li>
+				{maccms:foreach name=":explode(',','A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z,0-9')" id="vo1" key="key1"}
+					<li {if condition="$param['letter'] eq $vo1"} class="hl tplconfig-01"{/if}><a href="{:mac_url('role/show',['area'=>$param['area'],'lang'=>$param['lang'],'year'=>$param['year'],'level'=>$param['level'],'letter'=>$vo1,'state'=>$param['state'],'tag'=>$param['tag'],'class'=>$param['class'],'order'=>$param['order'],'by'=>$param['by'] ],'show')}">{$vo1}</a></li>
+				{/maccms:foreach}				
+                </ul>
+				</div>
+
+				<!-- end 筛选 -->
+				</div>
+				
+				<div class="pannel clearfix">
+				<!-- 列表 -->
+        <div class="row">
+	        <div class="pannel clearfix">
+                <div class="pannel_head clearfix">
+				<ul class="screen_list sx_tz clearfix" style="float: left;">
+					<li {if condition="$param['by'] eq '' || $param.by eq 'time'"} class="ik_fl"{/if}><a href="{:mac_url('role/show',['area'=>$param['area'],'sex'=>$param['sex'],'blood'=>$param['blood'],'starsign'=>$param['starsign'],'letter'=>$param['letter'],'order'=>$param['order'],'by'=>'time'])}">更新时间</a></li>
+			        <li {if condition="$param['by'] eq 'hits'"} class="ik_fl"{/if}><a href="{:mac_url('role/show',['area'=>$param['area'],'sex'=>$param['sex'],'blood'=>$param['blood'],'starsign'=>$param['starsign'],'letter'=>$param['letter'],'order'=>$param['order'],'by'=>'hits'])}">人气热度</a></li>
+				</ul>
+
+                <span class="sx_total">共有<em class="mac_total"></em>位角色</span>
+	            </div>
+				<!-- 列表 -->			
+                <div class="vodlist_smt clearfix">
+					<ul>
+						{maccms:role num="36" paging="yes" pageurl="role/show" order="desc" by="time"}
+                        <li class="ranklist_item">
+							<a href="{$vo|mac_url_role_detail}" title="{$vo.data.vod_name}">
+							<div class="ranklist_img">
+								 <div class="ranklist_thumb lazyload" data-original="{$vo.role_pic|mac_url_img}">
+								 </div>
+							</div>	
+							<div class="ranklist_txt">
+								 <div class="pannel_head clearfix">
+									 <span class="vod_tname text_muted pull_right"><span data-lang="string_actor_yy">{:lang_web('string_actor_yy')}</span>{$vo.role_actor}</span>
+									  <h4 class="title">{$vo.role_name}</h4>	
+								 </div>
+								 <p class="vodlist_sub"><span data-lang="string_vod_jj">{:lang_web('string_vod_jj')}</span>{$vo.role_content|mac_filter_html}</p>
+								 <p><span class="vodlist_sub"><span data-lang="string_actor_pm">{:lang_web('string_actor_pm')}</span>《{$vo.data.vod_name}》</span></p>
+							</div>
+							</a>  		
+						</li>
+						{/maccms:role}
+					</ul>
+                </div>				
+	
+				<!-- end 列表 -->
+				
+				{include file="widget/page"}<!-- 翻页-->
+				{empty name="$__PAGING__.record_total"}
+				<div class="show_no">暂无数据</div>
+				{/empty}
+                      </div>
+			</div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        $('.mac_total').html('{$__PAGING__.record_total}');
+    </script>
+{include file="public/foot"}
+</body>
+</html>

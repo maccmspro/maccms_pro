@@ -1,0 +1,76 @@
+<div class="share-drop-wrap">
+
+<div class="dropdown">
+    {if condition="$tplconfig['theme']['share']['bdbtn'] eq 1"}
+    <div class="bds_share_title"> <span data-lang="string_vod_share">{:lang_web('string_vod_share')}</span>  <img class="close-img show-mobile" src="{:MAC_BASE_PATH}/template/default/images/pro/close.png" ></div>
+	
+	<div class="bdsharebuttonbox" data-tag="share_1">
+		<div>
+			<a class="bds_weixin" data-cmd="weixin"></a>
+			<p class="share-c show-mobile" data-lang="string_weixin">{:lang_web('string_weixin')}</p>
+		</div>
+		<div>
+			<a class="bds_sqq" data-cmd="sqq"></a>
+			<p class="share-c show-mobile" data-lang="string_qq">{:lang_web('string_qq')}</p>
+		</div>
+		<div>
+			<a class="bds_tsina" data-cmd="tsina"></a>
+			<p class="share-c show-mobile" data-lang="string_weibo">{:lang_web('string_weibo')}</p>
+		</div>
+		<div>
+			<a class="bds_qzone" data-cmd="qzone"></a>
+			<p class="share-c show-mobile" data-lang="string_qqkj">{:lang_web('string_qqkj')}</p>
+		</div>
+		
+		<a class="bds_more show-pc" data-cmd="more"></a>
+    </div>
+	{/if}
+	<div class="show-pc">
+    <span class="share_tips" data-lang="string_share_tit">{:lang_web('string_share_tit')}</span>
+	<span id="short2" class="share_link shorturl">{$obj.vod_name}{$obj.art_name}{if condition="$maccms.mid eq 3"}专题-{$obj.topic_name}{/if}-{$obj['vod_play_list'][$param['sid']]['urls'][$param['nid']]['name']}-</span>
+	<span id="btn" class="copy_btn" data-clipboard-action="copy" data-clipboard-target="#short2" data-lang="string_share_hand">{:lang_web('string_share_hand')}</span>
+	{if condition="$tplconfig['theme']['share']['bdbtn'] eq 1"}
+		{if condition="$maccms.mid eq 2"}
+		<script>
+			window._bd_share_config = {
+				common : {
+					bdText : '{$obj.art_name}',
+					bdPic : '{:mac_url_img($obj.art_pic)}'
+				},
+				share : [{
+					"bdSize" : 32
+				}]
+			}
+			with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+		</script>
+		{else}
+		<script>
+			window._bd_share_config = {
+				common : {
+					bdText : '{$obj.vod_name}-{$obj['vod_play_list'][$param['sid']]['urls'][$param['nid']]['name']}',	
+					bdPic : '{:mac_url_img($obj.vod_pic)}'
+
+				},
+				share : [{
+					"bdSize" : 32
+				}]
+			}
+			with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+		</script>
+		{/if}
+	{/if}
+	</div>
+</div>
+</div>
+<script>
+	$(".share-drop-wrap").click(function(e){
+		if(e.target==e.currentTarget){
+			$(".share-drop-wrap").hide()
+			$(".dropdown").hide()
+		}
+	})
+	$(".close-img").click(function(e){
+		$(".share-drop-wrap").hide()
+		$(".dropdown").hide()
+	})
+</script>

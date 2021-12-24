@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html>
+<head>       
+	{include file="public/include"}
+</head>
+<style>
+	.player_popeom{width: 90%;text-align: center;position: absolute;top: 50%;left: 50%;z-index: 99999;transform: translate(-50%, -50%);}
+    .player_popeom a{display: inline-block;padding: 8px 32px;font-size: 16px;line-height: 20px;border-radius: 32px; color: #623A0C;  background: #E2C078;margin: 10px;text-decoration: none;background-image: linear-gradient(-135deg, #FBE8A8 0%, #F8E7AC 15%, #E2C078 100%);}
+	.player_popeom p {line-height: 10px;}
+	.player_popeom .sk-time {font-size: 18px;padding-bottom: 2px;}
+	.player_popeom .user-wbg {background: #fff;color: #333;}
+	.player_popeom .mscz {background: #ff5f00;color: #fff;border: 1px solid #ff5f00;}
+	.player_popeom .qrgm {background: none;color: #ff5f00;border: 1px solid #ff5f00;}
+	.player_popeom small {color: #999;}
+@media screen and (min-width:820px){
+	.left_row{
+		/* width: 100%; */
+	}
+	.mac_comment .input_wrap textarea{
+		border: none;
+		background-color: #F8F8F8;
+		height: 150px;
+	}
+	.mac_comment .cmt_form{
+		margin: 0;
+	}
+	.input_wrap .comment_content{
+		margin: 0;
+	}
+	.head_a .head_search {
+		background: rgba(255, 255, 255, 0.09);
+	}
+	.nav_fixed .head_a .head_search {
+		background: #F8F8F8;
+	}
+	.part_rows_fa .smt.smt_hidn{
+		padding-bottom: 10px;
+		padding-left: 30px;
+	}
+	.head_box{
+		z-index: 9999;
+	}
+	.vodlist_wi{
+		width: calc(100% + 0.25rem);
+		margin-left: -0.125rem;
+	}
+	#buffer{
+		z-index: 888 !important;
+	}
+	
+}
+@media screen and (max-width:820px){
+	.header{
+		padding: 0 !important;
+	}
+}
+@font-face {
+        font-family: 'iconfont';  /* Project id 2776795 */
+    src: url('//at.alicdn.com/t/font_2776795_gtgdikivq1.woff2?t=1634829394026') format('woff2'),
+        url('//at.alicdn.com/t/font_2776795_gtgdikivq1.woff?t=1634829394026') format('woff'),
+        url('//at.alicdn.com/t/font_2776795_gtgdikivq1.ttf?t=1634829394026') format('truetype');
+    }
+</style>
+<body class="bstem">
+	
+	<div id="play_page" {if condition="$obj['type_id_1']==$tplconfig['theme']['type']['zb']"}class="zbo"{/if}>
+    <div class="hot_banner">
+    {include file="public/head"}
+    </div>
+	<div class="play_boxbg">
+		<div class="container">
+	        {if condition="$tplconfig['theme']['play']['adbtn'] eq 1"}
+		    {include file="ads/ads_all"}
+		    {/if}
+			<div class="play_box play_video">
+			<!-- 播放器  -->
+				<div class="left_row fl ">
+					<div class="player_video embed-responsive embed-responsive-16by9 author-qq362695000 clearfix">
+					{if condition="$obj.vod_copyright eq 1 && $GLOBALS['config']['app']['copyright_status'] eq 1 "}
+					<div class="play_tips"><h3>{if $GLOBALS['config']['app']['copyright_notice']}{$GLOBALS['config']['app']['copyright_notice']}{else}<span data-lang="resources_closed">{:lang_web('resources_closed')}</span>{/if}</h3></div>
+		            {elseif$obj.vod_lock}
+	                <div class="lock_tipe_box" style="background-image: url({:mac_url_img($obj.vod_pic)})"></div>
+					<div class="play_tips lock_tips">
+						<h3 data-lang="string_play_wfgk">{:lang_web('string_play_wfgk')}</h3>
+						<p data-lang="string_play_bq">{:lang_web('string_play_bq')}</p>
+					</div>
+			        {else}
+                        {if condition="$obj['type_id_1']==$tplconfig['theme']['type']['zb']"}
+							{maccms:foreach name="obj.vod_play_list" id="vo" by="num"}
+							{empty name="$vo.urls"}
+							<div class="play_tips"><h3 data-lang="string_play_wxhy">{:lang_web('string_play_wxhy')}</h3></div>
+							{/empty}
+							{/maccms:foreach}
+		                {/if}
+		                {if condition="$tplconfig['theme']['play']['nbtn'] eq 1"}
+			            <div id="fd_tips" class="fodong_box">
+			            <div id="mq" class="fodong_tips">
+			                <a class="close_tips" href="javascript:void(0)"><i class="iconfont">&#xe616;</i></a>
+							<ul>
+								<li> <span data-lang="string_play_dqbf">{:lang_web('string_play_dqbf')}：</span> {$obj.vod_name} - {$obj['vod_play_list'][$param['sid']]['urls'][$param['nid']]['name']}</li>
+								{$tplconfig['theme']['play']['notice']}
+							</ul>
+						</div>
+			            </div>
+						
+			            {/if}
+				        {$player_data}{$player_js}
+				    {/if}							
+					</div>
+					
+					<div class="play_but {if condition="$tplconfig['theme']['weixin']['btn'] eq 0"}bline{/if}">
+					  <ul>
+					    <li>
+					     {if condition="$GLOBALS['config']['comment']['status'] eq 1"}
+					     <a class="play_pl hidden_xs" href="#pinglun">
+							 <i class="iconfont">&#xe632;</i> 
+							<span data-lang="string_play_pl">{:lang_web('string_play_pl')}</span>
+						</a>
+					     {/if}
+					     <a href="#bofy">
+							<i class="iconfont">&#xe62a;</i> 
+							<span data-lang="string_play_xl">{:lang_web('string_play_xl')}</span>
+						</a>
+					     {if condition="$GLOBALS['config']['gbook']['status'] eq 1"}
+						 <a class="report_click" href="javascript:void(0)" onclick="MAC.Gbook.Report('ID:{$obj.vod_id} -【名称：{$obj.vod_name} - {$obj['vod_play_list'][$param['sid']]['urls'][$param['nid']]['name']}】无法观看请检查修复')">
+							<i class="iconfont">&#xe612;</i> <span data-lang="string_play_bc">{:lang_web('string_play_bc')}</span> 
+						</a>
+                         {/if}
+                         <a href="javascript:;" onclick="location.reload()"><i class="iconfont">&#xe621;</i> <span data-lang="string_play_sx">{:lang_web('string_play_sx')}</span> </a>
+                         <div class="play_share hidden_xs" style="width: 100%;position: relative;">
+                         <a href="javascript:;" style="width: 100%;"><i class="iconfont">&#xe615;</i> <span data-lang="string_vod_share">{:lang_web('string_vod_share')}</span> </a>
+							{include file="widget/share"}
+                         </div>
+                         {if condition="$GLOBALS['config']['user']['status'] eq 1"}
+					     <div href="javascript:;" class="mac_ulog play_collec" data-type="2" data-mid="{$maccms.mid}" data-id="{$obj.vod_id}"><i class="iconfont">&#xe629;</i> <span data-lang="string_play_sc">{:lang_web('string_play_sc')}</span> </div>
+					     {/if}
+                         {if condition="$obj['type_id_1']==$tplconfig['theme']['type']['zb']"}{else}
+                         <a href="{$obj.player_info.link_pre}" class="{if$param.nid==1}btns_disad{/if}"><i class="iconfont pre-t">&#xe626;</i> <span data-lang="string_play_sj">{:lang_web('string_play_sj')}</span> </a>
+                         <a href="{$obj.player_info.link_next}" class="{if$param.nid==$obj['vod_play_list'][$param['sid']]['url_count']}btns_disad{/if}"> <span data-lang="string_play_xj">{:lang_web('string_play_xj')}</span> &nbsp;<i class="iconfont next-p next-t">&#xe62c;</i></a>
+                         {/if}
+                        </li>
+                       </ul>
+					</div>
+				</div>
+				<div class="right_row fr hidden_xs hidden_mi" style="position: relative;">
+					 <div class="play_box_right">
+						 <div class="play_namebox">
+						     <h3 class="title">{$obj.vod_name}</h3>
+				             <span class="fenlei">{$obj.type.type_name}</span>
+						 </div>
+						 <div class="play_infobox">
+						     <div class="play_vlist cblock">
+								 <div class="play_vlist_thumb vnow lazyload" data-original="{:mac_url_img($obj.vod_pic)}"></div>
+								 <div class="play_vlist_text vnow">
+									 <p class="play_vlist_title">{$obj.vod_name}</p>
+									 <p class="play_vlist_now">{if condition="$obj.vod_copyright eq 1 && $GLOBALS['config']['app']['copyright_status'] eq 1 "}{else}<a class="pull_right" href="#bofy"><i class="iconfont">&#xe62a;</i>&nbsp; <span data-lang="string_play_qhxl">{:lang_web('string_play_qhxl')}</span> </a>{/if}{$obj['vod_play_list'][$param['sid']]['urls'][$param['nid']]['name']}</p>
+								 </div>
+							 </div>
+                            <div class="play_clike " data-lang="vod_guess">{:lang_web('vod_guess')}</div>
+                            {include file="widget/play_list_con"}
+                         </div>
+					 </div>
+				</div>
+				
+			<!-- end 播放器  -->
+            </div>
+            <div class="play_box">
+            	<div class="left_row fl ">
+           	        {if condition="$tplconfig['theme']['weixin']['btn'] eq 1"}
+						{if$obj.vod_lock}
+						{else}
+						<div class="playbtn wx_but hidden_mb">
+							<a data-title="string_play_tx" class="btn_wxgzh" href="javascript:void(0)" title="{if $tplconfig['theme']['weixin']['btntext']}{$tplconfig['theme']['weixin']['btntext']}{else}<span data-lang="string_play_tx">{:lang_web('string_play_tx')}</span>{/if}">
+							{if $tplconfig['theme']['weixin']['btntext']}{$tplconfig['theme']['weixin']['btntext']}{else}<span data-lang="string_play_tx">{:lang_web('string_play_tx')}</span>{/if}
+							</a>
+						</div>
+						{/if}
+					{/if}
+					<div class="pannel play_pan clearfix">
+						<div class="player">
+							<div class="player_detail detail cblock">
+							   <div class="video_title fl">
+								  <h2 class="title margin_0">{$obj.vod_name}</h2>
+							   </div>
+							   <div class="play_now">
+								  <a class="flip" href="javascript:void(0)"> <span data-lang="string_play_jj">{:lang_web('string_play_jj')}</span> &nbsp;<span class="xs1"><i class="iconfont">&#xe623;</i></span><span class="xs2" style="display:none;"><i class="iconfont">&#xe63a;</i></span></a>
+							   </div>
+							</div>
+							{if condition="$obj['type_id_1']==$tplconfig['theme']['type']['zb']"}{else}
+							<div class="play_text">
+							   <p class="nstem data ms_p margin_0">
+									{if condition="$obj.vod_score gt 0"}
+									<span class="text_score">{$obj.vod_score}<span class="split_line"></span></span>
+									{/if}
+									{if condition="($obj.vod_year neq '') and ($obj.vod_year neq 0)"}{$obj.vod_year|mac_url_create='year'}{/if}
+									{if condition="$obj.vod_area neq ''"}{$obj.vod_area|mac_url_create='area'}{/if}
+									{if condition="$obj.vod_class neq ''"}{$obj.vod_class|mac_url_create='class'}{/if}	
+							   </p>
+							{php}$count=1;{/php}{maccms:foreach name="obj.vod_down_list"}
+							{if$maccms.aid!=16&&$count==1}
+							<div class="text_muted pull_right">
+							<a href="{:mac_url_vod_down($obj,['sid'=>$vo.sid,'nid'=>1])}#downlist" title="{:lang_web('string_play_xz1')}"><i class="iconfont vtop_i">&#xe63c;</i>&nbsp; <span data-lang="string_play_xz1">{:lang_web('string_play_xz1')}</span> </a>
+							</div>
+							{/if}{php}$count++;{/php}
+							{/maccms:foreach}		            
+							</div>{/if}
+							<div class="panel play_content" style="display:none;">
+            			         {if condition="$obj['type_id_1']==$tplconfig['theme']['type']['zb']"}{else}
+	            			     <p> <span data-lang="string_play_dy">{:lang_web('string_play_dy')}：</span>{if $obj.vod_director}{$obj.vod_director}{else}<span data-lang='string_no_have'>{:lang_web('string_no_have')}</span>{/if}</p>
+	            			     <p> <span data-lang="string_play_zy">{:lang_web('string_play_zy')}：</span>{if $obj.vod_actor}{$obj.vod_actor}{else}<span data-lang='string_no_have'>{:lang_web('string_no_have')}</span>{/if}</p>
+	            			     {/if}
+		            			 <p>{if $obj.vod_content}{:mac_filter_html($obj['vod_content'])}{else}<span data-lang='string_no_have'>{:lang_web('string_no_have')}</span>{/if}{if$obj.vod_plot}<a href="{:mac_url_plot_detail($obj,['page'=>1])}"> <span data-lang="string_play_fjjq">[{:lang_web('string_play_fjjq')}]</span> </a>{/if}</p>
+				    		</div>
+						</div>																					
+					</div>
+                </div>	
+             </div>
+          </div>
+       </div>
+     <div class="container">
+        <div class="left_row fl container-wrap"> 
+            {include file="ads/ads_vodw"} 
+			{if condition="$tplconfig['theme']['actor']['btn'] eq 1"}
+		        {if condition="$obj.vod_actor neq ''"}
+					{maccms:actor num="1" order="desc" name="'.$obj[vod_actor].'" id="vo1"}
+					{if condition="$vo1.actor_name neq ''"}
+					 <div id="actor_vbox" class="pannel clearfix">
+						<div class="pannel_head clearfix">
+							<h3 class="title">
+								{$obj.vod_name} <span data-lang="string_play_zyyy">{:lang_web('string_play_zyyy')}</span>
+							</h3>						
+						</div>
+						<ul id="vod_actor" class="actor_vlist list_scroll clearfix">	
+							{maccms:actor num="6" order="desc" name="'.$obj[vod_actor].'" id="vo2"}
+							<li><a class="actor_part" title="{$vo2.actor_name}" href="{:mac_url_actor_detail($vo2)}">
+							<div class="actor_pic lazyload" data-original="{$vo2.actor_pic|mac_url_img}"></div>
+							<div class="actor_name">{$vo2.actor_name}</div></a>
+							</li>
+							{/maccms:actor}
+						</ul>
+					 </div>		  
+					 {/if} 
+					 {/maccms:actor}
+			     {/if}
+			 {/if}
+			{if condition="$obj.vod_copyright eq 1 && $GLOBALS['config']['app']['copyright_status'] eq 1 "}{else}
+			<!-- 播放地址 -->
+			<div class="pannel clearfix" id="bofy">
+		    {if condition="$obj['type_id_1']==$tplconfig['theme']['type']['zb']"}
+			    <div class="pannel_head clearfix">
+					<h3 class="title" data-lang="string_play_xhlb">{:lang_web('string_play_xhlb')}</h3>
+				</div>
+				<div class="tabs">
+				    <div class="content ">
+						 <ul class="content_playlist clearfix">
+						    {maccms:foreach name="obj.vod_play_list" id="vo" by="num"}
+							{maccms:foreach name="vo.urls" id="vo2"}							
+							<li {if condition="$param.sid eq $vo.sid && $param.nid eq $vo2.nid"}class="active"{/if}><a href="{:mac_url_vod_play($obj,['sid'=>$vo.sid,'nid'=>$vo2.nid])}">{$vo2.name}</a></li>
+							{/maccms:foreach}
+							{empty name="vo.urls"}
+							<li><a href="javascript:void(0)" data-lang="string_play_zwxh">{:lang_web('string_play_zwxh')}</a></li>
+							{/empty}
+							{/maccms:foreach}
+						 </ul> 
+				    </div>
+				</div>
+             {else}
+			    <div class="pannel_head clearfix">
+                    <div class="text_muted pull_right">
+                    <a href="javascript:;" class="sort_btn"><i class="iconfont">&#xe658;</i>&nbsp; <span data-lang="string_play_px">{:lang_web('string_play_px')}</span> </a>
+                    </div>
+					<h3 class="title" data-lang="string_play_bflb">{:lang_web('string_play_bflb')}</h3>
+				</div>
+				<div class="tabs playlist">
+			      <div class="wrapper_fl xl" id="hl01">
+					  <div class="scroller">
+					  <ul class="title_nav">
+						{maccms:foreach name="obj.vod_play_list" id="vo" by="sort"}
+						<li class="tab-play {if$vo.player_info.from==$obj['vod_play_list'][$param['sid']]['player_info']['from']}tplconfig-01{/if}" title="{$vo.player_info.show}"><a {if$vo.player_info.from==$obj['vod_play_list'][$param['sid']]['player_info']['from']}href="javascript:;" class="playnow_info"{else}href="{:mac_url_vod_play($obj,['sid'=>$vo.sid,'nid'=>$param.nid])}"{/if}><i class="iconfont">&#xe62f;</i>&nbsp;{$vo.player_info.show}</a></li>
+						{/maccms:foreach}
+					  </ul>
+					  </div>
+				  </div>
+				  {maccms:foreach name="obj.vod_play_list" id="vo" key="key" by="sort"}
+				  <div class="content {if$vo.player_info.from==$obj['vod_play_list'][$param['sid']]['player_info']['from']}show{else}hide{/if}">
+					  <div class="player_infotip">
+						  <i class="iconfont">&#xe62d;</i>&nbsp; 
+						  <span data-lang="string_play_dqzy">{:lang_web('string_play_dqzy')}</span>
+						  {$vo.player_info.show}{:lang_web('supply')}&nbsp;-&nbsp;
+						  {if $obj.player_info.tip}{:mac_substring($obj['player_info']['tip'],20)}{else}<span data-lang="line_play">{:lang_web('line_play')}</span>{/if}
+						</div>
+					  <div id="playlistbox" class="playlist_notfull">
+						  <div class="wrapper_fl" id="hl02">
+						  <div class="scroller">
+							 <ul class="content_playlist clearfix">
+								{maccms:foreach name="vo.urls" id="vo2" key="key2"}								
+								<li {if condition="$param.sid eq $vo.sid && $param.nid eq $vo2.nid"}class="active tplconfig-02"{/if}><a href="{:mac_url_vod_play($obj,['sid'=>$vo.sid,'nid'=>$vo2.nid])}">{$vo2.name}</a></li>
+								{/maccms:foreach}
+							 </ul> 
+						  </div>
+						  </div>
+						  <a href="javascript:;" onclick="showlist(this);" class="listshow hidden_xs"><span><i class="iconfont">&#xe63a;</i>&nbsp; <span data-lang="string_play_zkqb">{:lang_web('string_play_zkqb')}</span> </span></a>
+					  </div>
+					  <div class="playlist_full" style="display:none;">
+						  <ul class="content_playlist clearfix">
+							 {maccms:foreach name="vo.urls" id="vo2" key="key2"}								
+							 <li {if condition="$param.sid eq $vo.sid && $param.nid eq $vo2.nid"}class="active tplconfig-02"{/if}><a href="{:mac_url_vod_play($obj,['sid'=>$vo.sid,'nid'=>$vo2.nid])}">{$vo2.name}</a></li>
+							 {/maccms:foreach}
+						  </ul> 
+					  </div>
+				  </div>
+				  {/maccms:foreach}
+				  <script type="text/javascript">$(".content.hide").remove();</script>
+				</div>{/if}
+				{if condition="$tplconfig['theme']['zans']['btn'] eq 1"}
+				{/if}
+			</div>{/if}
+			<div class="pannel clearfix">
+				<div class="pannel_head clearfix">
+					<h3 class="title">
+						<!-- 相关推荐 -->
+						<span data-lang="vod_like_watch">{:lang_web('vod_like_watch')}</span>"<span class="tj-title">{$obj.vod_name}</span>"<span data-lang="vod_also_like">{:lang_web('vod_also_like')}</span>
+					</h3>						
+				</div>
+				{if condition="$obj['type_id_1']==$tplconfig['theme']['type']['zb']"}
+				<ul class="vodlist vodlist_wi">
+					{maccms:vod num="8" type="current" order="desc" by="time"}
+					{include file="widget/zbvod_box"}
+					{/maccms:vod}
+				</ul>
+				{else}
+				{in name="vo.type_id" value="$tplconfig['theme']['type']['hb']"}
+				<ul class="vodlist vodlist_wi">
+					{maccms:vod num="8" type="current" order="desc" by="time"}
+					{include file="widget/vod_box"}		
+					{/maccms:vod}
+				</ul>
+				{else}
+				<ul class="vodlist vodlist_wi">
+					{maccms:vod num="12" type="current" order="desc" by="time"}
+					{include file="widget/vod_box"}		
+					{/maccms:vod}
+				</ul>
+				{/in}
+				{/if}
+			</div>
+            {include file="module/vod_art"}
+            {if condition="$GLOBALS['config']['comment']['status'] eq 1"}
+            <!-- 评论 -->
+			<div class="pannel clearfix" id="pinglun" >
+				<div class="pannel_head clearfix">
+				    <span class="pull_right"> <span data-lang="string_play_yg">{:lang_web('string_play_yg')}</span> &nbsp;<font color="#ff5f00"><em class="mac_total"></em></font>&nbsp; <span data-lang="string_play_tpl">{:lang_web('string_play_tpl')}</span> </span>
+					<h3 class="title" data-lang="string_play_pl">{:lang_web('string_play_pl')}</h3>
+				</div>
+				<div class="mac_comment comm_list comm_list_box" data-id="{$obj.vod_id}" data-mid="{$maccms.mid}" ></div>
+				<script>
+					$(function(){
+						MAC.Comment.Login = {$comment.login};
+						MAC.Comment.Verify = {$comment.verify};
+						MAC.Comment.Init();
+						MAC.Comment.Show(1);
+					});
+				</script>
+			</div>
+            <!-- end 评论 -->
+            {/if}
+        </div>
+    </div>
+    {if condition="$tplconfig['theme']['play']['nbtn'] eq 1"}
+	<script type="text/javascript">
+		function autoScroll(obj){
+			$(obj).find("ul").animate({
+				marginTop : "-0.9rem"
+			},500,function(){
+				$(this).css({marginTop : "0px"}).find("li:first").appendTo(this);
+			})
+		}
+		$(function(){
+			setInterval('autoScroll(".fodong_tips")',3000);
+		})
+	</script>
+  	{/if}
+   	<script>
+    {if condition="$obj.vod_jumpurl neq ''"}
+        location.href='{$obj.vod_jumpurl}';
+    {/if}
+	var lang=localStorage.getItem('lang')
+	function changeLang(){
+		if(lang==1){
+			let s="MAC.Gbook.Report('ID:{$obj.vod_id} -【name：{$obj.vod_name} - {$obj['vod_play_list'][$param['sid']]['urls'][$param['nid']]['name']}】Unable to view. Please check and repair')"
+			$('.report_click').attr('onclick',s)
+		}else{
+			let s1="MAC.Gbook.Report('ID:{$obj.vod_id} -【名称：{$obj.vod_name} - {$obj['vod_play_list'][$param['sid']]['urls'][$param['nid']]['name']}】无法观看请检查修复')"
+			$('.report_click').attr('onclick',s1)
+		}
+	}
+	changeLang()
+	$(document).click(function(e){
+		lang=localStorage.getItem('lang')
+		changeLang()
+	})
+	
+    changeLogo()
+    $(window).scroll(function(){
+        changeLogo()
+    })
+    function changeLogo(){
+        if($.cookie('mystyle')=='white'){
+            var targetTop = $(this).scrollTop();
+            var width = $(window).width();
+            if(targetTop> (width>820? 50:200)){
+                $('.black_logo').hide()
+                $('.white_logo').show()
+            }else{
+                $('.black_logo').show()
+                $('.white_logo').hide()
+            }
+        }
+    }
+    </script>
+    <script type="text/javascript">
+	var w=$(window).width();
+	if(w<820){$(".player_video.embed-responsive").css("padding-bottom","{$tplconfig['theme']['play']['height']|mac_default='56.25'}%");$(".MacPlayer").addClass("embed-responsive").css("padding-bottom","{$tplconfig['theme']['play']['height']|mac_default='56.25'}%");}else{$(".MacPlayer").addClass("embed-responsive").css("padding-bottom","56.25%");}</script>
+    <!--统计数据-->
+    <span class="mac_hits hits hide" data-mid="{$maccms.mid}" data-id="{$obj.vod_id}" data-type="hits"></span>
+    <span class="hl_history hide" data-name="{$obj.vod_name}" data-link="{:mac_url_vod_play($obj,['sid'=>$param['sid'],'nid'=>$param['nid']])}" data-pic="{$obj.vod_pic|mac_url_img}" data-part="{$obj['vod_play_list'][$param['sid']]['urls'][$param['nid']]['name']}"></span>
+    <span style="display: none" class="mac_hits hits" data-mid="{$maccms.mid}" data-id="{$obj.vod_id}{$obj.art_id}{$obj.topic_id}" "="" data-type="hits"></span>
+	<span style="display: none" class="mac_hits hits_day" data-mid="{$maccms.mid}" data-id="{$obj.vod_id}{$obj.art_id}{$obj.topic_id}" "="" data-type="hits_day"></span>
+	<span style="display: none" class="mac_hits hits_week" data-mid="{$maccms.mid}" data-id="{$obj.vod_id}{$obj.art_id}{$obj.topic_id}" "="" data-type="hits_week"></span>
+	<span style="display: none" class="mac_hits hits_month" data-mid="{$maccms.mid}" data-id="{$obj.vod_id}{$obj.art_id}{$obj.topic_id}" "="" data-type="hits_month"></span>
+    <span style="display:none" class="mac_ulog_set" data-type="4" data-mid="{$maccms.mid}" data-id="{$obj.vod_id}" data-sid="{$param.sid}" data-nid="{$param.nid}"></span>
+	<div style="width:30rem;margin: 2rem auto;">
+		{include file="public/friendLink" }
+	</div>
+	{include file="public/foot"}
+</div>
+</body>
+</html>

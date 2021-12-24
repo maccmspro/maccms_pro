@@ -1,0 +1,82 @@
+{include file="../../../application/admin/view/public/head" /}
+<div class="page-container p10">
+    <div class="my-toolbar-box">
+        <div class="layui-btn-group">
+            <a data-href="{:url('add')}" data-full="1" class="layui-btn layui-btn-primary j-iframe"><i class="layui-icon">&#xe654;</i>{:lang('add')}</a>
+            {if condition="$param.select eq 1"}
+            <a data-href="" onclick="parent.onSelectResult('{$param.input}',$('.checkbox-ids:checked'))" class="layui-btn layui-btn-normal">{:lang('select_return')}</a>
+            {/if}
+        </div>
+    </div>
+
+
+    <form class="layui-form " method="post" id="pageListForm">
+        <table class="layui-table" lay-size="sm">
+            <thead>
+            <tr>
+                <th width="25"><input type="checkbox" lay-skin="primary" lay-filter="allChoose"></th>
+                <th width="40">{:lang('id')}</th>
+                <th width="40">{:lang('name')}</th>
+                <th width="50">版本号</th>
+                <th width="30">平台</th>
+                <th width="30">强制更新</th>
+                <th width="30">下载类型</th>
+                <th width="80">下载地址</th>
+                <th width="120">{:lang('update_time')}</th>
+                <th width="80">{:lang('opt')}</th>
+            </tr>
+            </thead>
+
+            {volist name="list" id="vo"}
+            <tr>
+                <td><input type="checkbox" name="ids[]" value="{$vo.id}" class="layui-checkbox checkbox-ids" lay-skin="primary"></td>
+                <td>{$vo.id}</td>
+                <td>{$vo.name}</td>
+                <td>{$vo.ver_num}</td>
+                <td>{if condition="$vo.type eq 1"}IOS{else}Android{/if}</td>
+                <td>{if condition="$vo.is_force_update eq 1"}是{else}否{/if}</td>
+                <td>{if condition="$vo.down_type eq 1"}应用商店{else}URL下载{/if}</td>
+                <td>{$vo.down_url}</td>
+                <td>{$vo.update_time|mac_day='color'}</td>
+                <td>
+                    <a class="layui-badge-rim j-iframe" data-full="1" data-href="{:url('edit?id='.$vo['id'])}" href="javascript:;" title="{:lang('edit')}">{:lang('edit')}</a>
+                    <a class="layui-badge-rim j-tr-del" data-href="{:url('del?id='.$vo['id'])}" href="javascript:;" title="{:lang('del')}">{:lang('del')}</a>
+                </td>
+            </tr>
+            {/volist}
+            </tbody>
+        </table>
+        <div id="pages" class="center"></div>
+    </form>
+</div>
+
+
+
+
+{include file="../../../application/admin/view/public/foot" /}
+
+<script type="text/javascript">
+    var curUrl="{:url('app/index',$param)}";
+    layui.use(['laypage', 'layer','form'], function() {
+        var laypage = layui.laypage
+            , layer = layui.layer,
+            form = layui.form;
+
+        laypage.render({
+            elem: 'pages'
+            ,count: {$total}
+            ,limit: {$limit}
+            ,curr: {$page}
+            ,layout: ['count', 'prev', 'page', 'next', 'limit', 'skip']
+            ,jump: function(obj,first){
+                if(!first){
+                    location.href = curUrl.replace('%7Bpage%7D',obj.curr).replace('%7Blimit%7D',obj.limit);
+                }
+            }
+        });
+
+
+    });
+</script>
+</body>
+</html>

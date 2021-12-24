@@ -1,0 +1,143 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>{:lang_web('website_ssjg')} - {$maccms.site_name}</title>
+    <meta name="keywords" content="网址导航{$param.wd}" />
+    <meta name="description" content="网址导航{$param.wd}" />
+    {include file="public/include"}
+</head>
+<style>
+    @media screen and (max-width:820px) {
+        body{
+            padding-top: 0;
+        }
+        .bread-crumb-nav{
+            margin-top: 50px;
+            padding: 0 20px;
+            font-size: 16px;
+            color: #333;
+        }
+        #qire-lasted{
+            margin-top: 10px;
+        }
+        .website-list{
+            padding:1px 20px;
+        }
+        .table-wrap{
+            margin-bottom: 20px;
+        }
+        
+    }
+    .no_list{
+        display: none;
+    }
+    .website-search-t{
+        color: #F7502D;
+    }
+</style>
+<body>
+    <div class="show-pc">
+    {include file="public/head"}
+    </div>
+    <div class="show-mobile">
+        <div id="ui-nav" class="m-nav">
+            <a href="javascript:MAC.GoBack()" class="btn-left"><i class="iconfont ico-right">&#xe625;</i></a>
+            <span class="mb-title" data-lang="website_ssjg">{:lang_web('website_ssjg')}</span>
+        </div>
+    </div>
+<!--当前位置-->
+<div class="bread-crumb-nav fn-clear show-pc">
+    <ul class="bread-crumbs">
+        <li class="home"><a href="{:MAC_BASE_PATH}/" data-lang="string_home">{:lang_web('string_home')}</a></li>
+        <li> <span data-lang="website_ss">{:lang_web('website_ss')}</span>" 
+            <strong class="website-search-t">{$param.wd}</strong>
+            " <span data-lang="website_jg">{:lang_web('website_jg')}</span> " 
+            <strong  class="mac_total website-search-t"></strong>
+            " <span data-lang='website_gzy'>{:lang_web('website_gzy')}</span> 
+        </li>
+        <li class="back"><a href="javascript:MAC.GoBack()" data-lang="website_fanh">{:lang_web('website_fanh')}</a></li>
+    </ul>
+</div>
+<div class="bread-crumb-nav show-mobile">
+    <span data-lang="website_ss">{:lang_web('website_ss')}</span>"  
+   <strong class="website-search-t">{$param.wd}</strong>
+   " <span data-lang="website_jg">{:lang_web('website_jg')}</span> "  
+   <strong  class="mac_total website-search-t"></strong>
+   " <span data-lang='website_gzy'>{:lang_web('website_gzy')}</span> 
+</div>
+
+<!--列表部分-->
+<div class="ui-box ui-qire fn-clear show-pc" id="qire-lasted">
+    <div class="ui-title fn-clear">
+        <div class="table-head lasted-time" data-lang="string_zuijingx">{:lang_web('string_zuijingx')}</div>
+        <div class="table-head " data-lang="string_show_leixing">{:lang_web('string_show_leixing')}</div>
+        <div class="table-head lasted-tags " data-lang="website_bq">{:lang_web('website_bq')}</div>
+        <div class="table-head lasted-type" data-lang="website_gxsj">{:lang_web('website_gxsj')}</div>
+    </div>
+    <div class="ui-cnt">
+        <ul class="lasted-list fn-clear website-list">
+            {maccms:website num="200" paging="yes" order="desc" by="time"}
+            <li>
+                <div class="table-body lasted-tit fn-left">
+                    <h5 class="show-tipinfo"><a href="{:mac_url_website_detail($vo)}">{$vo.website_name}</a><em></em></h5>
+                </div>
+                <div class="table-body lasted-type fn-left"><a href="{:mac_url_type($vo.type)}">{$vo.type.type_name}</a></div>
+                <div class="table-body lasted-tags fn-left"><a href='{:mac_url_type($vo.type,['area'=>$vo.website_area],'list')}' target='_blank'>{$vo.website_area}</a> </div>
+                <div class="table-body lasted-time fn-right">{$vo.website_time|date='Y-m-d',###}</div>
+            </li>
+            {/maccms:website}
+        </ul>
+        {include file="public/paging"}
+    </div>
+</div>
+
+<div class="show-mobile" id="qire-lasted">
+    <div class="">
+        <ul class="website-list">
+            {maccms:website num="200" paging="yes" order="desc" by="time"}
+            <div class="table-wrap">
+                <div class="table-con">
+                    <p class="left" data-lang="string_zuijingx">{:lang_web('string_zuijingx')}</p>
+                    <a class="right" href="{:mac_url_website_detail($vo)}">{$vo.website_name}</a>
+                </div>
+                <div class="table-con type">
+                    <p class="left" data-lang="string_show_leixing">{:lang_web('string_show_leixing')}</p>
+                    <a class="right" href='{:mac_url_type($vo.type,['area'=>$vo.website_area],'list')}' target='_blank'>{$vo.website_area}</a>
+                </div>
+                <div class="table-con  sign">
+                    <p class="left" data-lang="website_bq">{:lang_web('website_bq')}</p>
+                    <a class="right" href="{:mac_url_type($vo.type)}">{$vo.type.type_name}</a>
+                </div>
+                <div class="table-con ">
+                    <p class="left"  data-lang="website_gxsj">{:lang_web('website_gxsj')}</p>
+                    <p class="right">{$vo.website_time|date='Y-m-d',###}</p>
+                </div>
+            </div>
+           
+            {/maccms:website}
+        </ul>
+        {include file="public/paging"}
+    </div>
+</div>
+
+<div class="no_list">
+    {include file="public/notempty"}
+</div>
+<div style="width:30rem;margin: 2.5rem auto;" class="show-pc">
+	{include file="public/friendLink" }
+</div>
+{include file="public/foot"}
+</body>
+
+<script>
+    (function(){
+        $('.mac_total').html('{$__PAGING__.record_total}');
+        if($('.website-list').children().length<=0){
+            $('.no_list').show()
+        }else{
+            $('.no_list').hide() 
+        }
+    })()
+</script>
+</html>

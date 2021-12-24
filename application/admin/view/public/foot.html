@@ -1,0 +1,65 @@
+<script>
+    var ROOT_PATH="__ROOT__",ADMIN_PATH="{$_SERVER['SCRIPT_NAME']}", MAC_VERSION="{:system_version()}", MAC_LANG="{$MAC_LANG}";
+</script>
+<script type="text/javascript" src="{:MAC_BASE_PATH}/static/js/admin_common.js?v={:system_version()}"></script>
+<script>
+    var pearConfig = {
+	"logo": {
+		"title": "{:lang('admin/index/index/name')}",
+		"image": "__STATIC__/admin/images/logo.png"
+	},
+	"menu": {
+		"data": "admin/data/menu.json",
+		"collaspe": false,
+		"accordion": true,
+		"method": "GET",
+		"control": false,
+		"select": "0",
+        "async": false,
+		"controlWidth": 850,
+	},
+	"tab": {
+		"muiltTab": true,
+		"keepState": true,
+		"tabMax": 10,
+		"index": {
+			"id": "11",
+			"href": ADMIN_PATH + "/admin/index/welcome.html",
+			"title": '{:lang('menu/welcome')}',
+		}
+	},
+	"theme": {
+		"defaultColor": "1",
+		"defaultMenu": "dark-theme",
+		"allowCustom": true
+	},
+	"colors": [{
+			"id": "1",
+			"color": "#ff5f00"
+		},{
+			"id": "2",
+			"color": "#5FB878"
+		},{
+			"id": "3",
+			"color": "#1E9FFF"
+		}, {
+			"id": "4",
+			"color": "#FFB800"
+		}, {
+			"id": "5",
+			"color": "darkgray"
+		}
+	],
+	"links": [
+	],
+	"other": {
+		"keepLoad": 1200,
+		"autoHead": false
+	},
+	"header": {
+		"message": false
+	},
+	"language_list": [],
+	"language_current": '',
+}
+</script>

@@ -1,0 +1,106 @@
+{include file="../../../application/install/view/index/head" /}
+<style type="text/css">
+.layui-table td, .layui-table th{text-align:left;}
+.layui-table tbody tr .no{color:#ACACAC;}
+.env-box table thead {
+    background: #F2F2F2;
+}
+.env-box table thead tr th{
+    font-size: 14px;
+    font-family: PingFangSC-Regular, PingFang SC;
+    font-weight: 700;
+    color: #000;
+    line-height: 20px;
+}
+
+</style>
+<div class="env-box">
+    <div class="title">{:lang('install/environment_title')}</div>
+    <table class="layui-table" lay-skin="line">
+        <thead>
+            <tr>
+                <th>{:lang('install/environment_name')}</th>
+                <th>{:lang('install/required_config')}</th>
+                <th>{:lang('install/current_config')}</th>
+            </tr> 
+        </thead>
+        <tbody>
+            {volist name="data.env" id="vo"}
+            <tr>
+                <td>{$vo[0]}</td>
+                <td>{$vo[2]}</td>
+                <td class="{$vo[4]}">
+                    {if $vo[4] == 'ok'}
+                    <img src="{:MAC_BASE_PATH}/static/images/other/install-right.png" alt="">
+                    {else /} 
+                    <img src="{:MAC_BASE_PATH}/static/images/other/install-wrong.png" alt="">
+                    {/if}
+                    
+                    {$vo[3]}
+                </td>
+            </tr>
+            {/volist}
+        </tbody>
+    </table>
+    <div class="container">
+        <table class="layui-table left" lay-skin="line">
+            <thead>
+                <tr>
+                    <th>{:lang('install/func_ext')}</th>
+                    <th>{:lang('install/type')}</th>
+                    <th>{:lang('install/result')}</th>
+                </tr> 
+            </thead>
+            <tbody>
+                {volist name="data.func" id="vo"}
+                <tr>
+                    <td>{$vo[0]}</td>
+                    <td>{$vo[3]}</td>
+                    <td class="{$vo[2]}">
+                        {if $vo[2] == 'yes'}
+                        <img src="{:MAC_BASE_PATH}/static/images/other/install-right.png" alt="">
+                        {else /} 
+                        <img src="{:MAC_BASE_PATH}/static/images/other/install-wrong.png" alt="">
+                        {/if}
+                        {$vo[1]}
+                    </td>
+                </tr>
+                {/volist}
+            </tbody>
+        </table>
+        <table class="layui-table right" lay-skin="line">
+            <thead>
+                <tr>
+                    <th>{:lang('install/dir_file')}</th>
+                    <th>{:lang('install/required_popedom')}</th>
+                    <th>{:lang('install/current_popedom')}</th>
+                </tr> 
+            </thead>
+            <tbody>
+                {volist name="data.dir" id="vo"}
+                <tr>
+                    <td>{$vo[1]}</td>
+                    <td>{$vo[2]}</td>
+                    <td class="{$vo[4]}">
+                        {if $vo[4] == 'ok'}
+                        <img src="{:MAC_BASE_PATH}/static/images/other/install-right.png" alt="">
+                        {else /} 
+                        <img src="{:MAC_BASE_PATH}/static/images/other/install-wrong.png" alt="">
+                        {/if}
+                        {$vo[3]}
+                    </td>
+                </tr>
+                {/volist}
+            </tbody>
+        </table>
+        
+    </div>
+    
+    <div class="step-btns">
+        <a href="?index" class="btn btn-ghost btn-md float-left">{:lang('install/back_step')}</a>
+
+        <a href="?step=3" class="btn btn-primary btn-md float-left">{:lang('install/next_step')}</a>
+        <a target="_blank" href="https://www.maccms.pro/document?version=pro" class="btn btn-md fr">{:lang('install/question')}</a>
+    </div>
+</div>
+{include file="../../../application/install/view/index/foot" /}

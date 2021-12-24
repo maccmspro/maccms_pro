@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no">
+    <title>{:lang_web('string_xtts')}【{$obj['vod_name']}】{:lang_web('string_bubof')}</title>
+    <link rel="stylesheet" href="{:MAC_BASE_PATH}/static/css/home.css">
+    <style>
+        body{background:#F9FAFD;color:#818181;}
+    </style>
+</head>
+<body>
+<div class="mac_msg_jump">
+    <div class="msg_jump_tit" data-lang="string_xitonts">{:lang_web('string_xitonts')}</div>
+    <div class="title" data-lang="string_qinaidyh">{:lang_web('string_qinaidyh')}</div>
+    <div class="text">【{$obj['vod_name']}】{$GLOBALS['config']['app']['copyright_notice']}</div>
+    <div class="jump">
+        {if condition="$obj['vod_jumpurl'] neq ''"}
+        <span data-lang='string_yemianzid'>{:lang_web('string_yemianzid')}</span>
+        <a id="href" href="<?php echo($obj['vod_jumpurl']);?>" data-lang="string_tiaoz">{:lang_web('string_bubof')}</a> 
+        <span data-lang="string_dengdai">{:lang_web('string_dengdai')}</span> <b id="wait">3</b>
+        {/if}
+    </div>
+    <!-- 可自定义该页面的显示方式，可加入广告 -->
+</div>
+<script type="text/javascript">
+    {if condition="$obj['vod_jumpurl'] neq ''"}
+    (function(){
+        var wait = document.getElementById('wait'),
+            href = document.getElementById('href').href;
+        var interval = setInterval(function(){
+            var time = --wait.innerHTML;
+            if(time <= 0) {
+                top.location.href = href;
+                clearInterval(interval);
+            };
+        }, 1000);
+    })();
+    {/if}
+</script>
+</body>
+</html>

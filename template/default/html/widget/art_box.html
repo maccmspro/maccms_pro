@@ -1,0 +1,22 @@
+{if condition="$vo.art_pic eq ''"}
+<li class="artlist_item no_artpic">  
+    <div class="artlist_txt">	
+	     <h4 class="artlist_title"><a href="{:mac_url_art_detail($vo)}" title="{$vo.art_name}">{$vo.art_name}</a></h4>
+	     <p class="artzy hidden_xs">{$vo.art_blurb}</p>
+	     <p class="artty">{if condition="($maccms.aid eq 1) OR ($obj.type_id eq 5)"}<span class="name_text{$vo.type.type_id} pic_text text_right">{$vo.type.type_name}</span>{/if}<span>{$vo.art_time|mac_friend_date}</span><span class="artyd">{$vo.art_hits}<span data-lang="read">{:lang_web('string_art_hot')}</span></span></p>
+    </div>		
+</li>
+{else}
+<li class="artlist_item">  
+    <div class="artlist_txt">	
+	     <h4 class="artlist_title"><a href="{:mac_url_art_detail($vo)}" title="{$vo.art_name}">{$vo.art_name}</a></h4>
+	     <p class="artzy hidden_xs">{$vo.art_blurb}</p>
+	     <p class="artty">{if condition="($maccms.aid eq 1) OR ($obj.type_id eq 5)"}<span class="name_text{$vo.type.type_id} pic_text text_right">{$vo.type.type_name}</span>{/if}<span>{$vo.art_time|mac_friend_date}</span><span class="artyd">{$vo.art_hits}<span data-lang="read">{:lang_web('string_art_hot')}</span></span></p>
+    </div>
+	<div class="artlist_img">
+		<a class="artlist_thumb lazyload" href="{:mac_url_art_detail($vo)}" title="{$vo.art_name}" data-original="{$vo.art_pic|mac_url_img}">						
+			<span class="look hidden_xs"></span>
+	    </a>
+	</div> 		
+</li>
+{/if}

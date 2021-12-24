@@ -1,0 +1,59 @@
+{include file="../../../application/admin/view/public/head" /}
+<div>
+    <form class="layui-form" method="post" action="">
+      <div class="mainBox">
+        <div class="main-container">
+          <input type="hidden" name="__token__" value="{$Request.token}" />
+          <div class="layui-tab layui-tab-brief" lay-filter="tb1">
+            <ul class="layui-tab-title">
+                <li class="layui-this">{:lang('admin/database/sql')}</li>
+            </ul>
+            <div class="layui-tab-content">
+                <div class="layui-tab-item layui-show">
+
+                    <div class="layui-input-block" >
+                    <blockquote class="layui-elem-quote layui-quote-nm">
+                        {:lang('admin/database/sql_tip')}
+                    </blockquote>
+                    </div>
+
+                <div class="layui-form-item">
+                    <div class="layui-input-block" >
+                        <textarea name="sql" class="layui-textarea" rows="10" placeholder="" ></textarea>
+                    </div>
+                </div>
+
+            </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="bottom">
+        <div class="button-container">
+          <button
+            type="submit"
+            class="pear-btn pear-btn-primary pear-btn-sm"
+            lay-submit=""
+            lay-filter="formSubmit"
+            data-child=""
+          >
+            <i class="layui-icon layui-icon-ok"></i>
+            {:lang('admin/database/exec')}
+          </button>
+          <button type="reset" class="pear-btn pear-btn-sm">
+            <i class="layui-icon layui-icon-refresh"></i>
+            {:lang('btn_reset')}
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+  
+
+{include file="../../../application/admin/view/public/foot" /}
+<script type="text/javascript">
+
+</script>
+
+</body>
+</html>

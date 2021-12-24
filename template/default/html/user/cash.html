@@ -1,0 +1,236 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>{:lang_web('user_txsq')} - {$maccms.site_name}</title>
+<meta name="keywords" content="">
+<meta name="description" content="">
+{include file="user/include" /}
+</head>
+<body>
+{include file="public/head" /}
+<!-- 会员中心 -->
+<div class="member-wrap member-wrap-bg">
+<div id="member" class="fn-clear">
+	<div id="left">
+        <div class="m-nav">
+			<a href="javascript:MAC.GoBack()" class="btn-left"><i class="iconfont ico-right">&#xe625;</i></a>
+			<a href="{:MAC_BASE_PATH}/" class="btn-right"><i class="iconfont ico-right">&#xe634;</i></a>
+			<span class="mb-title" data-lang="user_grzx">{:lang_web('user_grzx')}</span>
+	    </div>
+        {include file="user/left_nav" /}
+	</div>
+    <div id="right">
+		<div  style="padding: 0.45rem;">
+			<div class="lable-wrap">
+				<div class="label-item active" data-step="1" onclick="setStep('1')">
+					<p class="p1" data-lang="user_wytx">{:lang_web('user_wytx')}</p>
+				</div>
+				<div class="label-item" data-step="2" onclick="setStep('2')">
+					<p  class="p1" data-lang="user_txjl">{:lang_web('user_txjl')}</p>
+				</div>
+			</div>
+		</div>
+		<div class="m-nav">
+			<a href="javascript:MAC.GoBack()" class="btn-left"><i class="iconfont ico-right">&#xe625;</i></a>
+			<span class="mb-title" data-lang="user_txsq">{:lang_web('user_txsq')}</span>
+	    </div>
+	    <div class="co-right co-hi label-one">
+			<div id="listCon">
+				<!-- 修改信息 -->
+				<div class="cur" style="border-color: red;border-radius: 3px;">
+					<form id="fm" name="fm" method="post" action="" >
+						<p>
+							<span class="xiang" data-lang="user_yhmc">{:lang_web('user_yhmc')}</span>
+							<input type="text" data-placeholder="user_place_yhmc" name="cash_bank_name" class="member-input" placeholder="{:lang_web('user_place_yhmc')}" value="">
+						</p>
+						<p>
+							<span class="xiang" data-lang="user_yhzh">{:lang_web('user_yhzh')}</span>
+							<input type="text" data-placeholder="user_place_yhzh" name="cash_bank_no" class="member-input" placeholder="{:lang_web('user_place_yhzh')}"  value="">
+						</p>
+						<p>
+							<span class="xiang" data-lang="user_skxm">{:lang_web('user_skxm')}</span>
+							<input type="text" data-placeholder="user_place_skxm" name="cash_payee_name" class="member-input" placeholder="{:lang_web('user_place_skxm')}"  value="">
+						</p>
+						<p>
+							<span class="xiang" data-lang="user_txje">{:lang_web('user_txje')}</span>
+							<input type="text" data-placeholder="user_place_txje" name="cash_money" class="member-input" placeholder="{:lang_web('user_place_txje')}"  value="">
+						</p>
+						<p class="hui">
+							<span data-lang="user_sm1">{:lang_web('user_sm1')}</span>
+							{$GLOBALS['config']['user']['cash_ratio']}
+							<span data-lang="user_sm2">{:lang_web('user_sm2')}</span>
+							{$GLOBALS['config']['user']['cash_min']}
+							<span data-lang="user_sm3">{:lang_web('user_sm3')}</span>
+							{$GLOBALS['user']['user_points']}
+							<span data-lang="user_sm4">{:lang_web('user_sm4')}</span>
+							{$GLOBALS['user']['user_points']/$GLOBALS['config']['user']['cash_ratio']}
+							<span data-lang="user_sm5">{:lang_web('user_sm5')}</span>
+							{$GLOBALS['user']['user_points_froze']}
+							<span data-lang="user_sm4">{:lang_web('user_sm4')}</span>
+							{$GLOBALS['user']['user_points_froze']/$GLOBALS['config']['user']['cash_ratio']}
+							<span data-lang="user_sm6">{:lang_web('user_sm6')}</span>
+							
+						</p>
+						<p style="text-align: center;"><input type="button" data-value="user_tjsq" id="btn_submit" class="search-button" value="{:lang_web('user_tjsq')}"></p>
+					</form>
+				</div>
+			</div>
+		</div>
+		<div class="co-right co-hi co-bottom co-bottom-bg label-two noshow-content">
+			<ul class="order__list clearfix">
+			{volist name="list" id="vo"}
+				<li class="order__item">
+					<div class="order__txt">
+						<h3 class="order__title">
+							<span data-lang="user_dh">{:lang_web('user_dh')} </span>
+							{$vo.cash_no}
+						</h3>
+						<h4 class="order__title">
+						</h4>
+						<!-- 状态： -->
+						<p><span class="jg-tz">
+							
+						</p>
+						<p>{if condition="$vo.cash_status eq '1'"} <span data-lang="user_yjtixian">{:lang_web('user_yjtixian')}</span> {else/} <span data-lang="user_tixianz">{:lang_web('user_tixianz')}</span> {/if}：¥{$vo.cash_money}</p>
+						<p> <span data-lang="string_vod_num"> {:lang_web('string_vod_num')}</span>{$vo.cash_id}</p>
+						<p> <span data-lang="string_jf">{:lang_web('string_jf')}</span> ：{$vo.cash_points}</p>
+						<p> <span data-lang="string_vod_time">{:lang_web('string_vod_time')}</span> {$vo.cash_time|date='Y-m-d H:i',###}</p>
+
+					</div>
+					{if condition="$vo.order_status eq 0"}
+				
+					{/if}   		
+				</li>
+			{/volist}
+				{if $__PAGING__.record_total==0}
+				{include file="public/notempty"}
+				{/if}
+			</ul>
+		<div class="member-page">
+		{if$__PAGING__.page_total>1}
+			<ul class="page text-center cleafix">
+				<li><a href="{$__PAGING__.page_url|mac_url_page=1}"{if$__PAGING__['page_current']==1} class="btns-disad"{/if} data-lang="string_home"> {:lang_web('string_home')}</a></li>
+				<li><a href="{$__PAGING__.page_url|mac_url_page=$__PAGING__.page_prev}"{if$__PAGING__['page_current']==1} class="btns-disad"{/if} data-lang="string_syy">{:lang_web('string_syy')}</a></li>							
+				{maccms:foreach name="$__PAGING__.page_num" id="num"}
+				<li class="hidden-xs {if condition="$__PAGING__['page_current'] eq $num"}active{/if}"><a href="{$__PAGING__.page_url|mac_url_page=$num}">{$num}</a></li>
+				{/maccms:foreach}
+				<li class="hidden-xs active"><span class="num btns-disad">{$__PAGING__.page_current}/{$__PAGING__.page_total}</span></li>
+				<li><a href="{$__PAGING__.page_url|mac_url_page=$__PAGING__.page_next}"{if$__PAGING__['page_current']==$__PAGING__.page_total} class="btns-disad"{/if} data-lang="string_xyy">{:lang_web('string_xyy')}</a></li>
+				<li><a href="{$__PAGING__.page_url|mac_url_page=$__PAGING__.page_total}"{if$__PAGING__['page_current']==$__PAGING__.page_total} class="btns-disad"{/if} data-lang="string_last_page">{:lang_web('string_last_page')}</a></li>							
+			</ul>
+			<div class="page-tips visible-xs"> 
+				<span data-lang="string_now">{:lang_web('string_now')}</span> 
+				<span> 
+					<span data-lang="string_is">{:lang_web('string_is')}</span>{$__PAGING__.page_current} 
+					<span data-lang="string_page"> {:lang_web('string_page')}</span>
+					</span>&nbsp;/&nbsp; <span data-lang="string_zg"> {:lang_web('string_zg')} </span>  {$__PAGING__.page_total}<span data-lang="string_page"> {:lang_web('string_page')}</span>
+			</div>
+		{/if}
+		</div>
+       </div>
+    </div>
+</div>
+<div style="width:30rem;margin: 2rem auto;">
+	{include file="public/friendLink" }
+</div>
+</div>
+<script>
+	function setStep(val){
+		$('.label-item').each((index,item)=>{
+			if(val==item.getAttribute('data-step')){
+				item.classList.add('active')
+			}else{
+				item.classList.remove('active')
+			}
+		})
+		if(val==1){
+			$('.label-one').addClass('show-content')
+			$('.label-two').addClass('noshow-content')
+			$('.label-two').removeClass('show-content')
+		}else{
+			$('.label-two').addClass('show-content')
+			$('.label-one').addClass('noshow-content')
+			$('.label-one').removeClass('show-content')
+		}
+	}
+	function delData(ids,all){
+		var lang=localStorage.getItem('lang')
+		var msg = MAC.GetLang('string_sc')
+		if(all==1){
+			msg= MAC.GetLang('string_qk')
+		}
+		if(confirm( MAC.GetLang('are_you_sure') +(lang==1 ? ' ':'') + msg+ (lang==1? ' ':'') + MAC.GetLang('string_jlm') )){
+			$.post("{:url('user/cash_del')}",{ids:ids,all:all},function(data) {
+				console.log(data)
+				if (data.code == '1') {
+					alert( MAC.GetLang('string_sccg'));
+					location.reload();
+				}else {
+					alert(MAC.GetLang('string_shibai') + data.msg);
+				}
+			}, 'json')
+		}
+	}
+	$("#btnClear,#btnClear2").click(function(){
+		delData('',1);
+	});
+	$("#btnDel").click(function(){
+		var ids = MAC.CheckBox.Ids('ids[]');
+		if(ids==''){
+			alert(MAC.GetLang('string_xzygsj'));
+			return;
+		}
+		delData(ids,0);
+	});
+
+    $("#btn_submit").click(function() {
+		var lang=localStorage.getItem('lang')
+        var cash_bank_name = $('input[name="cash_bank_name"]').val();
+        if(cash_bank_name==''){
+            alert( MAC.GetLang('string_sryhmc'));
+            return;
+        }
+        var cash_bank_no = $('input[name="cash_bank_no"]').val();
+        if(cash_bank_no==''){
+            alert( MAC.GetLang('string_sryhzh'));
+            return;
+        }
+        var cash_payee_name = $('input[name="cash_payee_name"]').val();
+        if(cash_payee_name==''){
+            alert( MAC.GetLang('string_srskxm'));
+            return;
+        }
+        var cash_money = $('input[name="cash_money"]').val();
+        if(cash_money==''){
+            alert(MAC.GetLang('string_srtxje'));
+            return;
+        }
+
+        var data = $("#fm").serialize();
+        $.ajax({
+            url: "{:url('user/cash')}",
+            type: "post",
+            dataType: "json",
+            data: data,
+            beforeSend: function () {
+                //开启loading
+                //$(".loading_box").css("display","block");
+                $("#btn_submit").css("background","#fd6a6a").val("loading...");
+            },
+            success: function (r) {
+                alert(r.msg);
+                if(r.code==1){
+                    location.href="{:url('user/cash')}";
+                }
+            },
+            complete: function () {
+                //结束loading
+                //$(".loading_box").css("display","none");
+                $("#btn_submit").css("background","#fa4646").val( MAC.GetLang('string_tj'));
+            }
+        });
+    });
+</script>
+{include file="public/foot" /}
+</body>
+</html>

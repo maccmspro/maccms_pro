@@ -1,0 +1,530 @@
+<!-- <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"> -->
+<!DOCTYPE html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>{:lang_web('string_mac_xgzl')} - {$maccms.site_name}</title>
+	<meta name="keywords" content="">
+	<meta name="description" content="">
+	{include file="user/include" /}
+</head>
+<style>
+	.reg-od span{
+		cursor: pointer;
+	}
+	.show-detail{
+		display: block !important;
+	}
+	.no-show{
+		display: none !important;
+	}
+	.reg-bt{
+		cursor: pointer;
+		width: 100%;
+		text-align: center;
+	}
+	.reg-w form .btn-sub{
+		border-radius: 35px;
+	}
+	.find-bt{
+		width: 100%;
+		display: flex;
+		align-items: center;
+		justify-content: space-around;
+	}
+	.find-bt span{
+		cursor: pointer;
+		display: inline-block;
+	}
+	.reg-w form .reg-group .reg-control{
+		width: 78%;
+	}
+	.find-pass{
+		width: 100%;
+		height: 100%;
+		position: fixed;
+		z-index: 999;
+		top: 0;
+		display: none;
+		background-color: rgba(0, 0, 0,0.5);
+	}
+	.find-pass .user-bg{
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50% , -50%);
+	}
+	.find-pass .user-bg .reg-w{
+		height: auto;
+		margin: 0;
+	}
+</style>
+<body>
+{include file="public/head" /}
+<!-- 会员中心 -->
+<div class="member-wrap member-wrap-bg">
+	<div id="member" class="fn-clear">
+		<div id="left">
+			<div class="m-nav">
+				<a href="javascript:MAC.GoBack()" class="btn-left"><i class="iconfont ico-right">&#xe625;</i></a>
+				<a href="{:MAC_BASE_PATH}/" class="btn-right"><i class="iconfont ico-right">&#xe634;</i></a>
+				<span class="mb-title" data-lang="user_grzx">{:lang_web('user_grzx')}</span>
+			</div>
+			{include file="user/left_nav" /}
+		</div>
+		<div id="right">
+			<div class="m-nav">
+				<a href="javascript:MAC.GoBack()" class="btn-left"><i class="iconfont ico-right">&#xe625;</i></a>
+				<span class="mb-title" data-lang="user_change_info">{:lang_web('user_change_info')}</span>
+			</div>
+			<div class="co-right co-right-bg author@qq3626-95-000">
+			<!-- <h2>我的资料</h2> -->
+			<div id="tab">
+				<div class="user-info">
+					<ul class="fn-clear">
+						<li><a href="{:url('user/ajax_info')}" data-lang="user_base_info">{:lang_web('user_base_info')}</a></li>
+						<li class="cur" data-lang="user_change_info">{:lang_web('user_change_info')}</li>
+						<li><a href="{:url('user/popedom')}" data-lang="user_jurisdiction">{:lang_web('user_jurisdiction')}</a></li>
+					</ul>
+				</div>
+				<div id="listCon">
+					<!-- 修改信息 -->
+					<div class="cur">
+						<form id="fm" name="fm" method="post" action="" >
+						<p><span class="xiang" data-lang="user_name">{:lang_web('user_name')}</span>{$obj.user_name}</p>
+						<p><span class="xiang" data-lang="user_nickname">{:lang_web('user_nickname')}</span>
+
+							<input type="text" data-placeholder="user_place_nc" name="user_nick_name" class="member-input" value="{$obj.user_nick_name}" placeholder="{:lang_web('user_place_nc')}"></p>
+
+						<p>
+							<span class="xiang" data-lang="user_ysmm">{:lang_web('user_ysmm')}</span>
+							<input type="password" data-placeholder="user_place_ysmm" name="user_pwd" class="member-input" placeholder="{:lang_web('user_place_ysmm')}"></p>
+
+						<p><span class="xiang" data-lang="user_xmm">{:lang_web('user_xmm')}</span><input type="password" name="user_pwd1" data-placeholder="user_place_xmm" class="member-input" placeholder="{:lang_web('user_place_xmm')}"></p>
+
+						<p>
+							<span class="xiang" data-lang="user_cfmm">{:lang_web('user_cfmm')}</span>
+							<input type="password" name="user_pwd2" data-placeholder="user_place_cfmm" class="member-input" placeholder="{:lang_web('user_place_cfmm')}">
+						</p>
+
+						<p>
+							<span class="xiang" data-lang="user_qq">{:lang_web('user_qq')}</span>
+							<input type="text" name="user_qq" class="member-input" data-placeholder="user_place_qq" value="{$obj.user_qq}" placeholder="{:lang_web('user_place_qq')}">
+						</p>
+
+						{if condition="$obj.user_email neq ''"}
+							<p><span class="xiang" data-lang="user_email">{:lang_web('user_email')}</span>
+								<input type="text" name="user_email" class="member-input wt-input"  readonly="readonly" value="{$obj.user_email}">
+								<a class="bind-a btn_unbind" data-lang="user_unbound" ac="email" href="javascript:;">{:lang_web('user_unbound')}</a></p>
+						{else/}
+							<p><span class="xiang" data-lang="user_email">{:lang_web('user_email')}</span>
+								<input type="text" data-placeholder="user_place_email" name="user_email" class="member-input wt-input" value="" placeholder="{:lang_web('user_place_email')}">
+								<a class="bind-a" data-lang="user_binding" href="{:url('user/bind')}?ac=email">{:lang_web('user_binding')}</a>
+							</p>
+						{/if}
+
+							{if condition="$obj.user_phone neq ''"}
+							<p><span class="xiang" data-lang="user_phone">{:lang_web('user_phone')}</span>
+								<input type="text" name="user_phone" class="member-input wt-input" readonly="readonly" value="{$obj.user_phone}">
+								<a class="bind-a btn_unbind" ac="phone" href="javascript:;" data-lang="user_unbound">{:lang_web('user_unbound')}</a></p>
+							{else/}
+							<p>
+								<span class="xiang" data-lang="user_phone">{:lang_web('user_phone')}</span>
+								<input type="text" name="user_phone" data-placeholder="user_place_phone" class="member-input wt-input" value="" placeholder="{:lang_web('user_place_phone')}">
+								<a class="bind-a" href="{:url('user/bind')}?ac=phone"  data-lang="user_binding" >{:lang_web('user_binding')}</a></p>
+							{/if}
+
+						<p>
+							<span class="xiang" data-lang="user_mbwt">{:lang_web('user_mbwt')}</span>
+							<input type="text" name="user_question" class="member-input" data-placeholder="user_palce_zhmm" value="{$obj.user_question}" placeholder="{:lang_web('user_palce_zhmm')}"></p>
+						<p>
+							<span class="xiang" data-lang="user_mbda">{:lang_web('user_mbda')}</span>
+							<input type="text" name="user_answer" data-placeholder="user_place_mmda" class="member-input" value="{$obj.user_answer}" placeholder="{:lang_web('user_place_mmda')}"></p>
+						<p>
+							<input type="button" data-value="string_save" id="btn_submit" class="search-button" value="{:lang_web('string_save')}">
+							<span class="wjmm">
+								<a  href="{:url('user/findpass')}" data-lang="user_wjmm">{:lang_web('user_wjmm')}</a>
+							</span>
+						</p>
+						</form>
+					</div>
+
+				</div>
+			</div>
+		</div>
+		</div>
+	</div>
+	<div style="width:30rem;margin: 2rem auto;">
+		{include file="public/friendLink" }
+	</div>
+	
+</div>
+<div class="find-pass">
+	<div class="user-bg">
+		 <!-- 预留问题找回密码 -->
+		 <div class="reg-w mac_find">
+			 <form method="post" id="fm-find" action="">
+				 <h4>密保找回密码</h4>
+				 <div class="reg-group">
+					 <img class="l-icon" src="{:MAC_BASE_PATH}/template/default/images/member/login-user.png" >
+					 <input type="text" id="user_name" name="user_name" class="reg-control" placeholder="请输入您的登录账号">
+				 </div>
+				 <div class="reg-group">
+					 <img class="l-icon" src="{:MAC_BASE_PATH}/template/default/images/member/login-p.png" >
+					 <input type="text" id="user_question" name="user_question" class="reg-control" placeholder="请输入您的密保问题">
+				 </div>
+				 <div class="reg-group">
+					 <img class="l-icon" src="{:MAC_BASE_PATH}/template/default/images/member/login-d.png" >
+					 <input type="text" id="user_answer" name="user_answer" class="reg-control" placeholder="请输入您的密保答案">
+				 </div>
+				 <div class="reg-group">
+					 <img class="l-icon" src="{:MAC_BASE_PATH}/template/default/images/member/login-pwd.png" >
+					 <input type="password" id="user_pwd" name="user_pwd" class="reg-control" placeholder="请输入您的新密码">
+				 </div>
+				 <div class="reg-group">
+					 <img class="l-icon" src="{:MAC_BASE_PATH}/template/default/images/member/login-pwd.png" >
+					 <input type="password" id="user_pwd2" name="user_pwd2" class="reg-control" placeholder="请输入您的确认密码">
+				 </div>
+				 <div class="reg-group">
+					 <img class="l-icon" src="{:MAC_BASE_PATH}/template/default/images/member/login-i.png" >
+					 <input type="text" class="reg-control w150" id="verify" name="verify" placeholder="请输入验证码">
+					 <img class="fr m-hi" src="{:url('verify/index')}" onClick="this.src=this.src+'?'"  alt="单击刷新" />
+				 </div>
+				 <input type="button" id="btn_submit_find" class="btn-brand btn-sub" value="立即找回">
+			 </form>
+			 <div class="find-bt">
+				<span class="pass-1">密保找回</span>
+				<span class="pass-2">邮箱找回</span>
+				<span class="pass-3">用手机找回</span>
+			  </div>
+		 </div>
+		 <!-- 邮箱手机找回密码 -->
+		 <div class="reg-w mac_find_msg no-show">
+			 <div class="find-email">
+				 <form method="post" id="fm_msg" action="">
+					<h4 class="find-tit">邮箱找回密码</h4>
+					 <input id="find-ac" type="hidden" name="ac" value="email">
+					 <div class="reg-group">
+						 <img class="l-icon" src="{:MAC_BASE_PATH}/template/default/images/member/login-user.png" >
+						 <input type="text" id="to_msg" name="to" class="reg-control" placeholder="请输入您绑定的邮箱">
+					 </div>
+					 <div class="reg-group">
+						 <img class="l-icon" src="{:MAC_BASE_PATH}/template/default/images/member/login-i.png" >
+						 <input type="text" class="reg-control w150" id="verify_msg" name="verify" placeholder="请输入验证码">
+						 <img class="fr m-hi" src="{:url('verify/index')}" onClick="this.src=this.src+'?'"  alt="单击刷新" />
+					 </div>
+					 <input type="button" id="btn_send_find_msg" class="btn-brand btn-sub" value="发送验证码">
+				 </form>
+			 </div>
+			 <form method="post" id="fm2-msg" action="">
+				 <input id="find-ac-path" type="hidden" name="ac" value="email">
+				 <h4>验证信息</h4>
+				 <div class="reg-group">
+					 <img class="l-icon" src="{:MAC_BASE_PATH}/template/default/images/member/login-i.png" >
+					 <input type="text" id="code_msg" name="code" class="reg-control" placeholder="请输入{$param['ac_text']}收到的验证码">
+				 </div>
+				 <div class="reg-group">
+					 <img class="l-icon" src="{:MAC_BASE_PATH}/template/default/images/member/login-pwd.png" >
+					 <input type="password" class="reg-control w150" id="user_pwd_msg" name="user_pwd" placeholder="请输入新密码">
+				 </div>
+				 <div class="reg-group">
+					 <img class="l-icon" src="{:MAC_BASE_PATH}/template/default/images/member/login-pwd.png" >
+					 <input type="password" class="reg-control w150" id="user_pwd2_msg" name="user_pwd2" placeholder="请输入确认密码">
+				 </div>
+				 <input type="button" id="btn_submit_findmsg" class="btn-brand btn-sub" value="重置密码">
+			 </form>
+			 <div class="find-bt">
+				 <span class="pass-1">密保找回</span>
+				 <span class="pass-2">邮箱找回</span>
+				 <span class="pass-3">用手机找回</span>
+			  </div>
+		 </div>
+	 </div>
+</div>
+<script type="text/javascript">
+
+	$('.btn_unbind').click(function(){
+		var ac = $(this).attr('ac');
+		if(ac!='email' && ac!='phone'){
+			alert('参数错误');
+		}
+		if(confirm('确认解除绑定吗？此操作不可恢复？')) {
+			$.ajax({
+				url: "{:url('user/unbind')}",
+				type: "post",
+				dataType: "json",
+				data: {ac: ac},
+				beforeSend: function () {
+					//开启loading
+				},
+				success: function (r) {
+					alert(r.msg);
+					if(r.code==1){
+						location.href="{:url('user/info')}";
+					}
+				},
+				complete: function () {
+					//结束loading
+				}
+			});
+		}
+	});
+
+	$("#btn_submit").click(function() {
+		var data = $("#fm").serialize();
+		$.ajax({
+			url: "{:url('user/info')}",
+			type: "post",
+			dataType: "json",
+			data: data,
+			beforeSend: function () {
+				//开启loading
+				//$(".loading_box").css("display","block");
+				$("#btn_submit").css("background","#fd6a6a").val("loading...");
+			},
+			success: function (r) {
+				alert(r.msg);
+				if(r.code==1){
+					location.href="{:url('user/info')}";
+				}
+			},
+			complete: function () {
+				//结束loading
+				//$(".loading_box").css("display","none");
+				$("#btn_submit").css("background","#fa4646").val("提交");
+			}
+		});
+	});
+
+</script>
+<!--登录弹窗结束-->
+<script>
+	$('.find-pass-btn').click(function(){
+		$('.find-pass').show()
+	})
+	$('.find-pass').click(function(e){
+		if(e.target==e.currentTarget){
+			$('.find-pass').hide()
+		}
+	})
+	var findAc=''
+	// 切换邮箱找回密码
+	$('.pass-1').click(function(){
+		$('.mac_find').removeClass('no-show')
+		$('.mac_find_msg').addClass('no-show')
+	})
+	$('.pass-2').click(function(){
+		$('.find-tit').html('邮箱找回密码')
+		$('.mac_find').addClass('no-show')
+		$('.mac_find_msg').removeClass('no-show')
+		$('.bd-r').html('邮箱')
+		$('#to_msg').attr('placeholder','请输入您绑定的邮箱')
+		$('#find-ac').attr('value','email')
+		$('#find-ac-path').attr('value','email')
+		findAc="email"
+	})
+	// 切换手机号找回密码
+	$('.pass-3').click(function(){
+		$('.find-tit').html('手机号找回密码')
+		$('.mac_find').addClass('no-show')
+		$('.mac_find_msg').removeClass('no-show')
+		$('.bd-r').html('手机号')
+		$('#to_msg').attr('placeholder','请输入您绑定的手机号')
+		$('#find-ac').attr('value','phone')
+		$('#find-ac-path').attr('value','phone')
+		findAc="phone"
+	})
+	// 注册
+	var countdown=60;
+	function settime(val) {
+		if (countdown == 0) {
+			val.removeAttribute("disabled");
+			val.value="获取验证码";
+			countdown = 60;
+			return true;
+		} else {
+			val.setAttribute("disabled", true);
+			val.value="重新发送(" + countdown + ")";
+			countdown--;
+		}
+		setTimeout(function() {settime(val) },1000)
+	}
+	$("body").bind('keyup',function(event) {
+		if(event.keyCode==13){ $('#btnLogin').click(); }
+	});
+	$('#btn_send_sms_reg').click(function(){
+			var ac = $('input[name="ac"]').val();
+			var to = $('input[name="to"]').val();
+			if(ac=='email') {
+				var pattern = /^([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+@([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+\.[a-zA-Z]{2,3}$/;
+				var ex = pattern.test(to);
+				if (!ex) {
+					alert('邮箱格式不正确');
+					return;
+				}
+			}
+			else if(ac=='phone') {
+				var pattern=/^[1][0-9]{10}$/;
+				var ex = pattern.test(to);
+				if (!ex) {
+					alert('手机号格式不正确');
+					return;
+				}
+			}
+			else{
+				alert('参数错误');
+				return;
+			}
+			settime(this);
+			var data = $("#fm_reg").serialize();
+
+			$.ajax({
+				url: "{:url('user/reg_msg')}",
+				type: "post",
+				dataType: "json",
+				data: data,
+				beforeSend: function () {
+					//开启loading
+				},
+				success: function (r) {
+					alert(r.msg);
+				},
+				complete: function () {
+					//结束loading
+				}
+			});
+	});
+	$('#btn_submit_reg').click(function() {
+		if ($('#user_name_reg').val()  == '') { alert('请输入用户！'); $("#user_name_reg").focus(); return false; }
+		if ($('#user_pwd_reg').val()  == '') { alert('请输入密码！'); $("#user_pwd_reg").focus(); return false; }
+		if ($('#verify_reg').val()  == '') { alert('请输入验证码！'); $("#verify_reg").focus(); return false; }
+		$.ajax({
+			url: "{:url('user/reg')}",
+			type: "post",
+			dataType: "json",
+			data: $('#fm_reg').serialize(),
+			beforeSend: function () {
+				$("#btn_submit_reg").css("background","#fd6a6a").val("loading...");
+			},
+			success: function (r) {
+				alert(r.msg);
+				if(r.code==1){
+					location.href="{:url('user/login')}";
+				}
+				else{
+					$('#verify_img_reg').click();
+				}
+			},
+			complete: function () {
+				$("#btn_submit_reg").css("background","#fa4646").val("立即注册");
+			}
+		});
+	});
+	// 预留问题找回密码
+	$("#btn_submit_find").click(function(msg) {
+		var data = $("#fm-find").serialize();
+		var input = $("#fm-find").serializeArray();
+		var pass1 = $("#pass1").val();
+		var pass2 = $("#pass2").val();
+		var inputName = new Array();
+		inputName['user_name'] = '登录帐号';
+		inputName['user_question'] = '找回问题';
+		inputName['user_answer'] = '找回答案';
+		inputName['user_pwd'] = '密码';
+		inputName['user_pwd2'] = '确认密码';
+		inputName['verify'] = '验证码';
+		var is = false;
+		var err = '';
+		$.each(input,function(name,field) {
+			if (field.value == '') {
+				is = true;
+				err = inputName[field.name] + '不能为空';
+				return false;
+			}
+		})
+		if (is) {
+			alert(err);
+			return false;
+		}
+		if (pass1 != pass2) {
+			alert('两次密码不一致');
+			return false;
+		}
+		$.ajax({
+			url: "{:url('user/findpass')}",
+			type: "post",
+			dataType: "json",
+			data: data,
+			beforeSend: function () {
+				//开启loading
+				//$(".loading_box").css("display","block");
+				$("#btn_submit").css("background","#fd6a6a").val("loading...");
+			},
+			success: function (r) {
+				alert(r.msg);
+				if(r.code==1){
+					location.href="{:url('user/login')}";
+				}
+			},
+			complete: function () {
+				//结束loading
+				//$(".loading_box").css("display","none");
+				$("#btn_submit").css("background","#fa4646").val("提交");
+			}
+		});
+	})
+	// 邮箱和手机找回密码
+	$('#btn_send_find_msg').click(function() {
+		if ($('#to_msg').val()  == '') { 
+			alert(`请输入${findAc=='email'?'邮箱':'手机号'}！`); 
+			$("#to_msg").focus(); return false; 
+		}
+		$.ajax({
+			url: "{:url('user/findpass_msg')}",
+			type: "post",
+			dataType: "json",
+			data: $('#fm_msg').serialize(),
+			beforeSend: function () {
+				$("#btn_send_find_msg").css("background","#fd6a6a").val("loading...");
+			},
+			success: function (r) {
+				alert(r.msg);
+			},
+			complete: function () {
+				$('#verify_msg').click();
+				$("#btn_send_find_msg").css("background","#fa4646").val(`发送${findAc=='email'?'邮件':'验证码'}`);
+			}
+		});
+	});
+	
+	$('#btn_submit_findmsg').click(function() {
+		if ($('#to_msg').val()  == '') { 
+			alert(`请输入${findAc=='email'?'邮箱':'手机号'}！`); 
+			$("#to_msg").focus(); return false; 
+		}
+		if ($('#code_msg').val()  == '') { alert('请输入验证码！'); $("#code_msg").focus(); return false; }
+		if ($('#user_pwd_msg').val()  == '') { alert('请输入新密码！'); $("#user_pwd_msg").focus(); return false; }
+		if ($('#user_pwd2_msg').val()  == '') { alert('请输入确认密码！'); $("#user_pwd2_msg").focus(); return false; }
+		if ($('#user_pwd_msg').val()  != $('#user_pwd2_msg').val() ) { alert('二次密码不一致！'); $("#user_pwd2_msg").focus(); return false; }
+
+		var data= {ac:findAc,to:$('#to_msg').val(),code:$('#code_msg').val(),user_pwd:$('#user_pwd_msg').val(),user_pwd2:$('#user_pwd2_msg').val()};
+		$.ajax({
+			url: "{:url('user/findpass_reset')}",
+			type: "post",
+			dataType: "json",
+			data: data,
+			beforeSend: function () {
+				$("#btn_submit_findmsg").css("background","#fd6a6a").val("loading...");
+			},
+			success: function (r) {
+				alert(r.msg);
+			},
+			complete: function () {
+				$("#btn_submit_findmsg").css("background","#fa4646").val("重置密码");
+			}
+		});
+	});
+</script>
+{include file="public/foot" /}
+</body>
+</html>

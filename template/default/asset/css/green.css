@@ -1,0 +1,155 @@
+@charset "UTF-8";
+/* CSS Document */
+::selection{background-color: #00be06;}
+a:focus,a:hover,a:active{ text-decoration:none; color: #00be06;}
+.header .head_menu_a li.active a,.nav_list li.active a,.mycol,.bstem .head_box.nav_top .top_nav a:hover,.bstem .head_box.nav_top .top_ico a:hover,.bstem .head_box.nav_top .head_hot_search a:hover,.bstem .head_box.nav_top .all_menu_box a:hover,.bstem .head_menu_a a:hover,.bstem .head_user a:hover,.bstem .head_hot_search a:hover,.bstem .head_user li .dropbox.user a:hover,.list_m a i,.pannel_head a.v_change i.iconfont,.vodlist_item:hover a,.topiclist_item:hover a,.artlist_item:hover a,.arthom_item:hover a,.actorlist_item:hover a,.gw_action a:hover,.play_source_tab a.active,.playnow_info,.screen_list.sx_tz li.hl_fl a,.player a:hover,.down_context a:hover,.down_list ul li span,.bstem .head_box.nav_top .active a{color: #00be06 !important;}
+.head_menu_a li.active a:after,.play_source_tab a.active:after,.tab-play a.playnow_info:after,.pannel .new_date{ background: #00be06;}
+.head_user li a:hover,.mac_results li strong{color: #00be06;}
+.head_user li .user a.mac_user_g,.bstem .head_user li .user a.mac_user_g{color: #00be06;}
+.head_menu_b:hover a.menu{background: #00be06;border-right: 1px solid #00be06;}
+.head_search form:hover .submit,.head_search form .submit.search_btn{background: #00be06;}
+.hot_banner .head_menu_a a:hover,.hot_banner .head_user a:hover,.hot_banner .head_hot_search a:hover,.hot_banner .head_user li .dropbox.user a:hover{color: #00be06;}
+.hot_banner .head_user li .user a.mac_user_g {color: #00be06;}
+a:hover.swiper-button-next,a:hover.swiper-button-prev{background:#00be06;}
+.swiper-pagination-bullet-active {background: #00be06;}
+.vodlist_item:hover a,.topiclist_item:hover a,.artlist_item:hover a,.arthom_item:hover a,.gw_action a:hover{color: #00be06;}
+.art_navlist li.active a{position: relative; color: #00be06; }
+.article_box .digg_link{background: #00be06;background: -webkit-linear-gradient(135deg,#14d77a,#1bd32a 52%,#00be06);background: linear-gradient(135deg,#14d77a,#1bd32a 52%,#00be06);box-shadow: 0 0 0.25rem 0 rgba(11, 190, 6, 0.3);}
+.article_box a:hover.digg_link{color: #fff; background: #00be06;}
+.pannel_head .title em,.pannel_head em{color: #00be06;}
+.pannel .search_tips a {color: #00be06;}
+.pannel h2.title i {color: #00be06;}
+.content_detail .pull_right a:hover{color: #00be06;}
+.play_but a:hover,.play_vlist a:hover .play_vlist_title,.play_vlist_now a:hover{color: #00be06;}
+.play_namebox .fenlei{border: 1px solid #00be06; color: #00be06; }
+.play_vlist_thumb.vnow::after{border: 3px solid #00be06;}
+.vnow .play_vlist_title{color: #00be06;}
+.content_playlist li.active a{color: #00be06;border: 1px solid #00be06;}
+.type_list_menu li.active a{color: #00be06;}
+.zbvodlist_box:hover{border:1px solid #00be06;}
+.seebtn a {color: #00be06;}
+.ranklist_item a:hover .title{color: #00be06;}
+.sx_txt li,.sx_title2{color: #00be06;}
+.screen_list li a:hover,.list_type_title span a:hover,.screen_list.sx_tz li a:hover{color: #00be06;}
+.screen_list li.hl a{color: #00be06;}
+.screen_list li.hl_fl a{color: #00be06;}
+.type_sxbtn a{color: #00be06;}
+.sx_total em{color: #00be06;}
+.gbook_submit {background: #00be06!important;border: 1px solid #00be06!important;}
+.input_wrap .comment_submit{background: #00be06!important;border: 1px solid #00be06!important;}
+.notice .nico{color: #00be06;}
+.notice .nic{color: #00be06;}
+.tabs ul li label:hover, .tabs ul li label:focus, .tabs ul li label:active {color: #00be06;}
+.tabs .content section h2 {color: #00be06;}
+.tabs input[name="tab-control"]:nth-of-type(1):checked ~ ul > li:nth-child(1) > label {color: #00be06;}
+.tabs input[name="tab-control"]:nth-of-type(2):checked ~ ul > li:nth-child(2) > label {color: #00be06;}
+.tabs input[name="tab-control"]:nth-of-type(3):checked ~ ul > li:nth-child(3) > label {color: #00be06;}
+.tabs input[name="tab-control"]:nth-of-type(4):checked ~ ul > li:nth-child(4) > label {color: #00be06;}
+.extra li a:hover {background-color: #00be06!important;}
+.page li.active a,.page li.disabled a{ background-color: #00be06; border: 1px solid #00be06;}
+.page_tips span{color: #00be06;}
+.dropdown .copy_btn {background: #00be06;cursor: pointer;}
+.am-share-footer .copy_btn {color: #00be06;}
+.weui_text .weui-btn a {dbackground: #00be06;border:1px solid #00be06;}
+.history_title a:hover,.mac_history_box li.clear_btn a:hover,.mac_history_box li a:hover .vodlist_title,.role_name, .svodinfo a{color: #00be06!important;}
+.mac_history_box .user_log_tips a{background: #00be06; }
+.extra li a.backtop {display: none;background-color: rgba(56, 202, 52, 0.8);color: #FFFFFF;}
+.btn-brand {background: #00be06!important;}
+.reg-ts span  {color: #00be06!important;}
+.box-star-list li:hover a span:after,.box-star-list li:hover a span:before,.box-star-list li.active a span:after,.box-star-list li.active a span:before{border-bottom: 6px solid #00be06;}
+.box-star-list li:hover a span:before,.box-star-list li.active a span:before{border-bottom-color: #00be06;}
+.star-video-list .box-star-list {border-top: 1px solid #00be06;}
+a.actor_part:hover{ background: #00be06;border: 1px solid #00be06;}
+.content_detail .playbtn.o_play a.btn{background:#00be06;}
+.content_detail .playbtn.o_play a{ color: #effaf0;border: 1px solid #00be06;}
+.themecolor li:hover{background: #00be06;color: #fff;}
+.wbalist_titbox .wba_ico {background-position: 0px -26px;background-size: cover;}
+
+@media (max-width:820px){
+	.head_menu_b:hover a.menu{background: none;border: 0;}
+	.foot_mnav .foot_rows a.active{color: #00be06;}
+	.wx_but a{background: #00be06;background: -webkit-linear-gradient(135deg,#14d77a,#1bd32a 52%,#00be06);background: linear-gradient(135deg,#14d77a,#1bd32a 52%,#00be06);box-shadow: 0 0 0.25rem 0 rgba(11, 190, 6, 0.3);}
+}
+
+#member #right .user-info li.cur,
+#member #left ul li a:hover,
+.pannel_head .title .tj-title,
+.member-wrap #member #left ul li a:hover i,
+#member #right h2,
+#member #right .list li a:hover,
+.head_menu_a a:hover,
+.content_detail .playbtn.o_share a.btn_share,
+#member #right .bind-a,
+/* .latest-tab-box .movie-latest .txt-list li span, 
+.latest-tab-box .tv-latest .txt-list li span,
+.latest-tab-box .dm-latest .txt-list li span,
+.latest-tab-box .fun-latest .txt-list li span,
+.latest-tab-box .wei-latest .txt-list li span,*/
+.vod_fav.is_fav i,
+.vodlist_thumb .text_dy,
+.btn-continue,
+.latest-tab-box .txt-list li a:hover,
+.directory-list dd a:hover,
+.content_detail .data_style,
+#rating span.star_tips,
+.pannel_head .pan_right,
+.player .text_score,
+.order__list li p span.jg-tz,
+.data__list li p span.co-tz,
+.latest-tab-box .latest-item .txt-list li:hover,
+.latest-tab-box .latest-item .txt-list li:hover span,
+.latest-tab-box .latest-item .txt-list li:hover a,
+#member #left ul li.active a,
+.rank_tab_list .rank_tab.active,
+.box-star-list li:hover .name,
+.box .title dl dd:hover a,
+.view-filter a.current,
+.filter-focus .ui-title h3,
+.website-search-t,
+.vod_rank_list .ranklist_r li:hover a
+{
+	color: #00be06 !important;
+}
+#member #right .user-info li.cur::after,
+#member #right .list li.cur,
+#member #right .search-button,
+.head_search form .submit.search_btn,
+.deansubdiv dd:hover h3,
+.banner-b .play,
+.banner-num .show-tab,
+#member #right h2::after,
+.xz-box input:checked,
+.lable-wrap .active .p1,
+.banner-b .mac_ulog.is_fav,
+.layui-progress-bar,
+.data_list .laset_new .count,
+.box .title .pc_more:hover,
+.btn-order{
+	background-color: #00be06 !important;
+}
+.step-wrap .active .p1,
+.seebtn .ck_detail{
+    background: #00be06 !important;
+}
+.content_detail .playbtn.o_share a.btn_share,
+.btn-continue,
+.xz-box input:checked
+{
+	border-color: #00be06 !important;
+}
+.latest-tab-nav #latest1.current ,
+.latest-tab-nav #latest2.current ,
+.latest-tab-nav #latest3.current, 
+.latest-tab-nav #latest4.current, 
+.latest-tab-nav #latest5.current{
+    border-top-color: #00be06;
+    color: #00be06;
+}
+@media (min-width: 820px){
+	.lable-wrap .active .p1{
+        color: #00be06 !important;
+        border-color: #00be06 !important;
+        background-color: transparent !important;
+    }
+}
+

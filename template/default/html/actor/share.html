@@ -1,0 +1,41 @@
+<div class="dropdown">
+    <div class="bds_share_title" data-lang="string_vod_share">{:lang_web('string_vod_share')}</div>
+	<div class="bdsharebuttonbox" data-tag="share_1">
+		<a class="bds_weixin" data-cmd="weixin"></a>
+		<a class="bds_sqq" data-cmd="sqq"></a>
+		<a class="bds_tsina" data-cmd="tsina"></a>
+		<a class="bds_qzone" data-cmd="qzone"></a>
+		<a class="bds_more show-pc" data-cmd="more"></a>
+	</div>
+    <span  style="display: block;padding-bottom: 6px;text-align: left;color: #333;" data-lang="string_share_tit">{:lang_web('string_share_tit')}</span>
+	<span id="short2" style="display: block;overflow: hidden; line-height: 16px;padding: 6px;border: 1px solid #ddd;text-align: left;color: #333;">{$obj.vod_name}{$obj.art_name}{$obj.actor_name}{if condition="$maccms.mid eq 3"}专题-{$obj.topic_name}{/if}-{$obj['vod_play_list'][$param['sid']]['urls'][$param['nid']]['name']}</span>
+	<span id="btn" class="copy_btn" data-clipboard-action="copy" data-clipboard-target="#short" data-lang="string_share_hand">{:lang_web('string_share_hand')}</span>
+	{if condition="$maccms.mid eq 2"}
+	<script>
+		window._bd_share_config = {
+			common : {
+				bdText : '{$obj.art_name}',
+				bdPic : '{:mac_url_img($obj.art_pic)}'
+			},
+			share : [{
+				"bdSize" : 32
+			}]
+		}
+		with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+	</script>
+	{else}
+	<script>
+		window._bd_share_config = {
+			common : {
+				bdText : '{$obj.vod_name}-{$obj['vod_play_list'][$param['sid']]['urls'][$param['nid']]['name']}',	
+				bdPic : '{:mac_url_img($obj.vod_pic)}'
+
+			},
+			share : [{
+				"bdSize" : 32
+			}]
+		}
+		with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+	</script>
+	{/if}
+</div>

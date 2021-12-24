@@ -1,0 +1,155 @@
+{include file="../../../application/admin/view/public/head" /}
+
+<div class="">
+    <div class="layui-card">
+        <div class="layui-card-body">
+            <form class="layui-form"  method="post"  action="{:url('data')}">
+                <div class="layui-form-item">
+                    <div class="layui-form-item layui-inline">
+                        <select name="mid">
+                            <option value="">{:lang('select_model')}</option>
+                            <option value="1" {if condition="$param['mid'] eq '1'"}selected {/if}>{:lang('vod')}</option>
+                            <option value="2" {if condition="$param['mid'] eq '2'"}selected {/if}>{:lang('art')}</option>
+                            <option value="3" {if condition="$param['mid'] eq '3'"}selected {/if}>{:lang('topic')}</option>
+                            <option value="8" {if condition="$param['mid'] eq '8'"}selected {/if}>{:lang('actor')}</option>
+                            <option value="9" {if condition="$param['mid'] eq '9'"}selected {/if}>{:lang('role')}</option>
+                            <option value="11" {if condition="$param['mid'] eq '11'"}selected {/if}>{:lang('website')}</option>
+                        </select>
+                    </div>
+                    <div class="layui-form-item layui-inline">
+                        <select name="report">
+                            <option value="">{:lang('select_report')}</option>
+                            <option value="1" {if condition="$param['report'] eq '1'"}selected {/if}>{:lang('report_not')}</option>
+                            <option value="2" {if condition="$param['report'] eq '2'"}selected {/if}>{:lang('report_yes')}</option>
+                        </select>
+                    </div>
+                    <div class="layui-form-item layui-inline">
+                        <input type="text" autocomplete="off" placeholder="{:lang('wd')}" class="layui-input" name="wd" value="{$param['wd']}">
+                    </div>
+                    
+                    
+                    <div class="layui-form-item layui-inline">
+                        <button class="pear-btn pear-btn-md pear-btn-primary j-search">
+                            <i class="layui-icon layui-icon-search"></i>
+                            {:lang('btn_search')}
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="layui-card">
+        <div class="layui-card-body">
+          <table id="role-table" lay-filter="role-table"></table>
+          <div
+            class="layui-form layui-border-box layui-table-view"
+            lay-filter="LAY-table-1"
+            lay-id="role-table"
+            style=""
+          >
+            <div class="layui-table-tool">
+              <div class="layui-table-tool-temp">
+                <a data-href="{:url('del')}" class="pear-btn pear-btn-danger pear-btn-md j-page-btns confirm"><i class="layui-icon">&#xe640;</i>{:lang('del')}</a>
+                <a data-href="{:url('index/select')}?tab=comment&col=comment_status&tpl=select_status&url=comment/field" data-width="470" data-height="200" data-checkbox="1" class="pear-btn pear-btn-primary pear-btn-md j-select"><i class="layui-icon">&#xe620;</i>{:lang('status')}</a>
+                <a data-href="{:url('del')}?all=1" class="pear-btn pear-btn-primary pear-btn-md j-ajax" confirm="{:lang('clear_confirm')}"><i class="layui-icon">&#xe640;</i>{:lang('clear')}</a>
+              </div>
+            </div>
+            <div class="layui-table-box">
+              <div class="layui-table-header">
+        <form class="layui-form" method="post" id="pageListForm" >
+          <table
+          cellspacing="0"
+          cellpadding="0"
+          border="0"
+          class="layui-table"
+          lay-skin="line"
+          >
+          <thead>
+            <tr>
+                <th width="25"><input type="checkbox" lay-skin="primary" lay-filter="allChoose"></th>
+                <th width="60">{:lang('id')}</th>
+                <th width="60">{:lang('model')}</th>
+                <th width="60">{:lang('status')}</th>
+                <th >{:lang('content')}</th>
+                <th width="150">{:lang('opt')}</th>
+            </tr>  
+          </thead>
+          <tbody>            
+            {volist name="list" id="vo"}
+            <tr>
+                <td><input type="checkbox" name="ids[]" value="{$vo.comment_id}" class="layui-checkbox checkbox-ids" lay-skin="primary"></td>
+                <td>{$vo.comment_id}</td>
+                <td>{$vo.comment_mid|mac_get_mid_text}</td>
+                <td>{if condition="$vo.comment_status eq 0"}<span class="layui-badge">{:lang('reviewed_not')}</span>{else}<span class="layui-badge  ">{:lang('reviewed')}</span>{/if}</td>
+                <td>
+                    <div class="c-999 f-12">
+                        <u style="cursor:pointer" class="text-primary">{$vo.comment_name|htmlspecialchars}：</u>
+                        <time>【{$vo.comment_time|mac_day='color'}】</time>
+                        <span class="ml-20">ip：【{$vo.comment_ip|long2ip}】</span>
+                        <span class="ml-20">{:lang('up')}：【{$vo.comment_up}】</span>
+                        <span class="ml-20">{:lang('hate')}：【{$vo.comment_down}】</span>
+                        <span class="ml-20">{:lang('report')}：【{$vo.comment_report}】</span>
+                        <span class="ml-20">{:lang('link')}：
+                            {if condition="!is_array($vo.data)"}
+                            【{:lang('del_data')}】
+                            {elseif condition="$vo.comment_mid eq 1"}
+                            【<a target="_blank" href="{$vo.data|mac_url_vod_detail}">{$vo.data.vod_name}</a>】</span>
+                            {elseif condition="$vo.comment_mid eq 2"}
+                            【<a target="_blank" href="{$vo.data|mac_url_art_detail}">{$vo.data.art_name}</a>】</span>
+                            {elseif condition="$vo.comment_mid eq 3"}
+                            【<a target="_blank" href="{$vo.data|mac_url_topic_detail}">{$vo.data.topic_name}</a>】</span>
+                            {elseif condition="$vo.comment_mid eq 8"}
+                            【<a target="_blank" href="{$vo.data|mac_url_actor_detail}">{$vo.data.actor_name}</a>】</span>
+                            {elseif condition="$vo.comment_mid eq 9"}
+                            【<a target="_blank" href="{$vo.data|mac_url_role_detail}">{$vo.data.role_name}</a>】</span>
+                            {/if}
+                    </div>
+                    <div class="f-12 c-999">
+                        {:lang('comment')}：{$vo.comment_content|htmlspecialchars}
+                    </div>
+                </td>
+                <td>
+                    <a class="pear-btn pear-btn-primary pear-btn-md j-iframe" data-href="{:url('info?id='.$vo['comment_id'])}" href="javascript:;" title="{:lang('edit')}">{:lang('edit')}</a>
+                    <a class="pear-btn pear-btn-danger pear-btn-md j-tr-del" data-href="{:url('del?ids='.$vo['comment_id'])}" href="javascript:;" title="{:lang('del')}">{:lang('del')}</a>
+                </td>
+            </tr>
+            {/volist}
+          </tbody>
+          </table>
+        </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+    <div id="pages" class="center"></div>
+  </div>
+{include file="../../../application/admin/view/public/foot" /}
+
+
+<script type="text/javascript">
+    var curUrl="{:url('comment/data',$param)}";
+    layui.use(['laypage', 'layer','form'], function() {
+        var laypage = layui.laypage
+                , layer = layui.layer,
+                form = layui.form;
+
+        laypage.render({
+            elem: 'pages'
+            ,count: {$total}
+            ,limit: {$limit}
+            ,curr: {$page}
+            ,layout: ['count', 'prev', 'page', 'next', 'limit', 'skip']
+            ,jump: function(obj,first){
+                if(!first){
+                    location.href = curUrl.replace('%7Bpage%7D',obj.curr).replace('%7Blimit%7D',obj.limit);
+                }
+            }
+        });
+
+
+    });
+</script>
+</body>
+</html>

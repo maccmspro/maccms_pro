@@ -1,0 +1,435 @@
+@charset "UTF-8";
+
+/* CSS Document */
+
+::selection {
+    background-color: #e9bd6c;
+}
+
+a:focus,
+a:hover,
+a:active {
+    text-decoration: none;
+    color: #e9bd6c;
+}
+
+.head_menu_a li.active a,
+.nav_list li.active a,
+.mycol,
+.bstem .head_box.nav_top .top_nav a:hover,
+.bstem .head_box.nav_top .top_ico a:hover,
+.bstem .head_box.nav_top .head_hot_search a:hover,
+.bstem .head_box.nav_top .all_menu_box a:hover,
+.bstem .head_menu_a a:hover,
+.bstem .head_user a:hover,
+.bstem .head_hot_search a:hover,
+.bstem .head_user li .dropbox.user a:hover,
+.list_m a i,
+.pannel_head a.v_change i.iconfont,
+.vodlist_item:hover a,
+.topiclist_item:hover a,
+.artlist_item:hover a,
+.arthom_item:hover a,
+.actorlist_item:hover a,
+.gw_action a:hover,
+.play_source_tab a.active,
+.playnow_info,
+.screen_list.sx_tz li.hl_fl a,
+.player a:hover,
+.down_context a:hover,
+.down_list ul li span,
+.bstem .head_box.nav_top .active a {
+    color: #e9bd6c !important;
+}
+
+.head_menu_a li.active a:after,
+.play_source_tab a.active:after,
+.tab-play a.playnow_info:after,
+.pannel .new_date {
+    background: #e9bd6c;
+}
+
+.head_user li a:hover,
+.mac_results li strong {
+    color: #e9bd6c;
+}
+
+.head_user li .user a.mac_user_g,
+.bstem .head_user li .user a.mac_user_g {
+    color: #e9bd6c;
+}
+
+.head_menu_b:hover a.menu {
+    background: #e9bd6c;
+    border-right: 1px solid #e9bd6c;
+}
+
+.head_search form:hover .submit,
+.head_search form .submit.search_btn {
+    background: #e9bd6c;
+}
+
+.hot_banner .head_menu_a a:hover,
+.hot_banner .head_user a:hover,
+.hot_banner .head_hot_search a:hover,
+.hot_banner .head_user li .dropbox.user a:hover {
+    color: #e9bd6c;
+}
+
+.hot_banner .head_user li .user a.mac_user_g {
+    color: #e9bd6c;
+}
+
+a:hover.swiper-button-next,
+a:hover.swiper-button-prev {
+    background: #e9bd6c;
+}
+
+.swiper-pagination-bullet-active {
+    background: #e9bd6c;
+}
+
+.vodlist_item:hover a,
+.topiclist_item:hover a,
+.artlist_item:hover a,
+.arthom_item:hover a,
+.gw_action a:hover {
+    color: #e9bd6c;
+}
+
+.art_navlist li.active a {
+    position: relative;
+    color: #e9bd6c;
+}
+
+.article_box .digg_link {
+    background: #e9bd6c;
+    background: -webkit-linear-gradient(135deg, #f7d28e 0, #f7ce82 50%, #e9bd6c 100%);
+    background: linear-gradient(135deg, #f7d28e 0, #f7ce82 50%, #e9bd6c 100%);
+    box-shadow: 0 0 0.25rem 0 rgba(233, 189, 108, 0.3);
+}
+
+.article_box a:hover.digg_link {
+    color: #fff;
+    background: #e9bd6c;
+}
+
+.pannel_head .title em,
+.pannel_head em {
+    color: #e9bd6c;
+}
+
+.pannel .search_tips a {
+    color: #e9bd6c;
+}
+
+.pannel h2.title i {
+    color: #e9bd6c;
+}
+
+.content_detail .pull_right a:hover {
+    color: #e9bd6c;
+}
+
+.play_but a:hover,
+.play_vlist a:hover .play_vlist_title,
+.play_vlist_now a:hover {
+    color: #e9bd6c;
+}
+
+.play_namebox .fenlei {
+    border: 1px solid #e9bd6c;
+    color: #e9bd6c;
+}
+
+.play_vlist_thumb.vnow::after {
+    border: 3px solid #e9bd6c;
+}
+
+.vnow .play_vlist_title {
+    color: #e9bd6c;
+}
+
+.content_playlist li.active a {
+    color: #e9bd6c;
+    border: 1px solid #e9bd6c;
+}
+
+.type_list_menu li.active a {
+    color: #e9bd6c;
+}
+
+.zbvodlist_box:hover {
+    border: 1px solid #e9bd6c;
+}
+
+.seebtn a {
+    color: #e9bd6c;
+}
+
+.ranklist_item a:hover .title {
+    color: #e9bd6c;
+}
+
+.sx_txt li,
+.sx_title2 {
+    color: #e9bd6c;
+}
+
+.screen_list li a:hover,
+.list_type_title span a:hover,
+.screen_list.sx_tz li a:hover {
+    color: #e9bd6c;
+}
+
+.screen_list li.hl a {
+    color: #e9bd6c;
+}
+
+.screen_list li.hl_fl a {
+    color: #e9bd6c;
+}
+
+.type_sxbtn a {
+    color: #e9bd6c;
+}
+
+.sx_total em {
+    color: #e9bd6c;
+}
+
+.gbook_submit {
+    background: #e9bd6c!important;
+    border: 1px solid #e9bd6c!important;
+}
+
+.input_wrap .comment_submit {
+    background: #e9bd6c!important;
+    border: 1px solid #e9bd6c!important;
+}
+
+.notice .nico {
+    color: #e9bd6c;
+}
+
+.notice .nic {
+    color: #e9bd6c;
+}
+
+.tabs ul li label:hover,
+.tabs ul li label:focus,
+.tabs ul li label:active {
+    color: #e9bd6c;
+}
+
+.tabs .content section h2 {
+    color: #e9bd6c;
+}
+
+.tabs input[name="tab-control"]:nth-of-type(1):checked~ul>li:nth-child(1)>label {
+    color: #e9bd6c;
+}
+
+.tabs input[name="tab-control"]:nth-of-type(2):checked~ul>li:nth-child(2)>label {
+    color: #e9bd6c;
+}
+
+.tabs input[name="tab-control"]:nth-of-type(3):checked~ul>li:nth-child(3)>label {
+    color: #e9bd6c;
+}
+
+.tabs input[name="tab-control"]:nth-of-type(4):checked~ul>li:nth-child(4)>label {
+    color: #e9bd6c;
+}
+
+.extra li a:hover {
+    background-color: #e9bd6c!important;
+}
+
+.page li.active a,
+.page li.disabled a {
+    background-color: #e9bd6c;
+    border: 1px solid #e9bd6c;
+}
+
+.page_tips span {
+    color: #e9bd6c;
+}
+
+.dropdown .copy_btn {
+    background: #e9bd6c;
+    cursor: pointer;
+}
+
+.am-share-footer .copy_btn {
+    color: #e9bd6c;
+}
+
+.weui_text .weui-btn a {
+    dbackground: #e9bd6c;
+    border: 1px solid #e9bd6c;
+}
+
+.history_title a:hover,
+.mac_history_box li.clear_btn a:hover,
+.mac_history_box li a:hover .vodlist_title,
+.role_name,
+.svodinfo a {
+    color: #e9bd6c!important;
+}
+
+.mac_history_box .user_log_tips a {
+    background: #e9bd6c;
+}
+
+.extra li a.backtop {
+    display: none;
+    background-color: rgba(233, 189, 108, 0.8);
+    color: #FFFFFF;
+}
+
+.btn-brand {
+    background: #e9bd6c!important;
+}
+
+.reg-ts span {
+    color: #e9bd6c!important;
+}
+
+.box-star-list li:hover a span:after,
+.box-star-list li:hover a span:before,
+.box-star-list li.active a span:after,
+.box-star-list li.active a span:before {
+    border-bottom: 6px solid #e9bd6c;
+}
+
+.box-star-list li:hover a span:before,
+.box-star-list li.active a span:before {
+    border-bottom-color: #e9bd6c;
+}
+
+.star-video-list .box-star-list {
+    border-top: 1px solid #e9bd6c;
+}
+
+a.actor_part:hover {
+    background: #e9bd6c;
+    border: 1px solid #e9bd6c;
+}
+
+.content_detail .playbtn.o_play a.btn {
+    background: #e9bd6c;
+}
+
+.content_detail .playbtn.o_play a {
+    color: #effaf0;
+    border: 1px solid #e9bd6c;
+}
+
+.themecolor li:hover {
+    background: #e9bd6c;
+    color: #fff;
+}
+
+.wbalist_titbox .wba_ico {
+    background-position: 0px -130px;
+    background-size: cover;
+}
+
+@media (max-width:820px) {
+    .head_menu_b:hover a.menu {
+        background: none;
+        border: 0;
+    }
+    .foot_mnav .foot_rows a.active {
+        color: #e9bd6c;
+    }
+    .wx_but a {
+        background: #e9bd6c;
+        background: -webkit-linear-gradient(135deg, #f7d28e 0, #f7ce82 50%, #e9bd6c 100%);
+        background: linear-gradient(135deg, #f7d28e 0, #f7ce82 50%, #e9bd6c 100%);
+        box-shadow: 0 0 0.25rem 0 rgba(233, 189, 108, 0.3);
+    }
+}
+#member #right .user-info li.cur,
+#member #left ul li a:hover,
+.pannel_head .title .tj-title,
+.member-wrap #member #left ul li a:hover i,
+#member #right h2,
+#member #right .list li a:hover,
+.head_menu_a a:hover,
+.content_detail .playbtn.o_share a.btn_share,
+#member #right .bind-a,
+/* .latest-tab-box .movie-latest .txt-list li span, 
+.latest-tab-box .tv-latest .txt-list li span,
+.latest-tab-box .dm-latest .txt-list li span,
+.latest-tab-box .fun-latest .txt-list li span,
+.latest-tab-box .wei-latest .txt-list li span,*/
+.vod_fav.is_fav i,
+.vodlist_thumb .text_dy,
+.btn-continue,
+.latest-tab-box .txt-list li a:hover,
+.directory-list dd a:hover,
+.content_detail .data_style,
+#rating span.star_tips,
+.pannel_head .pan_right,
+.player .text_score,
+.order__list li p span.jg-tz,
+.data__list li p span.co-tz,
+.latest-tab-box .latest-item .txt-list li:hover,
+.latest-tab-box .latest-item .txt-list li:hover span,
+.latest-tab-box .latest-item .txt-list li:hover a,
+#member #left ul li.active a,
+.rank_tab_list .rank_tab.active,
+.box-star-list li:hover .name,
+.box .title dl dd:hover a,
+.view-filter a.current,
+.filter-focus .ui-title h3,
+.website-search-t,
+.vod_rank_list .ranklist_r li:hover a
+{
+	color: #e9bd6c !important;
+}
+#member #right .user-info li.cur::after,
+#member #right .list li.cur,
+#member #right .search-button,
+.head_search form .submit.search_btn,
+.deansubdiv dd:hover h3,
+.banner-b .play,
+.banner-num .show-tab,
+#member #right h2::after,
+.xz-box input:checked,
+.lable-wrap .active .p1,
+.banner-b .mac_ulog.is_fav,
+.layui-progress-bar,
+.data_list .laset_new .count,
+.box .title .pc_more:hover,
+.btn-order{
+	background-color: #e9bd6c !important;
+}
+.step-wrap .active .p1,
+.seebtn .ck_detail{
+    background: #e9bd6c !important;
+}
+
+.content_detail .playbtn.o_share a.btn_share,
+.btn-continue,
+.xz-box input:checked{
+	border-color: #e9bd6c !important;
+}
+.latest-tab-nav #latest1.current ,
+.latest-tab-nav #latest2.current ,
+.latest-tab-nav #latest3.current, 
+.latest-tab-nav #latest4.current, 
+.latest-tab-nav #latest5.current{
+    border-top-color: #e9bd6c;
+    color: #e9bd6c;
+}
+
+@media (min-width: 820px){
+	.lable-wrap .active .p1{
+        color: #e9bd6c !important;
+        border-color: #e9bd6c !important;
+        background-color: transparent !important;
+    }
+}

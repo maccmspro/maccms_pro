@@ -1,0 +1,75 @@
+{include file="../../../application/admin/view/public/head" /}
+
+<div class="">
+
+    <div class="layui-card">
+        <div class="layui-card-body">
+          <table id="role-table" lay-filter="role-table"></table>
+          <div
+            class="layui-form layui-border-box layui-table-view"
+            lay-filter="LAY-table-1"
+            lay-id="role-table"
+            style=""
+          >
+            <div class="layui-table-tool">
+              <div class="layui-table-tool-temp">
+                <a data-href="{:url('info')}" class="pear-btn pear-btn-primary pear-btn-md j-iframe"><i class="layui-icon">&#xe654;</i>{:lang('add')}</a>
+              </div>
+            </div>
+            <div class="layui-table-box">
+              <div class="layui-table-header">
+        <form class="layui-form" method="post" id="pageListForm" >
+          <table
+          cellspacing="0"
+          cellpadding="0"
+          border="0"
+          class="layui-table"
+          lay-skin="line"
+          >
+          <thead>
+            <tr>
+                <th width="80">{:lang('sort')}</th>
+                <th width="80">{:lang('code')}</th>
+                <th width="80">{:lang('status')}</th>
+                <th width="150">{:lang('name')}</th>
+                <th>{:lang('remarks')}</th>
+                <th>{:lang('tip')}</th>
+                <th width="100">{:lang('opt')}</th>
+            </tr>
+          </thead>
+          <tbody>
+            {volist name="list" id="vo"}
+            <tr>
+                <td>{$vo.sort}</td>
+                <td>{$vo.from}</td>
+                <td>{if condition="$vo.status eq 1"}<span class="layui-badge  ">{:lang('enable')}</span>{else}<span class="layui-badge">{:lang('disable')}</span>{/if} </td>
+                <td>{$vo.show}</td>
+                <td>{$vo.des}</td>
+                <td>{$vo.tip}</td>
+                <td>
+                    <a class="pear-btn pear-btn-primary pear-btn-md j-iframe" data-href="{:url('info?id='.$vo['from'])}" href="javascript:;" title="{:lang('edit')}">{:lang('edit')}</a>
+                    <a class="pear-btn pear-btn-danger pear-btn-md j-tr-del" data-href="{:url('del?ids='.$vo['from'])}" href="javascript:;" title="{:lang('del')}">{:lang('del')}</a>
+                </td>
+            </tr>
+            {/volist}
+          </tbody>
+          </table>
+        </form>
+              </div>
+              
+            </div>
+            
+            
+          </div>
+        </div>
+      </div>
+      
+    <div id="pages" class="center"></div>
+  </div>
+{include file="../../../application/admin/view/public/foot" /}
+
+<script type="text/javascript">
+
+</script>
+</body>
+</html>

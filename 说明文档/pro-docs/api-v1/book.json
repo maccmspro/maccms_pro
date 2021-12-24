@@ -1,0 +1,44 @@
+{
+    "gitbook": ">=3.2.2",
+    "description": "API接口文档",
+    "introduction": {
+        "title": "API接口文档"
+    },
+    "root": "./",
+    "structure": {
+        "readme": "README.md"
+    },
+    "language": "zh-hans",
+    "variables": {
+        "myTest": "Hello World"
+    },
+    "sharing": {
+        "weibo": false,
+        "facebook": false,
+        "twitter": false,
+        "google": false,
+        "instapaper": false,
+        "vk": false,
+        "all": false
+    },
+    "plugins": [
+        "search-plus@^0.0.11",
+        "advanced-emoji@^0.2.1",
+        "tbfed-pagefooter@^0.0.1",
+        "anchor-navigation-ex@0.1.8"
+    ],
+    "pluginsConfig": {
+        "tbfed-pagefooter": {
+            "copyright": "Copyright © maccms.pro 2021",
+            "modify_label": "生成时间：",
+            "modify_format": "YYYY-MM-DD HH:mm:ss"
+        },
+        "anchor-navigation-ex":{
+            "associatedWithSummary": true,
+            "mode": ""
+        },
+        "sitemap-general": {
+            "prefix": ""
+        }
+    }
+}

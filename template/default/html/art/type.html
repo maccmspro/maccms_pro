@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+       
+	{include file="public/include"}
+</head>
+<style>
+	@media screen and (min-width:820px){
+		.container{
+			padding-top: 120px;
+		}
+		.head_menu_a li a {
+			color: #333;
+		}
+		.head_box.nav_top .head_menu_a a{
+            color: #ff5f00 ;
+        }
+	}
+	@media screen and (max-width:820px){
+		.container{
+			padding-top: 50px;
+		}
+		.head_menu_a li a {
+			color: #333;
+		}
+		.bstem .head_menu_b a.menu{
+			color: #fff;
+		}
+	 }
+	
+</style>
+<body id="art_page">
+   {include file="public/head"}
+   <div class="container ">
+        {include file="ads/ads_all"}
+        <div class="art_nav_row show-pc">
+        <!-- 筛选 -->
+			<div class="art_navlist" id="hl01">
+				<div class="scroller">
+				<ul class="clearfix">
+
+					{foreach name="type_model" key="key" item="vo"}
+
+					<li {if condition="($key eq $GLOBALS['type_id'] || $key eq $GLOBALS['type_pid'])"}class="active tplconfig-01"{/if}>
+					<a href='{:MAC_BASE_URL}/art/type/id/{$key}.html' class="text_muted">{$vo}</a>
+					</li>
+
+					{/foreach}
+
+				</ul>
+				</div>
+                {if condition="$tplconfig['theme']['weixin']['btn'] eq 1"}
+                <div class="wx_ewm hidden_xs">
+                	<p data-lang="string_art_focus">{:lang_web('string_art_focus')}</p>
+                	<p><img class="wx_img" src="{$tplconfig['theme']['weixin']['qrcode']|mac_url_img}"></p>
+                </div>
+                {/if}
+            </div>
+		<!-- end 筛选 -->
+		</div>
+		<div class="art_list_row">
+            {if condition="$obj.type_id neq 17"}
+	        <div class="pannel">
+                <div class="art_banner">
+					<ul class="swiper-wrapper clearfix">
+					{maccms:art num="6" paging="no" type="current" order="desc" by="hits_week"}
+						{include file="widget/art_box_banner"}
+					{/maccms:art} 
+					</ul>
+					<div class="swiper-pagination"></div>
+					<div class="banner-arrow">
+						<a class="swiper-button-prev" href="javascript:;"><i class="iconfont">&#xe625;</i></a>
+						<a class="swiper-button-next" href="javascript:;"><i class="iconfont">&#xe623;</i></a>
+					</div> 
+                </div>
+            </div>
+            {/if}
+		    <div class="pannel">
+                <ul class="artlist clearfix">
+				{maccms:art num="10" paging="yes" half="3" type="current" order="desc" by="sort"}
+					{include file="widget/art_box"}
+				{/maccms:art} 
+                </ul>
+                {empty name="$__PAGING__.record_total"}
+				<div class="show_no" data-lang="string_art_nodata">{:lang_web('string_art_nodata')}</div>
+				{/empty}
+                {include file="widget/page"}<!-- 翻页-->
+            </div>
+		</div>
+		<div class="art_sider_row hidden_xs hidden_mi">
+            <div class="pannel clearfix">
+				<div class="pannel_head clearfix">
+					<h3 class="title" data-lang="string_art_hot">
+						{:lang_web('string_art_hot')}
+					</h3>						
+				</div>
+				<ul class="ranklist_r clearfix">
+					{maccms:vod num="6" paging="no" type="all" level="9" order="desc" by="sort"}
+					{include file="widget/rank_box_text"}		
+					{/maccms:vod}
+				</ul>
+			</div>
+			<div class="pannel clearfix">
+				<div class="pannel_head clearfix">
+					<h3 class="title" data-lang="string_art_recommend">
+						{:lang_web('string_art_recommend')}
+					</h3>						
+				</div>
+				<ul class="art_relates clearfix">
+				        {include file="ads/ads_artlist"}
+					{maccms:art num="6" ids="'.$obj['art_rel_art'].'" order="desc" by="hits"}
+					    {include file="widget/art_box_right"}
+                    {/maccms:art}
+				</ul>
+			</div>
+	        {include file="ads/ads_artr"}
+		</div>
+   </div> 
+   
+   {include file="public/foot"}
+</body>
+
+</html>

@@ -1,0 +1,115 @@
+{if $maccms.aid==1}<!-- 首页 -->
+<title>{$tplconfig['theme']['seos']['index_name']|mac_default=$maccms.site_name}</title>
+<meta name="keywords" content="{$tplconfig['theme']['seos']['index_key']|mac_default=$maccms.site_keywords}" />
+<meta name="description" content="{$tplconfig['theme']['seos']['index_des']|mac_default=$maccms.site_description}" />
+{elseif $maccms.aid==4}<!-- 留言本 -->
+<title>{:lang_web('request_a_message')} - {$maccms.site_name}</title>
+<meta name="keywords" content="{$maccms.site_keywords}" />
+<meta name="description" content="{$maccms.site_description}" />
+{elseif $maccms.aid==10}<!-- 最近更新 -->
+<title>{:lang_web('string_foot_gx1')} - {$maccms.site_name}</title>
+<meta name="keywords" content="{$tplconfig['theme']['seos']['index_key']|mac_default=$maccms.site_keywords}" />
+<meta name="description" content="{$tplconfig['theme']['seos']['index_des']|mac_default=$maccms.site_description}" />
+{elseif $maccms.aid==11}<!-- 视频分类页/视频首页 -->
+<title>{$obj.type_title|mac_default=$obj.type_name|mac_filter_html} - {:lang_web_for_page($param['page'])} - {$maccms.site_name}</title>
+<meta name="keywords" content="{$obj.type_key|mac_default=$obj.type_name|mac_filter_html},{$maccms.site_name}" />
+<meta name="description" content="{$obj.type_des|mac_default=$maccms.site_description}" />
+{elseif $maccms.aid==12}<!-- 视频分类筛选 -->
+<title>{:lang_web('string_zuixin')}{$obj.type_name} - {:lang_web_for_page($param['page'])} - {$maccms.site_name}</title>
+<meta name="keywords" content="{$obj.type_key}" />
+<meta name="description" content="{$obj.type_des}" />
+{elseif $maccms.aid==13}<!-- 视频搜索 -->
+<title>{:lang_web('string_search')}{$param.wd}{$param.actor}{$param.director}{$param.area}{$param.lang}{$param.year}{$param.class} - {$maccms.site_name}</title>
+<meta name="keywords" content="{$param.wd}{$param.actor}{$param.director}{$param.area}{$param.lang}{$param.year}{$param.class},{:lang_web('title_free')}" />
+<meta name="description" content="{$param.wd}{$param.actor}{$param.director}{$param.area}{$param.lang}{$param.year}{$param.class}{:lang_web('website_ssjg')},{$maccms.site_name}" />
+{elseif $maccms.aid==14}
+    <!-- 视频详情-剧集 -->
+    {if condition="($obj['type_id']==2) OR ($obj['type_id_1']==2) OR ($obj['type_id']==3) OR ($obj['type_id_1']==3) OR ($obj['type_id']==4) OR ($obj['type_id_1']==4)"}
+    <title>{$obj.vod_name|mac_filter_html|mac_default='404'}_{$obj.type.type_name|mac_filter_html}_{$obj.type_1.type_name|mac_filter_html}_{$tplconfig['theme']['seos']['detail_name']|mac_default=lang_web('string_vod_detail')} - {$maccms.site_name}</title>
+    <meta name="keywords" content="{$obj.vod_name|mac_filter_html},{$obj.type.type_name|mac_filter_html},{$obj.type_1.type_name|mac_filter_html},{$tplconfig['theme']['seos']['detail_key']|mac_default=lang_web('string_vod_detail')},{$obj.vod_actor},{$obj.vod_director},{$maccms.site_name}" />
+    <meta name="description" content="{$tplconfig['theme']['seos']['detail_des']}{$obj.vod_name}{:lang_web('string_plot')}:{$obj.vod_blurb}" />
+    {else}
+    <!-- 视频详情-其他 -->
+    <title>{$obj.vod_name|mac_filter_html|mac_default='404'}_{$obj.type.type_name|mac_filter_html}_{$obj.type_1.type_name|mac_filter_html}_{$tplconfig['theme']['seos']['detail_name']|mac_default=lang_web('string_vod_detail_other')} - {$maccms.site_name}</title>
+    <meta name="keywords" content="{$obj.vod_name|mac_filter_html},{$obj.type.type_name|mac_filter_html},{$obj.type_1.type_name|mac_filter_html},{$tplconfig['theme']['seos']['detail_key']|mac_default=lang_web('string_vod_detail_other')},{$obj.vod_actor},{$obj.vod_director},{$maccms.site_name}" />
+    <meta name="description" content="{$tplconfig['theme']['seos']['detail_des']}{$obj.vod_name}{:lang_web('string_plot')}:{$obj.vod_blurb}" />
+    {/if}
+{elseif $maccms.aid==15}
+    <!-- 视频播放-剧集 -->
+    {if condition="($obj['type_id']==2) OR ($obj['type_id_1']==2) OR ($obj['type_id']==3) OR ($obj['type_id_1']==3) OR ($obj['type_id']==4) OR ($obj['type_id_1']==4)"}
+    <title>{$obj.vod_name|mac_filter_html|mac_default='404'}{$obj['vod_play_list'][$param['sid']]['urls'][$param['nid']]['name']}{$tplconfig['theme']['seos']['play_name']|mac_default=lang_web('string_vod_plot')}_{$obj.type.type_name|mac_filter_html} - {$maccms.site_name}</title>
+    <meta name="keywords" content="{$obj.vod_name|mac_filter_html},{$obj.type.type_name|mac_filter_html},{$obj.type_1.type_name|mac_filter_html},{$tplconfig['theme']['seos']['play_key']|mac_default=lang_web('string_vod_plot')},{$obj.vod_actor},{$obj.vod_director},{$maccms.site_name}" />
+    <meta name="description" content="{$tplconfig['theme']['seos']['play_des']|mac_default=lang_web('string_vod_plot')}{$obj.vod_blurb}" />
+    {else}
+    <!-- 视频播放-其他 -->
+    <title>{$obj.vod_name|mac_filter_html|mac_default='404'}{$obj['vod_play_list'][$param['sid']]['urls'][$param['nid']]['name']}{$tplconfig['theme']['seos']['play_name']|mac_default=lang_web('string_vod_play')}_{$obj.type.type_name|mac_filter_html} - {$maccms.site_name}</title>
+    <meta name="keywords" content="{$obj.vod_name|mac_filter_html},{$obj.type.type_name|mac_filter_html},{$obj.type_1.type_name|mac_filter_html},{$tplconfig['theme']['seos']['play_key']|mac_default=lang_web('string_vod_play_other')},{$obj.vod_actor},{$obj.vod_director},{$maccms.site_name}" />
+    <meta name="description" content="{$tplconfig['theme']['seos']['play_des']|mac_default=lang_web('string_vod_play_other')}{$obj.vod_blurb}" />
+    {/if}
+{elseif $maccms.aid==16}<!-- 视频下载 -->
+<title>{$obj.vod_name|mac_filter_html|mac_default='404'}{$obj['vod_play_list'][$param['sid']]['urls'][$param['nid']]['name']}{$tplconfig['theme']['seos']['down_name']|mac_default=lang_web('string_vod_download')}_{$obj.type.type_name|mac_filter_html} - {$maccms.site_name}</title>
+<meta name="keywords" content="{$obj.vod_name|mac_filter_html},{$obj.type.type_name|mac_filter_html},{$obj.type_1.type_name|mac_filter_html},{$tplconfig['theme']['seos']['down_key']|mac_default=lang_web('string_vod_download')},{$obj.vod_actor},{$obj.vod_director},{$maccms.site_name}" />
+<meta name="description" content="{$tplconfig['theme']['seos']['down_des']|mac_default=lang_web('string_vod_download')}{$obj.vod_blurb}" />
+{elseif $maccms.aid==21}<!-- 文章分类/文章首页 -->
+{php}
+$arti_name = !empty($tplconfig['theme']['seos']['arti_name']) ? $tplconfig['theme']['seos']['arti_name'] : $maccms['seo']['art']['name'];
+$arti_key = !empty($tplconfig['theme']['seos']['arti_key']) ? $tplconfig['theme']['seos']['arti_key'] : $maccms['seo']['art']['key'];
+$arti_des = !empty($tplconfig['theme']['seos']['arti_des']) ? $tplconfig['theme']['seos']['arti_des'] : $maccms['seo']['art']['des'];
+{/php}
+<title>{$arti_name|mac_default=$obj.type_title|mac_filter_html} - {:lang_web_for_page($param['page'])} - {$maccms.site_name}</title>
+<meta name="keywords" content="{$arti_key|mac_default=$obj.type_key|mac_filter_html},{$maccms.site_name}" />
+<meta name="description" content="{$arti_des|mac_default=$obj.type_des|mac_filter_html},{$maccms.site_name}" />
+{elseif $maccms.aid==24}<!-- 文章详情 -->
+<title>{$obj.art_name|mac_filter_html|mac_default='404'}_{$tplconfig['theme']['seos']['artd_name']|mac_default=$obj.type.type_name|mac_filter_html} - {$maccms.site_name}</title>
+<meta name="keywords" content="{$obj.art_tag|mac_default=$obj.type.type_name|mac_filter_html},{$tplconfig['theme']['seos']['artd_key']|mac_default=lang_web('string_art_detail')},{$maccms.site_name}" />
+<meta name="description" content="{$tplconfig['theme']['seos']['artd_des']|mac_default=lang_web('string_art_detail')},{$obj.art_blurb},{$maccms.site_name}" />
+{elseif $maccms.aid==30}<!-- 专题首页 -->
+<title>{$tplconfig['theme']['seos']['topic_name']|mac_default=lang_web('string_topic')} - {$maccms.site_name}</title>
+<meta name="keywords" content="{$tplconfig['theme']['seos']['topic_key']|mac_default=lang_web('string_topic_home')}" />
+<meta name="description" content="{$tplconfig['theme']['seos']['topic_des']|mac_default=lang_web('string_topic_home')}" />
+{elseif $maccms.aid==34}<!-- 专题详情 -->
+<title>{$obj.topic_title|mac_default=$obj.topic_name}_{$tplconfig['theme']['seos']['topicd_name']|mac_default=lang_web('string_topic_detail')} - {$maccms.site_name}</title>
+<meta name="keywords" content="{$obj.topic_key|mac_default=$obj.topic_name},{$tplconfig['theme']['seos']['topicd_key']|mac_default=lang_web('string_topic_detail')},{$maccms.site_name}" />
+<meta name="description" content="{$tplconfig['theme']['seos']['topicd_des']|mac_default=lang_web('string_topic_detail')},{$obj.topic_des|mac_default=$obj.topic_blurb}" />
+{elseif $maccms.aid==80}<!-- 明星首页/演员首页 -->
+<title>{$maccms.seo.actor.name} - {$maccms.site_name}</title>
+<meta name="keywords" content="{$maccms.seo.actor.key}" />
+<meta name="description" content="{$maccms.seo.actor.des}" />
+{elseif $maccms.aid==81}<!-- 明星分类 -->
+<title>{$maccms.seo.actor.name} - {$maccms.site_name}</title>
+<meta name="keywords" content="{$maccms.seo.actor.key}" />
+<meta name="description" content="{$maccms.seo.actor.des}" />
+{elseif $maccms.aid==82}<!-- 明星筛选 -->
+<title>{:lang_web('celebrity_library')} - {:lang_web_for_page($param['page'])} - {$maccms.site_name}</title>
+<meta name="keywords" content="{:lang_web('star_collection')}" />
+<meta name="description" content="{:lang_web('watch_online_string')},{$maccms.site_name}" />
+{elseif $maccms.aid==84}<!-- 明星详情 -->
+<title>{$obj.actor_name}{:lang_web('string_actor_grzl')}_{$obj.actor_name}{:lang_web('tv_series_played')}_{$obj.actor_name}{:lang_web('movie_collection')} - {$maccms.site_name}</title>
+<meta name="keywords" content="{$obj.actor_name}{:lang_web('string_actor_grzl')},{$obj.actor_name}{:lang_web('tv_series_played')},{$obj.actor_name}{:lang_web('movie_collection')},{$obj.actor_name}{:lang_web('string_new_dy')},{$obj.actor_name}{:lang_web('string_new_dsj_clone')}">
+<meta name="description" content="{$maccms.site_name}{:lang_web('collected_for_you')}{$obj.actor_name}{:lang_web('personal_information_includes')}{$obj.actor_name}{:lang_web('the_latest_tv_series')},{$obj.actor_name}{:lang_web('movie_collection')},{:lang_web('string_yj')}{$obj.actor_name}{:lang_web('other_information')}">
+{elseif $maccms.aid==90}<!-- 角色首页 -->
+<title>{$maccms.seo.role.name} - {:lang_web_for_page($param['page'])} - {$maccms.site_name}</title>
+<meta name="keywords" content="{$maccms.seo.role.key}" />
+<meta name="description" content="{$maccms.seo.role.des}" />
+{elseif $maccms.aid==94}<!-- 角色详情/角色首页 -->
+<title>{$obj.data.vod_name}{:lang_web('string_djs')}{$obj.role_name}{:lang_web('string_actor_syz')}{$obj.role_actor} - {$maccms.site_name}</title>
+<meta name="keywords" content="{$obj.data.vod_name},{$obj.role_actor}{:lang_web('string_decorate')}{$obj.role_name}" />
+<meta name="description" content="{$maccms.site_name}{:lang_web('collected_for_you')}{$obj.data.vod_name},{:lang_web('string_actor_cyjs')},{$obj.data.vod_name}{:lang_web('string_djs')}{$obj.role_name}{:lang_web('string_actor_syz')}{$obj.role_actor}{:lang_web('dynamic_information')}" />
+{elseif $maccms.aid==100}<!-- 剧情首页/剧情首页 -->
+<title>{$maccms.seo.plot.name} - {:lang_web_for_page($param['page'])} - {$maccms.site_name}</title>
+<meta name="keywords" content="{$maccms.seo.plot.key}" />
+<meta name="description" content="{$maccms.seo.plot.des}" />
+{elseif $maccms.aid==104}<!-- 剧情详情 -->
+<title>{$obj.vod_name}{:lang_web('vod_plot')} - {$obj['vod_plot_list'][$param['page']]['name']} - {$maccms.site_name}</title>
+<meta name="keywords" content="{$obj.vod_name},{:lang_web('vod_plot')}" />
+<meta name="description" content="{$obj.vod_name}{:lang_web('vod_plot')},{$obj['vod_plot_list'][$param['page']]['name']},{$obj['vod_plot_list'][$param['page']]['detail']|mac_substring=55|mac_filter_html}" />
+{elseif $maccms.aid==110}<!-- 网址首页/网址首页 -->
+{php}
+$website_name = isset($tplconfig['theme']['seos']['website_name']) ? $tplconfig['theme']['seos']['website_name'] : $maccms['seo']['website']['name'];
+$website_key = isset($tplconfig['theme']['seos']['website_key']) ? $tplconfig['theme']['seos']['website_key'] : $maccms['seo']['website']['key'];
+$website_des = isset($tplconfig['theme']['seos']['website_des']) ? $tplconfig['theme']['seos']['website_des'] : $maccms['seo']['website']['des'];
+{/php}
+<title>{$website_name|mac_default=lang_web('string_website_home')}</title>
+<meta name="keywords" content="{$website_key|mac_default=lang_web('string_website_home')}" />
+<meta name="description" content="{$website_des|mac_default=lang_web('string_website_home')}" />
+{/if}

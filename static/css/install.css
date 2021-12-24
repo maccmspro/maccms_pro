@@ -1,0 +1,127 @@
+body{
+    text-align:center;
+}
+
+.h1{
+    /* width: 360px;
+    height: 84px; */
+    font-size: 60px;
+    font-family: PingFangSC-Thin, PingFang SC;
+    font-weight: 100 !important;
+    color: #FFFFFF;
+    line-height: 84px;
+    padding-top: 51px;
+}
+.h2{
+    /* width: 618px;
+    height: 84px; */
+    font-size: 60px;
+    font-family: PingFangSC-Semibold, PingFang SC;
+    font-weight: 600;
+    color: #FFFFFF;
+    line-height: 84px;
+    margin-bottom: 21px;
+}
+.install-box{
+    padding: 30px 35px 60px !important;
+    /* margin:100px auto 0; */
+    margin-left: auto;
+    margin-right: auto;
+    background:#fff;
+    border-radius:6px;
+    box-sizing: border-box;
+    padding:20px;
+    overflow-y:hidden;
+    /* max-height: 850px; */
+    /* box-shadow: 5px 5px 15px #888888; */
+    display:inline-block;
+    width:710px;
+    min-height:500px;
+}
+.install-box .title{
+    /* width: 346px;
+    height: 28px; */
+    font-size: 20px;
+    font-family: PingFangSC-Medium, PingFang SC;
+    font-weight: 500;
+    color: #333333;
+    line-height: 28px;
+    margin-bottom: 12px;
+}
+.install-box .desc{
+    /* width: 640px; */
+    height: 464px;
+    font-size: 14px;
+    font-family: PingFangSC-Regular, PingFang SC;
+    font-weight: 400;
+    color: #333333;
+    line-height: 24px;
+    overflow-y: scroll;
+    text-align: left;
+    margin-bottom: 45px;
+}
+.install-box .layui-form-label{
+    width: auto;
+    padding-left: 0;
+
+}
+.env-box{
+    width: 1400px;
+    height: 700px;
+    /* overflow: auto; */
+    margin-left: auto;
+    margin-right: auto;
+    padding: 40px 50px;
+    background-color: #fff;
+}
+.env-box .title{
+    /* width: 120px;
+    height: 28px; */
+    font-size: 20px;
+    font-family: PingFangSC-Medium, PingFang SC;
+    font-weight: 500;
+    color: #333333;
+    line-height: 28px;
+    margin-bottom: 27px;
+    text-align: center;
+}
+.env-box .container{
+    /* clear: both; */
+    overflow: hidden;
+}
+.env-box .left{
+    float: left;
+    width: 680px;
+}
+.env-box .right{
+    float: right;
+    width: 680px;
+}
+.env-box .float-left{
+    float: left;
+}
+.env-box .float-left+.float-left{
+    margin-left: 40px;
+}
+.protocol{text-align:left;height:400px;overflow-y:auto;padding:10px;color:#333;}
+.protocol h2{text-align:center;font-size:16px;color:#000;}
+.step-btns{
+    padding:20px 0 10px 0;
+    overflow: hidden;
+}
+.copyright{
+    /* padding:25px 0; */
+    /* bottom: 0;
+    left: 0;
+    right: 0; */
+    margin-top: 30px;
+    display: block;
+    /* position: absolute; */
+    height: 70px;
+    line-height: 70px;
+    text-align: center;
+    background-color: #000;
+    /* opacity: .57; */
+    width: 100%;
+}
+.copyright,.copyright a{color:#ccc;}

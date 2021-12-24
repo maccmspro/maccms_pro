@@ -1,0 +1,42 @@
+<div class="pannel_head clearfix">
+     <span class="pull_right">
+          <span data-lang='string_vod_zg'>{:lang_web('string_vod_zg')}</span>&nbsp;
+          <span class="mycol">{$__PAGING__.record_total}</span>&nbsp;
+          <span data-lang="string_gbook_tly">{:lang_web('string_gbook_tly')}</span>&nbsp;<span class="mycol">{$__PAGING__.page_current}</span>&nbsp;<span data-lang="string_page">{:lang_web('string_page')}</span></span>
+     <h2 class="title">
+          {php} if($tplconfig['theme']['gbook']['title']){ echo $tplconfig['theme']['gbook']['title']; }else{ {/php}<span data-lang="message">{:lang_web('message')}</span>{php}}{/php}
+     </h2>
+</div>
+<ul class="part_rows">
+{maccms:gbook num="10" paging="yes" half="3" order="desc" by="id"}
+<li class="comm_each line_top margin">
+<img class="comm_avat part_roun" src="{$vo.user_id|mac_get_user_portrait}" />
+<div class="comm_head">
+<strong class="text_line">{$vo.gbook_name}</strong>
+<span class="part_tips hidden_mb">{$vo.gbook_time|date='Y-m-d H:i',###}<span class="split_line"></span><span class="mycol">{$vo.gbook_id}#</span></span>
+<span class="part_tips hidden_xs">
+     {$vo.gbook_time|date='Y-m-d H:i:s',###}
+     <span class="split_line"></span>
+     <span class="mycol"> 
+          <span data-lang="string_vod_di">{:lang_web('string_vod_di')}</span> {$vo.gbook_id} 
+          <span data-lang="string_gbook_t">{:lang_web('string_gbook_t')}</span>
+     </span> 
+     <span data-lang="string_ly">{:lang_web('string_ly')}</span> 
+</span>
+</div>
+<div class="comm_cont">
+<div class="comm_content">{$vo.gbook_content}</div>
+{if$vo.gbook_reply}
+<div class="comm_reply back_ashen comm_tops">
+<div class="comm_rp_head">
+<span class="text_line"><strong><span class="mycol" data-lang="string_gbook_gly">{:lang_web('string_gbook_gly')}: </span></strong>{$vo.gbook_reply} ／ {$vo.gbook_reply_time|date='H:i',###}</span>
+</div>
+</div>
+{/if}
+</div>
+</li>
+{/maccms:gbook}{if$__PAGING__.record_total==0}
+<li class="text_center text_black" data-lang="string_gbook_mrly">{:lang_web('string_gbook_mrly')}</li>
+{/if}
+</ul>
+{include file="widget/page"}<!__ 翻页__>

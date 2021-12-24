@@ -1,0 +1,49 @@
+{include file="../../../application/admin/view/public/head" /}
+
+<div>
+    
+    <form class="layui-form" method="get" action="">
+      <div class="mainBox">
+        <div class="main-container">
+            <input name="ck" value="1" type="hidden">
+          <div class="layui-tab layui-tab-brief" lay-filter="tb1">
+            <ul class="layui-tab-title">
+                <li class="layui-this">{:lang('admin/database/inspect')}</li>
+            </ul>
+            <div class="layui-tab-content">
+                <div class="layui-tab-item layui-show">
+
+                    <div class="layui-input-block" >
+                        <blockquote class="layui-elem-quote layui-quote-nm">
+                            {:lang('admin/database/inspect_tip')}
+                        </blockquote>
+                    </div>
+                </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="bottom">
+        <div class="button-container">
+          <button
+            type="submit"
+            class="pear-btn pear-btn-primary pear-btn-sm"
+            
+          >
+            <i class="layui-icon layui-icon-ok"></i>
+            {:lang('admin/database/exec')}
+          </button>
+          
+        </div>
+      </div>
+    </form>
+  </div>
+  
+
+{include file="../../../application/admin/view/public/foot" /}
+<script type="text/javascript">
+
+</script>
+
+</body>
+</html>

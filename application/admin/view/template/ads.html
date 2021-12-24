@@ -1,0 +1,112 @@
+{include file="../../../application/admin/view/public/head" /}
+
+
+
+<div class="">
+  
+    <div class="layui-card">
+        <div class="layui-card-body">
+          <table id="role-table" lay-filter="role-table"></table>
+          <div
+            class="layui-form layui-border-box layui-table-view"
+            lay-filter="LAY-table-1"
+            lay-id="role-table"
+            style=""
+          >
+            <div class="layui-table-tool">
+              <div class="layui-table-tool-temp">
+                <a data-full="1" data-href="{:url('info')}?fpath={$curpath}&fname=" class="pear-btn pear-btn-primary pear-btn-md j-iframe"><i class="layui-icon">&#xe654;</i>{:lang('add')}</a>
+        
+              </div>
+            </div>
+            <div class="layui-table-box">
+              <div class="layui-table-header">
+        <form class="layui-form" method="post" id="pageListForm" >
+          <table
+          cellspacing="0"
+          cellpadding="0"
+          border="0"
+          class="layui-table"
+          lay-skin="line"
+          >
+          <thead>
+            <tr>
+                <th>{:lang('file_name')}</th>
+                <th width="150">{:lang('file_des')}</th>
+                <th width="150">{:lang('file_size')}</th>
+                <th width="150">{:lang('file_time')}</th>
+                <th width="300">{:lang('admin/template/call_code')}</th>
+                <th width="200">{:lang('opt')}</th>
+            </tr>
+          </thead>
+          <tbody>
+            {volist name="files" id="vo"}
+            <tr>
+
+                <th>{$vo.name}</a></th>
+                <td>{$vo.note}</td>
+                <td>{$vo.size}</td>
+                <td>{$vo.time|mac_day='color'}</td>
+                <td>
+                    <input id="txt{$key}" type="text" value='<script src="{literal}{$maccms.path_ads}{/literal}{$vo.name}"></script>' size="40">
+                </td>
+                <td>
+                    <a class="pear-btn pear-btn-primary pear-btn-md j-clipboard" data-clipboard-target="#txt{$key}" href="javascript:;" title="{:lang('copy')}">{:lang('copy')}</a>
+                    <a class="pear-btn pear-btn-primary pear-btn-md j-iframe" data-full="1" data-href="{:url('info')}?fpath={$vo.path}&fname={$vo.name}" href="javascript:;" title="{:lang('edit')}">{:lang('edit')}</a>
+                    <a class="pear-btn pear-btn-danger pear-btn-md j-tr-del" data-href="{:url('del')}?fname={$vo.fullname}" href="javascript:;" title="{:lang('del')}">{:lang('del')}</a>
+                </td>
+            </tr>
+            {/volist}
+          </tbody>
+          <tfoot>
+            <tr><td colspan="6">{:lang('admin/template/current_dir')}：{$curpath|str_replace='@','/',###}，{:lang('sum')}<b class="red">{$num_file}</b>{:lang('file')},{:lang('occupies')}<b class="red">{$sum_size}</b>{:lang('space')}</td></tr>
+        </tfoot>
+          </table>
+        </form>
+              </div>
+              
+            </div>
+            
+            
+          </div>
+        </div>
+      </div>
+      
+  </div>
+
+{include file="../../../application/admin/view/public/foot" /}
+<script type="text/javascript" src="{:MAC_BASE_PATH}/static/js/jquery.clipboard.js"></script>
+<script type="text/javascript">
+    var clipboard = new ClipboardJS('.j-clipboard');
+    clipboard.on('success', function(e) {
+       layer.msg('copy ok');
+    });
+
+    function data_info(path,name)
+    {
+        var index = layer.open({
+            type: 2,
+            shade:0.4,
+            title: "{:lang('edit')}",
+            content: "{:url('template/info')}?fpath="+path+'&fname='+name
+        });
+
+        layer.full(index);
+    }
+
+    function data_del(id)
+    {
+        if(!id){
+            id  = checkIds('fname[]');
+        }
+        layer.confirm("{:lang('del_confirm')}", function (index) {
+            location.href = "{:url('template/del')}?fname=" + id;
+        });
+    }
+
+    $(function(){
+
+    });
+</script>
+</body>
+</html>

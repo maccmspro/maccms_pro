@@ -1,0 +1,61 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<title>{:lang_web('string_mac_wxcz')} - {$maccms.site_name}</title>
+	<meta name="keywords" content="{$maccms.site_keywords}"/>
+	<meta name="description" content="{$maccms.site_description}"/>
+	{include file="user/include" /}
+</head>
+<body>
+{include file="public/head" /}
+<div class="member-wrap">
+<div id="member" class="fn-clear">
+	<div id="left">
+        <div class="m-nav">
+			<a href="javascript:MAC.GoBack()" class="btn-left"><i class="iconfont ico-right">&#xe625;</i></a>
+			<a href="{:MAC_BASE_PATH}/" class="btn-right"><i class="iconfont ico-right">&#xe634;</i></a>
+			<span class="mb-title" data-lang="string_user_center">{:lang_web('string_user_center')}</span>
+	    </div>
+        {include file="user/left_nav" /}
+	</div>
+	<div id="right">
+	    <div class="m-nav">
+			<a href="javascript:MAC.GoBack()" class="btn-left"><i class="iconfont ico-right">&#xe625;</i></a>
+			<span class="mb-title" data-lang="string_mac_wxzxcz">{:lang_web('string_mac_wxzxcz')}</span>
+	    </div>
+	    <div class="co-right co-right-bg">
+		<h2 data-lang="string_mac_wxzxcz">{:lang_web('string_mac_wxzxcz')}</h2>
+		<form method="post" target="_blank" action="{:url('user/gopay')}">
+			<input type="hidden" name="order_id" value="{$info.order_id}">
+			<input type="hidden" name="order_code" value="{$info.order_code}">
+		<div id="listCon">
+		<div class="cur">
+			<p><span class="xiang" data-lang="string_pay_ddbh">{:lang_web('string_pay_ddbh')}</span>{$order.order_code}</p>
+			<p><span class="xiang" data-lang="string_pay_ddje">{:lang_web('string_pay_ddje')}</span>{$order.order_price}元</p>
+            <p class="pay_ewm"><img src="{:url('user/qrcode')}?data={$payment.code_url|urlencode}" width="150" height="150"/></p>
+			<p class="pay_tips" data-lang='string_mac_dkwx'>{:lang_web('string_mac_dkwx')}</p>
+		</div>
+		</div>
+		</form>
+	</div>
+	</div>
+</div>
+</div>
+<script>
+	var lang=localStorage.getItem('lang')
+	function check(){
+		$.get("{:url('user/order_info')}" + '?order_id={$order.order_id}', function(data){
+			if(data.info.order_status == 1){
+				alert(lang==1?'Payment completed, about to jump to the member center':'支付完成，即将跳转到会员中心');
+				window.location.href = "{:url('user/index')}";
+			}
+		});
+	}
+	$(function(){
+		setInterval(function(){check()}, 5000);  //5秒查询一次支付是否成功
+	})
+</script>
+{include file="public/foot" /}
+</body>
+</html>

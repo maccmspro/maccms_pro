@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+       
+	{include file="public/include"}
+</head>
+<style>
+    .container{
+      padding-top:120px;
+    }
+    @media screen and (min-width:820px){
+      .head_box.nav_fixed .head_menu_a a.active{
+          color: #ff5f00 !important;
+      }
+      .topic-bg{
+        background-image: url('{:MAC_BASE_PATH}/template/default/images/pro/rank-bg.jpg');
+        background-repeat: no-repeat;
+        background-size: 100% 13rem;
+        background-position: 100% 2.5rem;
+      }
+	  }
+    @media screen and (max-width:820px){
+      .container{
+        padding-top:20px;
+      }
+      
+    }
+  </style>
+<body>
+    {include file="public/head"}
+    <div class="topic-bg">	
+    <div class="container ">
+      {include file="ads/ads_all"}
+      <div class="vod_row topic_row">
+       <div class="pannel clearfix">
+            <!-- 列表 -->
+            <div class="pannel_head clearfix">
+			</div>			
+			<ul class="topiclist clearfix zhuanti">
+				{maccms:topic num="40" paging="yes" half="3" order="desc" by="time"}
+				{include file="widget/topic_box"}
+				{/maccms:topic}	 
+			</ul>
+			<!-- end 列表 -->
+         {include file="widget/page"}<!-- 翻页-->
+       </div>
+      </div>
+    </div>
+    <div style="width:30rem;margin: 2rem auto;">
+      {include file="public/friendLink" }
+    </div>
+  </div>   
+{include file="public/foot"}
+</body>
+</html>

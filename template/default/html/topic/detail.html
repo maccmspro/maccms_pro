@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html>
+<head>
+	{include file="public/include"}
+</head>
+<style>
+    .no-topic-wrap .no-topic-bg{
+        background-image: url(/template/default/images/pro/no-topic.png);
+        background-repeat: no-repeat;
+        background-size: contain;
+        width: 3rem;
+        height: 3rem;
+    }
+    .no-topic-wrap{
+        position: absolute;
+        top: 40%;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+    .no-topic-wrap .no-topic-txt{
+        text-align: center;
+        color: #8d8d8d;
+    }
+    @media screen and (min-width:820px){
+		.container{
+            margin-top: -7%;
+        }
+        .hot_list{
+            padding:3.7rem 0 ;
+        } 
+		.header  .head_search{
+            background-color: rgba(255, 255, 255, 0.09);
+        }
+        .nav_fixed .header  .head_search{
+            background-color: #F8F8F8;
+        }
+        .topiclist_thumb {
+            position: relative;
+            display: block;
+            padding-top: 60%;
+            background-color: #d9d9d9;
+            background-position: 50% -1rem;
+            background-size: contain;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+        .foot-wrap{
+            margin-top: 0;
+        }
+        
+	 }
+    @media screen and (max-width:820px){
+        .bstem .head_box{
+            background-color: #fff;
+        }
+        .bstem .head_search .form_control{
+            background-color: #f1f1f1;
+            color: #333;
+        }
+        .hot_list{
+            padding:3.3rem 0 0 0;
+        } 
+        .head_menu_b a.menu, .bstem .head_menu_b a.menu{
+            color: #333;
+        }
+        .bstem .head_search form:hover .form_control{
+            background-color: #f1f1f1;
+        }
+        .bstem .head_box .head_search i{
+            color: #333;
+        }
+        .topiclist_con{
+            padding: 0.3rem;
+        }
+        .topiclist_thumb{
+            border-radius: 4px !important;
+            background-size: cover;
+        }
+        
+        .topiclist_text{
+            padding:0.3rem 0.375rem;
+        }
+        .container {
+            padding-top: 0px;
+        }
+        .header .head_a  li a {
+            color: #333;
+        }
+        .head_menu_a li.active a{
+            color: #ff5f00 ;
+        }
+        .hot_banner{
+            background-color: #fff;
+
+        }
+        .topiclist_text .title{
+            color: #333;
+        }
+        .topiclist_text p{
+            color: #999;
+        }
+        .no-topic-wrap{
+            top: 30%;
+        }
+        .pannel_head h3.title{
+            font-weight: 500;
+            font-size: 0.6rem;
+            color: #333;
+        }
+        
+    }
+</style>
+<body class="bstem topic_wrap">
+<div id="topic_page_">
+    {include file="public/head"}
+    <div class="hot_banner ">
+        <div class="bgi_box">
+    	<span class="bgi show-pc" style="background-image:url({$obj.topic_pic|mac_url_img});"></span>
+    	<span class="bgfd show-pc"></span>
+    </div>
+         <div class="hot_list">
+           <div class="topic_fm">
+	             <div class="topiclist_con">
+		            <span class="topiclist_thumb lazyload" title="{$obj.topic_name}" data-original="{$obj.topic_pic|mac_url_img}">						
+	                </span>											
+                 </div>
+				<div class="topiclist_text">
+                    <div class="title-wrap">
+                        <h3 class="title">{$obj.topic_name}</h3>
+                        <h3 class="sub-title show-pc" > 
+                            <span data-lang="string_topic_include">{:lang_web('string_topic_include')}</span>
+                            <span >{$obj.vod_list|count}</span> 
+                            <span data-lang="string_topic_num">{:lang_web('string_topic_num')}</span>
+                        </h3>
+					
+                    </div>
+					<div class="tpcon_box"><p>{$obj.topic_content}</p></div>
+				</div>
+		   </div>
+         </div>
+    </div>
+    <div class="container ">
+      {include file="ads/ads_all"}
+      <div class="vod_row">
+        <div class="pannel clearfix">
+            <!-- 列表 -->
+            <div class="pannel_head clearfix">
+                <h3 class="title show-mobile" > 
+                    <span data-lang="string_topic_include">{:lang_web('string_topic_include')}</span>
+                </h3>
+            </div>			
+            <ul class="vodlist vodlist_wi clearfix">
+                {maccms:foreach name="$obj.vod_list"}
+                {include file="widget/vod_box"}
+                {/maccms:foreach}	 
+            </ul>
+            <!-- end 列表 -->
+        </div>
+        <div class="no-topic-wrap">
+            <p class="no-topic-bg"></p>
+            <p class="no-topic-txt">暂无专题~</p>
+        </div>
+        </div>
+        
+    </div> 
+    <div style="width:30rem;margin: 2rem auto;">
+		{include file="public/friendLink" }
+	</div>    
+{include file="public/foot"}
+</div>
+</body>
+<script>
+    (function(){
+        if($('.vodlist').children().length>0){
+            $('.no-topic-wrap').hide()
+            $('.pannel_head .title').show()
+        }else{
+            $('.no-topic-wrap').show()
+            $('.pannel_head .title').hide()
+        }
+        let width=$(window).width()
+        if($('.hot_list').children().length>0 && width>820){
+            changeLogo()
+            $(window).scroll(function(){
+                changeLogo()
+            })
+            function changeLogo(){
+                if($.cookie('mystyle')=='white'){
+                    var targetTop = $(this).scrollTop();
+                    if(targetTop> (width>820? 50:200)){
+                        $('.black_logo').hide()
+                        $('.white_logo').show()
+                    }else{
+                        $('.black_logo').show()
+                        $('.white_logo').hide() 
+                    }
+                }
+            }
+        }
+    })()
+</script>
+</html>

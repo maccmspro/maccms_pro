@@ -1,0 +1,105 @@
+{include file="../../../application/admin/view/public/head" /}
+
+
+
+
+<form class="layui-form" method="post" action="">
+    <div class="mainBox">
+        <div class="main-container">
+            <div class="main-container">
+                
+
+                <input type="hidden" name="__token__" value="{$Request.token}" />
+        <div class="layui-tab  layui-tab-brief">
+            <ul class="layui-tab-title">
+                <li class="layui-this">{:lang('admin/system/configinterface/title')}</li>
+            </ul>
+            <div class="layui-tab-content">
+                <div class="layui-tab-item layui-show">
+
+                    <blockquote class="layui-elem-quote layui-quote-nm">
+                        {:lang('admin/system/configinterface/tip')}
+                    </blockquote>
+
+                <div class="layui-form-item">
+                    <label class="layui-form-label">{:lang('admin/system/configinterface/status')}：</label>
+                    <div class="layui-input-block">
+                        <input type="radio" name="interface[status]" value="0" title="{:lang('close')}" {if condition="$config['interface']['status'] neq 1"}checked {/if}>
+                        <input type="radio" name="interface[status]" value="1" title="{:lang('open')}" {if condition="$config['interface']['status'] eq 1"}checked {/if}>
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">{:lang('admin/system/configinterface/pass')}：</label>
+                    <div class="layui-input-inline w400">
+                        <input type="text" name="interface[pass]" placeholder="" value="{$config['interface']['pass']}" class="layui-input">
+                    </div>
+                    <div class="layui-form-mid layui-word-aux">{:lang('admin/system/configinterface/pass_tip')}</div>
+                </div>
+
+                <div class="layui-form-item">
+                    <label class="layui-form-label">{:lang('admin/system/configinterface/vod_type')}：</label>
+                    <div class="layui-input-block" >
+                        <textarea name="interface[vodtype]" class="layui-textarea" >{$config['interface']['vodtype']|mac_replace_text}</textarea>
+                    </div>
+                    
+                    
+                    
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">{:lang('admin/system/configinterface/art_type')}：</label>
+                    <div class="layui-input-block" >
+                        <textarea name="interface[arttype]" class="layui-textarea" >{$config['interface']['arttype']|mac_replace_text}</textarea>
+                    </div>
+                </div>
+
+                <div class="layui-form-item">
+                    <label class="layui-form-label">{:lang('admin/system/configinterface/actor_type')}：</label>
+                    <div class="layui-input-block" >
+                        <textarea name="interface[actortype]" class="layui-textarea" >{$config['interface']['actortype']|mac_replace_text}</textarea>
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">{:lang('admin/system/configinterface/website_type')}：</label>
+                    <div class="layui-input-block" >
+                        <textarea name="interface[websitetype]" class="layui-textarea" >{$config['interface']['websitetype']|mac_replace_text}</textarea>
+                    </div>
+                </div>
+            </div>
+            </div>
+        </div>
+
+
+
+            </div>
+        </div>
+    </div>
+
+    
+
+    <div class="bottom">
+        <div class="button-container">
+            <button type="submit" class="pear-btn pear-btn-primary pear-btn-sm" lay-submit="" lay-filter="formSubmit">
+                <i class="layui-icon layui-icon-ok"></i>
+                {:lang('btn_save')}
+            </button>
+            <button type="reset" class="pear-btn pear-btn-sm">
+                <i class="layui-icon layui-icon-refresh"></i>
+                {:lang('btn_reset')}
+            </button>
+        </div>
+    </div>
+
+   
+
+
+</form>
+
+
+
+{include file="../../../application/admin/view/public/foot" /}
+<script type="text/javascript">
+
+</script>
+
+</body>
+</html>

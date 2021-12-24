@@ -1,0 +1,109 @@
+{if condition="$tplconfig['theme']['fnav']['btn'] eq 1"}
+<div class="foot_mnav hidden_mb">
+	<ul class="foot_rows">
+	    {if condition="strpos($tplconfig['theme']['fnav']['ym'],'h') !==false"}
+		<li class="foot_text">
+			<a {if condition="$maccms.aid eq 1" }class="active" {/if}href="{:MAC_BASE_PATH}/">
+				{if condition="$maccms.aid eq 1" }<i class="iconfont">&#xe678;</i>{else}<i class="iconfont">&#xe634;</i>{/if}
+				<span class="foot_font"><span data-lang="string_home">{:lang_web('string_home')}</span></span>
+			</a>
+		</li>
+		{/if}
+		{maccms:type num="5" order="asc" by="sort" ids="'.$tplconfig['theme']['fnav']['id'].'" id="vo1" key="key1"}
+		<li class="foot_text">
+			<a {if condition="($vo1.type_id eq $GLOBALS['type_id'] || $vo1.type_id eq $GLOBALS['type_pid'])"}class="active"{/if} href="{:mac_url_type($vo1)}">	
+				{if condition="($vo1.type_id eq $GLOBALS['type_id'] || $vo1.type_id eq $GLOBALS['type_pid'])" }{include file="widget/icon2"}{else}{include file="widget/icon"}{/if}
+				<span class="foot_font">{$vo1.type_name}</span>
+			</a>
+		</li>
+		{/maccms:type}
+		{if condition="$tplconfig['theme']['fnav']['zdybtn1'] eq 1"}
+		<li class="foot_text">
+			<a href="{$tplconfig['theme']['fnav']['zdylink1']}" >		
+				<i class="iconfont">&#xe666;</i>
+				<span class="foot_font">{$tplconfig['theme']['fnav']['zdyname1']}</span>
+			</a>
+		</li>
+		{/if}
+		{if condition="$tplconfig['theme']['fnav']['zdybtn2'] eq 1"}
+		<li class="foot_text">
+			<a href="{$tplconfig['theme']['fnav']['zdylink2']}" >		
+				<i class="iconfont">&#xe668;</i>
+				<span class="foot_font">{$tplconfig['theme']['fnav']['zdyname2']}</span>
+			</a>
+		</li>
+		{/if}
+		{if condition="$tplconfig['theme']['topic']['btn'] eq 1"}
+		{if condition="strpos($tplconfig['theme']['fnav']['ym'],'a') !==false"}
+		<li class="foot_text">
+			<a {if condition="$maccms.mid eq 3" }class="active" {/if}href="{:mac_url_topic_index()}">		
+				{if condition="$maccms.mid eq 3" }<i class="iconfont">&#xe67c;</i>{else}<i class="iconfont">&#xe64c;</i>{/if}
+				<span class="foot_font">{if $tplconfig['theme']['topic']['title']}{$tplconfig['theme']['topic']['title']}{else}<span data-lang="string_topic">{:lang_web('string_topic')}</span>{/if}</span>
+			</a>
+		</li>
+		{/if}
+		{/if}
+		{if condition="$GLOBALS['config']['gbook']['status'] eq 1"}
+		{if condition="strpos($tplconfig['theme']['fnav']['ym'],'b') !==false"}
+		<!-- <li class="foot_text">
+			<a {if condition="$maccms.aid eq 4" }class="active" {/if}href="{:mac_url('gbook/index')}">		
+				{if condition="$maccms.aid eq 4" }<i class="iconfont">&#xe66d;</i>{else}<i class="iconfont">&#xe632;</i>{/if}
+				<span class="foot_font">{$tplconfig['theme']['gbook']['title']|mac_default='留言'}</span>
+			</a>
+		</li> -->
+		{/if}
+		{/if}
+		{if condition="$tplconfig['theme']['map']['btn'] eq 1"}
+		{if condition="strpos($tplconfig['theme']['fnav']['ym'],'c') !==false"}
+		<li class="foot_text">
+			<a {if condition="$maccms.aid eq 2" }class="active" {/if}href="{:mac_url('map/index')}">		
+				{if condition="$maccms.aid eq 2" }<i class="iconfont">&#xe66e;</i>{else}<i class="iconfont">&#xe652;</i>{/if}
+				<span class="foot_font">{if $tplconfig['theme']['map']['title']}{$tplconfig['theme']['map']['title']}{else}<span data-lang="string_map">{:lang_web('string_map')}</span>{/if}</span>
+			</a>
+		</li>
+		{/if}
+		{/if}
+		{if condition="$tplconfig['theme']['rank']['btn'] eq 1"}
+		{if condition="strpos($tplconfig['theme']['fnav']['ym'],'d') !==false"}
+		<li class="foot_text">
+			<a {if condition="$maccms.aid eq 7" }class="active" {/if}href="{:mac_url('label/rank')}">		
+				<i class="iconfont">&#xe618;</i>
+				<span class="foot_font">{if $tplconfig['theme']['rank']['title']}{$tplconfig['theme']['rank']['title']}{else}<span data-lang="string_rank">{:lang_web('string_rank')}</span>{/if}</span>
+			</a>
+		</li>
+		{/if}
+		{/if}
+		{if condition="$tplconfig['theme']['role']['btn'] eq 1"}
+		{if condition="strpos($tplconfig['theme']['fnav']['ym'],'f') !==false"}
+		<li class="foot_text">
+			<a {if condition="$maccms.mid eq 9" }class="active" {/if}href="{:mac_url('role/index')}">		
+				{if condition="$maccms.mid eq 9" }<i class="iconfont">&#xe674;</i>{else}<i class="iconfont">&#xe654;</i>{/if}
+			<span class="foot_font">{if $tplconfig['theme']['role']['title']}{$tplconfig['theme']['role']['title']}{else}<span data-lang="string_role">{:lang_web('string_role')}</span>{/if}</span>
+			</a>
+		</li>
+		{/if}
+		{/if}
+		{if condition="$tplconfig['theme']['plot']['btn'] eq 1"}
+		{if condition="strpos($tplconfig['theme']['fnav']['ym'],'g') !==false"}
+		<li class="foot_text">
+			<a {if condition="$maccms.mid eq 10" }class="active" {/if}href="{:mac_url('plot/index')}">		
+				{if condition="$maccms.mid eq 10" }<i class="iconfont">&#xe67d;</i>{else}<i class="iconfont">&#xe630;</i>{/if}
+			<span class="foot_font">{if $tplconfig['theme']['plot']['title']}{$tplconfig['theme']['plot']['title']}{else}<span data-lang="string_plot">{:lang_web('string_plot')}</span>{/if}</span>
+			</a>
+		</li>
+		{/if}
+		{/if}
+		{if condition="$GLOBALS['config']['user']['status'] eq 1"}
+		{if condition="strpos($tplconfig['theme']['fnav']['ym'],'r') !==false"}
+		<li class="foot_text">
+			<a {if condition="$maccms.aid eq 6" }class="active"{/if} href="{if$user.user_id}{:mac_url('user/index')}{else}{:mac_url('user/login')}{/if}">	
+				{if condition="$maccms.aid eq 6" }<i class="iconfont">&#xe67a;</i>{else}<i class="iconfont">&#xe62b;</i>{/if}
+				<span class="foot_font">
+					{if config('mctheme')['theme']['user']['title']}{:config('mctheme')['theme']['user']['title']}{else}<span data-lang="string_hy">{:lang_web('string_hy')}</span>{/if}
+				</span>
+			</a>
+		</li>
+		{/if}{/if}
+	</ul>
+</div>
+{/if}

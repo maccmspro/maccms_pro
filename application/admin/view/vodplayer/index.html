@@ -1,0 +1,96 @@
+{include file="../../../application/admin/view/public/head" /}
+
+
+
+
+<div class="">
+    <div class="layui-card">
+        <div class="layui-card-body">
+          <table id="role-table" lay-filter="role-table"></table>
+          <div
+            class="layui-form layui-border-box layui-table-view"
+            lay-filter="LAY-table-1"
+            lay-id="role-table"
+            style=""
+          >
+            <div class="layui-table-tool">
+              <div class="layui-table-tool-temp">
+                <a data-href="{:url('info')}" class="pear-btn pear-btn-primary pear-btn-md j-iframe"><i class="layui-icon">&#xe654;</i>{:lang('add')}</a>
+                <a href="{:url('import')}" class="pear-btn pear-btn-primary pear-btn-md" ><i class="layui-icon">&#xe654;</i>{:lang('import')}</a>
+                <a data-href="{:url('index/select')}?tab=vod&col=status&tpl=select_state&url=vodplayer/field" data-width="470" data-height="200" data-checkbox="1" class="pear-btn pear-btn-primary pear-btn-md j-select"><i class="layui-icon">&#xe620;</i>{:lang('status')}</a>
+                <a data-href="{:url('index/select')}?tab=vod&col=ps&tpl=select_state&url=vodplayer/field" data-width="470" data-height="200" data-checkbox="1" class="pear-btn pear-btn-primary pear-btn-md j-select"><i class="layui-icon">&#xe620;</i>{:lang('status_parse')}</a>
+              </div>
+            </div>
+            <div class="layui-table-box">
+              <div class="layui-table-header">
+        <form class="layui-form" method="post" id="pageListForm" >
+          <table
+          cellspacing="0"
+          cellpadding="0"
+          border="0"
+          class="layui-table"
+          lay-skin="line"
+          >
+          <thead>
+            <tr>
+                <th width="25"><input type="checkbox" lay-skin="primary" lay-filter="allChoose"></th>
+                <th width="40">{:lang('sort')}</th>
+                <th width="40">{:lang('code')}</th>
+                <th width="130">{:lang('name')}</th>
+                <th width="80">{:lang('status')}</th>
+                <th width="80">{:lang('status_parse')}</th>
+                <th width="80">{:lang('target')}</th>
+                <th width="130">{:lang('admin/vodplayer/alone_api_url')}</th>
+                <th width="130">{:lang('remarks')}</th>
+                <th >{:lang('tip')}</th>
+                <th width="150">{:lang('opt')}</th>
+            </tr>
+          </thead>
+          <tbody>
+            {volist name="list" id="vo"}
+            <tr>
+                <td><input type="checkbox" name="ids[]" value="{$vo.from}" class="layui-checkbox checkbox-ids" lay-skin="primary"></td>
+                <td>{$vo.sort}</td>
+                <td>{$vo.from}</td>
+                <td>{$vo.show}</td>
+                <td>{if condition="$vo.status eq 1"}<span class="layui-badge  ">{:lang('enable')}</span>{else}<span class="layui-badge">{:lang('disable')}</span>{/if} </td>
+                <td>{if condition="$vo.ps eq 1"}<span class="layui-badge  ">{:lang('enable')}</span>{else}<span class="layui-badge">{:lang('disable')}</span>{/if} </td>
+                <td>{if condition="$vo.target neq '_blank'"}<span class="layui-badge  ">{:lang('current')}</span>{else}<span class="layui-badge">{:lang('blank')}</span>{/if} </td>
+                <td>{$vo.parse}</td>
+                <td>{$vo.des}</td>
+                <td>{$vo.tip}</td>
+                <td>
+                    <a class="pear-btn pear-btn-primary pear-btn-md" href="{:url('export?id='.$vo['from'])}" title="{:lang('export')}">{:lang('export')}</a>
+                    <a class="pear-btn pear-btn-primary pear-btn-md j-iframe" data-href="{:url('info?id='.$vo['from'])}" href="javascript:;" title="{:lang('edit')}">{:lang('edit')}</a>
+                    <a class="pear-btn pear-btn-danger pear-btn-md j-tr-del" data-href="{:url('del?ids='.$vo['from'])}" href="javascript:;" title="{:lang('del')}">{:lang('del')}</a>
+                </td>
+            </tr>
+            {/volist}
+          </tbody>
+          </table>
+        </form>
+              </div>
+              
+            </div>
+            
+            
+          </div>
+        </div>
+      </div>
+      
+    <div id="pages" class="center"></div>
+  </div>
+{include file="../../../application/admin/view/public/foot" /}
+
+<script type="text/javascript">
+    layui.use(['form','laypage', 'layer'], function() {
+        // 操作对象
+        var form = layui.form
+                , layer = layui.layer
+                , $ = layui.jquery;
+
+
+    });
+</script>
+</body>
+</html>

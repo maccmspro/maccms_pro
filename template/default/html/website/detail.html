@@ -1,0 +1,374 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title >{$obj.website_name} - {$maccms.site_name}</title>
+    <meta name="keywords" content="{$obj.website_name}{:lang_web('website_all')},{$obj.website_name}{:lang_web('website_guide')}" />
+    <meta name="description" content="{$obj.website_name}{:lang_web('website_all')}:{$obj.website_blurb}" />
+    {include file="public/include"}
+</head>
+<style>
+    /* @media screen and (min-width:820px){ */
+    body.bstem{
+        padding-top: 120px;
+    }
+    .bstem .head_box{
+        background: #fff;
+    }
+    .hot_banner{
+        background: transparent;
+    }
+    .content_box{
+        position: relative;
+    }
+    .detail-wrap .head_menu_a a{
+        color: #333;
+    }
+    .head_menu_a li.active a{
+        color: #ff5f00 ;
+    }
+    .content_detail{
+        width: calc(100% - 16.5rem);
+    }
+    .content_detail .pull_right a{
+        color: #333;
+    }
+    .content_detail .title{
+        color: #333;
+    }
+    #rating{
+        border: none;
+        height: 25px;
+        line-height: 25px;
+        margin: 0;
+    }
+    .content_top{
+    }
+    .content_min{
+        margin-top: 0;
+        background: #fff;
+    }
+    .detail_list{
+        background: #fff;
+    }
+    .content_detail .playbtn.o_share{
+        float: left;
+        /* margin-top: 0.3rem; */
+        /* margin-left: 0.5rem; */
+    }
+    .content_detail .data,.content_detail .desc{
+        margin-bottom: 0.3rem;
+    }
+    #detail_rating{
+        display: flex;
+        align-items: center;
+    }
+    #rating.rating-list{
+        padding: 0;
+        background: #fff;
+    }
+    .rating_left{
+        width: 80px;
+        font-size: 14px;
+        color: #333;
+    }
+    #rating .rating{
+        width: 150px;
+    }
+    #rating .rating li.big-star{
+        margin-right: 5px;
+    }
+    .left_row{
+        width: 100%;
+    }
+    .vodlist_sh .vodlist_item{
+        width: 16.666%;
+    }
+    .vodlist_sh .vodlist_thumb{
+        padding-top: 145%;
+    }
+    .vodlist_wi{
+        width: calc(100% + 0.25rem);
+        margin-left: -0.125rem;
+    }
+    .detail_list_box{
+        padding-top: 3rem;
+    }
+    @media screen and (max-width:820px){
+            .content_btn{
+                display: flex;
+                align-items: center;
+                width: 100% !important;
+    
+            }
+            .share-drop-wrap{
+                position: fixed;
+                top: 0;
+                left: 0;
+                height: 100%;
+                width: 100%;
+                background: transparent;
+                z-index: 9999;
+                display: none;
+            }
+            .dropdown{
+                bottom: 45%;
+                border-radius: 0.5rem;
+            }
+            .bds_share_title{
+                margin-bottom: 0.5rem;
+                color: #333;
+                font-size: 18px;
+                font-weight: bold;
+            }
+            .bdsharebuttonbox{
+                display: flex;
+                align-items: center;
+                justify-content: space-around;
+            }
+            .bdsharebuttonbox div a{
+                margin: 0 !important;
+            }
+            .bdsharebuttonbox div {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                width: 1.2rem;
+            }
+            .close-img{
+                width: 0.6rem;
+                position: absolute;
+                right: 0.3rem;
+                top: 0.4rem;
+            }
+            .content_detail .playbtn{
+                width: 100%;
+            }
+            .content_detail .playbtn.o_share{
+                margin-top: 0.3rem;
+            }
+    }
+    @font-face {
+        font-family: 'iconfont';  /* Project id 2776795 */
+    src: url('//at.alicdn.com/t/font_2776795_gtgdikivq1.woff2?t=1634829394026') format('woff2'),
+        url('//at.alicdn.com/t/font_2776795_gtgdikivq1.woff?t=1634829394026') format('woff'),
+        url('//at.alicdn.com/t/font_2776795_gtgdikivq1.ttf?t=1634829394026') format('truetype');
+    }
+</style>
+<body>
+{include file="public/head"}
+<!--当前位置-->
+<div class="bread-crumb-nav fn-clear show-pc">
+    <ul class="bread-crumbs">
+        <li class="home">
+            <a href="{:MAC_BASE_PATH}/" data-lang="string_home">{:lang_web('string_home')}</a></li><li><a href="{:mac_url_type($obj.type_1)}">{$obj.type_1.type_name}</a></li>
+        <li><a href="{:mac_url_type($obj.type)}">{$obj.type.type_name}</a></li>
+        <li>{$obj.website_name}<span data-lang="website_wzdh">{:lang_web('website_wzdh')}</span>{$obj.website_nmae}<span data-lang="website_wzdq">{:lang_web('website_wzdq')}</span></li>
+        <li class="back"><a href="javascript:MAC.GoBack()" data-lang="website_fanh">{:lang_web('website_fanh')}</a></li>
+    </ul>
+</div>
+<div class="hot_banner ">
+    <div class="detail_list_box">
+         <div class="detail_list">
+				<div class="content_box clearfix">
+					<div class="content_thumb fl">											
+						<a class="vodlist_thumb lazyload" href="{:mac_url_vod_play($obj,['sid'=>$vo.sid,'nid'=>1])}" title="{$obj.website_name}" data-original="{:mac_url_img($obj.website_pic)}"><span class="play hidden_xs"></span>
+						</a>								
+					</div>	
+					<div class="content_detail content_top fl">
+						<div class="pannel_head clearfix">
+							<h2 class="title">
+								{$obj.website_name}
+							</h2>
+						</div>
+						<div id="detail_rating" class="fn-clear show-pc">
+							<span class="rating_left" data-lang="string_vod_score">{:lang_web('string_vod_score')}</span>
+                             {include file="public/star2"}
+						</div>
+						<div id="detail_rating" class="fn-clear show-mobile">
+                             {include file="widget/star"}
+                        </div>
+                    </div>
+                    <div class="content_detail content_min fl">
+                        <ul>	
+						<li class="data">
+							<span class="text_muted hidden_xs">
+                                <span data-lang="string_vod_age">{:lang_web('string_vod_age')}</span> 
+                            </span>{$obj.website_time|date='Y-m-d',###}
+							<span class="split_line"></span>
+
+							<span class="text_muted hidden_xs">
+                                <span data-lang="string_vod_region">{:lang_web('string_vod_region')}</span>
+                            </span>
+							{if $obj.website_area}
+							{$obj.website_area|mac_url_create='area','website'}
+							{else}
+							<span data-lang="unfilled">{:lang_web('unfilled')}</span>
+							{/if}
+							<span class="split_line"></span>
+
+							<span class="text_muted hidden_xs">
+                                <span data-lang="string_vod_type">{:lang_web('string_vod_type')}</span>
+                            </span>
+							{if $obj.website_class}
+							{$obj.website_class|mac_url_create='class','website'}
+							{else}
+							<span data-lang="unfilled">{:lang_web('unfilled')}</span>
+							{/if}
+						</li>
+						<li class="data">
+							<span data-lang="string_yuyan">{:lang_web('string_yuyan')}</span>
+							{if $obj.website_lang}
+							{$obj.website_lang|mac_url_create='lang','website'}
+							{else}
+							<span data-lang="unfilled">{:lang_web('unfilled')}</span>
+							{/if}
+
+                        </li>
+						<li class="data">
+                            <span data-lang="string_fav2">{:lang_web('string_fav2')}</span>
+                            <a href="javascript:void(0);" data-lang="string_wysc" style="cursor:hand" class="mac_ulog" data-type="2" data-mid="{$maccms.mid}" data-id="{$obj.vod_id}">{:lang_web('string_wysc')}</a>
+                        </li>
+						</ul>
+
+					</div>
+					<div class="content_progress show-pc">
+						<div id="rating" class="fn-left" data-mid="{$maccms.mid}" data-id="{$obj.vod_id}" data-score="{$obj.vod_score/2|ceil}">
+							{if condition="$res['vod_score'] > 0"}
+							<span class="star_tips">{$res['vod_score']}</span>
+							{/if}
+							<span class="star_tips star_num">
+								<span>{$res['count']?$res['count']:0} </span>
+								
+								<span data-lang="string_vod_score_people"> {:lang_web('string_vod_score_people')}</span>
+							</span>
+							
+							<ul class="rating-s">
+								<li data-title="string_vod_very_bad" class="one  {if condition="$res['vod_score'] > 0"}current active-b{/if}{if condition="$res['vod_score'] > 1"} active{/if}" title="很差" val="1"> <span >很差</span> </li>
+								<li data-title="string_vod_very_poor" class="two  {if condition="$res['vod_score'] > 2"}current active-b{/if}{if condition="$res['vod_score'] > 3"} active{/if}" title="较差" val="2"><span >较差</span></li>
+								<li data-title="string_vod_not_bad" class="three {if condition="$res['vod_score'] > 4"}current active-b{/if}{if condition="$res['vod_score'] > 5"} active{/if}" title="还行" val="3"><span >还行</span></li>
+								<li data-title="string_vod_recommend" class="four {if condition="$res['vod_score'] > 6"}active-b{/if}{if condition="$res['vod_score'] > 7"} active{/if}" title="推荐" val="4"><span>推荐</span></li>
+								<li data-title="string_vod_recommend_strongly" class="five {if condition="$res['vod_score'] > 8"}active-b{/if}{if condition="$res['vod_score'] > 9"} active{/if}" title="力荐" val="5"><span >力荐</span></li>
+							</ul>
+							{if condition="$res['vod_score'] > 0"}
+							<span class="list_tips">
+								{if condition="$res['vod_score'] > 8"}力荐
+								{elseif condition="$res['vod_score'] > 6"/}推荐
+								{elseif condition="$res['vod_score'] > 4"/}还行
+								{elseif condition="$res['vod_score'] > 2"/}较差
+								{elseif condition="$res['vod_score'] > 0"/}很差
+								{elseif condition="$res['vod_score'] == 0"/}暂无评分
+								{/if}
+							</span>
+							{/if}
+						</div>
+
+						<div class="progress_item">
+							<p class="p_title" data-lang="string_vod_greate">{:lang_web('string_vod_greate')}</p>
+							<div class="layui-progress">
+								<div class="layui-progress-bar" lay-percent="{$res['8-10']}"></div>
+							</div>
+						</div>
+						<div class="progress_item">
+							<p class="p_title" data-lang="string_vod_preferably">{:lang_web('string_vod_preferably')}</p>
+							<div class="layui-progress">
+								<div class="layui-progress-bar" lay-percent="{$res['6-8']}"></div>
+							</div>
+						</div>
+						<div class="progress_item">
+							<p class="p_title" data-lang="string_vod_commonly">{:lang_web('string_vod_commonly')}</p>
+							<div class="layui-progress">
+								<div class="layui-progress-bar" lay-percent="{$res['4-6']}"></div>
+							</div>
+						</div>
+						<div class="progress_item">
+							<p class="p_title" data-lang="string_vod_poor">{:lang_web('string_vod_poor')}</p>
+							<div class="layui-progress">
+								<div class="layui-progress-bar" lay-percent="{$res['2-4']}"></div>
+							</div>
+						</div>
+						<div class="progress_item">
+							<p class="p_title" data-lang="string_vod_rotten">{:lang_web('string_vod_rotten')}</p>
+							<div class="layui-progress">
+								<div class="layui-progress-bar" lay-percent="{$res['0-2']}"></div>
+							</div>
+						</div>
+					</div>
+					
+					<div class="content_detail content_min content_btn fl">
+                        
+                        <div class="playbtn o_share ">
+							<a class="btn btn_share open-share" href="javascript:;"><i class="iconfont">&#xe615;</i>&nbsp; <span data-lang="string_vod_share">{:lang_web('string_vod_share')}</span>  </a>
+							{include file="widget/share"}
+						</div>
+					</div>
+				</div>
+         </div>
+    </div>
+</div>
+<div class="member-wrap">
+    <div class="container ">
+            <div class="pannel clearfix">
+                <div class="pannel_head clearfix">
+                    <h3 class="title">
+                        <span data-lang="vod_like_watch">{:lang_web('vod_like_watch')}</span>
+                        <span class="tj-title">"{$obj.website_name}"</span>
+                        <span data-lang="vod_also_like">{:lang_web('vod_also_like')}</span>
+                    </h3>						
+                </div>
+                <ul class="vodlist vodlist_wi clearfix">
+                    {maccms:website num="12" type="current" order="desc" by="time"}
+                    <li class="vodlist_item num_{$key}">
+                        <a class="vodlist_thumb lazyload"  title="{$vo.website_name}" data-original="{:mac_url_img($vo.website_pic)}">
+                    
+                        </a>
+                        <div class="vodlist_titbox">	
+                            <p class="vodlist_title">
+                            <a  title="{$vo.website_name}">{$vo.website_name}</a>
+                            <p class="vodlist_sub">
+							{php} if($vo['vod_sub']){
+							echo mac_filter_html(mac_url_create($vo['vod_sub'],'actor'));
+							}else{ {/php}
+							<span data-lang='string_no_have'>{:lang_web('string_no_have')}</span>
+							{php} } {/php}
+						</p>
+                            </p>
+                           
+                        </div>   
+                    </li>
+                    {/maccms:website}
+                </ul>
+            </div>
+        </div>
+        <div class="pannel clearfix" id="pinglun" >
+            <div class="pannel_head clearfix">
+                <span class="pull_right"> <span data-lang="string_play_yg">{:lang_web('string_play_yg')}</span> &nbsp;<font color="#ff5f00"><em class="mac_total"></em></font>&nbsp; <span data-lang="string_play_tpl">{:lang_web('string_play_tpl')}</span> </span>
+                <h3 class="title" data-lang="string_play_pl">{:lang_web('string_play_pl')}</h3>
+            </div>
+            <div class="mac_comment comm_list comm_list_box" data-id="{$obj.vod_id}" data-mid="{$maccms.mid}" ></div>
+            <script>
+                $(function(){
+                    MAC.Comment.Login = {$comment.login};
+                    MAC.Comment.Verify = {$comment.verify};
+                    MAC.Comment.Init();
+                    MAC.Comment.Show(1);
+                });
+            </script>
+        </div>
+        
+    </div>
+</div>
+<div style="width:30rem;margin: 2.5rem auto;" class="show-pc">
+	{include file="public/friendLink" }
+</div>
+
+
+
+
+<span style="display:none" class="mac_ulog_set" alt="设置内容页浏览记录" data-type="1" data-mid="{$maccms.mid}" data-id="{$obj.website_id}" data-sid="{$param.sid}" data-nid="{$param.nid}"></span>
+
+<span style="display:none" class="mac_history_set" alt="设置History历史记录" data-name="[{$obj.type.type_name}]{$obj.website_name}" data-pic="{$obj.website_pic|mac_url_img}"></span>
+
+{include file="public/foot"}
+</body>
+</html>

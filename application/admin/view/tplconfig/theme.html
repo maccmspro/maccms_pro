@@ -1,0 +1,1722 @@
+{include file="../../../application/admin/view/public/head" /}
+
+<?php $mctheme = parse_ini_file(substr('/template/default/', strlen('/')).'info.ini'); ?>
+<?php $hlbg = (substr('/template/default/', strlen()).'asset/admin/hlbg.jpg'); ?>
+
+<div class="page-container">
+    <div class="showpic" style="display:none;"><img class="showpic_img" width="auto" height="100"></div>
+
+    <form class="layui-form" method="post" action="">
+        <div class="mainBox">
+          <div class="main-container">
+            <input type="hidden" name="__token__" value="{$Request.token}" />
+            <div class="layui-tab layui-tab-brief" lay-filter="tb1">
+                <ul class="layui-tab-title">
+                    <li class="layui-this">基本设置</li>
+                    <li>首页配置</li>
+                    <li>页面配置</li>
+                    <li>导航菜单</li>
+                    <li>推广展示</li>
+                    <li>其他设置</li>
+                    <li>SEO设置</li>
+                    <li>广告设置</li>
+                </ul>
+                <div class="layui-tab-content">
+                    <div class="layui-tab-item layui-show">
+                    <fieldset class="layui-elem-field">
+                       <legend>基本设置</legend>
+                       <div class="layui-field-box">
+                            <div class="layui-form-item">
+                            <label class="layui-form-label">深色logo</label>
+                            <div class="layui-input-inline w400">
+                                <input type="text" name="theme[logo][bpic]" placeholder="深色logo地址或路径" value="{$tplconfig['theme']['logo']['bpic']}" class="layui-input upload-input">
+                            </div>
+                            <div class="layui-input-inline w100">
+                                <button type="button" class="pear-btn pear-btn-primary pear-btn-md layui-upload" lay-data="{data:{thumb:0,thumb_class:'theme[logo][bpic]'}}" id="upload1">选择文件</button>
+                            </div>
+                            <div class="layui-form-mid layui-word-aux">适用于浅色页面展示，建议根据演示图片大小制作</div>
+                            </div><br>
+                            <div class="layui-form-item">
+                            <label class="layui-form-label">浅色logo</label>
+                            <div class="layui-input-inline w400">
+                                <input type="text" name="theme[logo][wpic]" placeholder="浅色logo地址或路径" value="{$tplconfig['theme']['logo']['wpic']}" class="layui-input upload-input">
+                            </div>
+                            <div class="layui-input-inline w100">
+                                <button type="button" class="pear-btn pear-btn-primary pear-btn-md layui-upload" lay-data="{data:{thumb:0,thumb_class:'theme[logo][wpic]'}}" id="upload1">选择文件</button>
+                            </div>
+                            <div class="layui-form-mid layui-word-aux">适用于深色页面展示，建议根据演示图片大小制作</div>
+                            </div><br>
+                            <div class="layui-form-item">
+                            <label class="layui-form-label">网页图标</label>
+                            <div class="layui-input-inline w400">
+                                <input type="text" name="theme[logo][icon]" placeholder="网页图标地址或路径" value="{$tplconfig['theme']['logo']['icon']}" class="layui-input upload-input">
+                            </div>
+                            <div class="layui-input-inline w100">
+                                <button type="button" class="pear-btn pear-btn-primary pear-btn-md layui-upload" lay-data="{data:{thumb:0,thumb_class:'theme[logo][icon]'}}" id="upload1">选择文件</button>
+                            </div>
+                            <div class="layui-form-mid layui-word-aux">浏览器窗口小图标，支持png，建议根据演示图片大小制作</div>
+                            </div><br>
+                            <div class="layui-form-item">
+                            <label class="layui-form-label">webapp图标</label>
+                            <div class="layui-input-inline w400">
+                                <input type="text" name="theme[logo][webapp]" placeholder="webapp图标地址或路径" value="{$tplconfig['theme']['logo']['webapp']}" class="layui-input upload-input">
+                            </div>
+                            <div class="layui-input-inline w100">
+                                <button type="button" class="pear-btn pear-btn-primary pear-btn-md layui-upload" lay-data="{data:{thumb:0,thumb_class:'theme[logo][webapp]'}}" id="upload1">选择文件</button>
+                            </div>
+                            <div class="layui-form-mid layui-word-aux">网页收藏或添加到桌面展示的图标，建议根据演示图片大小制作</div>
+                            </div><br>
+                            <div class="layui-form-item">
+                            <label class="layui-form-label">懒加载图</label>
+                            <div class="layui-input-inline w400">
+                                <input type="text" name="theme[lazy]" placeholder="懒加载图地址或路径" value="{$tplconfig['theme']['lazy']}" class="layui-input upload-input">
+                            </div>
+                            <div class="layui-input-inline w100">
+                                <button type="button" class="pear-btn pear-btn-primary pear-btn-md layui-upload" lay-data="{data:{thumb:0,thumb_class:'theme[lazy]'}}" id="upload1">选择文件</button>
+                            </div>
+                            <div class="layui-form-mid layui-word-aux">封面懒加载图，建议根据演示图片大小制作</div>
+                            </div><br>
+                            <div class="layui-form-item">
+                            <label class="layui-form-label">前台统计</label>
+                            <div class="layui-input-inline w200">
+                                <input type="radio" name="theme[tj][btn]" value="0" title="隐藏" {if condition="$tplconfig['theme']['tj']['btn'] eq 0"}checked {/if}>
+                                <input type="radio" name="theme[tj][btn]" value="1" title="开启" {if condition="$tplconfig['theme']['tj']['btn'] eq 1"}checked {/if}>
+                            </div>
+                            <div class="layui-form-mid layui-word-aux">开启后，前台显示统计链接（开启与隐藏都不影响统计代码的正常运行）</div>
+                            </div><br>
+                            <div class="layui-form-item">
+                            <label class="layui-form-label">头部代码</label>
+                            <div class="layui-input-block">
+                                <textarea name="theme[head][text]" class="layui-textarea"  placeholder="支持html代码，css样式代码">{$tplconfig['theme']['head']['text']}</textarea>
+                            </div>
+                            </div><br>
+                            <div class="layui-form-item">
+                            <label class="layui-form-label">底部提示</label>
+                            <div class="layui-input-block">
+                                <textarea name="theme[foot][text]" class="layui-textarea"  placeholder="支持html代码，免责声明">{$tplconfig['theme']['foot']['text']}</textarea>
+                            </div>
+                            </div>
+                       </div>
+                    </fieldset>
+                   </div>
+                   <div class="layui-tab-item">
+                   <fieldset class="layui-elem-field">
+                       <legend>显示分类</legend>
+                       <div class="layui-field-box">
+                            <div class="layui-form-item">
+                            <label class="layui-form-label">显示分类ID</label>
+                            <div class="layui-input-inline w200">
+                                <input type="text" name="theme[type][hom]" placeholder="分类模块ID" value="{$tplconfig['theme']['type']['hom']}" class="layui-input">
+                            </div>
+                            <div class="layui-form-mid layui-word-aux">要展示的首页分类ID，留空显示全部，多个ID用“,”分隔</div>
+                            </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">显示数量</label>
+                                <div class="layui-input-inline w200">
+                                    <select name="theme[vod][hnum]">
+                                    <option value="6" {if condition="$tplconfig['theme']['vod']['hnum'] eq '6'"}selected {/if}>6个</option>
+                                    <option value="12" {if condition="$tplconfig['theme']['vod']['hnum'] eq '12'"}selected {/if}>12个</option>
+                                </select>
+                            </div>
+                            <div class="layui-form-mid layui-word-aux">分类数据展示数量（不同屏幕宽度下显示数量会有变化）</div>
+                       </div>
+                       </div>
+                    </fieldset>
+                    <fieldset class="layui-elem-field">
+                       <legend>分类菜单</legend>
+                       <div class="layui-field-box">
+                            <div class="layui-form-item">
+                            <label class="layui-form-label">菜单状态</label>
+                            <div class="layui-input-inline w200">
+                                <input type="radio" name="theme[type][meunbtn]" value="0" title="关闭" {if condition="$tplconfig['theme']['type']['meunbtn'] eq 0"}checked {/if}>
+                                <input type="radio" name="theme[type][meunbtn]" value="1" title="开启" {if condition="$tplconfig['theme']['type']['meunbtn'] eq 1"}checked {/if}>
+                            </div>
+                            <div class="layui-form-mid layui-word-aux">关闭后不显示对应模块和内容</div>
+                            </div>
+                            <div class="layui-form-item">
+                            <label class="layui-form-label">分类菜单ID</label>
+                            <div class="layui-input-inline w200">
+                                <input type="text" name="theme[type][meunid]" placeholder="展示的分类ID" value="{$tplconfig['theme']['type']['meunid']}" class="layui-input">
+                            </div>
+                            <div class="layui-form-mid layui-word-aux">要展示的首页分类菜单，多个ID用“,”分隔，最多6个</div>
+                            </div>
+                            <div class="layui-form-item">
+                                <label class="layui-form-label">菜单显示</label>
+                                <div class="layui-input-inline w200">
+                                    <select name="theme[type][meunys]">
+                                    <option value="one" {if condition="$tplconfig['theme']['type']['meunys'] eq 'one'"}selected {/if}>显示一行</option>
+                                    <option value="two" {if condition="$tplconfig['theme']['type']['meunys'] eq 'two'"}selected {/if}>显示两行</option>
+                                </select>
+                                </div>
+                                <div class="layui-form-mid layui-word-aux">本设置仅对PC端有效</div>
+                            </div>
+                       </div>
+                    </fieldset>
+                    <fieldset class="layui-elem-field">
+                       <legend>公告设置</legend>
+                       <div class="layui-field-box">
+                            <div class="layui-form-item">
+                            <label class="layui-form-label">公告状态</label>
+                            <div class="layui-input-inline w200">
+                                <input type="radio" name="theme[notice][btn]" value="0" title="关闭" {if condition="$tplconfig['theme']['notice']['btn'] eq 0"}checked {/if}>
+                                <input type="radio" name="theme[notice][btn]" value="1" title="开启" {if condition="$tplconfig['theme']['notice']['btn'] eq 1"}checked {/if}>
+                            </div>
+                            <div class="layui-form-mid layui-word-aux">关闭后不显示对应模块和内容</div>
+                            </div>
+                            <div class="layui-form-item">
+                            <label class="layui-form-label">公告内容</label>
+                            <div class="layui-input-block">
+                                <textarea name="theme[notice][text]" class="layui-textarea"  placeholder="请输入公告内容，支持html代码">{$tplconfig['theme']['notice']['text']}</textarea>
+                            </div>
+                            </div>
+                            <div class="layui-form-item">
+                            <label class="layui-form-label">弹窗状态</label>
+                            <div class="layui-input-inline w200">
+                                <input type="radio" name="theme[tips][btn]" value="0" title="关闭" {if condition="$tplconfig['theme']['tips']['btn'] eq 0"}checked {/if}>
+                                <input type="radio" name="theme[tips][btn]" value="1" title="开启" {if condition="$tplconfig['theme']['tips']['btn'] eq 1"}checked {/if}>
+                            </div>
+                            <div class="layui-form-mid layui-word-aux">关闭后不显示对应模块和内容</div>
+                            </div>
+                            <div class="layui-form-item">
+                            <label class="layui-form-label">弹窗标题</label>
+                            <div class="layui-input-inline w400">
+                                <input type="text" name="theme[tips][title]" placeholder="弹窗公告显示标题" value="{$tplconfig['theme']['tips']['title']}" class="layui-input">
+                            </div>
+                            </div>
+                            <div class="layui-form-item">
+                            <label class="layui-form-label">弹窗内容</label>
+                            <div class="layui-input-block">
+                                <textarea name="theme[tips][text]" class="layui-textarea"  placeholder="请输入弹窗公告内容，支持html代码">{$tplconfig['theme']['tips']['text']}</textarea>
+                            </div>
+                            </div>
+                       </div>
+                    </fieldset>
+                    <fieldset class="layui-elem-field">
+                       <legend>推荐模块</legend>
+                       <div class="layui-field-box">
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">模块状态</label>
+                            <div class="layui-input-inline w200">
+                                <input type="radio" name="theme[hotvod][btn]" value="0" title="关闭" {if condition="$tplconfig['theme']['hotvod']['btn'] eq 0"}checked {/if}>
+                                <input type="radio" name="theme[hotvod][btn]" value="1" title="开启" {if condition="$tplconfig['theme']['hotvod']['btn'] eq 1"}checked {/if}>
+                            </div>
+                            <div class="layui-form-mid layui-word-aux">关闭后不显示对应模块和内容，设置“推荐1”</div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">模块标题</label>
+                            <div class="layui-input-inline w200">
+                                <input type="text" name="theme[hotvod][title]" placeholder="请输入展示的标题" value="{$tplconfig['theme']['hotvod']['title']}" class="layui-input">
+                            </div>
+                            <div class="layui-form-mid layui-word-aux">推荐模块的标题</div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">显示数量</label>
+                                <div class="layui-input-inline w200">
+                                    <select name="theme[hotvod][num]">
+                                    <option value="6" {if condition="$tplconfig['theme']['hotvod']['num'] eq '6'"}selected {/if}>6个</option>
+                                    <option value="12" {if condition="$tplconfig['theme']['hotvod']['num'] eq '12'"}selected {/if}>12个</option>
+                                </select>
+                            </div>
+                            <div class="layui-form-mid layui-word-aux">推荐数据展示数量（不同屏幕宽度下显示数量会有变化）</div>
+                        </div>
+                       </div>
+                     </fieldset>
+                    <fieldset class="layui-elem-field">
+                       <legend>资讯模块</legend>
+                       <div class="layui-field-box">
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">模块状态</label>
+                            <div class="layui-input-inline w200">
+                                <input type="radio" name="theme[art][hbtn]" value="0" title="关闭" {if condition="$tplconfig['theme']['art']['hbtn'] eq 0"}checked {/if}>
+                                <input type="radio" name="theme[art][hbtn]" value="1" title="开启" {if condition="$tplconfig['theme']['art']['hbtn'] eq 1"}checked {/if}>
+                            </div>
+                            <div class="layui-form-mid layui-word-aux">关闭后不显示对应模块和内容（全站资讯模块没有开启，本按钮将失效）</div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">模块标题</label>
+                            <div class="layui-input-inline w200">
+                                <input type="text" name="theme[art][htitle]" placeholder="请输入展示的标题" value="{$tplconfig['theme']['art']['htitle']}" class="layui-input">
+                            </div>
+                            <div class="layui-form-mid layui-word-aux">要展示的标题</div>
+                        </div>
+
+                       </div>
+                     </fieldset>
+                     <fieldset class="layui-elem-field">
+                       <legend>专题模块</legend>
+                       <div class="layui-field-box">
+                         <div class="layui-form-item">
+                            <label class="layui-form-label">模块状态</label>
+                            <div class="layui-input-inline w200">
+                                <input type="radio" name="theme[topic][hbtn]" value="0" title="关闭" {if condition="$tplconfig['theme']['topic']['hbtn'] eq 0"}checked {/if}>
+                                <input type="radio" name="theme[topic][hbtn]" value="1" title="开启" {if condition="$tplconfig['theme']['topic']['hbtn'] eq 1"}checked {/if}>
+                            </div>
+                            <div class="layui-form-mid layui-word-aux">关闭后不显示对应模块和内容（全站专题模块没有开启，本按钮将失效）</div>
+                        </div>
+                           <div class="layui-form-item">
+                               <label class="layui-form-label">模块标题</label>
+                               <div class="layui-input-inline w200">
+                                   <input type="text" name="theme[topic][htitle]" placeholder="请输入展示的标题" value="{$tplconfig['theme']['topic']['htitle']}" class="layui-input">
+                               </div>
+                               <div class="layui-form-mid layui-word-aux">要展示的标题</div>
+                           </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">显示数量</label>
+                                <div class="layui-input-inline w200">
+                                    <select name="theme[topic][hnum]">
+                                    <option value="6" {if condition="$tplconfig['theme']['topic']['hnum'] eq '6'"}selected {/if}>6个</option>
+                                    <option value="12" {if condition="$tplconfig['theme']['topic']['hnum'] eq '12'"}selected {/if}>12个</option>
+                                </select>
+                            </div>
+                            <div class="layui-form-mid layui-word-aux">专题数据展示数量（不同屏幕宽度下显示数量会有变化）</div>
+                        </div>
+                        </div>
+                     </fieldset>
+                     <fieldset class="layui-elem-field">
+                       <legend>明星模块</legend>
+                       <div class="layui-field-box">
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">模块状态</label>
+                            <div class="layui-input-inline w200">
+                                <input type="radio" name="theme[actor][hbtn]" value="0" title="关闭" {if condition="$tplconfig['theme']['actor']['hbtn'] eq 0"}checked {/if}>
+                                <input type="radio" name="theme[actor][hbtn]" value="1" title="开启" {if condition="$tplconfig['theme']['actor']['hbtn'] eq 1"}checked {/if}>
+                            </div>
+                            <div class="layui-form-mid layui-word-aux">关闭后不显示对应模块和内容，设置明星“推荐1”</div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">模块ID</label>
+                            <div class="layui-input-inline w200">
+                                <input type="text" name="theme[actor][id]" placeholder="请输入明星ID" value="{$tplconfig['theme']['actor']['id']}" class="layui-input">
+                            </div>
+                            <div class="layui-form-mid layui-word-aux">明星ID，留空模块关闭</div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">模块标题</label>
+                            <div class="layui-input-inline w200">
+                                <input type="text" name="theme[actor][htitle]" placeholder="请输入展示的标题" value="{$tplconfig['theme']['actor']['htitle']}" class="layui-input">
+                            </div>
+                            <div class="layui-form-mid layui-word-aux">要展示的标题</div>
+                        </div>
+                       </div>
+                     </fieldset>
+                    <fieldset class="layui-elem-field">
+                       <legend>排行模块</legend>
+                       <div class="layui-field-box">
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">模块状态</label>
+                            <div class="layui-input-inline w200">
+                                <input type="radio" name="theme[rank][hbtn]" value="0" title="关闭" {if condition="$tplconfig['theme']['rank']['hbtn'] eq 0"}checked {/if}>
+                                <input type="radio" name="theme[rank][hbtn]" value="1" title="开启" {if condition="$tplconfig['theme']['rank']['hbtn'] eq 1"}checked {/if}>
+                            </div>
+                            <div class="layui-form-mid layui-word-aux">关闭后不显示对应模块和内容</div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">排行显示</label>
+                            <div class="layui-input-inline w200">
+                                <select name="theme[rank][hby]">
+                                    <option value="week" {if condition="$tplconfig['theme']['rank']['hby'] eq 'week'"}selected {/if}>周榜</option>
+                                    <option value="month" {if condition="$tplconfig['theme']['rank']['hby'] eq 'month'"}selected {/if}>月榜</option>
+                                    <option value="all" {if condition="$tplconfig['theme']['rank']['hby'] eq 'all'"}selected {/if}>总榜</option>
+                                </select>
+                            </div>
+                            <div class="layui-form-mid layui-word-aux">可按不同时间显示排行榜</div>
+                         </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">显示分类ID</label>
+                            <div class="layui-input-inline w200">
+                                <input type="text" name="theme[rank][hid]" placeholder="请输入分类ID" value="{$tplconfig['theme']['rank']['hid']}" class="layui-input">
+                            </div>
+                            <div class="layui-form-mid layui-word-aux">要展示的分类ID，多个ID用“,”分隔，最多显示4个</div>
+                        </div>
+
+                           <div class="layui-form-item">
+                               <label class="layui-form-label">模块标题</label>
+                               <div class="layui-input-inline w200">
+                                   <input type="text" name="theme[rank][htitle]" placeholder="请输入展示的标题" value="{$tplconfig['theme']['rank']['htitle']}" class="layui-input">
+                               </div>
+                               <div class="layui-form-mid layui-word-aux">要展示的标题</div>
+                           </div>
+                       </div>
+                     </fieldset>
+                     <fieldset class="layui-elem-field">
+                       <legend>友链模块</legend>
+                       <div class="layui-field-box">
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">模块状态</label>
+                            <div class="layui-input-inline w200">
+                                <input type="radio" name="theme[links][btn]" value="0" title="关闭" {if condition="$tplconfig['theme']['links']['btn'] eq 0"}checked {/if}>
+                                <input type="radio" name="theme[links][btn]" value="1" title="开启" {if condition="$tplconfig['theme']['links']['btn'] eq 1"}checked {/if}>
+                            </div>
+                            <div class="layui-form-mid layui-word-aux">关闭后不显示对应模块和内容</div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">模块标题</label>
+                            <div class="layui-input-inline w200">
+                                <input type="text" name="theme[links][title]" placeholder="请输入展示的标题" value="{$tplconfig['theme']['links']['title']}" class="layui-input">
+                            </div>
+                            <div class="layui-form-mid layui-word-aux">要展示的标题</div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">显示数量</label>
+                            <div class="layui-input-inline w200">
+                                <input type="text" name="theme[links][num]" placeholder="请输入显示的数量" value="{$tplconfig['theme']['links']['num']}" class="layui-input">
+                            </div>
+                            <div class="layui-form-mid layui-word-aux">要展示的友情链接数量</div>
+                        </div>
+                       </div>
+                     </fieldset>
+                   </div>
+                    <div class="layui-tab-item">
+                    <fieldset class="layui-elem-field">
+                       <legend>幻灯设置</legend>
+                       <div class="layui-field-box">
+                            <div class="layui-form-item">
+                                <label class="layui-form-label">幻灯片状态</label>
+                                <div class="layui-input-inline w200">
+                                    <input type="radio" name="theme[banner][btn]" value="0" title="关闭" {if condition="$tplconfig['theme']['banner']['btn'] eq 0"}checked {/if}>
+                                    <input type="radio" name="theme[banner][btn]" value="1" title="开启" {if condition="$tplconfig['theme']['banner']['btn'] eq 1"}checked {/if}>
+                                </div>
+                                <div class="layui-form-mid layui-word-aux">关闭后不显示对应模块和内容，设置“推荐9”</div>
+                            </div>
+                            <div class="layui-form-item">
+                                <label class="layui-form-label">列表页幻灯</label>
+                                <div class="layui-input-inline w200">
+                                    <input type="radio" name="theme[lbbanner][btn]" value="0" title="关闭" {if condition="$tplconfig['theme']['lbbanner']['btn'] eq 0"}checked {/if}>
+                                    <input type="radio" name="theme[lbbanner][btn]" value="1" title="开启" {if condition="$tplconfig['theme']['lbbanner']['btn'] eq 1"}checked {/if}>
+                                </div>
+                                <div class="layui-form-mid layui-word-aux">关闭后列表页不显示对应模块和内容</div>
+                            </div>
+                            <div class="layui-form-item">
+                                <label class="layui-form-label">幻灯片模式</label>
+                                <div class="layui-input-inline w200">
+                                    <select name="theme[banner][ms]">
+                                    <option value="small" {if condition="$tplconfig['theme']['banner']['ms'] eq 'small'"}selected {/if}>小图模式</option>
+                                    <option value="big" {if condition="$tplconfig['theme']['banner']['ms'] eq 'big'"}selected {/if}>大图模式</option>
+                                </select>
+                                </div>
+                                <div class="layui-form-mid layui-word-aux">大图模式需要上传海报图，建议尺寸1680px*580px</div>
+                            </div>
+                            <div class="layui-form-item">
+                            <label class="layui-form-label">幻灯片背景</label>
+                            <div class="layui-input-inline w70">
+                                <select name="theme[banner][smbg]">
+                                    <option value="0" {if condition="$tplconfig['theme']['banner']['smbg'] eq 0"}selected {/if}>隐藏</option>
+                                    <option value="1" {if condition="$tplconfig['theme']['banner']['smbg'] eq 1"}selected {/if}>显示</option>
+                                </select>
+                            </div>
+                            <div class="layui-input-inline w600">
+                                <input type="text" name="theme[banner][bgstyle]" placeholder="自定义背景，例如颜色#282832，或url(图片地址)等" value="{$tplconfig['theme']['banner']['bgstyle']}" class="layui-input">
+                            </div>
+                            <div class="layui-form-mid layui-word-aux" style="margin-left: 130px;">隐藏小图模式及部分页面模糊背景效果，可自定义背景（如果开启模糊背景，自定义背景留空，模糊效果会增加浏览器性能消耗）</div>
+                            </div>
+                       </div>
+                    </fieldset>
+                       <fieldset class="layui-elem-field">
+                       <legend>搜索设置</legend>
+                       <div class="layui-field-box">
+                            <div class="layui-form-item">
+                            <label class="layui-form-label">显示文字</label>
+                            <div class="layui-input-inline w200">
+                                <input type="text" name="theme[search][text]" placeholder="请输入需要显示的文字" value="{$tplconfig['theme']['search']['text']}" class="layui-input">
+                            </div>
+                            <div class="layui-form-mid layui-word-aux">视频搜索框默认的提示文字</div>
+                            </div>
+                            <div class="layui-form-item">
+                                <label class="layui-form-label">联想搜索</label>
+                                <div class="layui-input-inline w200">
+                                    <input type="radio" name="theme[search][lxbtn]" value="0" title="关闭" {if condition="$tplconfig['theme']['search']['lxbtn'] eq 0"}checked {/if}>
+                                    <input type="radio" name="theme[search][lxbtn]" value="1" title="开启" {if condition="$tplconfig['theme']['search']['lxbtn'] eq 1"}checked {/if}>
+                                </div>
+                                <div class="layui-form-mid layui-word-aux">关闭后不显示对应模块和内容</div>
+                            </div>
+                       </div>
+                    </fieldset>
+                    <fieldset class="layui-elem-field">
+                       <legend>列表页面</legend>
+                       <div class="layui-field-box">
+                            <div class="layui-form-item">
+                            <label class="layui-form-label">默认样式ID</label>
+                            <div class="layui-input-inline w150">
+                                <input type="text" name="theme[type][ht]" placeholder="调用模块ID" value="{$tplconfig['theme']['type']['ht']}" class="layui-input">
+                            </div>
+                            <div class="layui-form-mid layui-word-aux">展示有二级分类的一级分类页面，多个ID用“,”分隔</div>
+                            </div>
+                            <div class="layui-form-item">
+                            <label class="layui-form-label">地区样式ID</label>
+                            <div class="layui-input-inline w150">
+                                <input type="text" name="theme[type][ho]" placeholder="调用模块ID" value="{$tplconfig['theme']['type']['ho']}" class="layui-input">
+                            </div>
+                            <div class="layui-form-mid layui-word-aux">展示无二级分类的一级分类页面，多个ID用“,”分隔</div>
+                            </div>
+                            <div class="layui-form-item">
+                            <label class="layui-form-label">横版样式ID</label>
+                            <div class="layui-input-inline w150">
+                                <input type="text" name="theme[type][hb]" placeholder="调用模块ID" value="{$tplconfig['theme']['type']['hb']}" class="layui-input">
+                            </div>
+                            <div class="layui-form-mid layui-word-aux">展示频封面横版的分类页面，多个ID用“,”分隔，填写“999”不启用</div>
+                            </div>
+                            <div class="layui-form-item">
+                            <label class="layui-form-label">直播模块ID</label>
+                            <div class="layui-input-inline w150">
+                                <input type="text" name="theme[type][zb]" placeholder="调用模块ID" value="{$tplconfig['theme']['type']['zb']}" class="layui-input">
+                            </div>
+                            <div class="layui-form-mid layui-word-aux">展示直播分类页面，只能填写一个ID，填写“999”不启用</div>
+                            </div>
+                       </div>
+                    </fieldset>
+                    <fieldset class="layui-elem-field">
+                       <legend>列表数据</legend>
+                       <div class="layui-field-box">
+                            <div class="layui-form-item">
+                                <label class="layui-form-label">显示数量</label>
+                                    <div class="layui-input-inline w150">
+                                        <select name="theme[vod][num]">
+                                        <option value="6" {if condition="$tplconfig['theme']['vod']['num'] eq '6'"}selected {/if}>6个</option>
+                                        <option value="12" {if condition="$tplconfig['theme']['vod']['num'] eq '12'"}selected {/if}>12个</option>
+                                    </select>
+                                </div>
+                                <div class="layui-form-mid layui-word-aux">分类数据展示数量，仅对已分类列表有效（不同屏幕宽度下显示数量会有变化）</div>
+                            </div>
+                       </div>
+                    </fieldset>
+                     <fieldset class="layui-elem-field">
+                       <legend>播放页面</legend>
+                       <div class="layui-field-box">
+                         <div class="layui-form-item">
+                            <label class="layui-form-label">播放器高度</label>
+                            <div class="layui-input-inline w60">
+                                <input type="text" name="theme[play][height]" placeholder="56.25" value="{$tplconfig['theme']['play']['height']}" class="layui-input">
+                            </div>
+                            <div class="layui-form-mid layui-word-aux">%，播放器自适应高度，默认高度56.25%，本设置仅对移动端有效</div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">播放器广告</label>
+                            <div class="layui-input-inline w200">
+                                <input type="radio" name="theme[play][adbtn]" value="0" title="关闭" {if condition="$tplconfig['theme']['play']['adbtn'] eq 0"}checked {/if}>
+                                <input type="radio" name="theme[play][adbtn]" value="1" title="开启" {if condition="$tplconfig['theme']['play']['adbtn'] eq 1"}checked {/if}>
+                            </div>
+                            <div class="layui-form-mid layui-word-aux">控制播放器上方的全站通栏横幅广告（仅播放页有效），默认开启有需要可关闭。</div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">播放提示</label>
+                            <div class="layui-input-inline w200">
+                                <input type="radio" name="theme[play][nbtn]" value="0" title="关闭" {if condition="$tplconfig['theme']['play']['nbtn'] eq 0"}checked {/if}>
+                                <input type="radio" name="theme[play][nbtn]" value="1" title="开启" {if condition="$tplconfig['theme']['play']['nbtn'] eq 1"}checked {/if}>
+                            </div>
+                            <div class="layui-form-mid layui-word-aux">关闭后不显示对应模块和内容</div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">提示内容</label>
+                            <div class="layui-input-inline w500">
+                                <textarea name="theme[play][notice]" class="layui-textarea"  placeholder="请输入提示内容，支持html代码">{$tplconfig['theme']['play']['notice']}</textarea>
+                            </div>
+                            <div class="layui-form-mid layui-word-aux">填写示例：&lt;li&gt;第1条提示&lt;/li&gt;&lt;li&gt;第2条提示&lt;/li&gt;，依此类推</div>
+                        </div>
+                        </div>
+                     </fieldset>
+                     <fieldset class="layui-elem-field">
+                       <legend>筛选页面</legend>
+                       <div class="layui-field-box">
+                        <div class="layui-form-item">
+                        <label class="layui-form-label">筛选规则</label>
+                        <div class="layui-input-inline w500">
+                            <input type="checkbox" lay-skin="primary" name="theme[show][filter][]" value="a" title="分类" {if condition="strpos($tplconfig['theme']['show']['filter'],'a') !==false"}checked {/if}>
+                            <input type="checkbox" lay-skin="primary" name="theme[show][filter][]" value="b" title="类型" {if condition="strpos($tplconfig['theme']['show']['filter'],'b') !==false"}checked {/if}>
+                            <input type="checkbox" lay-skin="primary" name="theme[show][filter][]" value="c" title="地区" {if condition="strpos($tplconfig['theme']['show']['filter'],'c') !==false"}checked {/if}>
+                            <input type="checkbox" lay-skin="primary" name="theme[show][filter][]" value="d" title="年份" {if condition="strpos($tplconfig['theme']['show']['filter'],'d') !==false"}checked {/if}>
+                            <input type="checkbox" lay-skin="primary" name="theme[show][filter][]" value="e" title="语言" {if condition="strpos($tplconfig['theme']['show']['filter'],'e') !==false"}checked {/if}>
+                            <input type="checkbox" lay-skin="primary" name="theme[show][filter][]" value="f" title="字母" checked disabled>
+                        </div>
+                        <div class="layui-form-mid layui-word-aux">勾选需要的筛选规则</div>
+                        </div>
+                     </fieldset>
+                     <fieldset class="layui-elem-field">
+                       <legend>跳转页面</legend>
+                       <div class="layui-field-box">
+                            <div class="layui-form-item">
+                            <label class="layui-form-label">跳转状态</label>
+                            <div class="layui-input-inline w200">
+                                <input type="radio" name="theme[playlink][btn]" value="0" title="关闭" {if condition="$tplconfig['theme']['playlink']['btn'] eq 0"}checked {/if}>
+                                <input type="radio" name="theme[playlink][btn]" value="1" title="开启" {if condition="$tplconfig['theme']['playlink']['btn'] eq 1"}checked {/if}>
+                            </div>
+                            <div class="layui-form-mid layui-word-aux">开启后，点击视频信息跳转到播放页，默认跳转内容页，对部分页面无效，例如：直播模块，横版样式等</div>
+                            </div>
+                       </div>
+                    </fieldset>
+                     <fieldset class="layui-elem-field">
+                       <legend>排行模块</legend>
+                       <div class="layui-field-box">
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">排行显示</label>
+                            <div class="layui-input-inline w200">
+                                <select name="theme[rank][vby]">
+                                    <option value="week" {if condition="$tplconfig['theme']['rank']['vby'] eq 'week'"}selected {/if}>周榜</option>
+                                    <option value="month" {if condition="$tplconfig['theme']['rank']['vby'] eq 'month'"}selected {/if}>月榜</option>
+                                    <option value="all" {if condition="$tplconfig['theme']['rank']['vby'] eq 'all'"}selected {/if}>总榜</option>
+                                </select>
+                            </div>
+                            <div class="layui-form-mid layui-word-aux">可按不同时间显示排行榜，模块主要分布内容页/下载页/播放页</div>
+                         </div>
+                     </fieldset>
+                     </div>
+                   <div class="layui-tab-item">
+                   <fieldset class="layui-elem-field">
+                       <legend>顶部导航</legend>
+                       <div class="layui-field-box">
+                           <div class="layui-form-item">
+                               <label class="layui-form-label">友情提示</label>
+                               <div class="layui-input-block"><blockquote class="layui-elem-quote layui-quote-nm" style="padding: 8px;">建议最多显示7个菜单（包含开启的自定义菜单），请合理选择。</blockquote>
+                               </div>
+                           </div>
+                            <div class="layui-form-item">
+                            <label class="layui-form-label">显示分类</label>
+                            <div class="layui-input-inline w200">
+                                <input type="text" name="theme[nav][id]" placeholder="导航分类ID" value="{$tplconfig['theme']['nav']['id']}" class="layui-input">
+                            </div>
+                            <div class="layui-form-mid layui-word-aux">要展示的导航分类，留空显示全部，多个ID用“,”分隔</div>
+                            </div>
+                            <div class="layui-form-item">
+                            <label class="layui-form-label">自定义菜单</label>
+                            <div class="layui-input-inline w200">
+                                <input type="radio" name="theme[nav][zdybtn]" value="0" title="关闭" {if condition="$tplconfig['theme']['nav']['zdybtn'] eq 0"}checked {/if}>
+                                <input type="radio" name="theme[nav][zdybtn]" value="1" title="开启" {if condition="$tplconfig['theme']['nav']['zdybtn'] eq 1"}checked {/if}>
+                            </div>
+                            <div class="layui-form-mid layui-word-aux">本按钮仅对自定义菜单有效，关闭后不显示对应模块和内容</div>
+                            </div>
+                       </div>
+                    </fieldset>
+                    <fieldset class="layui-elem-field">
+                       <legend>自定义菜单</legend>
+                       <div class="layui-field-box">
+                               <div class="layui-form-item">
+                               <label class="layui-form-label">友情提示</label>
+                               <div class="layui-input-block"><blockquote class="layui-elem-quote layui-quote-nm" style="padding: 8px;">可在顶部导航菜单基础上增加4个自定义链接（菜单开启状态下显示），同时在全部分类内显示</blockquote>
+                               </div>
+                           </div>
+                            <div class="layui-form-item">
+                            <label class="layui-form-label">自定义1</label>
+                            <div class="layui-input-inline w70">
+                                <select name="theme[nav][zdybtn1]">
+                                    <option value="0" {if condition="$tplconfig['theme']['nav']['zdybtn1'] eq 0"}selected {/if}>隐藏</option>
+                                    <option value="1" {if condition="$tplconfig['theme']['nav']['zdybtn1'] eq 1"}selected {/if}>显示</option>
+                                </select>
+                            </div>
+                            <div class="layui-input-inline w100">
+                                <input type="text" name="theme[nav][zdyname1]" placeholder="菜单名称" value="{$tplconfig['theme']['nav']['zdyname1']}" class="layui-input author.qq362695000">
+                            </div>
+                            <div class="layui-input-inline w200">
+                                <input type="text" name="theme[nav][zdylink1]" placeholder="菜单链接" value="{$tplconfig['theme']['nav']['zdylink1']}" class="layui-input">
+                            </div>
+                            <div class="layui-input-inline w200">
+                                <input type="text" name="theme[nav][zdypic1]" placeholder="菜单图标地址或路径" value="{$tplconfig['theme']['nav']['zdypic1']}" class="layui-input upload-input">
+                            </div>
+                            <div class="layui-input-inline w100">
+                                <button type="button" class="pear-btn pear-btn-primary pear-btn-md layui-upload" lay-data="{data:{thumb:0,thumb_class:'theme[nav][zdypic1]'}}" id="upload1">选择文件</button>
+                            </div>
+                            <div class="layui-form-mid layui-word-aux">要展示的自定义导航菜单</div>
+                            </div>
+                            <div class="layui-form-item">
+                            <label class="layui-form-label">自定义2</label>
+                            <div class="layui-input-inline w70">
+                                <select name="theme[nav][zdybtn2]">
+                                    <option value="0" {if condition="$tplconfig['theme']['nav']['zdybtn2'] eq 0"}selected {/if}>隐藏</option>
+                                    <option value="1" {if condition="$tplconfig['theme']['nav']['zdybtn2'] eq 1"}selected {/if}>显示</option>
+                                </select>
+                            </div>
+                            <div class="layui-input-inline w100">
+                                <input type="text" name="theme[nav][zdyname2]" placeholder="菜单名称" value="{$tplconfig['theme']['nav']['zdyname2']}" class="layui-input">
+                            </div>
+                            <div class="layui-input-inline w200">
+                                <input type="text" name="theme[nav][zdylink2]" placeholder="菜单链接" value="{$tplconfig['theme']['nav']['zdylink2']}" class="layui-input">
+                            </div>
+                            <div class="layui-input-inline w200">
+                                <input type="text" name="theme[nav][zdypic2]" placeholder="菜单图标地址或路径" value="{$tplconfig['theme']['nav']['zdypic2']}" class="layui-input upload-input">
+                            </div>
+                            <div class="layui-input-inline w100">
+                                <button type="button" class="pear-btn pear-btn-primary pear-btn-md layui-upload" lay-data="{data:{thumb:0,thumb_class:'theme[nav][zdypic2]'}}" id="upload1">选择文件</button>
+                            </div>
+                            <div class="layui-form-mid layui-word-aux">要展示的自定义导航菜单</div>
+                            </div>
+                            <div class="layui-form-item">
+                            <label class="layui-form-label">自定义3</label>
+                            <div class="layui-input-inline w70">
+                                <select name="theme[nav][zdybtn3]">
+                                    <option value="0" {if condition="$tplconfig['theme']['nav']['zdybtn3'] eq 0"}selected {/if}>隐藏</option>
+                                    <option value="1" {if condition="$tplconfig['theme']['nav']['zdybtn3'] eq 1"}selected {/if}>显示</option>
+                                </select>
+                            </div>
+                            <div class="layui-input-inline w100">
+                                <input type="text" name="theme[nav][zdyname3]" placeholder="菜单名称" value="{$tplconfig['theme']['nav']['zdyname3']}" class="layui-input">
+                            </div>
+                            <div class="layui-input-inline w200">
+                                <input type="text" name="theme[nav][zdylink3]" placeholder="菜单链接" value="{$tplconfig['theme']['nav']['zdylink3']}" class="layui-input">
+                            </div>
+                            <div class="layui-input-inline w200">
+                                <input type="text" name="theme[nav][zdypic3]" placeholder="菜单图标地址或路径" value="{$tplconfig['theme']['nav']['zdypic3']}" class="layui-input upload-input">
+                            </div>
+                            <div class="layui-input-inline w100">
+                                <button type="button" class="pear-btn pear-btn-primary pear-btn-md layui-upload" lay-data="{data:{thumb:0,thumb_class:'theme[nav][zdypic3]'}}" id="upload1">选择文件</button>
+                            </div>
+                            <div class="layui-form-mid layui-word-aux">要展示的自定义导航菜单</div>
+                            </div>
+                            <div class="layui-form-item">
+                            <label class="layui-form-label">自定义4</label>
+                            <div class="layui-input-inline w70">
+                                <select name="theme[nav][zdybtn4]">
+                                    <option value="0" {if condition="$tplconfig['theme']['nav']['zdybtn4'] eq 0"}selected {/if}>隐藏</option>
+                                    <option value="1" {if condition="$tplconfig['theme']['nav']['zdybtn4'] eq 1"}selected {/if}>显示</option>
+                                </select>
+                            </div>
+                            <div class="layui-input-inline w100">
+                                <input type="text" name="theme[nav][zdyname4]" placeholder="菜单名称" value="{$tplconfig['theme']['nav']['zdyname4']}" class="layui-input">
+                            </div>
+                            <div class="layui-input-inline w200">
+                                <input type="text" name="theme[nav][zdylink4]" placeholder="菜单链接" value="{$tplconfig['theme']['nav']['zdylink4']}" class="layui-input">
+                            </div>
+                            <div class="layui-input-inline w200">
+                                <input type="text" name="theme[nav][zdypic4]" placeholder="菜单图标地址或路径" value="{$tplconfig['theme']['nav']['zdypic4']}" class="layui-input upload-input">
+                            </div>
+                            <div class="layui-input-inline w100">
+                                <button type="button" class="pear-btn pear-btn-primary pear-btn-md layui-upload" lay-data="{data:{thumb:0,thumb_class:'theme[nav][zdypic4]'}}" id="upload1">选择文件</button>
+                            </div>
+                            <div class="layui-form-mid layui-word-aux">要展示的自定义导航菜单</div>
+                            </div>
+                       </div>
+                    </fieldset>
+                    <fieldset class="layui-elem-field">
+                       <legend>右上角菜单</legend>
+                       <div class="layui-field-box">
+                           <div class="layui-form-item">
+                               <label class="layui-form-label">友情提示</label>
+                               <div class="layui-input-block"><blockquote class="layui-elem-quote layui-quote-nm" style="padding: 8px;">建议最多显示5个菜单，请合理选择。</blockquote>
+                               </div>
+                           </div>
+                        <div class="layui-form-item">
+                        <label class="layui-form-label">可选页面</label>
+                        <div class="layui-input-inline w600">
+                            <input type="checkbox" lay-skin="primary" name="theme[rtnav][ym][]" value="a" title="历史" {if condition="strpos($tplconfig['theme']['rtnav']['ym'],'a') !==false"}checked {/if}>
+                            <input type="checkbox" lay-skin="primary" name="theme[rtnav][ym][]" value="b" title="专题" {if condition="strpos($tplconfig['theme']['rtnav']['ym'],'b') !==false"}checked {/if}>
+                            <input type="checkbox" lay-skin="primary" name="theme[rtnav][ym][]" value="c" title="留言" {if condition="strpos($tplconfig['theme']['rtnav']['ym'],'c') !==false"}checked {/if}>
+                            <input type="checkbox" lay-skin="primary" name="theme[rtnav][ym][]" value="d" title="更新" {if condition="strpos($tplconfig['theme']['rtnav']['ym'],'d') !==false"}checked {/if}>
+                            <input type="checkbox" lay-skin="primary" name="theme[rtnav][ym][]" value="e" title="排行" {if condition="strpos($tplconfig['theme']['rtnav']['ym'],'e') !==false"}checked {/if}>
+                            <input type="checkbox" lay-skin="primary" name="theme[rtnav][ym][]" value="f" title="APP" {if condition="strpos($tplconfig['theme']['rtnav']['ym'],'f') !==false"}checked {/if}>
+                            <input type="checkbox" lay-skin="primary" name="theme[rtnav][ym][]" value="g" title="QQ" {if condition="strpos($tplconfig['theme']['rtnav']['ym'],'g') !==false"}checked {/if}>
+                            <input type="checkbox" lay-skin="primary" name="theme[rtnav][ym][]" value="h" title="微信" {if condition="strpos($tplconfig['theme']['rtnav']['ym'],'h') !==false"}checked {/if}>
+                            <input type="checkbox" lay-skin="primary" name="theme[rtnav][ym][]" value="i" title="会员" {if condition="strpos($tplconfig['theme']['rtnav']['ym'],'i') !==false"}checked {/if}>
+                        </div>
+                        <div class="layui-form-mid layui-word-aux">建议不要勾选过多（对应菜单全站关闭，勾选将失效）</div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">自定义1</label>
+                            <div class="layui-input-inline w70">
+                                <select name="theme[rtnav][zdybtn1]">
+                                    <option value="0" {if condition="$tplconfig['theme']['rtnav']['zdybtn1'] eq 0"}selected {/if}>隐藏</option>
+                                    <option value="1" {if condition="$tplconfig['theme']['rtnav']['zdybtn1'] eq 1"}selected {/if}>显示</option>
+                                </select>
+                            </div>
+                            <div class="layui-input-inline w100">
+                                <input type="text" name="theme[rtnav][zdyname1]" placeholder="菜单名称" value="{$tplconfig['theme']['rtnav']['zdyname1']}" class="layui-input author.qq362695000">
+                            </div>
+                            <div class="layui-input-inline w200">
+                                <input type="text" name="theme[rtnav][zdylink1]" placeholder="菜单链接" value="{$tplconfig['theme']['rtnav']['zdylink1']}" class="layui-input">
+                            </div>
+                            <div class="layui-form-mid layui-word-aux">要展示的右上角自定义菜单</div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">自定义2</label>
+                            <div class="layui-input-inline w70">
+                                <select name="theme[rtnav][zdybtn2]">
+                                    <option value="0" {if condition="$tplconfig['theme']['rtnav']['zdybtn2'] eq 0"}selected {/if}>隐藏</option>
+                                    <option value="1" {if condition="$tplconfig['theme']['rtnav']['zdybtn2'] eq 1"}selected {/if}>显示</option>
+                                </select>
+                            </div>
+                            <div class="layui-input-inline w100">
+                                <input type="text" name="theme[rtnav][zdyname2]" placeholder="菜单名称" value="{$tplconfig['theme']['rtnav']['zdyname2']}" class="layui-input">
+                            </div>
+                            <div class="layui-input-inline w200">
+                                <input type="text" name="theme[rtnav][zdylink2]" placeholder="菜单链接" value="{$tplconfig['theme']['rtnav']['zdylink2']}" class="layui-input">
+                            </div>
+                            <div class="layui-form-mid layui-word-aux">要展示的右上角自定义菜单</div>
+                        </div>
+                       </div>
+                    </fieldset>
+                    <fieldset class="layui-elem-field">
+                       <legend>底部导航</legend>
+                       <div class="layui-field-box">
+                           <div class="layui-form-item">
+                               <label class="layui-form-label">友情提示</label>
+                               <div class="layui-input-block"><blockquote class="layui-elem-quote layui-quote-nm" style="padding: 8px;">建议最多显示5个菜单（可按分类/页面/自定义的自由组合形式），请合理选择。</blockquote>
+                               </div>
+                           </div>
+                           <div class="layui-form-item">
+                            <label class="layui-form-label">导航状态</label>
+                            <div class="layui-input-inline w200">
+                                <input type="radio" name="theme[fnav][btn]" value="0" title="关闭" {if condition="$tplconfig['theme']['fnav']['btn'] eq 0"}checked {/if}>
+                                <input type="radio" name="theme[fnav][btn]" value="1" title="开启" {if condition="$tplconfig['theme']['fnav']['btn'] eq 1"}checked {/if}>
+                            </div>
+                            <div class="layui-form-mid layui-word-aux">关闭后不显示对应模块和内容</div>
+                        </div>
+                            <div class="layui-form-item">
+                            <label class="layui-form-label">显示分类</label>
+                            <div class="layui-input-inline w200">
+                                <input type="text" name="theme[fnav][id]" placeholder="导航分类ID" value="{$tplconfig['theme']['fnav']['id']}" class="layui-input">
+                            </div>
+                            <div class="layui-form-mid layui-word-aux">要展示的导航分类，多个ID用“,”分隔</div>
+                            </div>
+                        <div class="layui-form-item">
+                        <label class="layui-form-label">可选页面</label>
+                        <div class="layui-input-inline w600">
+                            <input type="checkbox" lay-skin="primary" name="theme[fnav][ym][]" value="h" title="首页" {if condition="strpos($tplconfig['theme']['fnav']['ym'],'h') !==false"}checked {/if}>
+                            <input type="checkbox" lay-skin="primary" name="theme[fnav][ym][]" value="a" title="专题" {if condition="strpos($tplconfig['theme']['fnav']['ym'],'a') !==false"}checked {/if}>
+                            <input type="checkbox" lay-skin="primary" name="theme[fnav][ym][]" value="b" title="留言" {if condition="strpos($tplconfig['theme']['fnav']['ym'],'b') !==false"}checked {/if}>
+                            <input type="checkbox" lay-skin="primary" name="theme[fnav][ym][]" value="c" title="更新" {if condition="strpos($tplconfig['theme']['fnav']['ym'],'c') !==false"}checked {/if}>
+                            <input type="checkbox" lay-skin="primary" name="theme[fnav][ym][]" value="d" title="排行" {if condition="strpos($tplconfig['theme']['fnav']['ym'],'d') !==false"}checked {/if}>
+                            <input type="checkbox" lay-skin="primary" name="theme[fnav][ym][]" value="f" title="角色" {if condition="strpos($tplconfig['theme']['fnav']['ym'],'f') !==false"}checked {/if}>
+                            <input type="checkbox" lay-skin="primary" name="theme[fnav][ym][]" value="g" title="剧情" {if condition="strpos($tplconfig['theme']['fnav']['ym'],'g') !==false"}checked {/if}>
+                            <input type="checkbox" lay-skin="primary" name="theme[fnav][ym][]" value="r" title="会员" {if condition="strpos($tplconfig['theme']['fnav']['ym'],'r') !==false"}checked {/if}>
+                        </div>
+                        <div class="layui-form-mid layui-word-aux">建议不要勾选过多（对应菜单全站关闭，勾选将失效）</div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">自定义1</label>
+                            <div class="layui-input-inline w70">
+                                <select name="theme[fnav][zdybtn1]">
+                                    <option value="0" {if condition="$tplconfig['theme']['fnav']['zdybtn1'] eq 0"}selected {/if}>隐藏</option>
+                                    <option value="1" {if condition="$tplconfig['theme']['fnav']['zdybtn1'] eq 1"}selected {/if}>显示</option>
+                                </select>
+                            </div>
+                            <div class="layui-input-inline w100">
+                                <input type="text" name="theme[fnav][zdyname1]" placeholder="菜单名称" value="{$tplconfig['theme']['fnav']['zdyname1']}" class="layui-input">
+                            </div>
+                            <div class="layui-input-inline w200">
+                                <input type="text" name="theme[fnav][zdylink1]" placeholder="菜单链接" value="{$tplconfig['theme']['fnav']['zdylink1']}" class="layui-input">
+                            </div>
+                            <div class="layui-form-mid layui-word-aux">要展示的底部自定义菜单</div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">自定义2</label>
+                            <div class="layui-input-inline w70">
+                                <select name="theme[fnav][zdybtn2]">
+                                    <option value="0" {if condition="$tplconfig['theme']['fnav']['zdybtn2'] eq 0"}selected {/if}>隐藏</option>
+                                    <option value="1" {if condition="$tplconfig['theme']['fnav']['zdybtn2'] eq 1"}selected {/if}>显示</option>
+                                </select>
+                            </div>
+                            <div class="layui-input-inline w100">
+                                <input type="text" name="theme[fnav][zdyname2]" placeholder="菜单名称" value="{$tplconfig['theme']['fnav']['zdyname2']}" class="layui-input">
+                            </div>
+                            <div class="layui-input-inline w200">
+                                <input type="text" name="theme[fnav][zdylink2]" placeholder="菜单链接" value="{$tplconfig['theme']['fnav']['zdylink2']}" class="layui-input">
+                            </div>
+                            <div class="layui-form-mid layui-word-aux">要展示的底部自定义菜单</div>
+                        </div>
+                       </div>
+                    </fieldset>
+                   </div>
+                   <div class="layui-tab-item">
+                   <fieldset class="layui-elem-field">
+                       <legend>分享链接</legend>
+                       <div class="layui-field-box">
+                        <div class="layui-form-item">
+                               <label class="layui-form-label">友情提示</label>
+                               <div class="layui-input-block"><blockquote class="layui-elem-quote layui-quote-nm" style="padding: 8px;">如果使用短链接，请二选一填写。如果不使用短链接，请保持默认设置，如更改可能会出错。新浪和百度的短链填写方法略有不同。</blockquote>
+                               </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">百度分享按钮</label>
+                            <div class="layui-input-inline w70">
+                                <select name="theme[share][bdbtn]">
+                                    <option value="0" {if condition="$tplconfig['theme']['share']['bdbtn'] eq 0"}selected {/if}>隐藏</option>
+                                    <option value="1" {if condition="$tplconfig['theme']['share']['bdbtn'] eq 1"}selected {/if}>开启</option>
+                                </select>
+                            </div>
+                            <div class="layui-form-mid layui-word-aux">默认仅PC端显示，关闭后不显示对应模块和内容</div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">短链接API</label>
+                            <div class="layui-input-inline w70">
+                                <select name="theme[share][api]">
+                                    <option value="sina" {if condition="$tplconfig['theme']['share']['api'] eq 'sina'"}selected {/if}>新浪</option>
+                                    <option value="bd" {if condition="$tplconfig['theme']['share']['api'] eq 'bd'"}selected {/if}>百度</option>
+                                </select>
+                            </div>
+                            <div class="layui-form-mid layui-word-aux">选择短链接生成方式</div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">自定义域名</label>
+                            <div class="layui-input-inline w400">
+                                <input type="text" name="theme[share][link]" placeholder="例如：http://www.maccms.pro" value="{$tplconfig['theme']['share']['link']}" class="layui-input">
+                            </div>
+                            <div class="layui-form-mid layui-word-aux">自定义分享域名，对链接分享有效，留空获取当前网站域名</div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">新浪接口</label>
+                            <div class="layui-input-inline w400">
+                                <input type="text" name="theme[share][apiurl]" placeholder="输入新浪接口链接，留空不启用" value="{$tplconfig['theme']['share']['apiurl']}" class="layui-input">
+                            </div>
+                            <div class="layui-form-mid layui-word-aux">请输入新浪接口连接，<a target="_blank" title="申请新浪接口" href="https://open.weibo.com/wiki/2/short_url/shorten">新浪接口申请</a></div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">百度接口</label>
+                            <div class="layui-input-inline w300">
+                                <input type="text" name="theme[share][tok]" placeholder="输入百度Token" value="{$tplconfig['theme']['share']['tok']}" class="layui-input">
+                            </div>
+                            <div class="layui-input-inline w100">
+                                <select name="theme[share][term]">
+                                    <option value="long" {if condition="$tplconfig['theme']['share']['term'] eq 'long'"}selected {/if}>永久有效</option>
+                                    <option value="one" {if condition="$tplconfig['theme']['share']['term'] eq 'one'"}selected {/if}>一年有效</option>
+                                </select>
+                            </div>
+                            <div class="layui-form-mid layui-word-aux">可选短链有效期，<a target="_blank" title="申请百度Token" href="https://dwz.cn/console/userinfo">百度Token申请</a></div>
+                        </div>
+                       </div>
+                    </fieldset>
+                    <fieldset class="layui-elem-field">
+                       <legend>联系方式</legend>
+                       <div class="layui-field-box">
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">按钮状态</label>
+                            <div class="layui-input-inline w200">
+                                <input type="radio" name="theme[qq][btn]" value="0" title="关闭" {if condition="$tplconfig['theme']['qq']['btn'] eq 0"}checked {/if}>
+                                <input type="radio" name="theme[qq][btn]" value="1" title="开启" {if condition="$tplconfig['theme']['qq']['btn'] eq 1"}checked {/if}>
+                            </div>
+                            <div class="layui-form-mid layui-word-aux">关闭后不显示对应模块和内容</div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">联系标题</label>
+                            <div class="layui-input-inline w400">
+                                <input type="text" name="theme[qq][title]" placeholder="输入要展示的标题" value="{$tplconfig['theme']['qq']['title']}" class="layui-input">
+                            </div>
+                            <div class="layui-form-mid layui-word-aux">要展示的标题，建议QQ或QQ群相关</div>
+                        </div>
+                            <div class="layui-form-item">
+                            <label class="layui-form-label">联系链接</label>
+                            <div class="layui-input-inline w400">
+                                <input type="text" name="theme[qq][link]" placeholder="输入跳转链接" value="{$tplconfig['theme']['qq']['link']}" class="layui-input">
+                            </div>
+                            <div class="layui-form-mid layui-word-aux">建议QQ链接或QQ群链接</div>
+                        </div>
+                       </div>
+                    </fieldset>
+                    <fieldset class="layui-elem-field">
+                       <legend>微信关注</legend>
+                       <div class="layui-field-box">
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">关注状态</label>
+                            <div class="layui-input-inline w200">
+                                <input type="radio" name="theme[weixin][btn]" value="0" title="关闭" {if condition="$tplconfig['theme']['weixin']['btn'] eq 0"}checked {/if}>
+                                <input type="radio" name="theme[weixin][btn]" value="1" title="开启" {if condition="$tplconfig['theme']['weixin']['btn'] eq 1"}checked {/if}>
+                            </div>
+                            <div class="layui-form-mid layui-word-aux">关闭后不显示对应模块和内容</div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">按钮内容</label>
+                            <div class="layui-input-inline w400">
+                                <input type="text" name="theme[weixin][btntext]" placeholder="请输入内容" value="{$tplconfig['theme']['weixin']['btntext']}" class="layui-input">
+                            </div>
+                            <div class="layui-form-mid layui-word-aux">播放页显示的按钮内容</div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">微信二维码</label>
+                            <div class="layui-input-inline w400">
+                                <input type="text" name="theme[weixin][qrcode]" placeholder="微信二维码图片地址或路径" value="{$tplconfig['theme']['weixin']['qrcode']}" class="layui-input upload-input">
+                            </div>
+                            <div class="layui-input-inline ">
+                                <button type="button" class="pear-btn pear-btn-primary pear-btn-md layui-upload" lay-data="{data:{thumb:0,thumb_class:'theme[weixin][qrcode]'}}" id="upload1">选择文件</button>
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                        <label class="layui-form-label">弹窗标题</label>
+                        <div class="layui-input-inline w400">
+                            <input type="text" name="theme[weixin][title]" placeholder="弹窗显示标题" value="{$tplconfig['theme']['weixin']['title']}" class="layui-input">
+                        </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">弹窗内容</label>
+                            <div class="layui-input-block">
+                                <textarea name="theme[weixin][text]" class="layui-textarea"  placeholder="弹窗显示内容，支持html代码">{$tplconfig['theme']['weixin']['text']}</textarea>
+                            </div>
+                        </div>
+                       </div>
+                    </fieldset>
+                    <fieldset class="layui-elem-field">
+                       <legend>赞赏设置</legend>
+                       <div class="layui-field-box">
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">赞赏状态</label>
+                            <div class="layui-input-inline w200">
+                                <input type="radio" name="theme[zans][btn]" value="0" title="关闭" {if condition="$tplconfig['theme']['zans']['btn'] eq 0"}checked {/if}>
+                                <input type="radio" name="theme[zans][btn]" value="1" title="开启" {if condition="$tplconfig['theme']['zans']['btn'] eq 1"}checked {/if}>
+                            </div>
+                            <div class="layui-form-mid layui-word-aux">关闭后不显示对应模块和内容</div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">赞赏二维码</label>
+                            <div class="layui-input-inline w400">
+                                <input type="text" name="theme[zans][qrcode]" placeholder="赞赏二维码图片地址或路径" value="{$tplconfig['theme']['zans']['qrcode']}" class="layui-input upload-input">
+                            </div>
+                            <div class="layui-input-inline ">
+                                <button type="button" class="pear-btn pear-btn-primary pear-btn-md layui-upload" lay-data="{data:{thumb:0,thumb_class:'theme[zans][qrcode]'}}" id="upload1">选择文件</button>
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                        <label class="layui-form-label">弹窗标题</label>
+                        <div class="layui-input-inline w400">
+                            <input type="text" name="theme[zans][title]" placeholder="弹窗显示标题" value="{$tplconfig['theme']['zans']['title']}" class="layui-input">
+                        </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">弹窗内容</label>
+                            <div class="layui-input-block">
+                                <textarea name="theme[zans][text]" class="layui-textarea"  placeholder="弹窗显示内容，支持html代码">{$tplconfig['theme']['zans']['text']}</textarea>
+                            </div>
+                        </div>
+                       </div>
+                    </fieldset>
+                    <fieldset class="layui-elem-field">
+                       <legend>APP推广</legend>
+                       <div class="layui-field-box">
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">推广状态</label>
+                            <div class="layui-input-inline w200">
+                                <input type="radio" name="theme[apps][btn]" value="0" title="关闭" {if condition="$tplconfig['theme']['apps']['btn'] eq 0"}checked {/if}>
+                                <input type="radio" name="theme[apps][btn]" value="1" title="开启" {if condition="$tplconfig['theme']['apps']['btn'] eq 1"}checked {/if}>
+                            </div>
+                            <div class="layui-form-mid layui-word-aux">关闭后不显示对应模块和内容</div>
+                        </div>
+                        <div class="layui-form-item">
+                        <label class="layui-form-label">下载链接</label>
+                        <div class="layui-input-inline w400">
+                            <input type="text" name="theme[apps][link]" placeholder="APP下载链接地址" value="{$tplconfig['theme']['apps']['link']}" class="layui-input">
+                        </div>
+                        </div>
+                       </div>
+                    </fieldset>
+                     </div>
+                     <div class="layui-tab-item">
+                     <fieldset class="layui-elem-field">
+                       <legend>排行页面</legend>
+                       <div class="layui-field-box">
+                         <div class="layui-form-item">
+                            <label class="layui-form-label">页面状态</label>
+                            <div class="layui-input-inline w200">
+                                <input type="radio" name="theme[rank][btn]" value="0" title="关闭" {if condition="$tplconfig['theme']['rank']['btn'] eq 0"}checked {/if}>
+                                <input type="radio" name="theme[rank][btn]" value="1" title="开启" {if condition="$tplconfig['theme']['rank']['btn'] eq 1"}checked {/if}>
+                            </div>
+                            <div class="layui-form-mid layui-word-aux">关闭后全站对应的排行入口将关闭</div>
+                         </div>
+                         <div class="layui-form-item">
+                            <label class="layui-form-label">模块标题</label>
+                            <div class="layui-input-inline w200">
+                                <input type="text" name="theme[rank][title]" placeholder="请输入展示的标题" value="{$tplconfig['theme']['rank']['title']}" class="layui-input">
+                            </div>
+                            <div class="layui-form-mid layui-word-aux">要展示的标题，所有页面中的排行榜标题</div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">模块数量</label>
+                            <div class="layui-input-inline w200">
+                                <input type="text" name="theme[rank][num]" placeholder="请输入数量" value="{$tplconfig['theme']['rank']['num']}" class="layui-input">
+                            </div>
+                            <div class="layui-form-mid layui-word-aux">要展示的分类数量，建议：6或9或12</div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">显示分类</label>
+                            <div class="layui-input-inline w200">
+                                <input type="text" name="theme[rank][id]" placeholder="请输入分类ID" value="{$tplconfig['theme']['rank']['id']}" class="layui-input">
+                            </div>
+                            <div class="layui-form-mid layui-word-aux">要展示的分类ID，多个ID用“,”分隔</div>
+                        </div>
+                       </div>
+                     </fieldset>
+                     <fieldset class="layui-elem-field">
+                       <legend>最近更新</legend>
+                       <div class="layui-field-box">
+                         <div class="layui-form-item">
+                            <label class="layui-form-label">页面状态</label>
+                            <div class="layui-input-inline w200">
+                                <input type="radio" name="theme[map][btn]" value="0" title="关闭" {if condition="$tplconfig['theme']['map']['btn'] eq 0"}checked {/if}>
+                                <input type="radio" name="theme[map][btn]" value="1" title="开启" {if condition="$tplconfig['theme']['map']['btn'] eq 1"}checked {/if}>
+                            </div>
+                            <div class="layui-form-mid layui-word-aux">关闭后全站对应的最近更新入口将关闭</div>
+                         </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">模块标题</label>
+                            <div class="layui-input-inline w200">
+                                <input type="text" name="theme[map][title]" placeholder="请输入展示的标题" value="{$tplconfig['theme']['map']['title']}" class="layui-input">
+                            </div>
+                            <div class="layui-form-mid layui-word-aux">要展示的标题</div>
+                        </div>
+                         <div class="layui-form-item">
+                            <label class="layui-form-label">显示分类</label>
+                            <div class="layui-input-inline w200">
+                                <input type="text" name="theme[map][id]" placeholder="请输入分类ID" value="{$tplconfig['theme']['map']['id']}" class="layui-input">
+                            </div>
+                            <div class="layui-form-mid layui-word-aux">要展示的分类ID，多个ID用“,”分隔，留空显示全部</div>
+                        </div>
+                       </div>
+                     </fieldset>
+                     <fieldset class="layui-elem-field">
+                       <legend>个性配置</legend>
+                       <div class="layui-field-box">
+                               <div class="layui-form-item">
+                                <label class="layui-form-label">主题颜色</label>
+                                <div class="layui-input-inline w200">
+                                    <select name="theme[color][select]">
+                                    <option value="0" {if condition="$tplconfig['theme']['color']['select'] eq 0"}selected {/if}>默认主题</option>
+                                    <option value="green" {if condition="$tplconfig['theme']['color']['select'] eq 'green'"}selected {/if}>绿色主题</option>
+                                    <option value="blue" {if condition="$tplconfig['theme']['color']['select'] eq 'blue'"}selected {/if}>蓝色主题</option>
+                                    <option value="pink" {if condition="$tplconfig['theme']['color']['select'] eq 'pink'"}selected {/if}>粉色主题</option>
+                                    <option value="red" {if condition="$tplconfig['theme']['color']['select'] eq 'red'"}selected {/if}>红色主题</option>
+                                    <option value="gold" {if condition="$tplconfig['theme']['color']['select'] eq 'gold'"}selected {/if}>金色主题</option>
+                                </select>
+                                </div>
+                                <div class="layui-input-inline">
+                                <input type="radio" name="theme[color][sbtn]" value="0" title="关闭" {if condition="$tplconfig['theme']['color']['sbtn'] eq 0"}checked {/if}>
+                                <input type="radio" name="theme[color][sbtn]" value="1" title="开启" {if condition="$tplconfig['theme']['color']['sbtn'] eq 1"}checked {/if}>
+                                </div>
+                                <div class="layui-form-mid layui-word-aux">关闭前台主题颜色按钮，不影响后台设置</div>
+                            </div>
+                            <div class="layui-form-item">
+                                <label class="layui-form-label">浏览模式</label>
+                                <div class="layui-input-inline w200">
+                                    <select name="theme[color][ms]">
+                                    <option value="white" {if condition="$tplconfig['theme']['color']['ms'] eq 'white'"}selected {/if}>白昼模式</option>
+                                    <option value="black" {if condition="$tplconfig['theme']['color']['ms'] eq 'black'"}selected {/if}>暗夜模式</option>
+                                </select>
+                                </div>
+                                <div class="layui-input-inline">
+                                <input type="radio" name="theme[color][mbtn]" value="0" title="关闭" {if condition="$tplconfig['theme']['color']['mbtn'] eq 0"}checked {/if}>
+                                <input type="radio" name="theme[color][mbtn]" value="1" title="开启" {if condition="$tplconfig['theme']['color']['mbtn'] eq 1"}checked {/if}>
+                                </div>
+                                <div class="layui-form-mid layui-word-aux">关闭前台浏览模式按钮，不影响后台设置</div>
+                            </div>
+                            <div class="layui-form-item">
+                            <label class="layui-form-label">专题模块</label>
+                            <div class="layui-input-inline w200">
+                                <input type="text" name="theme[topic][title]" placeholder="请输入展示的标题" value="{$tplconfig['theme']['topic']['title']}" class="layui-input">
+                            </div>
+                            <div class="layui-input-inline">
+                                <input type="radio" name="theme[topic][btn]" value="0" title="关闭" {if condition="$tplconfig['theme']['topic']['btn'] eq 0"}checked {/if}>
+                                <input type="radio" name="theme[topic][btn]" value="1" title="开启" {if condition="$tplconfig['theme']['topic']['btn'] eq 1"}checked {/if}>
+                            </div>
+                            <div class="layui-form-mid layui-word-aux">关闭后全站对应的专题入口将关闭</div>
+                            </div>
+                            <div class="layui-form-item">
+                            <label class="layui-form-label">角色模块</label>
+                            <div class="layui-input-inline w200">
+                                <input type="text" name="theme[role][title]" placeholder="请输入展示的标题" value="{$tplconfig['theme']['role']['title']}" class="layui-input">
+                            </div>
+                            <div class="layui-input-inline">
+                                <input type="radio" name="theme[role][btn]" value="0" title="关闭" {if condition="$tplconfig['theme']['role']['btn'] eq 0"}checked {/if}>
+                                <input type="radio" name="theme[role][btn]" value="1" title="开启" {if condition="$tplconfig['theme']['role']['btn'] eq 1"}checked {/if}>
+                            </div>
+                            <div class="layui-form-mid layui-word-aux">关闭后全站对应的角色入口将关闭</div>
+                            </div>
+                            <div class="layui-form-item">
+                            <label class="layui-form-label">剧情模块</label>
+                            <div class="layui-input-inline w200">
+                                <input type="text" name="theme[plot][title]" placeholder="请输入展示的标题" value="{$tplconfig['theme']['plot']['title']}" class="layui-input">
+                            </div>
+                            <div class="layui-input-inline">
+                                <input type="radio" name="theme[plot][btn]" value="0" title="关闭" {if condition="$tplconfig['theme']['plot']['btn'] eq 0"}checked {/if}>
+                                <input type="radio" name="theme[plot][btn]" value="1" title="开启" {if condition="$tplconfig['theme']['plot']['btn'] eq 1"}checked {/if}>
+                            </div>
+                            <div class="layui-form-mid layui-word-aux">关闭后全站对应的剧情入口将关闭</div>
+                            </div>
+                            <div class="layui-form-item">
+                            <label class="layui-form-label">留言模块</label>
+                            <div class="layui-input-inline w200">
+                                <input type="text" name="theme[gbook][title]" placeholder="请输入展示的标题" value="{$tplconfig['theme']['gbook']['title']}" class="layui-input">
+                            </div>
+                            <div class="layui-form-mid layui-word-aux">留言展示的标题，如需关闭留言请到CMS的留言设置</div>
+                            </div>
+                            <div class="layui-form-item">
+                            <label class="layui-form-label">会员模块</label>
+                            <div class="layui-input-inline w200">
+                                <input type="text" name="theme[user][title]" placeholder="请输入展示的标题" value="{$tplconfig['theme']['user']['title']}" class="layui-input">
+                            </div>
+                            <div class="layui-form-mid layui-word-aux">会员展示的标题，如需关闭会员请到CMS的会员设置</div>
+                            </div>
+                            <div class="layui-form-item">
+                                <label class="layui-form-label">网站字体</label>
+                                <div class="layui-input-inline w200">
+                                    <select name="theme[font]">
+                                    <option value="0" {if condition="$tplconfig['theme']['font'] eq 0"}selected {/if}>简体</option>
+                                    <option value="1" {if condition="$tplconfig['theme']['font'] eq 1"}selected {/if}>繁體</option>
+                                </select>
+                                </div>
+                                <div class="layui-form-mid layui-word-aux">网站字体繁简设置</div>
+                            </div>
+                       </div>
+                    </fieldset>
+                     </div>
+                     <div class="layui-tab-item">
+                     <blockquote class="layui-elem-quote">
+                            <p>特别说明：所需标签都已包含，无需填写。主要填写需要优化的标题，关键词等等。</p>
+                     </blockquote>
+                     <fieldset class="layui-elem-field">
+                       <legend>网站首页</legend>
+                       <div class="layui-field-box">
+                             <div class="layui-form-item">
+                            <label class="layui-form-label">标题</label>
+                            <div class="layui-input-inline w600">
+                                <input type="text" name="theme[seos][index_name]" placeholder="标题title" value="{$tplconfig['theme']['seos']['index_name']}" class="layui-input">
+                            </div>
+                            </div>
+                            <div class="layui-form-item">
+                            <label class="layui-form-label">关键字</label>
+                            <div class="layui-input-inline w600">
+                                <input type="text" name="theme[seos][index_key]" placeholder="关键字keywords" value="{$tplconfig['theme']['seos']['index_key']}" class="layui-input">
+                            </div>
+                            </div>
+                            <div class="layui-form-item">
+                            <label class="layui-form-label">描述</label>
+                            <div class="layui-input-inline w600">
+                                <input type="text" name="theme[seos][index_des]" placeholder="描述description" value="{$tplconfig['theme']['seos']['index_des']}" class="layui-input">
+                            </div>
+                            </div>
+                       </div>
+                       </fieldset>
+                       <fieldset class="layui-elem-field">
+                       <legend>视频详情</legend>
+                       <div class="layui-field-box">
+                             <div class="layui-form-item">
+                            <label class="layui-form-label">标题</label>
+                            <div class="layui-input-inline w600">
+                                <input type="text" name="theme[seos][detail_name]" placeholder="标题title" value="{$tplconfig['theme']['seos']['detail_name']}" class="layui-input">
+                            </div>
+                            </div>
+                            <div class="layui-form-item">
+                            <label class="layui-form-label">关键字</label>
+                            <div class="layui-input-inline w600">
+                                <input type="text" name="theme[seos][detail_key]" placeholder="关键字keywords" value="{$tplconfig['theme']['seos']['detail_key']}" class="layui-input">
+                            </div>
+                            </div>
+                            <div class="layui-form-item">
+                            <label class="layui-form-label">描述</label>
+                            <div class="layui-input-inline w600">
+                                <input type="text" name="theme[seos][detail_des]" placeholder="描述description" value="{$tplconfig['theme']['seos']['detail_des']}" class="layui-input">
+                            </div>
+                            </div>
+                       </div>
+                       </fieldset>
+                       <fieldset class="layui-elem-field">
+                       <legend>视频播放</legend>
+                       <div class="layui-field-box">
+                             <div class="layui-form-item">
+                            <label class="layui-form-label">标题</label>
+                            <div class="layui-input-inline w600">
+                                <input type="text" name="theme[seos][play_name]" placeholder="标题title" value="{$tplconfig['theme']['seos']['play_name']}" class="layui-input">
+                            </div>
+                            </div>
+                            <div class="layui-form-item">
+                            <label class="layui-form-label">关键字</label>
+                            <div class="layui-input-inline w600">
+                                <input type="text" name="theme[seos][play_key]" placeholder="关键字keywords" value="{$tplconfig['theme']['seos']['play_key']}" class="layui-input">
+                            </div>
+                            </div>
+                            <div class="layui-form-item">
+                            <label class="layui-form-label">描述</label>
+                            <div class="layui-input-inline w600">
+                                <input type="text" name="theme[seos][play_des]" placeholder="描述description" value="{$tplconfig['theme']['seos']['plays_des']}" class="layui-input">
+                            </div>
+                            </div>
+                       </div>
+                       </fieldset>
+                       <fieldset class="layui-elem-field">
+                       <legend>视频下载</legend>
+                       <div class="layui-field-box">
+                             <div class="layui-form-item">
+                            <label class="layui-form-label">标题</label>
+                            <div class="layui-input-inline w600">
+                                <input type="text" name="theme[seos][down_name]" placeholder="标题title" value="{$tplconfig['theme']['seos']['down_name']}" class="layui-input">
+                            </div>
+                            </div>
+                            <div class="layui-form-item">
+                            <label class="layui-form-label">关键字</label>
+                            <div class="layui-input-inline w600">
+                                <input type="text" name="theme[seos][down_key]" placeholder="关键字keywords" value="{$tplconfig['theme']['seos']['down_key']}" class="layui-input">
+                            </div>
+                            </div>
+                            <div class="layui-form-item">
+                            <label class="layui-form-label">描述</label>
+                            <div class="layui-input-inline w600">
+                                <input type="text" name="theme[seos][down_des]" placeholder="描述description" value="{$tplconfig['theme']['seos']['down_des']}" class="layui-input">
+                            </div>
+                            </div>
+                       </div>
+                       </fieldset>
+                       <fieldset class="layui-elem-field">
+                       <legend>文章首页</legend>
+                       <div class="layui-field-box">
+                             <div class="layui-form-item">
+                            <label class="layui-form-label">标题</label>
+                            <div class="layui-input-inline w600">
+                                <input type="text" name="theme[seos][arti_name]" placeholder="标题title" value="{$tplconfig['theme']['seos']['arti_name']}" class="layui-input">
+                            </div>
+                            </div>
+                            <div class="layui-form-item">
+                            <label class="layui-form-label">关键字</label>
+                            <div class="layui-input-inline w600">
+                                <input type="text" name="theme[seos][arti_key]" placeholder="关键字keywords" value="{$tplconfig['theme']['seos']['arti_key']}" class="layui-input">
+                            </div>
+                            </div>
+                            <div class="layui-form-item">
+                            <label class="layui-form-label">描述</label>
+                            <div class="layui-input-inline w600">
+                                <input type="text" name="theme[seos][arti_des]" placeholder="描述description" value="{$tplconfig['theme']['seos']['arti_des']}" class="layui-input">
+                            </div>
+                            </div>
+                       </div>
+                       </fieldset>
+                       <fieldset class="layui-elem-field">
+                       <legend>文章详情</legend>
+                       <div class="layui-field-box">
+                             <div class="layui-form-item">
+                            <label class="layui-form-label">标题</label>
+                            <div class="layui-input-inline w600">
+                                <input type="text" name="theme[seos][artd_name]" placeholder="标题title" value="{$tplconfig['theme']['seos']['artd_name']}" class="layui-input">
+                            </div>
+                            </div>
+                            <div class="layui-form-item">
+                            <label class="layui-form-label">关键字</label>
+                            <div class="layui-input-inline w600">
+                                <input type="text" name="theme[seos][artd_key]" placeholder="关键字keywords" value="{$tplconfig['theme']['seos']['artd_key']}" class="layui-input">
+                            </div>
+                            </div>
+                            <div class="layui-form-item">
+                            <label class="layui-form-label">描述</label>
+                            <div class="layui-input-inline w600">
+                                <input type="text" name="theme[seos][artd_des]" placeholder="描述description" value="{$tplconfig['theme']['seos']['artd_des']}" class="layui-input">
+                            </div>
+                            </div>
+                       </div>
+                       </fieldset>
+                       <fieldset class="layui-elem-field">
+                       <legend>专题首页</legend>
+                       <div class="layui-field-box">
+                             <div class="layui-form-item">
+                            <label class="layui-form-label">标题</label>
+                            <div class="layui-input-inline w600">
+                                <input type="text" name="theme[seos][topic_name]" placeholder="标题title" value="{$tplconfig['theme']['seos']['topic_name']}" class="layui-input">
+                            </div>
+                            </div>
+                            <div class="layui-form-item">
+                            <label class="layui-form-label">关键字</label>
+                            <div class="layui-input-inline w600">
+                                <input type="text" name="theme[seos][topic_key]" placeholder="关键字keywords" value="{$tplconfig['theme']['seos']['topic_key']}" class="layui-input">
+                            </div>
+                            </div>
+                            <div class="layui-form-item">
+                            <label class="layui-form-label">描述</label>
+                            <div class="layui-input-inline w600">
+                                <input type="text" name="theme[seos][topic_des]" placeholder="描述description" value="{$tplconfig['theme']['seos']['topic_des']}" class="layui-input">
+                            </div>
+                            </div>
+                       </div>
+                       </fieldset>
+                       <fieldset class="layui-elem-field">
+                       <legend>专题详情</legend>
+                       <div class="layui-field-box">
+                             <div class="layui-form-item">
+                            <label class="layui-form-label">标题</label>
+                            <div class="layui-input-inline w600">
+                                <input type="text" name="theme[seos][topicd_name]" placeholder="标题title" value="{$tplconfig['theme']['seos']['topicd_name']}" class="layui-input">
+                            </div>
+                            </div>
+                            <div class="layui-form-item">
+                            <label class="layui-form-label">关键字</label>
+                            <div class="layui-input-inline w600">
+                                <input type="text" name="theme[seos][topicd_key]" placeholder="关键字keywords" value="{$tplconfig['theme']['seos']['topicd_key']}" class="layui-input">
+                            </div>
+                            </div>
+                            <div class="layui-form-item">
+                            <label class="layui-form-label">描述</label>
+                            <div class="layui-input-inline w600">
+                                <input type="text" name="theme[seos][topicd_des]" placeholder="描述description" value="{$tplconfig['theme']['seos']['topicd_des']}" class="layui-input">
+                            </div>
+                            </div>
+                       </div>
+                       </fieldset>
+                       <fieldset class="layui-elem-field">
+                       <legend>网址首页</legend>
+                       <div class="layui-field-box">
+                             <div class="layui-form-item">
+                            <label class="layui-form-label">标题</label>
+                            <div class="layui-input-inline w600">
+                                <input type="text" name="theme[seos][website_name]" placeholder="标题title" value="{$tplconfig['theme']['seos']['topicd_name']}" class="layui-input">
+                            </div>
+                            </div>
+                            <div class="layui-form-item">
+                            <label class="layui-form-label">关键字</label>
+                            <div class="layui-input-inline w600">
+                                <input type="text" name="theme[seos][website_key]" placeholder="关键字keywords" value="{$tplconfig['theme']['seos']['topicd_key']}" class="layui-input">
+                            </div>
+                            </div>
+                            <div class="layui-form-item">
+                            <label class="layui-form-label">描述</label>
+                            <div class="layui-input-inline w600">
+                                <input type="text" name="theme[seos][website_des]" placeholder="描述description" value="{$tplconfig['theme']['seos']['topicd_des']}" class="layui-input">
+                            </div>
+                            </div>
+                       </div>
+                       </fieldset>
+                     </div>
+                     <div class="layui-tab-item">
+                     <fieldset class="layui-elem-field">
+                       <legend>全站广告开关</legend>
+                       <div class="layui-field-box">
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">广告状态</label>
+                            <div class="layui-input-inline w400">
+                                <input type="radio" name="theme[ads][btn]" value="0" title="关闭广告" {if condition="$tplconfig['theme']['ads']['btn'] eq 0"}checked {/if}>
+                                <input type="radio" name="theme[ads][btn]" value="1" title="开启广告" {if condition="$tplconfig['theme']['ads']['btn'] eq 1"}checked {/if}>
+                                <input type="radio" name="theme[ads][btn]" value="2" title="VIP会员隐藏" {if condition="$tplconfig['theme']['ads']['btn'] eq 2"}checked {/if}>
+                            </div>
+                            <div class="layui-form-mid layui-word-aux">关闭后不显示全站广告</div>
+                        </div>
+                       </div>
+                     </fieldset>
+                     <fieldset class="layui-elem-field">
+                       <legend>全站底部浮动广告</legend>
+                       <div class="layui-field-box">
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">广告状态</label>
+                            <div class="layui-input-inline w300">
+                                <input type="radio" name="theme[ads][bottom][btn]" value="0" title="关闭" {if condition="$tplconfig['theme']['ads']['bottom']['btn'] eq 0"}checked {/if}>
+                                <input type="radio" name="theme[ads][bottom][btn]" value="1" title="开启" {if condition="$tplconfig['theme']['ads']['bottom']['btn'] eq 1"}checked {/if}>
+                                <input type="radio" name="theme[ads][bottom][btn]" value="2" title="使用框架" {if condition="$tplconfig['theme']['ads']['bottom']['btn'] eq 2"}checked {/if}>
+                            </div>
+                            <div class="layui-form-mid layui-word-aux">关闭后不显示对应模块和内容，选择使用框架时广告由iframe引入</div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">广告代码</label>
+                            <div class="layui-input-block">
+                                <textarea name="theme[ads][bottom][content]" class="layui-textarea"  placeholder="请输入广告代码">{$tplconfig['theme']['ads']['bottom']['content']}</textarea>
+                            </div>
+                        </div>
+                       </div>
+                     </fieldset>
+                     <fieldset class="layui-elem-field">
+                       <legend>全站通栏横幅广告</legend>
+                       <div class="layui-field-box">
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">广告状态</label>
+                            <div class="layui-input-inline w200">
+                                <input type="radio" name="theme[ads][all][btn]" value="0" title="关闭" {if condition="$tplconfig['theme']['ads']['all']['btn'] eq 0"}checked {/if}>
+                                <input type="radio" name="theme[ads][all][btn]" value="1" title="开启" {if condition="$tplconfig['theme']['ads']['all']['btn'] eq 1"}checked {/if}>
+                            </div>
+                            <div class="layui-form-mid layui-word-aux">关闭后不显示对应模块和内容</div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">广告代码</label>
+                            <div class="layui-input-block">
+                                <textarea name="theme[ads][all][content]" class="layui-textarea"  placeholder="请输入广告代码">{$tplconfig['theme']['ads']['all']['content']}</textarea>
+                            </div>
+                        </div>
+                       </div>
+                     </fieldset>
+                     <fieldset class="layui-elem-field">
+                       <legend>全站对联广告</legend>
+                       <div class="layui-field-box">
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">广告状态</label>
+                            <div class="layui-input-inline w200">
+                                <input type="radio" name="theme[ads][double][btn]" value="0" title="关闭" {if condition="$tplconfig['theme']['ads']['double']['btn'] eq 0"}checked {/if}>
+                                <input type="radio" name="theme[ads][double][btn]" value="1" title="开启" {if condition="$tplconfig['theme']['ads']['double']['btn'] eq 1"}checked {/if}>
+                            </div>
+                            <div class="layui-form-mid layui-word-aux">关闭后不显示对应模块和内容（仅适用PC端）</div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">广告尺寸</label>
+                            <div class="layui-input-inline w100">
+                                <input type="text" name="theme[ads][double][w]" placeholder="广告宽度" value="{$tplconfig['theme']['ads']['double']['w']}" class="layui-input">
+                            </div>
+                            <div class="layui-input-inline w100">
+                                <input type="text" name="theme[ads][double][h]" placeholder="广告高度" value="{$tplconfig['theme']['ads']['double']['h']}" class="layui-input">
+                            </div>
+                            <div class="layui-form-mid layui-word-aux">广告尺寸，宽*高（像素px）</div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">广告代码</label>
+                            <div class="layui-input-block">
+                                <textarea name="theme[ads][double][content]" class="layui-textarea"  placeholder="请输入广告代码">{$tplconfig['theme']['ads']['double']['content']}</textarea>
+                            </div>
+                        </div>
+                       </div>
+                     </fieldset>
+                     <fieldset class="layui-elem-field">
+                       <legend>视频页横幅广告</legend>
+                       <div class="layui-field-box">
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">广告状态</label>
+                            <div class="layui-input-inline w200">
+                                <input type="radio" name="theme[ads][vod_w][btn]" value="0" title="关闭" {if condition="$tplconfig['theme']['ads']['vod_w']['btn'] eq 0"}checked {/if}>
+                                <input type="radio" name="theme[ads][vod_w][btn]" value="1" title="开启" {if condition="$tplconfig['theme']['ads']['vod_w']['btn'] eq 1"}checked {/if}>
+                            </div>
+                            <div class="layui-form-mid layui-word-aux">关闭后不显示对应模块和内容</div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">广告代码</label>
+                            <div class="layui-input-block">
+                                <textarea name="theme[ads][vod_w][content]" class="layui-textarea"  placeholder="请输入广告代码">{$tplconfig['theme']['ads']['vod_w']['content']}</textarea>
+                            </div>
+                        </div>
+                       </div>
+                     </fieldset>
+                     <fieldset class="layui-elem-field">
+                       <legend>视频页侧边栏广告</legend>
+                       <div class="layui-field-box">
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">广告状态</label>
+                            <div class="layui-input-inline w200">
+                                <input type="radio" name="theme[ads][vod_r][btn]" value="0" title="关闭" {if condition="$tplconfig['theme']['ads']['vod_r']['btn'] eq 0"}checked {/if}>
+                                <input type="radio" name="theme[ads][vod_r][btn]" value="1" title="开启" {if condition="$tplconfig['theme']['ads']['vod_r']['btn'] eq 1"}checked {/if}>
+                            </div>
+                            <div class="layui-form-mid layui-word-aux">关闭后不显示对应模块和内容（本模块仅PC端显示）</div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">广告代码</label>
+                            <div class="layui-input-block">
+                                <textarea name="theme[ads][vod_r][content]" class="layui-textarea"  placeholder="请输入广告代码">{$tplconfig['theme']['ads']['vod_r']['content']}</textarea>
+                            </div>
+                        </div>
+                       </div>
+                     </fieldset>
+                     <fieldset class="layui-elem-field">
+                       <legend>视频播放页列表栏广告</legend>
+                       <div class="layui-field-box">
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">广告状态</label>
+                            <div class="layui-input-inline w200">
+                                <input type="radio" name="theme[ads][play][btn]" value="0" title="关闭" {if condition="$tplconfig['theme']['ads']['play']['btn'] eq 0"}checked {/if}>
+                                <input type="radio" name="theme[ads][play][btn]" value="1" title="开启" {if condition="$tplconfig['theme']['ads']['play']['btn'] eq 1"}checked {/if}>
+                            </div>
+                            <div class="layui-form-mid layui-word-aux">关闭后不显示对应模块和内容</div>
+                            <label class="layui-form-label">广告提示标签</label>
+                            <div class="layui-input-inline w200" style="margin: 0;">
+                                <input type="radio" name="theme[ads][play][tbtn]" value="0" title="关闭" {if condition="$tplconfig['theme']['ads']['play']['tbtn'] eq 0"}checked {/if}>
+                                <input type="radio" name="theme[ads][play][tbtn]" value="1" title="开启" {if condition="$tplconfig['theme']['ads']['play']['tbtn'] eq 1"}checked {/if}>
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                        <label class="layui-form-label">广告标题</label>
+                        <div class="layui-input-inline w300">
+                            <input type="text" name="theme[ads][play][title]" placeholder="广告标题" value="{$tplconfig['theme']['ads']['play']['title']}" class="layui-input">
+                        </div>
+                        </div>
+                        <div class="layui-form-item">
+                        <label class="layui-form-label">广告链接</label>
+                        <div class="layui-input-inline w300">
+                            <input type="text" name="theme[ads][play][link]" placeholder="广告链接" value="{$tplconfig['theme']['ads']['play']['link']}" class="layui-input">
+                        </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">广告图片</label>
+                            <div class="layui-input-inline w300">
+                                <input type="text" name="theme[ads][play][pic]" placeholder="图片地址或路径" value="{$tplconfig['theme']['ads']['play']['pic']}" class="layui-input upload-input">
+                            </div>
+                            <div class="layui-input-inline ">
+                                <button type="button" class="pear-btn pear-btn-primary pear-btn-md layui-upload" lay-data="{data:{thumb:0,thumb_class:'theme[ads][play][pic]'}}" id="upload1">选择文件</button>
+                            </div>
+                        </div>
+                       </div>
+                     </fieldset>
+                     <fieldset class="layui-elem-field">
+                       <legend>视频搜索页列表栏广告</legend>
+                       <div class="layui-field-box">
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">广告状态</label>
+                            <div class="layui-input-inline w200">
+                                <input type="radio" name="theme[ads][search_v][btn]" value="0" title="关闭" {if condition="$tplconfig['theme']['ads']['search_v']['btn'] eq 0"}checked {/if}>
+                                <input type="radio" name="theme[ads][search_v][btn]" value="1" title="开启" {if condition="$tplconfig['theme']['ads']['search_v']['btn'] eq 1"}checked {/if}>
+                            </div>
+                            <div class="layui-form-mid layui-word-aux">关闭后不显示对应模块和内容</div>
+                            <label class="layui-form-label">广告提示标签</label>
+                            <div class="layui-input-inline w200" style="margin: 0;">
+                                <input type="radio" name="theme[ads][search_v][tbtn]" value="0" title="关闭" {if condition="$tplconfig['theme']['ads']['search_v']['tbtn'] eq 0"}checked {/if}>
+                                <input type="radio" name="theme[ads][search_v][tbtn]" value="1" title="开启" {if condition="$tplconfig['theme']['ads']['search_v']['tbtn'] eq 1"}checked {/if}>
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                        <label class="layui-form-label">广告标题</label>
+                        <div class="layui-input-inline w300">
+                            <input type="text" name="theme[ads][search_v][title]" placeholder="广告标题" value="{$tplconfig['theme']['ads']['search_v']['title']}" class="layui-input">
+                        </div>
+                        </div>
+                        <div class="layui-form-item">
+                        <label class="layui-form-label">广告副标</label>
+                        <div class="layui-input-inline w300">
+                            <input type="text" name="theme[ads][search_v][sub]" placeholder="广告副标题" value="{$tplconfig['theme']['ads']['search_v']['sub']}" class="layui-input">
+                        </div>
+                        </div>
+                        <div class="layui-form-item">
+                        <label class="layui-form-label">广告链接</label>
+                        <div class="layui-input-inline w300">
+                            <input type="text" name="theme[ads][search_v][link]" placeholder="广告链接" value="{$tplconfig['theme']['ads']['search_v']['link']}" class="layui-input">
+                        </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">广告图片</label>
+                            <div class="layui-input-inline w300">
+                                <input type="text" name="theme[ads][search_v][pic]]" placeholder="图片地址或路径" value="{$tplconfig['theme']['ads']['search_v']['pic']}" class="layui-input upload-input">
+                            </div>
+                            <div class="layui-input-inline ">
+                                <button type="button" class="pear-btn pear-btn-primary pear-btn-md layui-upload" lay-data="{data:{thumb:0,thumb_class:'theme[ads][search_v][pic]'}}" id="upload1">选择文件</button>
+                            </div>
+                        </div>
+                       </div>
+                     </fieldset>
+                     <fieldset class="layui-elem-field">
+                       <legend>文章页横幅广告</legend>
+                       <div class="layui-field-box">
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">广告状态</label>
+                            <div class="layui-input-inline w200">
+                                <input type="radio" name="theme[ads][art_w][btn]" value="0" title="关闭" {if condition="$tplconfig['theme']['ads']['art_w']['btn'] eq 0"}checked {/if}>
+                                <input type="radio" name="theme[ads][art_w][btn]" value="1" title="开启" {if condition="$tplconfig['theme']['ads']['art_w']['btn'] eq 1"}checked {/if}>
+                            </div>
+                            <div class="layui-form-mid layui-word-aux">关闭后不显示对应模块和内容</div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">广告代码</label>
+                            <div class="layui-input-block">
+                                <textarea name="theme[ads][art_w][content]" class="layui-textarea"  placeholder="请输入广告代码">{$tplconfig['theme']['ads']['art_w']['content']}</textarea>
+                            </div>
+                        </div>
+                       </div>
+                     </fieldset>
+                     <fieldset class="layui-elem-field">
+                       <legend>文章页侧边栏广告</legend>
+                       <div class="layui-field-box">
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">广告状态</label>
+                            <div class="layui-input-inline w200">
+                                <input type="radio" name="theme[ads][art_r][btn]" value="0" title="关闭" {if condition="$tplconfig['theme']['ads']['art_r']['btn'] eq 0"}checked {/if}>
+                                <input type="radio" name="theme[ads][art_r][btn]" value="1" title="开启" {if condition="$tplconfig['theme']['ads']['art_r']['btn'] eq 1"}checked {/if}>
+                            </div>
+                            <div class="layui-form-mid layui-word-aux">关闭后不显示对应模块和内容（本模块仅PC端显示）</div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">广告代码</label>
+                            <div class="layui-input-block">
+                                <textarea name="theme[ads][art_r][content]" class="layui-textarea"  placeholder="请输入广告代码">{$tplconfig['theme']['ads']['art_r']['content']}</textarea>
+                            </div>
+                        </div>
+                       </div>
+                     </fieldset>
+                     <fieldset class="layui-elem-field">
+                       <legend>文章页侧列表广告</legend>
+                       <div class="layui-field-box">
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">广告状态</label>
+                            <div class="layui-input-inline w200">
+                                <input type="radio" name="theme[ads][artlist][btn]" value="0" title="关闭" {if condition="$tplconfig['theme']['ads']['artlist']['btn'] eq 0"}checked {/if}>
+                                <input type="radio" name="theme[ads][artlist][btn]" value="1" title="开启" {if condition="$tplconfig['theme']['ads']['artlist']['btn'] eq 1"}checked {/if}>
+                            </div>
+                            <div class="layui-form-mid layui-word-aux">关闭后不显示对应模块和内容</div>
+                            <label class="layui-form-label">广告提示标签</label>
+                            <div class="layui-input-inline w200" style="margin: 0;">
+                                <input type="radio" name="theme[ads][artlist][tbtn]" value="0" title="关闭" {if condition="$tplconfig['theme']['ads']['artlist']['tbtn'] eq 0"}checked {/if}>
+                                <input type="radio" name="theme[ads][artlist][tbtn]" value="1" title="开启" {if condition="$tplconfig['theme']['ads']['artlist']['tbtn'] eq 1"}checked {/if}>
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                        <label class="layui-form-label">广告标题</label>
+                        <div class="layui-input-inline w300">
+                            <input type="text" name="theme[ads][artlist][title]" placeholder="广告标题" value="{$tplconfig['theme']['ads']['artlist']['title']}" class="layui-input">
+                        </div>
+                        </div>
+                        <div class="layui-form-item">
+                        <label class="layui-form-label">广告链接</label>
+                        <div class="layui-input-inline w300">
+                            <input type="text" name="theme[ads][artlist][link]" placeholder="广告链接" value="{$tplconfig['theme']['ads']['artlist']['link']}" class="layui-input">
+                        </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">广告图片</label>
+                            <div class="layui-input-inline w300">
+                                <input type="text" name="theme[ads][artlist][pic]" placeholder="图片地址或路径" value="{$tplconfig['theme']['ads']['artlist']['pic']}" class="layui-input upload-input">
+                            </div>
+                            <div class="layui-input-inline ">
+                                <button type="button" class="pear-btn pear-btn-primary pear-btn-md layui-upload" lay-data="{data:{thumb:0,thumb_class:'theme[ads][artlist][pic]'}}" id="upload1">选择文件</button>
+                            </div>
+                        </div>
+                       </div>
+                     </fieldset>
+                    </div>
+                </div>
+            </div>
+          </div>
+        </div>
+        <div class="bottom">
+          <div class="button-container">
+            <button
+              type="submit"
+              class="pear-btn pear-btn-primary pear-btn-sm"
+              lay-submit=""
+              lay-filter="formSubmit"
+              data-child=""
+            >
+              <i class="layui-icon layui-icon-ok"></i>
+              {:lang('btn_save')}
+            </button>
+          </div>
+        </div>
+      </form>
+</div>
+{include file="../../../application/admin/view/public/foot" /}
+<script type="text/javascript" src="{:MAC_BASE_PATH}/static/js/admin_common.js"></script>
+<script type="text/javascript">
+    layui.use(['form','upload', 'layer'], function(){
+        // 操作对象
+        var form = layui.form
+                , layer = layui.layer
+                , upload = layui.upload;
+
+        form.on('radio(cache_type)',function(data){
+            $('.row_cache_server').hide();
+           if(data.value=='memcache' || data.value=='redis' || data.value=='memcached'){
+               $('.row_cache_server').show();
+           }
+        });
+        upload.render({
+            elem: '.layui-upload'
+            ,url: "{:url('upload/upload')}?flag=site"
+            ,method: 'post'
+            ,before: function(input) {
+                layer.msg('文件上传中...', {time:3000000});
+            },done: function(res, index, upload) {
+                var obj = this.item;
+                if (res.code == 0) {
+                    layer.msg(res.msg);
+                    return false;
+                }
+                layer.closeAll();
+                var input = $(obj).parent().parent().find('.upload-input');
+                if ($(obj).attr('lay-type') == 'image') {
+                    input.siblings('img').attr('src', res.data.file).show();
+                }
+                input.val(res.data.file);
+
+                if(res.data.thumb_class !=''){
+                    $('.'+ res.data.thumb_class).val(res.data.thumb[0].file);
+                }
+            }
+        });
+        $('.upload-input').hover(function (e){
+            var e = window.event || e;
+            var imgsrc = $(this).val();
+            if(imgsrc.trim()==""){ return; }
+            var left = e.clientX+document.body.scrollLeft+20;
+            var top = e.clientY+document.body.scrollTop+20;
+            $(".showpic").css({left:left,top:top,display:""});
+            if(imgsrc.indexOf('://')<0){ imgsrc = ROOT_PATH + '/' + imgsrc;	} else{ imgsrc = imgsrc.replace('mac:','http:'); }
+            $(".showpic_img").attr("src", imgsrc);
+        },function (e){
+            $(".showpic").css("display","none");
+        });
+
+    });
+</script>
+</body>
+</html>

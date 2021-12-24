@@ -1,0 +1,13 @@
+{if$tplconfig['theme']['ads']['btn']==1||$tplconfig['theme']['ads']['btn']==2&&$user.group_id lt 3}
+{if condition="$tplconfig['theme']['ads']['double']['btn'] eq 1"}
+<style>.hl_ads_double{width: {$tplconfig['theme']['ads']['double']['w']|mac_default='100px'};height: {$tplconfig['theme']['ads']['double']['h']|mac_default='300px'};}</style>
+<div id="LeftDiv" class="hl_ads_double">
+<a class="close_ads_lbtn" href="javascript:void(0)"><i class="iconfont">&#xe616;</i></a>
+{$tplconfig['theme']['ads']['double']['content']}
+</div>
+<div id="RightDiv" class="hl_ads_double">
+<a class="close_ads_rbtn" href="javascript:void(0)"><i class="iconfont">&#xe616;</i></a>
+{$tplconfig['theme']['ads']['double']['content']}
+</div>
+<script>var w=$(window).width();if(w<820){$("#LeftDiv,#RightDiv").remove();}$(".close_ads_lbtn").click(function(){$("#LeftDiv").remove();});$(".close_ads_rbtn").click(function(){$("#RightDiv").remove();});</script>
+{/if}{/if}

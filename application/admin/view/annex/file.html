@@ -1,0 +1,83 @@
+{include file="../../../application/admin/view/public/head" /}
+
+<div class="">
+
+    <div class="layui-card">
+        <div class="layui-card-body">
+          <table id="role-table" lay-filter="role-table"></table>
+          <div
+            class="layui-form layui-border-box layui-table-view"
+            lay-filter="LAY-table-1"
+            lay-id="role-table"
+            style=""
+          >
+            <div class="layui-table-tool">
+              <div class="layui-table-tool-temp">
+                <a href="{:url('data')}" class="pear-btn pear-btn-primary pear-btn-md "><i class="layui-icon">&#xe620;</i>{:lang('return')}</a>
+                <a data-href="{:url('del')}" class="pear-btn pear-btn-primary pear-btn-md j-page-btns confirm"><i class="layui-icon">&#xe640;</i>{:lang('del')}</a>
+              </div>
+            </div>
+            <div class="layui-table-box">
+              <div class="layui-table-header">
+        <form class="layui-form" method="post" id="pageListForm" >
+          <table
+          cellspacing="0"
+          cellpadding="0"
+          border="0"
+          class="layui-table"
+          lay-skin="line"
+          >
+          <thead>
+            <tr>
+                <th><input type="checkbox" lay-skin="primary" lay-filter="allChoose">{:lang('file_name')}</th>
+                <th width="200">{:lang('file_size')}</th>
+                <th width="200">{:lang('file_time')}</th>
+            </tr>
+          </thead>
+          <tbody>
+            {if condition="$ischild eq 1"}
+        <tr><td colspan="3"><a href="{:url('annex/file',['path'=>$uppath])}">...{:lang('return_parent_dir')}</a></td></tr>
+        {/if}
+
+            {volist name="files" id="vo"}
+            <tr>
+                {if condition="$vo.isfile eq 1"}
+                <th><input type="checkbox" name="ids[]" value=".{$vo.path}" class="layui-checkbox checkbox-ids" lay-skin="primary"> <a href="{$vo.path}" target="_blank">{$vo.name}</a></th>
+                <td>{$vo.size}</td>
+                <td>{$vo.time|mac_day='color'}</td>
+                {else}
+                <th><a href="{:url('annex/file',['path'=>$vo.path])}">{$vo.name}</a></th>
+                <td></td>
+                <td></td>
+                {/if}
+            </tr>
+            {/volist}
+          </tbody>
+          <tfoot>
+            <tr><td colspan="3">{:lang('sum')}<b class="red">{$num_path}</b>{:lang('dir')},<b class="red">{$num_file}</b>{:lang('file')},{:lang('occupies')}<b class="red">{$sum_size}</b>{:lang('space')}</td></tr>
+        </tfoot>
+          </table>
+        </form>
+              </div>
+              
+            </div>
+            
+            
+          </div>
+        </div>
+      </div>
+      
+  </div>
+
+
+
+{include file="../../../application/admin/view/public/foot" /}
+<script type="text/javascript">
+
+    layui.use(['element', 'layer'], function() {
+
+
+    });
+</script>
+</body>
+</html>

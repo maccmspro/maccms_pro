@@ -1,0 +1,182 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title >{:lang_web('user_zxcz')} -{$maccms.site_name}</title>
+<meta name="keywords" content="{$maccms.site_keywords}"/>
+<meta name="description" content="{$maccms.site_description}"/>
+{include file="user/include" /}
+</head>
+<style>
+	@font-face {
+  		font-family: 'iconfont';  /* Project id 2776795 */
+  		src: url('//at.alicdn.com/t/font_2776795_2e598cd2vde.woff2?t=1630501041768') format('woff2'),
+       		url('//at.alicdn.com/t/font_2776795_2e598cd2vde.woff?t=1630501041768') format('woff'),
+       		url('//at.alicdn.com/t/font_2776795_2e598cd2vde.ttf?t=1630501041768') format('truetype');
+	}
+</style>
+<body>
+{include file="public/head" /}
+<!-- 会员中心 -->
+<div class="member-wrap member-wrap-bg">
+	<div id="member" class="fn-clear">
+		<div id="left" >
+			<div class="m-nav">
+				<a href="javascript:MAC.GoBack()" class="btn-left"><i class="iconfont ico-right">&#xe625;</i></a>
+				<a href="{:MAC_BASE_PATH}/" class="btn-right"><i class="iconfont ico-right">&#xe634;</i></a>
+				<span class="mb-title"  data-lang="user_grzx">{:lang_web('user_grzx')}</span>
+			</div>
+			{include file="user/left_nav" /}
+		</div>
+		<div id="right" >
+			<div style="padding: 0.45rem;">
+				<div class="lable-wrap">
+					<div class="label-item active" data-step="1" onclick="setStep('1')">
+						<p class="p1" data-lang="user_zxcz">{:lang_web('user_zxcz')}</p>
+					</div>
+					<div class="label-item" data-step="2" onclick="setStep('2')">
+						<p  class="p1" data-lang="user_czkcz">{:lang_web('user_czkcz')}</p>
+					</div>
+				</div>
+			</div>
+			<div class="m-nav">
+				<a href="javascript:MAC.GoBack()" class="btn-left"><i class="iconfont ico-right">&#xe625;</i></a>
+				<span class="mb-title" data-lang="user_zxcz">{:lang_web('user_zxcz')}</span>
+			</div>
+			<div class="co-right co-hi label-one">
+				<div id="listCon">
+					<div class="cur">
+						<form id="fm" name="fm" method="post" action="" >
+							<p><span class="xiang" data-lang="user_syjf">{:lang_web('user_syjf')}</span>{$obj.user_points}</p>
+							<p><span class="xiang" data-lang="user_czje">{:lang_web('user_czje')}</span>
+								<input type="text" maxlength="8"  name="price" value="{$config.min}" class="member-input" >
+							</p>
+							<p class="hui">
+								<i class="iconfont">&#xe613;</i>
+								<span style="margin-left: 10px;" >
+								 <span data-lang="user_zcts1">{:lang_web('user_zcts1')}</span>{$config.pay.min} 
+								 <span data-lang="user_yuan">{:lang_web('user_yuan')}</span> ，<span data-lang="user_zcts2"> {:lang_web('user_zcts2')}</span>{$config.pay.scale}  
+								 <span data-lang="string_jf">{:lang_web('string_jf')}</span> 
+								</span>
+								 
+							</p>
+							<p><input type="button" data-value="string_submit" id="btn_submit_pay" class="search-button" value="{:lang_web('string_submit')}"></p>
+						</form>
+					</div>
+				</div>
+			</div>
+			<div class="co-right co-hi co-bottom label-two noshow-content">
+				<div id="listCon2">
+					<div class="cur">
+						<form id="fm2" name="fm" method="post" action="" >			
+							<p>
+								<span class="xiang" data-lang="user_czkh">{:lang_web('user_czkh')}</span>
+								<input type="text" data-placeholder='user_place_czkh' name="card_no" value="" placeholder="{:lang_web('user_place_czkh')}" class="member-input wt-input">
+								{if condition="$GLOBALS['config']['pay']['card']['url'] neq ''"}
+								<a class="bind-a" target="_blank" href="{$GLOBALS['config']['pay']['card']['url']}">购买卡密</a>
+								{/if}
+							</p>
+							<p>
+								<span class="xiang" data-lang="user_czmm">{:lang_web('user_czmm')}</span>
+								<input type="text" data-placeholder="user_place_czmm" name="card_pwd" value="" placeholder="{:lang_web('user_place_czmm')}" class="member-input">
+							</p>
+							<p class="hui">
+								<i class="iconfont">&#xe613;</i> 
+								<span style="margin-left: 10px;" data-lang="user_zczts">{:lang_web('user_zczts')}</span>
+								
+							</p>
+							<p><input data-value="string_submit" type="button" id="btn_submit_card" class="search-button" value="{:lang_web('string_submit')}"></p>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</div>
+	<div style="width:30rem;margin: 2rem auto;">
+		{include file="public/friendLink" }
+	</div>
+</div>
+<script>
+	function setStep(val){
+		$('.label-item').each((index,item)=>{
+			if(val==item.getAttribute('data-step')){
+				item.classList.add('active')
+			}else{
+				item.classList.remove('active')
+			}
+		})
+		if(val==1){
+			$('.label-one').addClass('show-content')
+			$('.label-two').addClass('noshow-content')
+			$('.label-two').removeClass('show-content')
+		}else{
+			$('.label-two').addClass('show-content')
+			$('.label-one').addClass('noshow-content')
+			$('.label-one').removeClass('show-content')
+		}
+	}
+	$(".go-back").click(function () {
+		var ref = document.referrer;
+		location.href=ref;
+	});
+
+	$('#btn_submit_pay').click(function(){
+		var that = $(this);
+		var price = $("input[name='price']").val();
+		if(Number(price)<1){
+			return;
+		}
+		if(confirm( MAC.GetLang('string_zxcz')) ) {
+			$.ajax({
+				url: "{:url('user/buy')}",
+				type: "post",
+				dataType: "json",
+				data: {price: price,flag:'pay'},
+				beforeSend: function () {
+					$("#btn_submit_pay").css("background","#fd6a6a").val("loading...");
+				},
+				success: function (r) {
+					if (r.code == 1) {
+						location.href="{:url('user/pay')}?order_code=" + r.data.order_code;
+					}
+					else{
+						alert(r.msg);
+					}
+				},
+				complete: function () {
+					$("#btn_submit_pay").css("background","#fa4646").val(MAC.GetLang('string_tj'));
+				}
+			});
+		}
+	});
+
+	$('#btn_submit_card').click(function(){
+		var that = $(this);
+		var no = $('input[name="card_no"]').val();
+		var pwd = $('input[name="card_pwd"]').val();
+		if(no=='' || pwd==''){
+			alert( MAC.GetLang('string_srczk_mm'));
+			return;
+		}
+		if(confirm( MAC.GetLang('string_czkcz')) ){
+			$.ajax({
+				url: "{:url('user/buy')}",
+				type: "post",
+				dataType: "json",
+				data: {card_no: no,card_pwd:pwd,flag:'card'},
+				beforeSend: function () {
+					$("#btn_submit_card").css("background","#fd6a6a").val("loading...");
+				},
+				success: function (r) {
+					alert(r.msg);
+				},
+				complete: function () {
+					$("#btn_submit_card").css("background","#fa4646").val(MAC.GetLang('string_tj'));
+				}
+			});
+		}
+	});
+</script>
+{include file="public/foot" /}
+</body>
+</html>

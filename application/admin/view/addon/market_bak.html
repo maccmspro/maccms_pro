@@ -1,0 +1,103 @@
+{include file="../../../application/admin/view/public/head" /}
+<div class="page-container p10">
+
+    <div class="my-toolbar-box">
+
+        <div class="center mb10">
+            <form class="layui-form " method="post" action="{:url('market')}">
+                <input type="hidden" value="{$param.select}" name="select">
+                <input type="hidden" value="{$param.input}" name="input">
+                <div class="layui-input-inline w200">
+                    <input type="text" autocomplete="off" placeholder="{:lang('admin/addon/market_name')}" class="layui-input" name="title" value="{$param['title']}">
+                </div>
+                <div class="layui-input-inline w100">
+                    <input type="text" autocomplete="off" placeholder="{:lang('admin/addon/market_username')}" class="layui-input" name="user_name" value="{$param['user_name']}">
+                </div>
+                <div class="layui-input-inline w100">
+                    <select name="is_free">
+                        <option value="">{:lang('admin/addon/market_is_free')}</option>
+                        <option value="0" {if condition="$param['is_free'] eq '0'"}selected {/if}>{:lang('yes')}</option>
+                        <option value="1" {if condition="$param['is_free'] eq '1'"}selected {/if}>{:lang('not')}</option>
+                    </select>
+                </div>
+                <div class="layui-input-inline w150">
+                    <select name="status">
+                        <option value="">{:lang('admin/addon/market_status')}</option>
+                        <option value="-1" {if condition="$param['status'] eq '-1'"}selected {/if}>{:lang('admin/addon/market_status_-1')}</option>
+                        <option value="0" {if condition="$param['status'] eq '0'"}selected {/if}>{:lang('admin/addon/market_status_0')}</option>
+                        <option value="1" {if condition="$param['status'] eq '1'"}selected {/if}>{:lang('admin/addon/market_status_1')}</option>
+                    </select>
+                </div>
+                <div class="layui-input-inline">
+                    <input type="text" autocomplete="off" placeholder="{:lang('admin/addon/market_create_time')}" class="layui-input" name="title" value="{$param['create_time']}">
+                </div>
+                <div class="layui-input-inline">
+                    <input type="text" autocomplete="off" placeholder="{:lang('admin/addon/market_update_time')}" class="layui-input" name="user_name" value="{$param['update_time']}">
+                </div>
+                <button class="layui-btn mgl-20 j-search" >{:lang('btn_search')}</button>
+            </form>
+        </div>
+
+    </div>
+
+
+    <form class="layui-form " method="post" id="pageListForm">
+        <table class="layui-table" lay-size="sm">
+            <thead>
+            <tr>
+                <th width="25"><input type="checkbox" lay-skin="primary" lay-filter="allChoose"></th>
+                <th width="40">{:lang('id')}</th>
+                <th >{:lang('admin/addon/market_name')}</th>
+                <th width="120">{:lang('update_time')}</th>
+                <th width="80">{:lang('opt')}</th>
+            </tr>
+            </thead>
+
+            {volist name="list" id="vo"}
+            <tr>
+                <td><input type="checkbox" name="ids[]" value="{$vo.id}" class="layui-checkbox checkbox-ids" lay-skin="primary"></td>
+                <td>{$vo.id}</td>
+                <td><a target="_blank" class="layui-badge-rim " href="">{$vo.title}</a></td>
+                <td>{$vo.update_time|mac_day='color'}</td>
+                <td>
+                    <a class="layui-badge-rim j-iframe" data-full="1" data-href="{:url('marketinfo?id='.$vo['id'])}" href="javascript:;" title="{:lang('edit')}">{:lang('edit')}</a>
+                    <a class="layui-badge-rim j-tr-del" data-href="{:url('marketdel?ids='.$vo['id'])}" href="javascript:;" title="{:lang('del')}">{:lang('del')}</a>
+                </td>
+            </tr>
+            {/volist}
+            </tbody>
+        </table>
+        <div id="pages" class="center"></div>
+    </form>
+</div>
+
+
+
+
+{include file="../../../application/admin/view/public/foot" /}
+
+<script type="text/javascript">
+    var curUrl="{:url('addon/market',$param)}";
+    layui.use(['laypage', 'layer','form'], function() {
+        var laypage = layui.laypage
+            , layer = layui.layer,
+            form = layui.form;
+
+        laypage.render({
+            elem: 'pages'
+            ,count: {$total}
+            ,limit: {$limit}
+            ,curr: {$page}
+            ,layout: ['count', 'prev', 'page', 'next', 'limit', 'skip']
+            ,jump: function(obj,first){
+                if(!first){
+                    location.href = curUrl.replace('%7Bpage%7D',obj.curr).replace('%7Blimit%7D',obj.limit);
+                }
+            }
+        });
+
+
+    });
+</script>
+</body>
+</html>

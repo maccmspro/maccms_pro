@@ -1,0 +1,79 @@
+<body{if condition="$tplconfig['theme']['lbbanner']['btn'] eq 1" } class="bstem" {/if}>
+    {include file="public/head"} {if condition="$tplconfig['theme']['lbbanner']['btn'] eq 1"} {include file="module/banner"}{/if}
+    
+    <div class="container ">
+        <!-- 筛选 -->
+        <div class="directory-item" id="tv-directory">
+            <ul class="directory-list show-pc">
+                    <li>
+                        <dl class="leixing">
+                            <dt><span data-lang="string_type_byType">{:lang_web('string_type_byType')}</span><i class="iconfont"></i></dt> {empty name="$obj.type_extend.class"} {maccms:foreach name=":explode(',',$obj.parent.type_extend.class)"}
+                            <dd><a href="{:mac_url_type($obj,['class'=>$vo],'show')}">{$vo}</a></dd>
+                            {/maccms:foreach} {else /} {maccms:foreach name=":explode(',',$obj.type_extend.class)"}
+                            <dd><a href="{:mac_url_type($obj,['class'=>$vo],'show')}">{$vo}</a></dd>
+                            {/maccms:foreach} {/empty}
+                        </dl>
+                    </li>
+                    <li>
+                        <dl class="area">
+                            <dt><span data-lang="string_type_byRegion">{:lang_web('string_type_byRegion')}</span><i class="iconfont"></i></dt> {empty name="$obj.type_extend.area"} {maccms:foreach name=":explode(',',$obj.parent.type_extend.area)"}
+                            <dd><a href="{:mac_url_type($obj,['class'=>$vo],'show')}">{$vo}</a></dd>
+                            {/maccms:foreach} {else /} {maccms:foreach name=":explode(',',$obj.type_extend.area)"}
+                            <dd><a href="{:mac_url_type($obj,['area'=>$vo],'show')}">{$vo}</a></dd>
+                            {/maccms:foreach} {/empty}
+                        </dl>
+                    </li>
+                    <li>
+                        <dl>
+                            <dt><span data-lang="string_type_byAge">{:lang_web('string_type_byAge')}</span><i class="iconfont"></i></dt> {empty name="$obj.type_extend.year"} {maccms:foreach name=":explode(',',$obj.parent.type_extend.year)"}
+                            <dd><a href="{:mac_url_type($obj,['class'=>$vo],'show')}">{$vo}</a></dd>
+                            {/maccms:foreach} {else /} {maccms:foreach name=":explode(',',$obj.type_extend.year)"}
+                            <dd><a href="{:mac_url_type($obj,['year'=>$vo],'show')}">{$vo}</a></dd>
+                            {/maccms:foreach} {/empty}
+                        </dl>
+                    </li>
+            </ul>
+        </div>
+        {if$obj.parent}{else}
+        {/if}
+        <!-- end 筛选 -->
+        {include file="ads/ads_all"}
+        <div class="vod_row tit_up">
+            {include file="module/typevbox"} {maccms:foreach name=":explode(',',$obj.type_extend.area)" id="vo1" key="key1"} {if condition="$key1 lt 4"}
+            <div class="pannel clearfix">
+                <div class="pannel_head clearfix">
+                    <!-- <a class="text_muted pull_right v_change" href="javascript:;"><i class="iconfont">&#xe62a;</i>&nbsp;换一换</a> -->
+                    <h2 class="title">{$vo1}{$obj.type_name}</h2>
+                    <a class="text_muted pull_left" href="{:mac_url_type($obj,['area'=>$vo1],'show')}">
+                        <span data-lang="string_type_more2">{:lang_web('string_type_more2')}</span><i class="iconfont more_i">&#xe623;</i>
+                    </a>
+                    <span class="hidden_xs pull_left">
+						{maccms:vod num="3" type="current" area="'.$vo1.'" order="dasc" by="hits" id="vo2" key="key2"}
+                        <span class="split_line"></span><a {if condition="$tplconfig['theme']['playlink']['btn'] eq 1" }href="{:mac_url_vod_play($vo2,['sid'=>$vo2.sid,'nid'=>1])}" {else/}href="{:mac_url_vod_detail($vo2)}" {/if} title="{$vo2.vod_name}"
+                        class="text_muted">{$vo2.vod_name|mac_substring=16}</a> {/maccms:vod}
+                    </span>
+                </div>
+                <!-- 列表 -->
+                <div class="cbox_list">
+                    <div class="cbox1">
+                        <ul class="vodlist vodlist_wi {if$tplconfig['theme']['vod']['num']=='6'}list_v6{elseif$tplconfig['theme']['vod']['num']=='12'}list_v12{/if} clearfix">
+                            {maccms:vod num="'.($tplconfig['theme']['vod']['num']).'" type="current" area="'.$vo1.'" order="desc" by="time"} {include file="widget/vod_box"} {/maccms:vod}
+                        </ul>
+                    </div>
+                    <div class="cbox2 hide">
+                        <ul class="vodlist vodlist_wi {if$tplconfig['theme']['vod']['num']=='6'}list_v6{elseif$tplconfig['theme']['vod']['num']=='12'}list_v12{/if} clearfix">
+                            {maccms:vod num="'.($tplconfig['theme']['vod']['num']).'" type="current" area="'.$vo1.'" start="'.($tplconfig['theme']['vod']['num']+1).'" order="desc" by="time"} {include file="widget/vod_box"} {/maccms:vod}
+                        </ul>
+                    </div>
+                    <div class="cbox3 hide">
+                        <ul class="vodlist vodlist_wi {if$tplconfig['theme']['vod']['num']=='6'}list_v6{elseif$tplconfig['theme']['vod']['num']=='12'}list_v12{/if} clearfix">
+                            {maccms:vod num="'.($tplconfig['theme']['vod']['num']).'" type="current" area="'.$vo1.'" start="'.($tplconfig['theme']['vod']['num']*2+1).'" order="desc" by="time"} {include file="widget/vod_box"} {/maccms:vod}
+                        </ul>
+                    </div>
+                </div>
+                <!-- end 列表 -->
+            </div>
+            {/if} {/maccms:foreach}
+        </div>
+    </div>
+    {include file="module/banstem"}

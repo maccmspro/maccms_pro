@@ -1,0 +1,79 @@
+{include file="../../../application/admin/view/public/head" /}
+
+
+
+
+
+<div class="">
+  <div class="layui-card">
+    <div class="layui-card-body">
+  <fieldset class="layui-elem-field">
+    <legend>{:lang('base_info')}</legend>
+    <div class="layui-field-box">
+        {$url_list} <br>{:lang('sum')}：{$total} {:lang('data')}，{:lang('duplicate_data')}：{$re}{:lang('data')}，{:lang('distinct_into')}{$total-$re}{:lang('data')}。
+    </div>
+</fieldset>
+</div></div>
+
+  <div class="layui-card">
+      <div class="layui-card-body">
+        <table id="role-table" lay-filter="role-table"></table>
+        <div
+          class="layui-form layui-border-box layui-table-view"
+          lay-filter="LAY-table-1"
+          lay-id="role-table"
+          style=""
+        >
+          
+          <div class="layui-table-box">
+            <div class="layui-table-header">
+      <form class="layui-form" method="post" id="pageListForm" >
+        <table
+        cellspacing="0"
+        cellpadding="0"
+        border="0"
+        class="layui-table"
+        lay-skin="line"
+        >
+        <thead>
+          <tr>
+            <th width="50">{:lang('serial_num')}</th>
+        <th>{:lang('link')}</th>
+            <th>{:lang('name')}</th>
+          </tr> 
+        </thead>
+        <tbody>
+          {foreach name="url" item="v"}
+		  <tr>
+			  <td>{$n=$n+1}</td>
+			  <td>{$v.url}</td>
+			  <td>{$v.title}</td>
+		  </tr>
+	  {/foreach}
+        </tbody>
+        </table>
+      </form>
+            </div>
+            
+          </div>
+          
+          
+        </div>
+      </div>
+    </div>
+    
+</div>
+<script>
+var total_page = {$total_page};
+var page = {$param['page']};
+var id = {$param['id']};
+if (total_page > page) {
+    var url = "{:url('cj/col_url_list')}";
+	page += 1;
+    //location.href= url + '?page='+page+'&id='+id;
+} else {
+	//alert('采集完成');
+}
+</script>
+</body>
+</html>

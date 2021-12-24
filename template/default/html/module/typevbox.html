@@ -1,0 +1,177 @@
+<style>
+    @media screen and (min-width:820px){
+    .container{
+        width: 100%;
+    }
+    .vod_row{
+        width: 30rem;
+        margin: auto;
+    }
+    .directory-list{
+        width: 30rem;
+        margin: auto;
+        display: flex;
+        justify-content: space-between;
+    }
+    .directory-item{
+        border: none;
+    }
+    .directory-list dl{
+        border: none;
+    }
+    .directory-list li{
+        width: 32%;
+    }
+    #tv-directory .directory-list dl.leixing{
+        width: 100%;
+    }
+    #tv-directory .directory-list dl.area{
+        width: 100%;
+    }
+    #tv-directory .directory-list dl{
+        width: 100%;
+    }
+    .directory-list dt{
+        background: transparent;
+        color: #8d8d8d;
+        font-size: 20px;
+        width: 100px;
+        padding: 0;
+    }
+    .directory-list dd{
+        margin-right: 20px;
+        margin-left: 0;
+    }
+    @media screen and (max-width:820px){
+		.container{
+			/* padding-top: 20px; */
+		}
+        .bstem .head_menu_b a.menu{
+			color: #fff;
+		}
+	}
+}
+</style>
+<!-- 综艺 -->
+<div id="vod_time" class="pannel clearfix">
+    <div class="show-mobile ">
+        <div class="classify_list">
+            <img class="classify_img " src="{:MAC_BASE_PATH}/template/default/images/pro/h-list5-a.png" >
+            {foreach name="vod_class" key="k" item="vo"}
+                <a class="classify_item" href="{:mac_url_type($info,['class'=>$vo],'show')}">{$vo}</a>
+            {/foreach}
+        </div>
+
+    </div>
+    <div class="pannel_head clearfix">
+        <h2 class="title"> <span data-lang="string_type_recent_hot">{:lang_web('string_type_recent_hot')}</span>{$obj.type_name}</h2>
+        <span class="hidden_xs pull_left">
+              {$obj.type_name} <span data-lang="string_type_channel">{:lang_web('string_type_channel')}</span> <span class="split_line"></span>
+        </span>
+        <a class="text_muted pull_left" href="{:mac_url_type($obj,[],'show')}" data-lang="string_type_more2">{:lang_web('string_type_more2')}<i class="iconfont more_i">&#xe623;</i></a>
+    </div>
+    <!-- 列表 -->
+    <div class="cbox_list">
+        <div class="cbox1">
+            <ul class="vodlist  vodlist_wi {if$tplconfig['theme']['vod']['num']=='6'}list_v6{elseif$tplconfig['theme']['vod']['num']=='12'}list_v12{/if} clearfix">
+
+                {php}
+                $tplconfig['theme']['vod']['num'] = ceil($tplconfig['theme']['vod']['num']/5)*5;
+                {/php}
+                {maccms:vod num="'.($tplconfig['theme']['vod']['num']).'" type="current" order="desc" by="hits_week"}
+                {include file="widget/vod_box"}
+                {/maccms:vod}
+            </ul>
+            <li class="vodlist_item1 vod_rank_list show-pc">
+                <div class="pannel clearfix">
+                    <div class="pannel_head clearfix">
+                        <h3 class="title" data-lang="string_type_hot_rank">
+                            {:lang_web('string_type_hot_rank')}
+                        </h3>
+                    </div>
+                    <ul class="ranklist_r clearfix">
+                        {php}
+                            $num = 0;
+                        {/php}
+                        {maccms:vod num="20" paging="no" type="current"}
+                        {php}
+                            $num++;
+                        {/php}
+                        {/maccms:vod}
+                        {php}
+                            if($num <= 0){
+                                $status = 1;
+                            }elseif($num > 0 && $num <= 18){
+                                $status = 2;
+                            }else{
+                                $status = 3;
+                            }
+                        {/php}
+                        {if condition="$status == 1"}
+                            <li class="part_eone rank-more">
+                                <a class="rank-more-href" data-lang="string_type_no_data">{:lang_web('string_type_no_data')}</a>
+                            </li>
+                        {/if}
+
+                        {if condition="$status == 2"}
+                            {maccms:vod num="18" paging="no" type="current" order="desc" by="score"}
+                            {include file="widget/rank_box_text"}
+                            {/maccms:vod}
+
+                        {/if}
+                        {if condition="$status == 3"}
+                            {maccms:vod num="18" paging="no" type="current" order="desc" by="score"}
+                            {include file="widget/rank_box_text"}
+                            {/maccms:vod}
+                            <li class="part_eone rank-more">
+                                <a class="rank-more-href" href="{:mac_url('label/rank')}" data-lang="string_type_more">{:lang_web('string_type_more')}</a>
+                            </li>
+                        {/if}
+
+                    </ul>
+                </div>
+            </li>
+        </div>
+        <div class="cbox2 hide">
+            <ul class="vodlist vodlist_wi {if$tplconfig['theme']['vod']['num']=='6'}list_v6{elseif$tplconfig['theme']['vod']['num']=='12'}list_v12{/if} clearfix">
+                {maccms:vod num="'.($tplconfig['theme']['vod']['num']).'" type="current" start="'.($tplconfig['theme']['vod']['num']+1).'" order="desc" by="hits_week"} {include file="widget/vod_box"} {/maccms:vod}
+            </ul>
+        </div>
+        <div class="cbox3 hide">
+            <ul class="vodlist vodlist_wi {if$tplconfig['theme']['vod']['num']=='6'}list_v6{elseif$tplconfig['theme']['vod']['num']=='12'}list_v12{/if} clearfix">
+                {maccms:vod num="'.($tplconfig['theme']['vod']['num']).'" type="current" start="'.($tplconfig['theme']['vod']['num']*2+1).'" order="desc" by="hits_week"} {include file="widget/vod_box"} {/maccms:vod}
+            </ul>
+        </div>
+    </div>
+    <!-- end 列表 -->
+</div>
+<div id="vod_level" class="pannel clearfix" style="display: none;">
+    <div class="pannel_head clearfix">
+        <h2 class="title">{$obj.type_name} <span data-lang="string_type_recommendation">{:lang_web('string_type_recommendation')}</span> </h2>
+        <span class="hidden_xs pull_left">
+               {$obj.type_name}<span data-lang="string_type_channel">{:lang_web('string_type_channel')}</span><span class="split_line"></span>
+        </span>
+        <a class="text_muted pull_left" href="{:mac_url_type($obj,[],'show')}"> <span data-lang="string_type_more2">{:lang_web('string_type_more2')}</span>  <i class="iconfont more_i">&#xe623;</i></a>
+    </div>
+    <!-- 列表 -->
+    <div class="cbox_list">
+        <div class="cbox1">
+            <ul class="vodlist 222222 vodlist_wi {if$tplconfig['theme']['vod']['num']=='6'}list_v6{elseif$tplconfig['theme']['vod']['num']=='12'}list_v12{/if} clearfix">
+                {maccms:vod num="'.($tplconfig['theme']['vod']['num']).'" type="current" level="1" order="desc" by="sort"} {include file="widget/vod_box"} {/maccms:vod}
+            </ul>
+        </div>
+        <div class="cbox2 hide">
+            <ul class="vodlist vodlist_wi {if$tplconfig['theme']['vod']['num']=='6'}list_v6{elseif$tplconfig['theme']['vod']['num']=='12'}list_v12{/if} clearfix">
+                {maccms:vod num="'.($tplconfig['theme']['vod']['num']).'" type="current" level="1" start="'.($tplconfig['theme']['vod']['num']+1).'" order="desc" by="sort"} {include file="widget/vod_box"} {/maccms:vod}
+            </ul>
+        </div>
+        <div class="cbox3 hide">
+            <ul class="vodlist vodlist_wi {if$tplconfig['theme']['vod']['num']=='6'}list_v6{elseif$tplconfig['theme']['vod']['num']=='12'}list_v12{/if} clearfix">
+                {maccms:vod num="'.($tplconfig['theme']['vod']['num']).'" type="current" level="1" start="'.($tplconfig['theme']['vod']['num']*2+1).'" order="desc" by="sort"} {include file="widget/vod_box"} {/maccms:vod}
+            </ul>
+        </div>
+    </div>
+    <!-- end 列表 -->
+    <!-- 友情链接 -->
+    {include file="public/friendLink"}
+</div>

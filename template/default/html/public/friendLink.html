@@ -1,0 +1,48 @@
+<style>
+    #link{
+        width: 100%;
+        border: none;
+        position: relative;
+        z-index: 99;
+    }
+    #link #title{
+        width: 100%;
+        color: #343434;
+        font-size: 16px;
+        height: 40px;
+        line-height: 42px;
+        border: none;
+        border-top: 1px solid #DDDDDD;
+    }
+    #link ul{
+        width: 100%;
+    }
+    #link ul li{
+        float: left;
+    }
+    #link ul li a:link{
+        display: block;
+        font-size: 12px;
+        height: 35px;
+        line-height: 35px;
+        text-align: left;
+        padding-right: 20px;
+        float: left;
+    }
+</style>
+{if $tplconfig['theme']['links']['btn']}
+<div id="link" class="block show-pc">
+    <div id="title">{$tplconfig['theme']['links']['title']}</div>
+    <ul>
+        {maccms:link num="'.$tplconfig['theme']['links']['num'].'" type="all" order="desc" by="id"}
+        <li>
+            <a href="{$vo.link_url}" target="_blank">{$vo.link_name}</a>
+        </li>
+        {/maccms:link}
+        <li>
+            <a href="{:MAC_BASE_URL}/website/index.html" data-lang='website_zyz'>{:lang_web('website_zyz')}</a>
+        </li>
+        <div class="clear"></div>
+    </ul>
+</div>
+{/if}

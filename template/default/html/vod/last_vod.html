@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    {include file="public/include"}
+    
+    <script src="{:MAC_BASE_PATH}/template/default/asset/js/parts/jquery.adaptive.js"></script>
+</head>
+<style>
+    @media screen and (min-width:820px){
+        
+        .container{
+			padding-top: 120px;
+		}
+        .head_menu_a li a {
+            color: #333;
+        }
+        .head_menu_a li.active a{
+            color: #ff5f00 ;
+        }
+        .head_box {
+			box-shadow: 0 2px 15px rgba(0, 0, 0, .1);
+		}
+        .vodlist_titbox{
+            height: auto;
+        }
+		.header .head_menu_a a{
+			color: #333;
+		}
+        
+    }
+    @media screen and (max-width:820px){
+        .head_a{
+            display: block !important; 
+        }
+    }
+    @font-face {
+        font-family: 'iconfont';  /* Project id 2776795 */
+        src: url('//at.alicdn.com/t/font_2776795_gtgdikivq1.woff2?t=1634829394026') format('woff2'),
+        url('//at.alicdn.com/t/font_2776795_gtgdikivq1.woff?t=1634829394026') format('woff'),
+        url('//at.alicdn.com/t/font_2776795_gtgdikivq1.ttf?t=1634829394026') format('truetype');
+    }
+    
+</style>
+<div class="member-wrap last-bg">
+{if condition="($obj['type_id']==$tplconfig['theme']['type']['zb']) OR ($obj['parent']['type_id']==$tplconfig['theme']['type']['zb'])"}
+    <!-- {include file="module/typezb"} -->
+{else/}
+    {in name="obj.type_id" value="$tplconfig['theme']['type']['ht']"}
+        <!-- {include file="module/typeht"} -->
+    {else}
+        {in name="obj.type_id" value="$tplconfig['theme']['type']['ho']"}
+            <!-- {include file="module/typeho"} -->
+        {else}
+            {in name="obj.type_id" value="$tplconfig['theme']['type']['hb']"}
+                <!-- {include file="module/typehb"} -->
+            {else}
+                {include file="module/typeqt"}
+                
+            {/in}
+        {/in}
+    {/in}
+{/if}
+
+
+{include file="public/foot"}
+</div>
+</body>
+
+</html>

@@ -1,0 +1,100 @@
+{include file="../../../application/admin/view/public/head" /}
+
+<div class="">
+
+    <div class="layui-card">
+        <div class="layui-card-body">
+          <table id="role-table" lay-filter="role-table"></table>
+          <div
+            class="layui-form layui-border-box layui-table-view"
+            lay-filter="LAY-table-1"
+            lay-id="role-table"
+            style=""
+          >
+            <div class="layui-table-tool">
+              <div class="layui-table-tool-temp">
+                <a  data-full="1" data-href="{:url('info')}" class="pear-btn pear-btn-primary pear-btn-md j-iframe"><i class="layui-icon">&#xe654;</i>{:lang('add')}</a>
+                <a data-href="{:url('del')}" class="pear-btn pear-btn-danger pear-btn-md j-page-btns confirm"><i class="layui-icon">&#xe640;</i>{:lang('del')}</a>
+            
+              </div>
+            </div>
+            <div class="layui-table-box">
+              <div class="layui-table-header">
+        <form class="layui-form" method="post" id="pageListForm" >
+          <table
+          cellspacing="0"
+          cellpadding="0"
+          border="0"
+          class="layui-table"
+          lay-skin="line"
+          >
+          <thead>
+            <tr>
+                <th width="25"><input type="checkbox" lay-skin="primary" lay-filter="allChoose"></th>
+                <th width="100">{:lang('id')}</th>
+                <th >{:lang('name')}</th>
+                <th width="100">{:lang('status')}</th>
+                <th width="100">{:lang('admin/group/pack_day')}</th>
+                <th width="100">{:lang('admin/group/pack_week')}</th>
+                <th width="100">{:lang('admin/group/pack_month')}</th>
+                <th width="100">{:lang('admin/group/pack_year')}</th>
+                <th width="100">{:lang('opt')}</th>
+            </tr>
+          </thead>
+          <tbody>
+            {volist name="list" id="vo"}
+            <tr>
+                <td>
+                    {if condition="$vo['group_id'] gt 2"}
+                    <input type="checkbox" name="ids[]" value="{$vo.group_id}" class="layui-checkbox checkbox-ids" lay-skin="primary">
+                    {/if}
+                </td>
+                <td>{$vo.group_id}</td>
+                <td>{$vo.group_name|htmlspecialchars}</td>
+                <td>
+                    {if condition="$vo['group_id'] gt 2"}
+                    <input type="checkbox" name="status" {if condition="$vo['group_status'] eq 1"}checked{/if} value="{$vo['group_status']}" lay-skin="switch" lay-filter="switchStatus" lay-text="{:lang('open')}|{:lang('close')}" data-href="{:url('field?col=group_status&ids='.$vo['group_id'])}">
+                    {/if}
+                </td>
+                <td>{$vo.group_points_day}</td>
+                <td>{$vo.group_points_week}</td>
+                <td>{$vo.group_points_month}</td>
+                <td>{$vo.group_points_year}</td>
+                <td>
+                    <a data-full="1" class="pear-btn pear-btn-primary pear-btn-md j-iframe" data-href="{:url('info?id='.$vo['group_id'])}" href="javascript:;" title="{:lang('edit')}">{:lang('edit')}</a>
+                    {if condition="$vo['group_id'] gt 2"}
+                    <a class="pear-btn pear-btn-danger pear-btn-md j-tr-del" data-href="{:url('del?ids='.$vo['group_id'])}" href="javascript:;" title="{:lang('del')}">{:lang('del')}</a>
+                    {/if}
+                </td>
+            </tr>
+            {/volist}
+          </tbody>
+          </table>
+        </form>
+              </div>
+              
+            </div>
+            
+            
+          </div>
+        </div>
+      </div>
+      
+      <blockquote class="layui-elem-quote layui-quote-nm">
+        {:lang('admin/group/help_tip')}
+    </blockquote>
+  </div>
+
+{include file="../../../application/admin/view/public/foot" /}
+
+<script type="text/javascript">
+
+    layui.use(['laypage', 'layer'], function() {
+        var laypage = layui.laypage
+                , layer = layui.layer;
+
+
+    });
+</script>
+</body>
+</html>

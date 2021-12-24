@@ -1,0 +1,156 @@
+<style>
+    #bgimage{
+        /* background-image:url('https://img.huishij.com/upload/vod/20200808-1/3f7b581b0a116ffc636aa8912d5bb7c7.jpg') !important; */
+    }
+</style>
+<div id="banstem" class="hot_banner">
+{if condition="$tplconfig['theme']['banner']['btn'] eq 1"}
+    {if condition="$tplconfig['theme']['banner']['ms'] eq 'small'"}
+    <div class="bgi_box">
+        <span id="bgimage" class="bgi" style="background-image:url('{$tplconfig['theme']['ads']['banner']['pic']|mac_url_img}')"></span>
+        <span class="bgfd"></span>
+    </div>
+    <div class="hot_list">
+        <div class="hot_banner_box">
+            <div class="banner-top">
+                <ul class="swiper-wrapper vodlist clearfix">
+                    {if$maccms.aid==1}
+                    {if condition="$tplconfig['theme']['ads']['banner']['btn'] eq 1"}
+                    <li class="balist_item swiper-slide">
+						<a class="balist_thumb swiper-lazy" href="{$tplconfig['theme']['ads']['banner']['link']}" title="{$tplconfig['theme']['ads']['banner']['title']}" data-background="{$tplconfig['theme']['ads']['banner']['pic']|mac_url_img}">
+							<span class="play hidden_xs"></span>
+							{if condition="$tplconfig['theme']['ads']['banner']['tbtn'] eq 1"}
+							<div class="tagtip tagb adtip" data-lang="string_ads_gg">{:lang_web('string_ads_gg')}</div>
+							{/if}
+							<div class="balist_titbox pic_text">
+							   <p class="vodlist_title">{$tplconfig['theme']['ads']['banner']['title']}</p>
+							   <p class="vodlist_sub">{$tplconfig['theme']['ads']['banner']['sub']}</p>
+							</div>
+							<span class="balist_bg"></span>
+						</a>
+					</li>
+                    {/if}
+                    {if condition="$tplconfig['theme']['topic']['btn'] eq 1"}
+                    {maccms:topic num="3" paging="no" type="all" level="9" order="desc" by="sort"}
+					<li class="balist_item swiper-slide">
+						<a class="balist_thumb swiper-lazy" href="{:mac_url_topic_detail($vo)}" title="{$vo.topic_name}" data-background="{$vo.topic_pic_slide|mac_default=$vo.topic_pic|mac_url_img}">
+							<span class="play hidden_xs"></span>
+							<div class="tagtip tagb">
+							{if $tplconfig['theme']['topic']['title']}{$tplconfig['theme']['topic']['title']}{/else}<span data-lang="string_topic">{:lang_web('string_topic')}</span>{/if}
+							</div>
+							<div class="balist_titbox pic_text">
+							   <p class="vodlist_title">{$vo.topic_name}</p>
+							   <p class="vodlist_sub">
+                                   {if $vo['topic_sub']}{:mac_filter_html($vo['topic_sub'])}{else}<span data-lang="topic_remarks">{:lang_web('topic_remarks')}</span>{/if}
+                               </p>
+							</div>
+							<span class="balist_bg"></span>
+						</a>
+					</li>
+					{/maccms:topic}{/if}
+                    {/if}
+                    {maccms:vod num="9" paging="no" type="current" level="9" order="desc" by="sort"} {include file="widget/vod_box_banner"} {/maccms:vod}
+                </ul>
+                <div class="swiper-pagination"></div>
+            </div>
+            <div class="banner-arrow">
+                <a class="swiper-button-prev" href="javascript:;"><i class="iconfont">&#xe625;</i></a>
+                <a class="swiper-button-next" href="javascript:;"><i class="iconfont">&#xe623;</i></a>
+            </div>
+        </div>
+    </div>{/if} {if condition="$tplconfig['theme']['banner']['ms'] eq 'big'"}
+    <div class="hot_wlist">
+        <div class="hot_banner_box">
+            <div class="bg_wtop"></div>
+            <div class="banner-wtop">
+                <ul class="swiper-wrapper clearfix">
+                    {if$maccms.aid==1}
+                    {if condition="$tplconfig['theme']['ads']['banner']['btn'] eq 1"}
+                    <li class="wbalist_item swiper-slide">
+                        <a class="wbalist_thumb" href="{$tplconfig['theme']['ads']['banner']['link']}" title="{$tplconfig['theme']['ads']['banner']['title']}" style="background-image:url({$tplconfig['theme']['ads']['banner']['pic']|mac_url_img})" data-adaptive-background data-ab-css-background>
+                            <div class="bg_wtop_banner"></div>
+                            <div class="wbalist_titbox pic_text">
+                                <div class="wbalist_con adb">
+                                    {if condition="$tplconfig['theme']['ads']['banner']['tbtn'] eq 1"}
+                                    <div class="tagtip tagb adtip" data-lang="string_ads_gg">{:lang_web('string_ads_gg')}</div>{/if}
+                                    <p class="vodlist_title">{$tplconfig['theme']['ads']['banner']['title']}</p>
+                                    <p class="vodlist_sub">{$tplconfig['theme']['ads']['banner']['sub']}</p>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                    {/if}
+                    {if condition="$tplconfig['theme']['topic']['btn'] eq 1"}
+                    {maccms:topic num="3" paging="no" type="all" level="9" order="desc" by="sort"}
+                    <li class="wbalist_item swiper-slide">
+                        <a class="wbalist_thumb" href="{:mac_url_topic_detail($vo)}" title="{$vo.topic_name}" style="background-image:url({$vo.topic_pic_slide|mac_default=$vo.topic_pic|mac_url_img})" data-adaptive-background data-ab-css-background>
+                            <div class="bg_wtop_banner"></div>
+                            <div class="wbalist_titbox pic_text">
+                                <div class="wbalist_con">
+                                    <i class="wba_ico hidden_xs"></i>
+                                    <p class="vodlist_title">{$vo.topic_name}</p>
+                                    <p class="vodlist_sub">[{if $tplconfig['theme']['topic']['title']}{$tplconfig['theme']['topic']['title']}{else}<span data-lang="string_topic">{:lang_web('string_topic')}</span>{/if}]&nbsp;{if $vo['topic_sub']}{:mac_filter_html($vo['topic_sub'])}{else}<span data-lang="topic_sub">{:lang_web('topic_sub')}</span>{/if}
+                                    </p>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+					{/maccms:topic}{/if}
+                    {/if}
+                    {maccms:vod num="9" paging="no" type="current" level="9" order="desc" by="sort"}
+                    <li class="wbalist_item swiper-slide">
+                        <a class="wbalist_thumb" {if condition="$tplconfig['theme']['playlink']['btn'] eq 1"}href="{:mac_url_vod_play($vo,['sid'=>$vo.sid,'nid'=>1])}"{else/}href="{:mac_url_vod_detail($vo)}"{/if} title="{$vo.vod_name}" style="background-image:url({$vo.vod_pic_slide|mac_url_img})" data-adaptive-background data-ab-css-background>
+                            <div class="bg_wtop_banner"></div>
+                            <div class="wbalist_titbox pic_text">
+                                <div class="wbalist_con">
+                                    <i class="wba_ico hidden_xs"></i>
+                                    <p class="vodlist_title">{$vo.vod_name}</p>
+                                    <p class="vodlist_sub">[{if condition="$vo.vod_remarks neq ''"}{$vo.vod_remarks}{elseif condition="$vo.vod_serial gt 0"}
+                                        <span data-lang="string_is">{:lang_web('string_is')}</span>
+                                        {$vo.vod_serial}
+                                        <span data-lang="string_vod_js">{:lang_web('string_vod_js')}</span>
+                                        {else /}
+                                        <span data-lang="string_vod_close">{:lang_web('string_vod_close')}</span>
+                                        {/if}]&nbsp;{if $vo.vod_sub}{$vo.vod_sub}{else}<span data-lang="string_hot_tj">{:lang_web('string_hot_tj')}</span>{/if}</p>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                    {/maccms:vod}
+                </ul>
+                <div class="swiper-pagination"></div>
+                <div class="banner-arrow">
+                    <a class="swiper-button-prev" href="javascript:;"><i class="iconfont">&#xe625;</i></a>
+                    <a class="swiper-button-next" href="javascript:;"><i class="iconfont">&#xe623;</i></a>
+                </div>
+            </div>
+        </div>
+    </div>{/if}
+{/if}
+</div>
+{if condition="$tplconfig['theme']['banner']['btn'] eq 0"}
+<script type="text/javascript">
+        $("#banstem").remove();
+        $("body").removeClass("bstem");
+</script>
+{elseif condition="$tplconfig['theme']['banner']['btn'] eq 1"}
+	{if condition="$tplconfig['theme']['banner']['ms'] eq 'small'"}
+	<script type="text/javascript">
+		var bannum = document.getElementById('banstem').getElementsByTagName("li").length;
+		if (bannum < 3) {
+			$("#banstem").remove();
+            $("body").removeClass("bstem");
+            $('body').css('padding-top',"120px")
+		}
+	</script>
+	{/if}
+	{if condition="$tplconfig['theme']['banner']['ms'] eq 'big'"}
+	<script type="text/javascript">
+		var bannum = document.getElementById('banstem').getElementsByTagName("li").length;
+		if (bannum < 1) {
+			$("#banstem").remove();
+			$("body").removeClass("bstem");
+		}
+	</script>
+	{/if}
+{/if}

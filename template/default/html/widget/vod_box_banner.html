@@ -1,0 +1,16 @@
+<li class="balist_item swiper-slide">
+    <a class="balist_thumb swiper-lazy" {if condition="$tplconfig['theme']['playlink']['btn'] eq 1"}href="{:mac_url_vod_play($vo,['sid'=>$vo.sid,'nid'=>1])}"{else/}href="{:mac_url_vod_detail($vo)}"{/if} title="{$vo.vod_name}" data-background="{:mac_url_img($vo.vod_pic)}">
+		<span class="play hidden_xs"></span>
+        <div class="balist_titbox pic_text">
+           <p class="vodlist_title">{$vo.vod_name}</p>
+           <p class="vodlist_sub">
+               {php} if($vo['vod_sub']){
+               echo mac_filter_html(mac_url_create($vo['vod_sub'],'actor'));
+               }else{ {/php}
+               <span data-lang='string_no_have'>{:lang_web('string_no_have')}</span>
+               {php} } {/php}
+           </p>
+        </div>
+        <span class="balist_bg"></span>
+    </a>
+</li>

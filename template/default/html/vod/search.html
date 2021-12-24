@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+<head>
+       
+	{include file="public/include"}
+</head>
+<style>
+	.container{
+		padding-top:120px;
+	}
+	@media screen and (max-width:820px){
+		.head_logo .logo{
+            background-image: url('{:MAC_BASE_PATH}/template/default/images/pro/logo-mobile-white.png') !important;
+        }
+        .container{
+            padding-top:50px !important; 
+        }
+    }
+</style>
+<body>     	
+    {include file="public/head"}
+	<div class="member-wrap">
+    <div class="container ">
+        {include file="ads/ads_all"}
+        <div class="left_row fl">        	
+        	<div class="pannel search_box clearfix">  
+				<div class="pannel_head clearfix">	
+					<h3 class="title">
+						<span data-lang="string_search_ssd">{:lang_web('string_search_ssd')}“</span>
+						<em>{$param.wd}{$param.actor}{$param.director}{$param.area}{$param.lang}{$param.year}{$param.class}</em>
+						<span data-lang="string_search_xgd">”{:lang_web('string_search_xgd')}</span>
+						<em class="mac_total"></em> <span data-lang="string_search_jg">{:lang_web('string_search_jg')}</span>
+					</h3>
+				</div>
+
+				<div class="wrapper_fl wrapper_tm" >
+					<ul class="screen_list sx_tz clearfix" style="float: left;">
+						<li {if condition="$param.by eq '' || $param.by eq 'time'" } class="hl_fl" {/if}>
+						<a data-lang="string_search_zx" href="/vod/search_content.html?by=time&wd={$param['wd']}&submit={$param['submit']}">
+							<span data-lang="string_search_zx">{:lang_web('string_search_zx')}</span>
+						</a>
+						</li>
+						<li {if condition="$param.by eq 'hits'" } class="hl_fl" {/if}>
+						<a data-lang="string_search_zr" href="/vod/search_content.html?by=hits&wd={$param['wd']}&submit={$param['submit']}">
+							<span data-lang="string_search_zr">{:lang_web('string_search_zr')}</span>
+						</a>
+						</li>
+						<li {if condition="$param.by eq 'score'" } class="hl_fl" {/if}>
+						<a data-lang="string_search_pf" href="/vod/search_content.html?by=score&wd={$param['wd']}&submit={$param['submit']}">
+							{:lang_web('string_search_pf')}
+						</a>
+						</li>
+					</ul>
+				</div>
+
+				<!-- 列表 -->	
+				<ul class="vodlist clearfix">
+			        {php}$count=1;{/php}
+			        {maccms:vod num="36" paging="yes" half="3" pageurl="vod/search" order="desc" by="time"}
+			        {if$count==1}
+			            {if$tplconfig['theme']['ads']['btn']==1||$tplconfig['theme']['ads']['btn']==2&&$user.group_id lt 3}
+						{if condition="$tplconfig['theme']['ads']['search_v']['btn'] eq 1"}
+							<li class="searchlist_item">
+								{include file="ads/ads_searchlist"}		
+							</li>
+						{/if}{/if}
+                    {/if}
+                    {php}$count++;{/php}																
+					{include file="widget/search_box"}					
+					{/maccms:vod}
+				</ul>		
+				<!-- end 列表 -->	
+				<script>
+					let uls=$('.vodlist').children().length
+					if(uls>0){
+						$('.wrapper_fl').show()
+					}else{
+						$('.wrapper_fl').hide()
+					}
+				</script>
+				
+				{include file="widget/page"}<!-- 翻页-->
+				
+				{empty name="$__PAGING__.record_total"}
+	            <div class="search_tips">
+					<span>
+						<span data-lang="string_search_bq">{:lang_web('string_search_bq')}</span>
+						&nbsp;&nbsp;<a href="javascript:void(0)" class="report_click" onclick="MAC.Gbook.Noinfo('请管理员添加《{$param.wd}》，谢谢！')"><i class="iconfont">&#xe632;</i>&nbsp; <span data-lang="string_search_ly"> 留言</span></a>&nbsp; <span data-lang="string_search_xx"> ，谢谢！</span></span>
+					<span data-lang="string_search_ts">{:lang_web('string_search_ts')}</span>
+				</div>
+	            {/empty}
+			</div>
+			{include file="ads/ads_vodw"} 
+			{empty name="$__PAGING__.record_total"}
+			<div class="pannel clearfix">
+				<div class="pannel_head clearfix">
+			        {if condition="$tplconfig['theme']['map']['btn'] eq 1"}
+				    <a class="text_muted pull_right" href="{:mac_url('map/index')}">
+						<span data-lang="string_type_more2">{:lang_web('string_type_more2')}</span>
+						<i class="iconfont more_i">&#xe623;</i>
+					</a>{/if}
+					<h3 class="title">
+						{if $tplconfig['theme']['map']['title']}{$tplconfig['theme']['map']['title']}{else}<span data-lang="string_zuixin">{:lang_web('string_zuixin')}</span>{/if}
+					</h3>						
+				</div>
+				<ul class="vodlist clearfix">
+					{maccms:vod num="6" type="'.$tplconfig['theme']['map']['id'].'" order="desc" by="time"}
+					{include file="widget/search_box"}		
+					{/maccms:vod}
+				</ul>
+			</div>
+            {/empty}	      
+        </div>
+        <div class="right_row fr pa_left hidden_xs hidden_mi">
+            {include file="ads/ads_vodr"}
+            <!-- 侧边栏 -->
+			<div class="pannel clearfix">
+				<div class="pannel_head clearfix">
+					<h3 class="title" data-lang="string_art_hot">
+						{:lang_web('string_art_hot')}
+					</h3>						
+				</div>
+				<ul class="ranklist_r clearfix">
+					{maccms:vod num="10" type="'.$tplconfig['theme']['map']['id'].'" order="desc" by="hits_week"}
+					{include file="widget/rank_box_text"}		
+					{/maccms:vod}
+				</ul>
+			</div>
+			<!-- end 侧边栏 -->
+        </div>
+    </div>
+</div>
+    <script type="text/javascript">
+        $('.mac_total').html('{$__PAGING__.record_total}');
+
+		var lang=localStorage.getItem('lang')
+		function changeLang(){
+			if(lang==1){
+				let s="MAC.Gbook.Noinfo('Please add by administrator《{$param.wd}》，thank you！')"
+				$('.report_click').attr('onclick',s)
+			}else{
+				let s1="MAC.Gbook.Noinfo('请管理员添加《{$param.wd}》，谢谢！')"
+				$('.report_click').attr('onclick',s1)
+			}
+		}
+		changeLang()
+		$(document).click(function(e){
+			lang=localStorage.getItem('lang')
+			changeLang()
+		})
+    </script>
+	{include file="public/foot"}
+</body>
+</html>

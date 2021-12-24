@@ -1,0 +1,105 @@
+<!--评论开始-->
+<div class="part_rows_fa">
+<form class="comment_form cmt_form clearfix"  >
+   <input type="hidden" name="comment_pid" value="0">
+   <!--评论框-->
+   <div class="input_wrap clearfix">
+       <textarea class="comment_content" name="comment_content" data-placeholder="string_pinglun_wenm" placeholder="{:lang_web('string_pinglun_wenm')}"></textarea>
+       <div class="smt fr clearfix">
+            <div class="comm_tips fl"> <span data-lang="string_pinglun_shuru">{:lang_web('string_pinglun_shuru')}</span> <span class="comment_remaining">200</span> <span data-lang="string_pinglun_zi">{:lang_web('string_pinglun_zi')}</span> </div>
+            {if condition="$comment.verify eq 1"}
+            <input class="comment_submit cmt_post fr" data-value="string_pinglun_fabu" type="button" value="{:lang_web('string_pinglun_fabu')}">
+            <img class="comm-code fr" data-title="string_pinglun_kan" src="{:mac_url('verify/index')}" data-role="{:mac_url('verify/index')}" title="{:lang_web('string_pinglun_kan')}" onClick="this.src=this.src+'?v={:time()}'"/>
+            <input type="text" name="verify" data-placeholder="user_yanzhengma" placeholder="{:lang_web('user_yanzhengma')}" class="verify fr">
+            {/if}  
+       </div>
+    </div>
+</form>
+</div>
+    {maccms:comment num="5" paging="yes" order="desc" by="id"}
+    {/maccms:comment}
+<ul class="part_rows">
+	{maccms:foreach name="__LIST__" id="vo"}
+	<li class="comm_each line_top margin">
+		<img class="comm_avat part_roun" src="{$vo.user_id|mac_get_user_portrait}" />
+		<div class="comm_head">
+			<strong class="text_line">{$vo.comment_name}</strong>
+			<span class="part_tips">{$vo.comment_time|date='Y-m-d H:i:s',###}</span>
+		</div>
+		<div class="comm_cont">
+			<div class="comm_content">{$vo.comment_content|mac_em_replace}</div>
+			<div class="gw_action">
+				<a class="digg_link" data-id="{$vo.comment_id}" data-mid="4" data-type="up" href="javascript:;"><i class="iconfont">&#xe64e;</i><em class="digg_num icon-num">{$vo.comment_up}</em></a>
+				<a class="digg_link" data-id="{$vo.comment_id}" data-mid="4" data-type="down" href="javascript:;"><i class="iconfont">&#xe64f;</i><em class="digg_num icon-num">{$vo.comment_down}</em></a>
+				<a class="comment_reply" data-id="{$vo.comment_id}" href="javascript:;" data-lang="string_pinglun_huifu">{:lang_web('string_pinglun_huifu')}</a>
+				<a class="comment_report" data-id="{$vo.comment_id}" href="javascript:;" data-lang="string_pinglun_jubao">{:lang_web('string_pinglun_jubao')}</a>	
+			</div>
+			{maccms:foreach name="$vo.sub" id="child"}
+			<div class="comm_reply comm_reply_child back_ashen comm_tops">
+				<div class="comm_rp_head">
+					<span class="text_line">{$child.comment_name} ／ {$child.comment_time|date='H:i',###}</span>
+					<div class="comm_content">{$child.comment_content|mac_em_replace}</div>
+						<div class="gw_action">
+						<a class="digg_link" data-id="{$child.comment_id}" data-mid="4" data-type="up" href="javascript:;"><i class="iconfont">&#xe64e;</i><em class="digg_num icon-num">{$child.comment_up}</em></a>
+						<a class="digg_link" data-id="{$child.comment_id}" data-mid="4" data-type="down" href="javascript:;"><i class="iconfont">&#xe64f;</i><em class="digg_num icon-num">{$child.comment_down}</em></a>
+						<a class="comment_report" data-id="{$child.comment_id}" href="javascript:;" data-lang="string_pinglun_jubao">{:lang_web('string_pinglun_jubao')}</a>
+						<!-- <a class="comment_report_child" data-id="{$child.comment_id}" href="javascript:;">举报</a> -->
+					</div>
+				</div>
+			</div>
+			</div>
+			{/maccms:foreach}
+	</li>
+	{/maccms:foreach}
+</ul>
+<!--评论结束-->
+{if$__PAGING__.page_total>1}
+<ul class="page text_center cleafix">
+	<li><a href="javascript:void(0);" onclick="MAC.Comment.Show(1)" data-title="string_home" data-lang="string_home" title="{:lang_web('string_home')}"{if$__PAGING__['page_current']==1} class="btns_disad"{/if} >{:lang_web('string_home')}</a></li>
+	<li>
+		<a href="javascript:void(0);" 
+		data-lang="string_syy"
+		data-title="string_syy"
+		onclick="MAC.Comment.Show('{$__PAGING__.page_prev}')" title="{:lang_web('string_syy')}"{if$__PAGING__['page_current']==1} class="btns_disad"{/if}>{:lang_web('string_syy')}</a>
+	</li>
+	{maccms:foreach name="$__PAGING__.page_num" id="num"}
+	<li class="hidden_xs {if condition="$__PAGING__['page_current'] eq $num"}active{/if}">
+	    {if condition="$__PAGING__['page_current'] eq $num"}
+            <a class="page_link page_current" href="javascript:;" title="{$num}">{$num}</a>
+            {else}
+            <a class="page_link" href="javascript:void(0)" onclick="MAC.Comment.Show('{$num}')" title="{$num}" >{$num}</a>
+         {/if}
+    </li>
+	{/maccms:foreach}
+	<li class="hidden_xs active">
+		<span class="num btns_disad">{$__PAGING__.page_current}/{$__PAGING__.page_total}</span>
+	</li>
+	<li>
+		<a href="javascript:void(0)" onclick="MAC.Comment.Show('{$__PAGING__.page_next}')" title="{:lang_web('string_xyy')}"{if$__PAGING__['page_current']==$__PAGING__.page_total} class="btns_disad"{/if} data-title="string_xyy" data-lang="string_xyy" >{:lang_web('string_xyy')}</a>
+	</li>
+	<li>
+		<a href="javascript:void(0)" onclick="MAC.Comment.Show('{$__PAGING__.page_total}')" title="{:lang_web('string_last_page')}"{if$__PAGING__['page_current']==$__PAGING__.page_total} class="btns_disad"{/if} data-lang="string_last_page" data-title="string_last_page" >{:lang_web('string_last_page')}</a></li>		
+</ul>
+<div class="page_tips hidden_mb"> 
+	<span data-lang="string_vod_zg">{:lang_web('string_vod_zg')}</span>
+	 <span>{$__PAGING__.record_total}</span> 
+	 <span data-lang="string_pinglun_shuj">{:lang_web('string_pinglun_shuj')}</span> &nbsp;/&nbsp; 
+	 <span data-lang="string_pinglun_dangq">{:lang_web('string_pinglun_dangq')}</span> {$__PAGING__.page_current}/{$__PAGING__.page_total} <span data-lang="string_page">{:lang_web('string_page')}</span> 
+	</div> 
+
+{elseif$__PAGING__.page_total<=0}
+<div class="no-message">
+	<div class="message-img"></div>
+	<p data-lang="string_pinglun_zanwu">{:lang_web('string_pinglun_zanwu')}</p>
+</div>
+{/if}
+<script type="text/javascript">
+	var lang=localStorage.getItem('lang')
+	language_pack.loadProperties(lang);
+	$(".part_rows_fa .comment_content").click(function(){
+		$(".part_rows_fa .smt").addClass("smt_hidn");	
+	});
+</script>
+<script type="text/javascript">
+    $('.mac_total').html('{$__PAGING__.record_total}');
+</script>

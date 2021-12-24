@@ -1,0 +1,95 @@
+{in name="vo.type_id" value="$tplconfig['theme']['type']['hb']"}
+<li class="vodlist_item num_{$key}">
+	<a class="vodlist_thumb lazyload" href="{:mac_url_vod_play($vo,['sid'=>$vo.sid,'nid'=>1])}" title="{$vo.vod_name}" data-original="{:mac_url_img($vo.vod_pic)}">						
+		<span class="play hidden_xs"></span>
+		<span class="pic_text text_right">{$vo.vod_time|date='Y-m-d',###}</span>
+	</a>
+	<div class="vodlist_titbox">									
+		<p class="vodlist_title">
+		<a {if condition="$tplconfig['theme']['playlink']['btn'] eq 1"}href="{:mac_url_vod_play($vo,['sid'=>$vo.sid,'nid'=>1])}"{else/}href="{:mac_url_vod_detail($vo)}"{/if} title="{$vo.vod_name}">{$vo.vod_name}</a>
+		</p>
+		<p class="vodlist_sub"><i class="iconfont playico">&#xe659;</i>&nbsp;{$vo.vod_hits}<span data-lang="play_num">{:lang_web('play_num')}</span></p>
+	</div>
+</li>
+{else}
+<li class="vodlist_item num_{$key}">
+	<a class="vodlist_thumb lazyload" {if condition="$tplconfig['theme']['playlink']['btn'] eq 1"}href="{:mac_url_vod_play($vo,['sid'=>$vo.sid,'nid'=>1])}"{else/}href="{:mac_url_vod_detail($vo)}"{/if} title="{$vo.vod_name}" data-original="{:mac_url_img($vo.vod_pic)}">
+		{if $vo.vod_is_trysee eq 1}
+		<img data-num="num_{$key}" class="vod_vip " src="{:MAC_BASE_PATH}/template/default/images/pro/head-vip.png" >
+		{/if}
+		{if condition="$maccms.aid eq 1"}
+        {/if}
+        {if condition="$vo['type_id_1']==1"}
+        {if condition="$vo.vod_score eq 0"}
+        <span class="pic_text text_right">{if condition="$vo.vod_remarks neq ''"}{$vo.vod_remarks}{elseif condition="$vo.vod_serial gt 0"}<span data-lang="string_is">{:lang_web('string_is')}</span>{$vo.vod_serial}<span data-lang="string_vod_js">{:lang_web('string_vod_js')}</span>{else /}<span data-lang="string_vod_close">{:lang_web('string_vod_close')}</span>{/if}</span>
+        {else/}
+        <span class="pic_text text_right text_dy">{$vo.vod_score}</span>
+        {/if}
+        {else/}
+		<span class="pic_text text_right">{if condition="$vo.vod_remarks neq ''"}{$vo.vod_remarks}{elseif condition="$vo.vod_serial gt 0"}<span data-lang="string_is">{:lang_web('string_is')}</span>{$vo.vod_serial}<span data-lang="string_vod_js">{:lang_web('string_vod_js')}</span>{else /}<span data-lang="string_vod_close">{:lang_web('string_vod_close')}</span>{/if}</span>
+		{/if}
+	</a>
+	<div class="vodlist_titbox">	
+		<p class="vodlist_title">
+		<a {if condition="$tplconfig['theme']['playlink']['btn'] eq 1"}href="{:mac_url_vod_play($vo,['sid'=>$vo.sid,'nid'=>1])}"{else/}href="{:mac_url_vod_detail($vo)}"{/if} title="{$vo.vod_name}">{$vo.vod_name}</a>
+		</p>
+		<p class="vodlist_sub">
+			{php} if($vo['vod_sub']){
+			echo mac_filter_html(mac_url_create($vo['vod_sub'],'actor'));
+			}else{ {/php}
+			<span data-lang='string_no_have'>{:lang_web('string_no_have')}</span>
+			{php} } {/php}
+		</p>
+	</div>
+	<a class="vod_info vod_info_wrap show-pc" data-num="num_{$key}" {if condition="$tplconfig['theme']['playlink']['btn'] eq 1"}href="{:mac_url_vod_play($vo,['sid'=>$vo.sid,'nid'=>1])}"{else/}href="{:mac_url_vod_detail($vo)}"{/if}>
+		<img class="play_img" src="{:MAC_BASE_PATH}/template/default/images/pro/paly.png" >
+		<div class="detail">
+			<p class="name">{$vo.vod_name}</p>
+			<div class="item">
+				<p class="tag">{$vo.vod_class}</p>
+				<p class="tag">{$vo.vod_area}</p>
+				<p class="tag">{$vo.vod_year}</p>
+			</div>
+			<div class="item">
+				<p class="i-left"><span data-lang="string_vod_zy">{:lang_web('string_vod_zy')}</span></p>
+				<p class="actor">{$vo.vod_actor}</p>
+			</div>
+			<div class="item">
+				<p class="i-left"><span data-lang="string_vod_jj">{:lang_web('string_vod_jj')}</span></p>
+				<p class="t-right">{$vo.vod_blurb}</p>
+			</div>
+		</div>
+		{php}
+        if($GLOBALS['user']['user_id']){
+            $user_id = $GLOBALS['user']['user_id'];
+			$res = model('ulog')->where(['user_id' => $user_id,'ulog_type' => 2])->column('ulog_rid','ulog_id');
+			if(in_array($vo['vod_id'],$res)){
+				$ulog_id = array_keys($res,$vo['vod_id']);
+				$ulog_id = $ulog_id?$ulog_id[0]:'';
+            {/php}
+                <div class="mac_ulog is_fav vod_fav" data-type="2" data-mid="{$vo.mid}" data-id="{$vo.vod_id}" data-uid='{$ulog_id}'>
+                    <i class="iconfont">&#xe614;</i>
+                    <span data-lang="string_isfav">{:lang_web('string_isfav')}</span>
+                </div>
+            {php}
+                }else{
+            {/php}
+                <div class="mac_ulog vod_fav" data-type="2" data-mid="{$vo.mid}" data-id="{$vo.vod_id}" data-uid='{$ulog_id}'>
+                    <i class="iconfont">&#xe60f;</i>
+                    <span data-lang="string_fav">{:lang_web('string_fav')}</span>
+                </div>
+            {php}
+            }
+        }else{
+        {/php}
+            <div class="mac_ulog vod_fav" data-type="2" data-mid="{$vo.mid}" data-id="{$vo.vod_id}" >
+                <i class="iconfont">&#xe60f;</i>
+                <span data-lang="string_fav">{:lang_web('string_fav')}</span>
+            </div>
+        {php}
+        }
+        {/php}
+	</a>
+
+</li>
+{/in}

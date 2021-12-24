@@ -1,0 +1,18 @@
+<div id="show" style="display: none;">
+    <div class="copy-tip">
+       <p data-lang="copy_success">{:lang_web('copy_success')}</p>
+    </div>
+</div>
+<div class="am-share">
+	<div class="am-share-url">
+	<span class="title_span"><span data-lang="string_share_tit">{:lang_web('string_share_tit')}</span></span>
+	<span id="short" class="url_span shorturl">
+		{$obj.vod_name}{$obj.art_name}{if condition="$maccms.mid eq 3"}
+		<span data-lang="string_topic">{:lang_web('string_topic')}</span>-{$obj.topic_name}{/if}-{$obj['vod_play_list'][$param['sid']]['urls'][$param['nid']]['name']}-
+	</span>
+	</div>
+	<div class="am-share-footer">
+	<span class="share_btn"><span data-lang="string_cancel">{:lang_web('string_cancel')}</span></span>
+	<span id="btn" class="copy_btn" data-clipboard-action="copy" data-clipboard-target="#short"><span data-lang="one_clickcopy">{:lang_web('one_clickcopy')}</span></span>
+	</div>
+</div>

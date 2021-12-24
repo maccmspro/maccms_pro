@@ -1,0 +1,108 @@
+{include file="../../../application/admin/view/public/head" /}
+<div class="page-container">
+    <div class="my-toolbar-box">
+        {$info.title}详情页({if condition="$info.status eq 0"}审核中{/if}{if condition="$info.status eq -1"}审核未通过{/if}{if condition="$info.status eq 1"}审核成功{/if})
+        {if condition="$info.status eq 0"}
+        <a data-href="{:url('del')}" class="layui-btn layui-btn-primary j-page-btns confirm"><i class="layui-icon">&#xe640;</i>审核</a>
+        <a data-href="{:url('del')}" class="layui-btn layui-btn-primary j-page-btns confirm"><i class="layui-icon">&#xe640;</i>审核不通过</a>
+        {/if}
+        {if condition="$info.status eq -1"}
+        <a data-href="{:url('del')}" class="layui-btn layui-btn-primary j-page-btns confirm"><i class="layui-icon">&#xe640;</i>审核</a>
+        {/if}
+        {if condition="$info.status eq 1"}
+        <a data-href="{:url('del')}" class="layui-btn layui-btn-primary j-page-btns confirm"><i class="layui-icon">&#xe640;</i>重新审核</a>
+        {/if}
+    </div>
+    <table class="layui-table" >
+        <tr>
+            <td width="40%">
+                <table class="layui-table" border="1">
+                    <tbody>
+                    <tr>
+                        <td colspan="2">开发者信息</td>
+                    </tr>
+                    <tr>
+                        <td>开发者ID</td>
+                        <td>{$info.id}</td>
+                    </tr>
+                    <tr>
+                        <td>开发者名称</td>
+                        <td>{$userinfo.user_name}</td>
+                    </tr>
+                    <tr>
+                        <td>开发者站点</td>
+                        <td>xxxxx</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </td>
+            <td>
+                <table class="layui-table" >
+                    <tbody>
+                    <tr>
+                        <td colspan="4">应用预览图</td>
+                    </tr>
+                    <tr>
+                        <td>H5应用缩略图</td>
+                        <td></td>
+                        <td>H5应用详情预览图</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>PC应用缩略图</td>
+                        <td></td>
+                        <td>PC应用详情预览图</td>
+                        <td></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </td>
+        </tr>
+    </table>
+
+    <div class="page-container">
+        <div class="my-toolbar-box">
+            <div class="layui-inline w150">应用名称</div>
+            <div class="layui-inline w150">{$info.title}</div>
+            <div class="layui-inline w150">支持版本号</div>
+            <div class="layui-inline w150">..</div>
+            <div class="layui-inline w150">支持版本系统</div>
+            <div class="layui-inline w150">..</div>
+            <div class="layui-inline w150">是否收费</div>
+            <div class="layui-inline w150">..</div>
+            <div class="layui-inline w150">应用支持设备</div>
+            <div class="layui-inline w150">..</div>
+            <div class="layui-inline w150">应用支持语种</div>
+            <div class="layui-inline w150">..</div>
+            <div class="layui-inline w150">应用源代码</div>
+            <div class="layui-inline w150"><a href="">下载</a></div>
+            <div class="layui-inline w150">应用描述</div>
+            <div class="layui-inline w150">?</div>
+            <div class="layui-inline w150">联系方式</div>
+            <div class="layui-inline">
+                <div class="layui-inline w150">QQ</div>
+                <div class="layui-inline w150">?</div>
+                <div class="layui-inline w150">微信</div>
+                <div class="layui-inline w150">?</div>
+            </div>
+        </div>
+    </div>
+
+    <table class="layui-table" >
+        <tr>
+            <td>提审时间</td>
+            <td>审核时间</td>
+            <td>审核状态</td>
+            <td>备注</td>
+        </tr>
+        <tr>
+            <td>?</td>
+            <td>?</td>
+            <td>?</td>
+            <td>?</td>
+        </tr>
+    </table>
+</div>
+{include file="../../../application/admin/view/public/foot" /}
+</body>
+</html>

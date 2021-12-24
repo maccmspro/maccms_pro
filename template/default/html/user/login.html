@@ -1,0 +1,147 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<title>{:lang_web('user_yhdl')} - {$maccms.site_name}</title>
+<meta name="keywords" content="{$maccms.site_keywords}"/>
+<meta name="description" content="{$maccms.site_description}"/>
+	{include file="user/include" /}
+</head>
+<body id="reg">
+	<div class="show-mobile">
+        <div id="ui-nav" class="m-nav">
+            <a href="javascript:MAC.GoBack()" class="btn-left"><i class="iconfont ico-right">&#xe625;</i></a>
+            <span class="mb-title" data-lang="user_yhdl">{:lang_web('user_yhdl')}</span>
+        </div>
+    </div>
+	<div class="reg-w">
+	    <div class="reg-logo">
+			<div class="show-pc">
+				{if condition="isset($GLOBALS['config']['site'])"}
+					<a title="{$maccms.site_name}" class="logo logo_b white_logo" style="background-image: url({:mac_url_img($maccms.site_logo_b)})" href="{:MAC_BASE_PATH}/"></a>
+					<a title="{$maccms.site_name}" class="logo logo_b black_logo" style="background-image: url({:mac_url_img($maccms.site_logo_w)})" href="{:MAC_BASE_PATH}/"></a>
+				{else /}
+				<a title="{$maccms.site_name}" class="logo logo_b" style="background-image: url({:mac_url_img($maccms.site_logo)});" href={$maccms.path}"></a>
+				{/if}
+			</div>
+			<div class="show-mobile">
+				{if condition="isset($GLOBALS['config']['site'])"}
+					<a title="{$maccms.site_name}" class="logo logo_b white_logo" style="background-image: url({:mac_url_img($maccms.site_waplogo_w)});" href="{:MAC_BASE_PATH}/"></a>
+					<a title="{$maccms.site_name}" class="logo logo_b black_logo" style="background-image: url({:mac_url_img($maccms.site_waplogo_b)});" href="{:MAC_BASE_PATH}/"></a>
+                {else}
+                <a title="{$maccms.site_name}" class="logo logo_b" style="background-image: url({:mac_url_img($maccms.site_waplogo)});"href="{:MAC_BASE_PATH}/"></a>
+                {/if}
+			</div>
+
+		</div>
+		<script>
+			if($.cookie('mystyle')=='white'){
+				$('.black_logo').hide()
+				$('.white_logo').show()
+			}else{
+				$('.black_logo').show()
+				$('.white_logo').hide()
+			}
+		</script>
+		
+		<form method="post" id="fm" action="">
+			<!-- <h4>会员登录</h4> -->
+			<div class="reg-group">
+				<img class="l-icon" src="{:MAC_BASE_PATH}/template/default/images/member/login-user.png" >
+				<input type="text" data-placeholder="user_place_dlzh" id="user_name" name="user_name" class="reg-control" placeholder="{:lang_web('user_place_dlzh')}">
+			</div>
+			<div class="reg-group">
+				<img class="l-icon" src="{:MAC_BASE_PATH}/template/default/images/member/login-pwd.png" >
+				<input type="password" data-placeholder="user_place_mm" id="user_pwd" name="user_pwd" class="reg-control" placeholder="{:lang_web('user_place_mm')}">
+			</div>
+			{if condition="$GLOBALS['config']['user']['login_verify'] eq 1"}
+			<div class="reg-group verify_code">
+				<label data-lang="user_yanzhengma">{:lang_web('user_yanzhengma')}</label>
+				<input data-placeholder="user_place_yanzm" type="text" class="reg-control w150" id="verify" name="verify" placeholder="{:lang_web('user_place_yanzm')}">
+				<img class="fr m-hi" id="verify_img" src="{:url('verify/index')}" onClick="this.src=this.src+'?'"  alt="单击刷新" />
+			</div>
+			{/if}
+			<p class="error-tip" data-lang="user_zhmmcu">{:lang_web('user_zhmmcu')}</p>
+			<input type="button" data-value="btn_ljdl" data-value="btn_ljdl" id="btn_submit" class="btn-brand btn-sub" value="{:lang_web('btn_ljdl')}">
+		</form>
+		<div class="reg-ts">
+		  <a href="{:url('user/reg')}" data-lang="user_zczh">{:lang_web('user_zczh')}</a>
+		  <a data-lang="user_wjmm2" href="{:url('user/findpass')}">{:lang_web('user_wjmm2')}</a>
+        </div>
+		<div class="reg-dl">
+		{if condition="$GLOBALS['config']['connect']['qq']['status'] eq 1"}
+        <h5 data-lang="user_bdfsdl">{:lang_web('user_bdfsdl')}</h5>
+        {elseif condition="$GLOBALS['config']['connect']['weixin']['status'] eq 1"}
+        <h5 data-lang="user_bdfsdl">{:lang_web('user_bdfsdl')}</h5>       
+		{/if}
+		<ul>
+		{if condition="$GLOBALS['config']['connect']['weixin']['status'] eq 1"}
+        <li><a class="reg-wx" href="{:url('user/oauth')}?type=weixin"><i class="iconfont lishi">&#xe639;</i></a></li>
+		{/if}
+		{if condition="$GLOBALS['config']['connect']['qq']['status'] eq 1"}
+        <li><a class="reg-qq" href="{:url('user/oauth')}?type=qq"><i class="iconfont yonghu">&#xe637;</i></a></li>
+		{/if}
+        </ul>
+        </div>
+    </div>
+
+<!-- // sign-box#regbox end -->
+<script type="text/javascript">
+	$(function(){
+		var lang=localStorage.getItem('lang')
+		$("body").bind('keyup',function(event) {
+			if(event.keyCode==13){ $('#btnLogin').click(); }
+		});
+		$('.reg-control').focus(function(){
+			$('.reg-group').removeClass('err')
+		})
+		$('#btn_submit').click(function() {
+			if ($('#user_name').val()  == '') { 
+				alert(MAC.GetLang('string_login_sryh')); 
+				$("#user_name").focus(); 
+				return false; 
+			}
+			if ($('#user_pwd').val()  == '') { 
+				alert(MAC.GetLang('string_login_srmm')); 
+				$("#user_pwd").focus();
+				 return false; 
+			}
+			if ($('#verify').length> 0 && $('#verify').val()  == '') { 
+				alert(MAC.GetLang('string_login_sryzm')); 
+				$("#verify").focus(); 
+				return false; 
+			}
+
+			$.ajax({
+				url: "{:url('user/login')}",
+				type: "post",
+				dataType: "json",
+				data: $('#fm').serialize(),
+				beforeSend: function () {
+					$("#btn_submit").css("background","#fd6a6a").val("loading...");
+				},
+				success: function (r) {
+					if(r.code==1){
+						location.href="{:url('user/index')}";
+						$('.error-tip').hide()
+					}
+					else{
+						// alert(r.msg);
+						$('.error-tip').html(r.msg)
+						$('.reg-group').addClass('err')
+						$('.error-tip').show()
+						$('#verify_img').click();
+					}
+				},
+				complete: function () {
+					$("#btn_submit").css("background","#fa4646").val( MAC.GetLang('user_ljdl'));
+				}
+			});
+
+		});
+	});
+
+</script>
+
+</body>
+</html>

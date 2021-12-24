@@ -1,0 +1,180 @@
+		<div class="tou">
+			<div class="tou-left">
+				<img class="face" data-title="user_head" onerror=src='{:MAC_BASE_PATH}/template/default/images/member/touxiang.png' src="{:mac_get_user_portrait()}" alt="User head Photo">
+				<i class="layui-icon layui-icon-camera head_photo"></i>
+				
+			</div>
+			<div class="tou-right">
+				<span class="name-tit">{$obj.user_nick_name|mac_default=$obj.user_name}</span>
+			</div>
+			<a class="to-vip" href="{:url('user/upgrade')}" data-lang="user_upgrade">{:lang_web('user_upgrade')}</a>
+
+			<div class="menber-info">
+				<div class="info-box"><p class="m-points">{$obj.user_points}</p><p class="text-small"  data-lang="user_my_point">{:lang_web('user_my_point')}</p></div>
+				<div class="info-box"><a href="{:url('user/popedom')}"><p>{if condition="$obj.group_id lt 3"}{$user.group.group_name}{else}<i class="iconfont user_vip">&#xe638;</i>{$obj.group.group_name}{/if}</p><p class="text-small">{if condition="$obj.group_id lt 3"} <span data-lang="user_valid">{:lang_web('user_valid')}</span> {else}{$obj.user_end_time|date='Y-m-d',###} <span data-lang="user_expire">{:lang_web('user_expire')}</span>  {/if}</p></a></div>
+			  </div>
+		</div>
+		<ul class="show-pc">
+			<li data-index='0'>
+				<a href="{:url('user/ajax_info')}">
+					<i class="iconfont yonghu">&#xe62b;</i> <span data-lang="user_my_info">{:lang_web('user_my_info')}</span> 
+				</a>
+			</li>
+			<li data-index='1'>
+				<a href="{:url('user/info')}">
+					<i class="iconfont xiugai">&#xe65e;</i><span data-lang="user_change_info">{:lang_web('user_change_info')}</span>
+				</a>
+			</li>
+			<li data-index='2'>
+				<a href="{:url('user/favs')}">
+					<i class="iconfont lishi">&#xe629;</i><span data-lang="user_my_collection">{:lang_web('user_my_collection')}</span>
+				</a>
+			</li>
+			<li data-index='3'>
+				<a href="{:url('user/plays')}">
+					<i class="iconfont lishi">&#xe624;</i><span data-lang="user_view_record">{:lang_web('user_view_record')}</span>
+				</a>
+			</li>
+			<li data-index='4'>
+				<a href="{:url('user/downs')}">
+					<i class="iconfont lishi">&#xe63c;</i><span data-lang="user_down_record">{:lang_web('user_down_record')}</span>
+				</a>
+			</li>
+			<li data-index='5'>
+				<a href="{:url('user/buy')}">
+					<i class="iconfont xiazai">&#xe65c;</i><span data-lang="user_recharge">{:lang_web('user_recharge')}</span>
+				</a>
+			</li>
+			<li data-index='6'>
+				<a href="{:url('user/orders')}">
+					<i class="iconfont xiazai">&#xe660;</i><span data-lang="user_recharge_record">{:lang_web('user_recharge_record')}</span>
+				</a>
+			</li>
+			<li data-index='7'>
+				<a href="{:url('user/cash')}">
+					<i class="iconfont xiazai">&#xe65f;</i><span data-lang="user_cash">{:lang_web('user_cash')}</span>
+				</a>
+			</li>
+		
+            <li data-index='8'>
+				<a href="{:url('user/plog')}">
+					<i class="iconfont congzhi">&#xe662;</i><span data-lang="user_poin_record">{:lang_web('user_poin_record')}</span>
+				</a>
+			</li>
+			<li data-index='9'>
+				<a href="{:url('user/reward')}">
+					<i class="iconfont congzhi">&#xe65d;</i><span data-lang="user_retail">{:lang_web('user_retail')}</span>
+				</a>
+			</li>
+
+
+		</ul>
+
+		<ul class="show-mobile">
+			<li>
+				<a href="{:url('user/ajax_info')}">
+					<img class="userli-img" src="{:MAC_BASE_PATH}/template/default/images/member/user-li1.png" >
+					<span data-lang="user_my_info">{:lang_web('user_my_info')}</span>
+					<i class="iconfont ico-right">&#xe623;</i>
+				</a>
+			</li>
+			<li class="mtop">
+				<a href="{:url('user/info')}">
+					<img class="userli-img" src="{:MAC_BASE_PATH}/template/default/images/member/user-li2.png" >
+					<span data-lang="user_change_info">{:lang_web('user_change_info')}</span>
+					<i class="iconfont ico-right">&#xe623;</i>
+				</a>
+			</li>
+			<li>
+				<a href="{:url('user/favs')}">
+					<img class="userli-img" src="{:MAC_BASE_PATH}/template/default/images/member/user-li3.png" >
+					<span data-lang="user_my_collection">{:lang_web('user_my_collection')}</span>
+					<i class="iconfont ico-right">&#xe623;</i>
+				</a>
+			</li>
+			<li>
+				<a href="{:url('user/plays')}">
+					<img class="userli-img" src="{:MAC_BASE_PATH}/template/default/images/member/user-li4.png" >
+					<span data-lang="user_view_record">{:lang_web('user_view_record')}</span>
+					<i class="iconfont ico-right">&#xe623;</i>
+				</a>
+			</li>
+			<li>
+				<a href="{:url('user/downs')}">
+					<img class="userli-img" src="{:MAC_BASE_PATH}/template/default/images/member/user-li5.png" >
+					<span data-lang="user_down_record">{:lang_web('user_down_record')}</span>
+					<i class="iconfont ico-right">&#xe623;</i>
+				</a>
+			</li>
+			<li class="mtop">
+				<a href="{:url('user/buy')}">
+					<img class="userli-img" src="{:MAC_BASE_PATH}/template/default/images/member/user-li6.png" >
+					<span data-lang="user_recharge">{:lang_web('user_recharge')}</span>
+					<i class="iconfont ico-right">&#xe623;</i>
+				</a>
+			</li>
+			<li>
+				<a href="{:url('user/orders')}">
+					<img class="userli-img" src="{:MAC_BASE_PATH}/template/default/images/member/user-li7.png" >
+					<span data-lang="user_recharge_record">{:lang_web('user_recharge_record')}</span>
+					<i class="iconfont ico-right">&#xe623;</i>
+				</a>
+			</li>
+			<li>
+				<a href="{:url('user/cash')}">
+					<img class="userli-img" src="{:MAC_BASE_PATH}/template/default/images/member/user-li8.png" >
+					<span data-lang="user_cash">{:lang_web('user_cash')}</span>
+					<i class="iconfont ico-right">&#xe623;</i>
+				</a>
+			</li>
+		
+            <li>
+				<a href="{:url('user/plog')}">
+					<img class="userli-img" src="{:MAC_BASE_PATH}/template/default/images/member/user-li9.png" >
+					<span data-lang="user_poin_record">{:lang_web('user_poin_record')}</span>
+					<i class="iconfont ico-right">&#xe623;</i>
+				</a>
+			</li>
+			<li>
+				<a href="{:url('user/reward')}">
+					<img class="userli-img" src="{:MAC_BASE_PATH}/template/default/images/member/user-li10.png" >
+					<span data-lang="user_retail">{:lang_web('user_retail')}</span>
+					<i class="iconfont ico-right">&#xe623;</i>
+				</a>
+			</li>
+		</ul>
+		<ul class="logout-ul">
+			<li class="logout-item" ><a class="logout-link" href="{:url('user/logout')}" >
+				<span data-lang="user_logout">{:lang_web('user_logout')}</span>
+				</a></li>
+		</ul>
+		<script>
+			(function(){
+				let pathname=location.pathname
+				$('ul.show-pc li').each((index,item)=>{
+					if(pathname=='/index.php/user'){
+						if($(item).find('a').attr('href')=='/index.php/user/ajax_info.html'){
+							$(item).addClass('active')
+						}else{
+							$(item).removeClass('active')
+						}
+					}else{
+						if(pathname=='/index.php/user/cards.html'){
+							if($(item).find('a').attr('href')=='/index.php/user/orders.html'){
+								$(item).addClass('active')
+							}else{
+								$(item).removeClass('active')
+							}
+						}else{
+							if($(item).find('a').attr('href')==pathname){
+								$(item).addClass('active')
+							}else{
+								$(item).removeClass('active')
+							}
+						}
+						
+					}
+					
+				})
+			})()
+		</script>

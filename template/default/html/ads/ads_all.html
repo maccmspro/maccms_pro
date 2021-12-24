@@ -1,0 +1,9 @@
+{if$tplconfig['theme']['ads']['btn']==1||$tplconfig['theme']['ads']['btn']==2&&$user.group_id lt 3}
+{if condition="$tplconfig['theme']['ads']['all']['btn'] eq 1"}
+<div class="pannel ads_all clearfix">
+	<div id="1003" class="ads ads_w">
+		{$tplconfig['theme']['ads']['all']['content']}
+	</div>
+</div>
+<script type="text/javascript">var o = document.getElementById("1003");var h = o.offsetHeight; if (h > 0) {} else {$(".pannel.ads_all").addClass("hide");}</script>
+{/if}{/if}

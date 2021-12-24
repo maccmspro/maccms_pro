@@ -1,0 +1,114 @@
+{include file="../../../application/admin/view/public/head" /}
+<link rel="stylesheet" href="{:MAC_BASE_PATH}/static/codemirror/lib/codemirror.css">
+<link rel="stylesheet" href="{:MAC_BASE_PATH}/static/codemirror/addon/fold/foldgutter.css">
+<link rel="stylesheet" href="{:MAC_BASE_PATH}/static/codemirror/addon/hint/show-hint.css">
+<link rel="stylesheet" href="{:MAC_BASE_PATH}/static/codemirror/addon/lint/lint.css">
+<link rel="stylesheet" href="{:MAC_BASE_PATH}/static/codemirror/leetcode.css">
+
+<form class="layui-form" method="post" action="">
+    <div class="mainBox">
+        <div class="main-container">
+            <div class="main-container">
+                <input type="hidden" name="__token__" value="{$Request.token}" />
+        <blockquote class="layui-elem-quote layui-quote-nm">
+            提示信息：<br>
+            为了安全考量避免通过模板写入后门文件，文件内出现以下任意字符串时禁止在线保存修改，如需修改请使用其他方式。<br>
+            {$filter}
+        </blockquote>
+        <div class="layui-form-item">
+            <label class="layui-form-label">{:lang('path')}：</label>
+            <div class="layui-input-block">
+                <input type="text" class="layui-input" value="{$fpath}" placeholder="" id="fpath" name="fpath" readonly="readonly">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">{:lang('file_name')}：</label>
+            <div class="layui-input-block">
+                <input type="text" class="layui-input" value="{$fname}" placeholder="{:lang('admin/template/name_tip')}" id="fname" name="fname" {if condition="$fname neq ''"}readonly="readonly"{/if}>
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <label class="layui-form-label">{:lang('content')}：</label>
+            <div class="layui-input-block">
+                <textarea id="codemirror" name="fcontent" cols="" rows="" class="layui-textarea"  placeholder="" style="height:550px;">{$fcontent}</textarea>
+            </div>
+        </div>
+            </div>
+        </div>
+    </div>
+    <div class="bottom">
+        <div class="button-container">
+            <button type="submit" class="pear-btn pear-btn-primary pear-btn-sm" lay-submit="" lay-filter="formSubmit" data-child="true">
+                <i class="layui-icon layui-icon-ok"></i>
+                {:lang('btn_save')}
+            </button>
+            <button type="reset" class="pear-btn pear-btn-sm">
+                <i class="layui-icon layui-icon-refresh"></i>
+                {:lang('btn_reset')}
+            </button>
+        </div>
+    </div>
+
+   
+
+
+</form>
+
+{include file="../../../application/admin/view/public/foot" /}
+<script src="../../../../static/codemirror/lib/codemirror.js"></script>
+
+<script src="{:MAC_BASE_PATH}/static/codemirror/addon/comment/comment.js"></script>
+
+<script src="{:MAC_BASE_PATH}/static/codemirror/addon/selection/active-line.js"></script>
+
+<script src="{:MAC_BASE_PATH}/static/codemirror/keymap/sublime.js"></script>
+
+<script src="{:MAC_BASE_PATH}/static/codemirror/addon/hint/show-hint.js"></script>
+<script src="{:MAC_BASE_PATH}/static/codemirror/mode/javascript/javascript.js"></script>
+
+<script src="{:MAC_BASE_PATH}/static/codemirror/addon/lint/lint.js"></script>
+<script src="{:MAC_BASE_PATH}/static/codemirror/addon/lint/javascript-lint.js"></script>
+
+<script src="{:MAC_BASE_PATH}/static/codemirror/addon/fold/foldcode.js"></script>
+<script src="{:MAC_BASE_PATH}/static/codemirror/addon/fold/foldgutter.js"></script>
+<script src="{:MAC_BASE_PATH}/static/codemirror/addon/fold/brace-fold.js"></script>
+<script src="{:MAC_BASE_PATH}/static/codemirror/addon/fold/indent-fold.js"></script>
+<script src="{:MAC_BASE_PATH}/static/codemirror/addon/fold/comment-fold.js"></script>
+
+<script src="{:MAC_BASE_PATH}/static/codemirror/addon/edit/closebrackets.js"></script>
+<script src="{:MAC_BASE_PATH}/static/codemirror/addon/edit/matchbrackets.js"></script>
+<script type="text/javascript">
+window.onload = function () {
+    var el = document.getElementById("codemirror");
+   
+    var myCodeMirror = CodeMirror.fromTextArea(el, {
+        // mode: "html",
+        mode: "javascript",
+        theme: "leetcode",
+        keyMap: "sublime",
+        lineNumbers: true,
+        smartIndent: true,
+        indentUnit: 4,
+        indentWithTabs: true,
+        lineWrapping: true,
+        gutters: ["CodeMirror-linenumbers", "CodeMirror-foldgutter", "CodeMirror-lint-markers"],
+        foldGutter: true,
+        autofocus: true,
+        matchBrackets: true,
+        autoCloseBrackets: true,
+        styleActiveLine: true,
+    });
+    
+    myCodeMirror.on("keypress", function() {
+        myCodeMirror.showHint(); // 注意，注释了CodeMirror库中show-hint.js第131行的代码（阻止了代码补全，同时提供智能提示）
+    });
+    myCodeMirror.on('change', cm => {
+    //   console.log(cm.getValue())
+      document.querySelector('#codemirror').value = cm.getValue();
+    })
+};
+</script>
+
+</body>
+</html>

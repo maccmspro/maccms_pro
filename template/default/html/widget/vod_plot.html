@@ -1,0 +1,38 @@
+{in name="vo.type_id" value="$tplconfig['theme']['type']['hb']"}
+<li class="vodlist_item">
+	<a class="vodlist_thumb lazyload" href="{:mac_url_plot_detail($vo,['sid'=>$vo.sid,'nid'=>1])}" title="{$vo.vod_name}" data-original="{:mac_url_img($vo.vod_pic)}">						
+		<span class="play hidden_xs"></span>
+		<span class="pic_text text_right">{$vo.vod_time|date='Y-m-d',###}</span>
+	</a>
+	<div class="vodlist_titbox">									
+		<p class="vodlist_title">
+		<a {if condition="$tplconfig['theme']['playlink']['btn'] eq 1"}href="{:mac_url_plot_detail($vo,['sid'=>$vo.sid,'nid'=>1])}"{else/}href="{:mac_url_plot_detail($vo)}"{/if} title="{$vo.vod_name}">{$vo.vod_name}</a>
+		</p>
+		<p class="vodlist_sub"><i class="iconfont playico">&#xe659;</i>&nbsp;{$vo.vod_hits}次点播</p>
+	</div>
+</li>
+{else}
+<li class="vodlist_item">
+	<a class="vodlist_thumb lazyload" {if condition="$tplconfig['theme']['playlink']['btn'] eq 1"}href="{:mac_url_plot_detail($vo,['sid'=>$vo.sid,'nid'=>1])}"{else/}href="{:mac_url_plot_detail($vo)}"{/if} title="{$vo.vod_name}" data-original="{:mac_url_img($vo.vod_pic)}">					
+		<span class="play hidden_xs"></span>
+		{if condition="$maccms.aid eq 1"}
+		<span class="vodlist_top">{if condition="($vo.vod_year neq '') and ($vo.vod_year neq 0)"}<em class="voddate voddate_year">{$vo.vod_year}</em>{/if}{if condition="$vo.vod_class neq ''"}<em class="voddate voddate_type">{$vo.vod_class|mac_substring=2}</em>{/if}</span>
+        {/if}
+        {if condition="$vo['type_id_1']==1"}
+        {if condition="$vo.vod_score eq 0"}
+        <span class="pic_text text_right">{if condition="$vo.vod_remarks neq ''"}{$vo.vod_remarks}{elseif condition="$vo.vod_serial gt 0"}<span data-lang="string_is">{:lang_web('string_is')}</span>{$vo.vod_serial}<span data-lang="string_vod_js">{:lang_web('string_vod_js')}</span>{else /}<span data-lang="string_vod_close">{:lang_web('string_vod_close')}</span>{/if}</span>
+        {else/}
+        <span class="pic_text text_right text_dy">{$vo.vod_score}</span>
+        {/if}
+        {else/}
+		<span class="pic_text text_right">{if condition="$vo.vod_remarks neq ''"}{$vo.vod_remarks}{elseif condition="$vo.vod_serial gt 0"}<span data-lang="string_is">{:lang_web('string_is')}</span>{$vo.vod_serial}<span data-lang="string_vod_js">{:lang_web('string_vod_js')}</span>{else /}<span data-lang="string_vod_close">{:lang_web('string_vod_close')}</span>{/if}</span>
+		{/if}
+	</a>
+	<div class="vodlist_titbox">									
+		<p class="vodlist_title">
+		<a {if condition="$tplconfig['theme']['playlink']['btn'] eq 1"}href="{:mac_url_plot_detail($vo,['sid'=>$vo.sid,'nid'=>1])}"{else/}href="{:mac_url_plot_detail($vo)}"{/if} title="{$vo.vod_name}">{$vo.vod_name}</a>
+		</p>
+		<p class="vodlist_sub">{if $vo.vod_sub}{php}echo mac_filter_html(mac_url_create($vo['vod_sub'],'actor'));{/php}{else}<span data-lang='string_no_have'>{:lang_web('string_no_have')}</span>{/if}</p>
+	</div>
+</li>
+{/in}

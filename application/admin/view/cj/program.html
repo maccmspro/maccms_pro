@@ -1,0 +1,92 @@
+{include file="../../../application/admin/view/public/head" /}
+
+
+
+
+
+    <form class="layui-form" method="post" id="pageListForm"  style="position: relative;">
+    <input type="hidden" name="id" value="{$param.id}">
+    <div class="layui-card">
+      <div class="layui-card-body">
+        <fieldset class="layui-elem-field">
+            <legend>{:lang('admin/cj/label_data_rel')}</legend>
+        </fieldset>
+  </div></div>
+  
+    <div class="layui-card">
+        <div class="layui-card-body">
+          <table id="role-table" lay-filter="role-table"></table>
+          <div
+            class="layui-form layui-border-box layui-table-view"
+            lay-filter="LAY-table-1"
+            lay-id="role-table"
+            style=""
+          >
+            
+            <div class="layui-table-box">
+              <div class="layui-table-header">
+        
+            
+          <table
+          cellspacing="0"
+          cellpadding="0"
+          border="0"
+          class="layui-table"
+          lay-skin="line"
+          >
+          <thead>
+            <tr>
+                <th width="100">{:lang('admin/cj/data_column')}</th>
+                <th width="100">{:lang('admin/cj/label_column')}</th>
+                <th width="100">{:lang('admin/cj/processing_function')}</th>
+            </tr>
+          </thead>
+          <tbody>
+            {volist name="column_list" id="vo"}
+                        <tr>
+                            <td><input type="hidden" name="model_field[]" value="{$vo.Field}">{$vo.Field}</td>
+                            <td><select name="node_field[]">
+                                <option value="">{:lang('select_please')}</option>
+                                {volist name="node_field" id="vo2" key="key2"}
+                                <option value="{$key}" {if condition="$program_config['map'][$vo.Field] eq $key"}selected{/if}>{$vo2}</option>
+                                {/volist}
+                            </select>
+                            </td>
+                            <td><select name="funcs[]"><option value="" >{:lang('select_please')}</option><option value="trim" {if condition="$program_config['funcs'][$vo.Field] eq 'trim'"}selected{/if}>{:lang('admin/cj/trim_space')}</option></select></td>
+                        </tr>
+                        {/volist}
+          </tbody>
+          </table>
+          
+       
+              </div>
+              
+            </div>
+            
+            
+          </div>
+        </div>
+      </div>
+      <div class="bottom">
+        <div class="button-container">
+            <button type="submit" class="pear-btn pear-btn-primary pear-btn-sm" lay-submit="" lay-filter="formSubmit" data-child="true">
+                <i class="layui-icon layui-icon-ok"></i>
+                {:lang('btn_save')}
+            </button>
+            <button type="reset" class="pear-btn pear-btn-sm">
+                <i class="layui-icon layui-icon-refresh"></i>
+                {:lang('btn_reset')}
+            </button>
+        </div>
+    </div>
+    </form>
+    
+
+
+{include file="../../../application/admin/view/public/foot" /}
+<script type="text/javascript">
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,17 @@
+
+
+<div id="rating" class="rating-list" data-mid="{$maccms.mid}" data-id="{$obj.website_id}" data-score="{$obj.vod_score/2|ceil}">
+    <ul class="rating rating-star">
+        <li class="big-star one" data-lang='string_vod_very_bad' data-title='string_vod_very_bad' title="{:lang_web('string_vod_very_bad')}" val="1">{:lang_web('string_vod_very_bad')}</li>
+        <li class="big-star two" data-lang='string_vod_very_poor' data-title='string_vod_very_poor' title="{:lang_web('string_vod_very_poor')}" val="2">{:lang_web('string_vod_very_poor')}</li>
+        <li class="big-star three" data-lang='string_vod_not_bad' data-title='string_vod_not_bad' title="{:lang_web('string_vod_not_bad')}" val="3">{:lang_web('string_vod_not_bad')}</li>
+        <li class="big-star four" data-lang='string_vod_recommend' data-title='string_vod_recommend' title="{:lang_web('string_vod_recommend')}" val="4">{:lang_web('string_vod_recommend')}</li>
+        <li class="big-star five" data-lang='string_vod_recommend_strongly' data-title='string_vod_recommend_strongly' title="{:lang_web('string_vod_recommend_strongly')}" val="5">{:lang_web('string_vod_recommend_strongly')}</li>
+    </ul>
+    <span id="ratewords" class="label-list">
+		{if condition="$obj.vod_score eq 0"}<span data-lang="string_vod_zwpf">{:lang_web('string_vod_zwpf')}</span> 
+		{/if}
+    </span>
+</div>
+<script type="text/javascript" src="{:MAC_BASE_PATH}/template/default/asset/js/parts/qireobj.js"></script>
+<script type="text/javascript" src="{:MAC_BASE_PATH}/template/default/asset/js/parts/gold.js"></script>

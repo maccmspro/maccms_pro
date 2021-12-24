@@ -1,0 +1,108 @@
+{include file="../../../application/admin/view/public/head" /}
+<div class="">
+
+    <div class="layui-card">
+        <div class="layui-card-body">
+          <table id="role-table" lay-filter="role-table"></table>
+          <div
+            class="layui-form layui-border-box layui-table-view"
+            lay-filter="LAY-table-1"
+            lay-id="role-table"
+            style=""
+          >
+            <div class="layui-table-tool">
+              <div class="layui-table-tool-temp">
+                <a data-full="1" data-href="{:url('info')}?fpath={$curpath}&fname=" class="pear-btn pear-btn-primary pear-btn-md j-iframe"><i class="layui-icon">&#xe654;</i>{:lang('add')}</a>
+       
+              </div>
+            </div>
+            <div class="layui-table-box">
+              <div class="layui-table-header">
+        <form class="layui-form" method="post" id="pageListForm" >
+          <table
+          cellspacing="0"
+          cellpadding="0"
+          border="0"
+          class="layui-table"
+          lay-skin="line"
+          >
+          <thead>
+            <tr>
+                <th>{:lang('file_name')}</th>
+                <th width="200">{:lang('file_des')}</th>
+                <th width="200">{:lang('file_size')}</th>
+                <th width="200">{:lang('file_time')}</th>
+                <th width="100">{:lang('opt')}</th>
+            </tr>
+          </thead>
+          <tbody>
+            {if condition="$ischild eq 1"}
+        <tr><td colspan="4"><a href="{:url('template/index',['path'=>$uppath])}">...{:lang('return_parent_dir')}</a></td></tr>
+        {/if}
+
+            {volist name="files" id="vo"}
+            <tr>
+                {if condition="$vo.isfile eq 1"}
+                <th>{$vo.name}</a></th>
+                <td>{$vo.note}</td>
+                <td>{$vo.size}</td>
+                <td>{$vo.time|mac_day='color'}</td>
+                <td>
+                    <a class="pear-btn pear-btn-primary pear-btn-md j-iframe" data-full="1" data-href="{:url('info')}?fpath={$vo.path}&fname={$vo.name}" href="javascript:;" title="{:lang('edit')}">{:lang('edit')}</a>
+                    <a class="pear-btn pear-btn-danger pear-btn-md j-tr-del" data-href="{:url('del')}?fname={$vo.fullname}" href="javascript:;" title="{:lang('del')}">{:lang('del')}</a>
+                </td>
+                {else}
+                <th><a href="{:url('template/index',['path'=>$vo.path])}">{$vo.name}</a></th>
+                <td>{$vo.note}</td>
+                <td></td>
+                <td>{$vo.time|mac_day='color'}</td>
+                <td></td>
+                {/if}
+            </tr>
+            {/volist}
+          </tbody>
+          <tfoot>
+            <tr><td colspan="5">{:lang('admin/template/current_dir')}：{$curpath|str_replace='@','/',###}，{:lang('sum')}<b class="red">{$num_path}</b>{:lang('dir')},<b class="red">{$num_file}</b>{:lang('file')},{:lang('occupies')}<b class="red">{$sum_size}</b>{:lang('space')}</td></tr>
+        </tfoot>
+          </table>
+        </form>
+              </div>
+              
+            </div>
+            
+            
+          </div>
+        </div>
+      </div>
+      
+  </div>
+{include file="../../../application/admin/view/public/foot" /}
+<script type="text/javascript">
+    function data_info(path,name)
+    {
+        var index = layer.open({
+            type: 2,
+            shade:0.4,
+            title: "{:lang('edit')}",
+            content: "{:url('template/info')}?fpath="+path+'&fname='+name
+        });
+
+        layer.full(index);
+    }
+
+    function data_del(id)
+    {
+        if(!id){
+            id  = checkIds('fname[]');
+        }
+        layer.confirm("{:lang('del_confirm')}", function (index) {
+            location.href = "{:url('template/del')}?fname=" + id;
+        });
+    }
+
+    $(function(){
+
+    });
+</script>
+</body>
+</html>

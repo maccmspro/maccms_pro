@@ -1,0 +1,24 @@
+<li class="ranklist_item">
+    {if condition="$vo['type_id_1']==$tplconfig['theme']['type']['zb']"}
+    <a title="{$vo.vod_name}" href="{:mac_url_plot_detail($vo,['sid'=>$vo.sid,'nid'=>1])}">
+    {else}
+    {in name="vo.type_id" value="$tplconfig['theme']['type']['hb']"}
+    <a title="{$vo.vod_name}" href="{:mac_url_plot_detail($vo,['sid'=>$vo.sid,'nid'=>1])}">
+    {else}
+    <a title="{$vo.vod_name}" {if condition="$tplconfig['theme']['playlink']['btn'] eq 1"}href="{:mac_url_plot_detail($vo,['sid'=>$vo.sid,'nid'=>1])}"{else/}href="{:mac_url_plot_detail($vo)}"{/if}>
+    {/in}{/if}
+	<div class="plotlist_img">
+		 <div class="ranklist_thumb {if condition="$vo['type_id_1']==$tplconfig['theme']['type']['zb']"}zbpic{/if} lazyload" data-original="{$vo.vod_pic|mac_url_img}">						
+			<span class="play hidden_xs"></span>
+            <span class="part_nums part_num{$key}">{$key}</span>
+            {if condition="$vo['type_id_1']==1"}
+            {if condition="$vo.vod_score eq 0"}
+            {else/}
+            <span class="pic_text text_right text_dy">{$vo.vod_score}</span>
+            {/if}
+            {/if}
+	     </div>
+	</div>	
+    <div class="plotlist_txt">
+	     <div class="pannel_head clearfix">
+              <span class="text_muted pull_right"><i class="iconfont">&#xe631;</i>

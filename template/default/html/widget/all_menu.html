@@ -1,0 +1,78 @@
+<div class="all_menu">
+  <div class="all_menu_inner">
+     <div class="menu_top hidden_mb"><a class="close_menu" href="javascript:void(0)"><i class="iconfont">&#xe616;</i></a>全部分类</div>
+     <!-- 分类 -->
+     <div class="all_menu_box">
+		 <ul class="nav_list clearfix">
+			 <li {if condition="$maccms.aid eq 1" }class="active"{/if}>
+				 <a class="mob_btn mob_btn7" href="{:MAC_BASE_PATH}/" title="<span data-lang="string_home">{:lang_web('string_home')}</span>"><i class="iconfont">&#xe634;</i><span><span data-lang="string_home">{:lang_web('string_home')}</span></span></a>
+			 </li>
+			 {maccms:vod num="1" paging="no" type="all" level="2" order="desc" by="sort"}
+			 <li>
+				 <a class="mob_btn mob_btn7" href="{:mac_url_vod_detail($vo)}" title="{$vo.vod_name}"><i class="iconimg" style="background-image: url({$vo.vod_pic_thumb|mac_default=$vo.vod_pic|mac_url_img})"></i><span>{$vo.vod_name}</span></a>
+			 </li>
+			 {/maccms:vod}
+			 {maccms:type ids="parent" order="asc" by="sort" id="vo1" key="key1"}
+			 <li {if condition="($vo1.type_id eq $GLOBALS['type_id'] || $vo1.type_id eq $GLOBALS['type_pid'])"} class="active"{/if}>
+				 <a class="mob_btn mob_btn{$key1}" href="{:mac_url_type($vo1)}" title="{$vo1.type_name}">
+				 {include file="widget/icon"}<span>{$vo1.type_name}</span>
+				 </a>
+			 </li>
+			 {/maccms:type}
+			 {if condition="$tplconfig['theme']['nav']['zdybtn2'] eq 1"}
+			 <li>
+				 <a class="mob_btn mob_btn7" href="{$tplconfig['theme']['nav']['zdylink2']}" title="{$tplconfig['theme']['nav']['zdyname2']}" target="_blank"><i class="iconimg" style="background-image: url({$tplconfig['theme']['nav']['zdypic2']|mac_url_img})"></i><span>{$tplconfig['theme']['nav']['zdyname2']}</span></a>
+			 </li>
+			 {/if}
+			 {if condition="$tplconfig['theme']['nav']['zdybtn3'] eq 1"}
+			 <li>
+				 <a class="mob_btn mob_btn7" href="{$tplconfig['theme']['nav']['zdylink3']}" title="{$tplconfig['theme']['nav']['zdyname3']}" target="_blank"><i class="iconimg" style="background-image: url({$tplconfig['theme']['nav']['zdypic3']|mac_url_img})"></i><span>{$tplconfig['theme']['nav']['zdyname3']}</span></a>
+			 </li>
+			 {/if}
+			 {if condition="$tplconfig['theme']['nav']['zdybtn4'] eq 1"}
+			 <li>
+				 <a class="mob_btn mob_btn7" href="{$tplconfig['theme']['nav']['zdylink4']}" title="{$tplconfig['theme']['nav']['zdyname4']}" target="_blank"><i class="iconimg" style="background-image: url({$tplconfig['theme']['nav']['zdypic4']|mac_url_img})"></i><span>{$tplconfig['theme']['nav']['zdyname4']}</span></a>
+			 </li>
+			 {/if}
+			 {if condition="$tplconfig['theme']['topic']['btn'] eq 1"}
+			 <li {if condition="$maccms.mid eq 3"}class="active"{/if}>
+				 <a class="mob_btn mob_btn2" href="{:mac_url_topic_index()}" title="{if $tplconfig['theme']['topic']['title']}{$tplconfig['theme']['topic']['title']}{else}<span data-lang="string_topic">{:lang_web('string_topic')}</span>{/if}"><i class="iconfont">&#xe64c;</i><span>
+			 {if $tplconfig['theme']['topic']['title']}{$tplconfig['theme']['topic']['title']}{else}<span data-lang="string_topic">{:lang_web('string_topic')}</span>{/if}
+</span></a>
+			 </li>
+			 {/if}
+			 {if condition="$GLOBALS['config']['gbook']['status'] eq 1"}
+			 <li {if condition="$maccms.aid eq 4"}class="active"{/if}>
+				 <a class="mob_btn mob_btn1" href="{:mac_url('gbook/index')}" title="{if $tplconfig['theme']['gbook']['title']}{$tplconfig['theme']['gbook']['title']}{else}<span data-lang="string_gbook">{:lang_web('string_gbook')}</span>{/if}"><i class="iconfont">&#xe632;</i><span>{if $tplconfig['theme']['gbook']['title']}{$tplconfig['theme']['gbook']['title']}{else}<span data-lang="string_gbook">{:lang_web('string_gbook')}</span>{/if}</span></a>
+			 </li>
+			 {/if}
+			 {if condition="$tplconfig['theme']['map']['btn'] eq 1"}
+			 <li {if condition="$maccms.aid eq 2"}class="active"{/if}>
+				 <a class="mob_btn mob_btn3" href="{:mac_url('map/index')}" title="{if $tplconfig['theme']['map']['title']}{$tplconfig['theme']['map']['title']}{else}<span data-lang="string_map">{:lang_web('string_map')}</span>{/if}"><i class="iconfont">&#xe652;</i><span>{if $tplconfig['theme']['map']['title']}{$tplconfig['theme']['map']['title']}{else}<span data-lang="string_map">{:lang_web('string_map')}</span>{/if}</span></a>
+			 </li>
+			 {/if}
+			 {if condition="$tplconfig['theme']['rank']['btn'] eq 1"}
+			 <li {if condition="$maccms.aid eq 7"}class="active"{/if}>
+				 <a class="mob_btn mob_btn4" href="{:mac_url('label/rank')}" title="{if $tplconfig['theme']['rank']['title']}{$tplconfig['theme']['rank']['title']}{else}<span data-lang="string_rank">{:lang_web('string_rank')}</span>{/if}"><i class="iconfont">&#xe618;</i><span>{if $tplconfig['theme']['rank']['title']}{$tplconfig['theme']['rank']['title']}{else}<span data-lang="string_rank">{:lang_web('string_rank')}</span>{/if}</span></a>
+			 </li>
+			 {/if}
+			 {if condition="$tplconfig['theme']['role']['btn'] eq 1"}
+			 <li {if condition="$maccms.mid eq 9"}class="active"{/if}>
+				 <a class="mob_btn mob_btn6" href="{:mac_url('role/index')}" title="{if $tplconfig['theme']['role']['title']}{$tplconfig['theme']['role']['title']}{else}<span data-lang="string_role">{:lang_web('string_role')}</span>{/if}"><i class="iconfont">&#xe654;</i><span>{if $tplconfig['theme']['role']['title']}{$tplconfig['theme']['role']['title']}{else}<span data-lang="string_role">{:lang_web('string_role')}</span>{/if}</span></a>
+			 </li>
+			 {/if}
+			 {if condition="$tplconfig['theme']['plot']['btn'] eq 1"}
+			 <li {if condition="$maccms.mid eq 10"}class="active"{/if}>
+				 <a class="mob_btn mob_btn1" href="{:mac_url('plot/index')}" title="{if $tplconfig['theme']['plot']['title']}{$tplconfig['theme']['plot']['title']}{else}<span data-lang="string_plot">{:lang_web('string_plot')}</span>{/if}"><i class="iconfont">&#xe630;</i><span>{if $tplconfig['theme']['plot']['title']}{$tplconfig['theme']['plot']['title']}{else}<span data-lang="string_plot">{:lang_web('string_plot')}</span>{/if}</span></a>
+			 </li>
+			 {/if}
+			 {if condition="$tplconfig['theme']['apps']['btn'] eq 1"}
+			 <li>
+				 <a class="mob_btn mob_btn7 mob_btnapp" href="{$tplconfig['theme']['apps']['link']}" title="Download APP"><i class="iconfont">&#xe653;</i><span data-lang="string_play_xz1">{:lang_web('string_play_xz1')}</span>APP</a>
+			 </li>
+			 {/if}
+		 </ul>
+     <!-- 分类end -->
+     </div>
+  </div>
+</div>

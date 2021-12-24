@@ -1,0 +1,52 @@
+{if condition="$tplconfig['theme']['type']['meunbtn'] eq 1"}
+<div class="row hidden_mb">
+    <div class="pannel">
+        <ul class="hom_mob_list">
+            {maccms:type num="5" ids="'.$tplconfig['theme']['type']['meunid'].'" order="asc" by="sort" id="vo1" key="key1"}
+            <li>
+                <a class="mob_btn mob_btn{$key1}" href="{:mac_url_type($vo1)}">
+					{include file="widget/icon"}<span class="mob_font">{$vo1.type_name}</span>
+				</a>
+            </li>
+            {/maccms:type}
+        </ul>
+    </div>
+</div>
+{/if}
+<div class="row">
+    <div class="pannel">
+        <ul class="hom_sm_list vodlist_wi">
+            {if condition="$tplconfig['theme']['notice']['btn'] eq 1"}
+            <li class="notice"{if condition="$tplconfig['theme']['type']['meunbtn'] eq 0" } style="width: 100%;"{/if}>
+                <div class="smlist_box">
+                    {include file="widget/notice"}
+                    <i class="iconfont nico">&#xe62d;</i>
+                </div>
+            </li>
+            {/if}
+            {if condition="$tplconfig['theme']['type']['meunbtn'] eq 1"}
+				{if condition="$tplconfig['theme']['notice']['btn'] eq 1"}
+				{if condition="$tplconfig['theme']['type']['meunys'] eq 'one'"}
+				{maccms:type num="2" ids="'.$tplconfig['theme']['type']['meunid'].'" order="asc" by="sort" id="vo1" key="key1"}
+				{include file="widget/home_menu_sm"}
+				{/maccms:type}
+				{elseif condition="$tplconfig['theme']['type']['meunys'] eq 'two'"}
+				{maccms:type num="5" ids="'.$tplconfig['theme']['type']['meunid'].'" order="asc" by="sort" id="vo1" key="key1"}
+				{include file="widget/home_menu_sm"}
+				{/maccms:type}
+				{/if}
+				{else}
+				{if condition="$tplconfig['theme']['type']['meunys'] eq 'one'"}
+				{maccms:type num="3" ids="'.$tplconfig['theme']['type']['meunid'].'" order="asc" by="sort" id="vo1" key="key1"}
+				{include file="widget/home_menu_sm"}
+				{/maccms:type}
+				{elseif condition="$tplconfig['theme']['type']['meunys'] eq 'two'"}
+				{maccms:type num="6" ids="'.$tplconfig['theme']['type']['meunid'].'" order="asc" by="sort" id="vo1" key="key1"}
+				{include file="widget/home_menu_sm"}
+				{/maccms:type}
+				{/if}
+                {/if}
+            {/if}
+        </ul>
+    </div>
+</div>

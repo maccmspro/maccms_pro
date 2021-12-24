@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE10" />
+	<meta name="renderer" content="webkit|ie-comp|ie-stand">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <title>{:lang_web('string_xitonts')}......</title>
+    <link rel="stylesheet" href="{:MAC_BASE_PATH}/static/css/home.css">
+    <link rel="stylesheet" href="{:MAC_BASE_PATH}/template/default/asset/css/app.css">
+    <style>
+        body{background:#000000;color:#818181}
+        input{padding:12px 0;border-radius: 4px;border: 1px solid #999;text-align: center;width: 100%;}
+		.weui_msg_jump {position: absolute;top: 50%;left: 50%;padding: 0;width: 35%;transform: translate(-50%,-50%);}
+		.weui_text {margin-bottom: 0;padding: 0;}
+		.weui_icon {margin-bottom: 15px;}
+        .item{margin: 15px 0 0;}
+		.mm_btn {display: block; margin: 15px 0 0;color: #ff5f00;font-size: 14px;}
+		.mm_btn a{color: #ff5f00;font-size: 14px;}
+        .submit_btn{width:100%;border-width:0;background: #ff5f00; padding:12px;display:inline-block;font-family:Microsoft YaHei;color:#fff;font-size:14px;border-radius: 4px;line-height: 18px;box-sizing: border-box;}
+		.weui_msg_title {margin-top: 0;margin-bottom: 15px;color: #ccc;}
+		.weui_text p.weui_xtts {line-height: unset;color: #ccc;text-align: center;margin-top: 0;}
+		.text a.submit_btn,.text a:hover.submit_btn{color: #fff;}
+		@media (max-width: 480px){
+			.weui_msg_jump{width: 60%;}
+			.item,.mm_btn{margin: 10px 0 0;}
+			input,.submit_btn {padding: 10px 0;}
+		}
+    </style>
+    <script src="{:MAC_BASE_PATH}/static/js/jquery.js"></script>
+    {include file="public/jsvar"}
+    <script src="{:MAC_BASE_PATH}/static/js/home.js"></script>
+</head>
+<body>
+
+<div class="weui_msg_jump">
+    <div class="weui_text">
+        <p class="weui_xtts" data-lang="dear_password">{:lang_web('dear_password')}</p>
+     <div class="text">
+        <form id="form1" name="form1" action="" style="text-align: center;" method="post">
+            <div class="item">
+                <input type="password" name="pwd" placeholder="{:lang_web('password_here')}"/>
+            </div>
+            <div class="item">
+                <a class="submit_btn" href="javascript:;" onclick="MAC.Pwd.Check(this)" data-mid="1" data-id="{$obj.vod_id}" data-type="4" data-lang="string_submit">{:lang_web('string_submit')}</a>
+            </div>
+            <div class="mm_btn">
+                {if condition="$obj.vod_pwd_play_url neq ''"}
+                <a href="{$obj.vod_pwd_play_url}" target="_blank">{:lang_web('click_to_get_password')}</a>
+                {else/}
+                <span><span data-lang="string_password">{:lang_web('string_password')}</span>：{$obj.vod_pwd_play}</span>
+                {/if}
+            </div>
+        </form>
+    </div>
+    </div>
+</div>
+<script type="text/javascript">
+
+</script>
+</body>
+</html>
+
+
+

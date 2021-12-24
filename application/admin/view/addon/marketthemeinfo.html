@@ -1,0 +1,87 @@
+{include file="../../../application/admin/view/public/head" /}
+<div class="page-container">
+
+    <div class="layui-col-md8" style="padding: 20px">
+        <div style="clear: both">
+            <div class="layui-col-md3">
+                {if condition="$info.pc_image neq ''"}
+                <img src="{$info.pc_image}" class="add-logo" style="height:140px" />
+                {else/}
+                    {if condition="$info.h5_image neq ''"}
+                        <img src="{$info.h5_image}" class="add-logo" style="height:140px" />
+                    {else/}
+                        {if condition="$info.pc_preview neq ''"}
+                            <img src="{$info.pc_preview}" class="add-logo" style="height:140px" />
+                        {else/}
+                            {if condition="$info.h5_preview neq ''"}
+                            <img src="{$info.h5_preview}" class="add-logo" style="height:140px" />
+                            {else/}
+                            <img src="" class="add-logo" style="height:140px" />
+                            {/if}
+                        {/if}
+                    {/if}
+                {/if}
+            </div>
+            <div class="layui-col-md9" style="padding: 20px">
+                <h3>{$info.name}</h3>
+                <h4 style="margin-top: 20px">开发者:<span style="margin-left: 10px">{$info.user_name}</span></h4>
+                <h4 style="margin-top: 20px">开发者网址:<span style="margin-left: 10px">{$info.user_domain}</span></h4>
+            </div>
+            <div style="clear: both"></div>
+        </div>
+        <div>
+            <p style="padding-top: 40px"><span style="font-size: larger;font-weight: bolder">描述</span></p>
+            <p style="padding-top: 20px">{$info.describe}</p>
+        </div>
+    </div>
+    <div class="layui-col-md4" style="padding: 20px">
+        <div style="height: 140px;line-height: 140px;text-align: center">
+            {if condition="$info.toll eq 1"}
+            <a class="j-iframe layui-btn mgl-20" data-full="1" data-href="{:url('marketlicense')}?id={$info.id}&type=theme" href="javascript:;">授权码兑换</a>
+            {/if}
+            {if condition="$info.toll eq 0"}
+            <a class="layui-btn mgl-20" onclick="ondown('{$info.source}')">下载模板</a>
+            <a class="j-iframe layui-btn mgl-20" data-full="1" data-href="{:url('downandinstalltheme')}?down_url={$info.source}&file_name={$info.file_name}&id={$info.id}&type=theme" href="javascript:;">一键安装</a>
+            {/if}
+        </div>
+        <div style="margin-top: 40px">
+            <div style="margin-top: 20px"><p class="layui-inline w150">版本:</p><p class="layui-inline">{$level}</p></div>
+            <div style="margin-top: 20px"><p class="layui-inline w150">最近更新时间:</p><p class="layui-inline">{$info.update_time}</p></div>
+            <div style="margin-top: 20px"><p class="layui-inline w150">安装数量:</p><p class="layui-inline">{$info.download_num}</p></div>
+            <div style="margin-top: 20px"><p class="layui-inline w150">支持语言:</p><p class="layui-inline">{$info.langs}</p></div>
+            <p style="margin-top: 20px"><a class="j-iframe" data-full="1" data-href="{:url('marketfeedback')}?id={$info.id}&type=theme" href="javascript:;" title="问题反馈">问题反馈>></a></p>
+            <p style="margin-top: 40px">联系方式</p>
+            <div style="margin-top: 20px"><p class="layui-inline w150">QQ:</p><p class="layui-inline">{$info.qq}</p></div>
+            <div style="margin-top: 20px"><p class="layui-inline w150">Email:</p><p class="layui-inline">{$info.email}</p></div>
+            <div style="margin-top: 20px"><p class="layui-inline w150">手机:</p><p class="layui-inline">{$info.tel}</p></div>
+            <div style="margin-top: 20px"><p class="layui-inline w150">微信:</p><p class="layui-inline">{$info.wechat}</p></div>
+        </div>
+    </div>
+
+</div>
+{include file="../../../application/admin/view/public/foot" /}
+<script type="text/javascript">
+    layui.use(['laypage', 'layer','form'], function() {
+        var laypage = layui.laypage
+            , layer = layui.layer,
+            form = layui.form;
+
+    });
+
+    function ondown(diwn_url){
+        $.ajax({
+            type: 'post',
+            dataType:'json',
+            url: "{:url('addon/ondown')}",
+            data:{id:"{$info.id}",type:"theme",down_url:diwn_url},
+            success:function($r){
+                window.open($r.data)
+            },
+            complete:function(){
+                //layer.msg("未知错误");
+            }
+        });
+    }
+</script>
+</body>
+</html>

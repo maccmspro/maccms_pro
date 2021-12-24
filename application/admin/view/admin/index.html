@@ -1,0 +1,104 @@
+{include file="../../../application/admin/view/public/head" /}
+
+<div class="">
+  
+    <div class="layui-card">
+        <div class="layui-card-body">
+          <table id="role-table" lay-filter="role-table"></table>
+          <div
+            class="layui-form layui-border-box layui-table-view"
+            lay-filter="LAY-table-1"
+            lay-id="role-table"
+            style=""
+          >
+            <div class="layui-table-tool">
+              <div class="layui-table-tool-temp">
+                <a  data-full="1" data-href="{:url('info')}" class="pear-btn pear-btn-primary pear-btn-md j-iframe"><i class="layui-icon">&#xe654;</i>{:lang('add')}</a>
+                <a data-href="{:url('del')}" class="pear-btn pear-btn-danger pear-btn-md j-page-btns confirm"><i class="layui-icon">&#xe640;</i>{:lang('del')}</a>
+            
+              </div>
+            </div>
+            <div class="layui-table-box">
+              <div class="layui-table-header">
+        <form class="layui-form" method="post" id="pageListForm" >
+          <table
+          cellspacing="0"
+          cellpadding="0"
+          border="0"
+          class="layui-table"
+          lay-skin="line"
+          >
+          <thead>
+            <tr>
+                <th width="25"><input type="checkbox" lay-skin="primary" lay-filter="allChoose"></th>
+                <th width="100">{:lang('id')}</th>
+                <th >{:lang('name')}</th>
+                <th width="100">{:lang('status')}</th>
+                <th width="140">{:lang('last_login_time')}</th>
+                <th width="140">{:lang('last_login_ip')}</th>
+                <th width="130">{:lang('login_num')}</th>
+                <th width="100">{:lang('opt')}</th>
+            </tr>
+          </thead>
+          <tbody>
+            {volist name="list" id="vo"}
+            <tr>
+                <td>
+                    {if condition="$admin['admin_id'] neq $vo['admin_id']"}
+                    <input type="checkbox" name="ids[]" value="{$vo.admin_id}" class="layui-checkbox checkbox-ids" lay-skin="primary">
+                    {/if}
+                </td>
+                <td>{$vo.admin_id}</td>
+                <td>{$vo.admin_name|htmlspecialchars}</td>
+                <td>
+                    <input type="checkbox" name="status" {if condition="$vo['admin_status'] eq 1"}checked{/if} value="{$vo['admin_status']}" lay-skin="switch" lay-filter="switchStatus" lay-text="{:lang('enable')}|{:lang('disable')}" data-href="{:url('field?col=admin_status&ids='.$vo['admin_id'])}">
+                </td>
+                <td>{$vo.admin_last_login_time|mac_day='color'}</td>
+                <td>{$vo.admin_last_login_ip|long2ip}</td>
+                <td>{$vo.admin_login_num}</td>
+                <td>
+                    <a class="pear-btn pear-btn-primary pear-btn-md j-iframe" data-href="{:url('info?id='.$vo['admin_id'])}" href="javascript:;" title="{:lang('edit')}">{:lang('edit')}</a>
+                    {if condition="$admin['admin_id'] neq $vo['admin_id']"}
+                    <a class="pear-btn pear-btn-danger pear-btn-md j-tr-del" data-href="{:url('del?ids='.$vo['admin_id'])}" href="javascript:;" title="{:lang('del')}">{:lang('del')}</a>
+                    {/if}
+                </td>
+            </tr>
+            {/volist}
+          </tbody>
+          </table>
+        </form>
+              </div>
+              
+            </div>
+            
+            
+          </div>
+        </div>
+      </div>
+      
+    <div id="pages" class="center"></div>
+  </div>
+{include file="../../../application/admin/view/public/foot" /}
+
+<script type="text/javascript">
+    var curUrl="{:url('admin/index',$param)}";
+    layui.use(['laypage', 'layer'], function() {
+        var laypage = layui.laypage
+                , layer = layui.layer;
+
+        laypage.render({
+            elem: 'pages'
+            ,count: {$total}
+            ,limit: {$limit}
+            ,curr: {$page}
+            ,layout: ['count', 'prev', 'page', 'next', 'limit', 'skip']
+            ,jump: function(obj,first){
+                if(!first){
+                    location.href = curUrl.replace('%7Bpage%7D',obj.curr).replace('%7Blimit%7D',obj.limit);
+                }
+            }
+        });
+    });
+</script>
+</body>
+</html>

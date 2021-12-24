@@ -1,0 +1,974 @@
+<!DOCTYPE html>
+<head>
+    {include file="public/include"}
+    <script src="{:MAC_BASE_PATH}/template/default/asset/js/parts/jquery.adaptive.js"></script>
+</head>
+<style>
+    .container {
+        width: 100%;
+    }
+    .banner {
+        height: 700px;
+        padding-top: 120px;
+    }
+    .banner ul li img{
+        height: 100%;
+    }
+
+    #lbsub {
+        width: 30rem;
+        background: #B6B6B6;
+    }
+    .header .head_search{
+        background: #9595A2;
+    }
+    .head_box.nav_fixed .head_search{
+        background: #f8f8f8;
+    }
+    .bstem .head_box.nav_top .head_search{
+        background: #f8f8f8;
+    }
+    .home-detail {
+        width: 30rem;
+        margin: auto;
+    }
+    .latest-tab-box{
+        background-color: transparent
+    }
+    .latest-tab-box .play-img{
+        background-color: transparent;
+        position: relative;
+        padding: 0;
+        height: 280px;
+        border: none;
+    }
+    .latest-tab-box .play-img .vod_vip {
+        width: 42px;
+        position: absolute;
+        top: 5px;
+        right: 5px;
+    }
+    .box{
+        width: 30rem;
+    }
+    .box .title{
+        display: flex;
+        align-items: center;
+        position: relative;
+        min-height: 1rem;
+    }
+    .box .title .laset_new_img{
+        width: 0.8rem;
+        margin-right: 0.25rem;
+    }
+    .box .title .pc_more{
+        position: absolute;
+        right: 0;
+        background-color: #f8f8f8;
+        border-radius: 18px;
+        padding: 5px 20px;
+    }
+    .box .title .pc_more:hover{
+        background-color: #F7502D;
+        color: #fff;
+    }
+    .box .title dl{
+        background-image: none
+    }
+    .box .title h2{
+        font-size: 28px;
+        color: #333;
+    }
+    .box .title dl dd{
+        border: none;
+        background: #F8F8F8;
+        border-radius: 4px;
+    }
+    .box .title dl dd:hover a{
+        color: #F7502D ;
+    }
+    .box-c .title{
+        align-items: baseline;
+    }
+    .box-c .title dl dd.font{
+        background-color: transparent;
+    }
+    .box-c .title dl dd:hover{
+        background-color: transparent !important;
+    }
+    #link{
+        width: 100%;
+        border: none;
+        margin-top: 50px;
+    }
+    #link #title{
+        width: 100%;
+        color: #343434;
+        font-size: 16px;
+        border: none;
+        border-top: 1px solid #DDDDDD;
+    }
+    #link ul{
+        width: 100%;
+    }
+    .home-bg1{
+        position: absolute;
+        width: 100%;
+        top: 670px;
+        z-index: -1;
+    }
+    .latest-tab-box .img-list h5{
+        text-align: left;
+        padding-left: 4px;
+        position: relative;
+        z-index: 2;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+    }
+    .latest-tab-box .img-list li p{
+        height: auto;
+        margin: 0;
+        position: relative;
+        z-index: 2;
+    }
+    .latest-tab-box .img-list li p.time{
+        text-align: left;
+        padding-left: 4px;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        height: 20px;
+    }
+    .latest-tab-box .latest-item .img-list li{
+        position: relative;
+        padding: 3px;
+        
+    }
+    .latest-tab-box .latest-item .img-list li .serial{
+        position: absolute;
+        top: 25px;
+        left: 6px;
+        background: #000;
+        opacity: 0.5;
+        padding: 2px 3px;
+        border-radius: 4px;
+        color: #d5d5d5;
+    }
+
+    .latest-tab-box .latest-item .txt-list{
+        width: 100%;
+        margin: 11px 0;
+    }
+    .latest-tab-box .latest-item .txt-list li{
+        margin: 0;
+        width: 300px;
+    }
+    .box .box_con .img-list{
+        width: 100%;
+    }
+    .box .box_con .img-list li{
+        width: 16.66666%;
+        padding: 3px;
+    }
+    .box .box_con .img-list li a{
+        border: none;
+        width: 100%;
+        padding-bottom:0 ;
+    }
+
+    .box .box_con .img-list li a:hover{
+        background: none;
+    }
+    .box .box_con .img-list li a img{
+        width: 100%;
+        height: auto;
+    }
+    .move-icon{
+        width: 20px;
+        margin-right: 10px;
+    }
+    .show-banner{
+        opacity: 1;
+        transition: all 1s;
+    }
+    .hide-banner{
+        opacity: 0;
+        transition: all 1s;
+    }
+    .none{
+        display: none;
+    }
+    .block{
+        display: block;
+    }
+    .banner .num{
+        width: auto;
+    }
+    .banner .num li{
+        cursor: pointer;
+    }
+    .show-tab{
+        background: #F7502D !important;
+    }
+    .banner-detail{
+        position: absolute;
+        top: 27%;
+        left: 33%;
+    }
+    .banner-info{
+        display: flex;
+        align-items: center;
+        color: #fff;
+    }
+    .banner-info .rat-bg{
+        display: block;
+        width: 26px;
+        height: 26px;
+        background-image: url('{:MAC_BASE_PATH}/template/default/images/pro/home-start.png');
+        background-size: 100% 100%;
+    }
+    .banner-info .rat{
+        font-size: 40px;
+        font-weight: 600;
+        margin: 0 10px;
+    }
+    .banner-info .actor{
+        font-size: 16px;
+    }
+    .banner-name{
+        text-align: left;
+        margin-top: 50px;
+        font-size: 60px;
+        color: #fff;
+        font-weight: 600;
+    }
+    .banner-detail .vod-d{
+        color: #F6F6F6;
+        font-size: 16px;
+        margin-top: 47px;
+        width: 400px;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+    }
+    .banner-b{
+        display: flex;
+        align-items: center;
+        margin-top: 30px;
+    }
+    .banner-b .play {
+        width: 100px;
+        height: 47px;
+        border-radius: 4px;
+        background-color: #F7502D;
+        color: #fff;
+        font-size: 16px;
+        line-height: 47px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .banner-b .mac_ulog {
+        width: 100px;
+        height: 47px;
+        border-radius: 4px;
+        color: #fff;
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        font-size: 16px;
+        line-height: 47px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-left: 30px;
+        background-color: rgba(9, 9, 9, 0.3);
+    }
+    .banner-b .mac_ulog.is_fav{
+        background-color: #F7502D;
+    }
+    .banner-b .mac_ulog .s-bg{
+        display: block;
+        width: 18px;
+        height: 18px;
+        background-image: url('{:MAC_BASE_PATH}/template/default/images/pro/home-sc.png');
+        background-size: 100% 100%;
+        margin-right: 10px;
+    }
+    .banner-b .play .p-bg{
+        display: block;
+        width: 14px;
+        height: 18px;
+        background-image: url('{:MAC_BASE_PATH}/template/default/images/pro/home-play.png');
+        background-size: 100% 100%;
+        margin-right: 10px;
+    }
+    .latest-tab-box .play-img .cod_img{
+        height: 100%;
+    }
+    .latest-tab-box .latest-item .img-list li{
+        padding: 0.125rem;
+    }
+    .latest-tab-box .img-list li p{
+        text-align: left;
+    }
+    .member-wrap{
+        background-position: 100% 750px;
+        animation:background-animation 5s infinite ;
+    }
+    @keyframes background-animation{
+        0%  {
+            background-position: 100% 750px;
+        }
+        50%  {
+            background-position: 100% 770px;
+        }
+        100% {
+            background-position: 100% 750px;
+        }
+    }
+    .ali-icon{
+        margin-right: 0.2rem;
+    }
+    
+    @media screen and (min-width:820px) {
+        .header {
+            background-color: rgba(1, 1, 1, 0.2);
+        }
+        .header .head_search{
+            background-color: rgba(225, 225, 225, 0.2);
+        }
+        .box .title span{
+            float: left;
+            padding-right: 0;
+        }
+        .vodlist_item.zixun{
+            width: 20% !important;
+        }
+        .vodlist_item.zixun .zixun_img{
+            padding-top: 60%;
+        }
+    }
+    @media (max-width: 820px){
+        .head_menu_b a.menu{
+            color: #333;
+        }
+        .bstem .head_menu_b a.menu{
+            color: #fff;
+        }
+        .change-lang-mobile{
+            background-image: url('{:MAC_BASE_PATH}/template/default/images/pro/dyy_black.png');
+        }
+        .bstem .change-lang-mobile{
+            background-image: url('{:MAC_BASE_PATH}/template/default/images/pro/dyy_white.png');
+        }
+        .pannel{
+            margin-top: 0.6rem;
+        }
+    }
+    
+    @font-face {
+        font-family: 'iconfont';  /* Project id 2776795 */
+    src: url('//at.alicdn.com/t/font_2776795_gtgdikivq1.woff2?t=1634829394026') format('woff2'),
+        url('//at.alicdn.com/t/font_2776795_gtgdikivq1.woff?t=1634829394026') format('woff'),
+        url('//at.alicdn.com/t/font_2776795_gtgdikivq1.ttf?t=1634829394026') format('truetype');
+    }
+    
+</style>
+
+<body class="bstem">
+<div class="member-wrap">
+    <div class="container show-pc">
+        {include file="public/head"}
+        <div class="banner">
+            <div id="lbsub">
+                <div class="deansubdiv">
+                    <dl>
+                        {php}$nav_id=$tplconfig['theme']['nav']['id']?$tplconfig['theme']['nav']['id']:'';{/php}
+                        {maccms:type ids="'.$nav_id.'" order="asc" by="sort" id="vo1" key="key1"}
+                        <dd class="deanddt{$key}">
+                            <h3><a href="{:mac_url_type($vo1)}">{$vo1.type_name} </a><span></span></h3>
+                            <div class="deansubpt">
+                                {if condition="$key1 lt 3"}
+                                <div class="deansubptpp">
+                                    <h5 data-lang="string_show_leixing">{:lang_web('string_show_leixing')}</h5>
+                                    <div class="deansubptc">
+                                        <a href="{:mac_url_type($vo1,[],'show')}" data-lang="string_show_all">{:lang_web('string_show_all')}</a> {maccms:type parent="'.$vo1['type_id'].'" order="asc" by="sort" id="vo2" key="key2"}
+                                        <a href="{:mac_url_type($vo2,[],'show')}">{$vo2.type_name}</a> {/maccms:type}
+                                    </div>
+                                </div>
+                                {/if}
+                                <div class="deansubptpp">
+                                    <h5 data-lang="string_show_dq">{:lang_web('string_show_dq')}</h5>
+                                    <div class="deansubptc">
+                                        <a href="{:mac_url_type($vo1,[],'show')}" data-lang="string_show_all">{:lang_web('string_show_all')}</a> {maccms:foreach name=":explode(',',$vo1.type_extend.area)" id="vo2" key="key2"}
+                                        <a href="{:mac_url_type($vo1,['area'=>$vo2],'show')}">{$vo2}</a> {/maccms:foreach}
+                                    </div>
+                                </div>
+                                <div class="deansubptpp">
+                                    <h5 data-lang="string_show_nd">{:lang_web('string_show_nd')}</h5>
+                                    <div class="deansubptc">
+                                        <a href="{:mac_url_type($vo1,[],'show')}" data-lang="string_show_all">{:lang_web('string_show_all')}</a> {maccms:foreach name=":explode(',',$vo1.type_extend.year)" id="vo2" key="key2"}
+                                        <a href="{:mac_url_type($vo1,['year'=>$vo2],'show')}">{$vo2}</a> {/maccms:foreach}
+                                    </div>
+                                </div>
+                                <div class="deansubptpp">
+                                    <h5 data-lang="string_show_zm">{:lang_web('string_show_zm')}</h5>
+                                    <div class="deansubptc">
+                                        <a href="{:mac_url_type($vo1,[],'show')}" data-lang="string_show_all">{:lang_web('string_show_all')}</a> {maccms:foreach name=":explode(',','A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z,0-9')" id="vo2" key="key2"}
+                                        <a href="{:mac_url_type($vo1,['letter'=>$vo2],'show')}">{$vo2}</a> {/maccms:foreach}
+                                    </div>
+                                </div>
+                            </div>
+                        </dd>
+                        {/maccms:type}
+                        <dd class="deanddt5">
+                            <h3><a href="{:mac_url('label/rank')}" data-lang="string_show_pai">{:lang_web('string_show_pai')}</a><span></span></h3>
+                        </dd>
+                    </dl>
+                </div>
+            </div>
+            <script type="text/javascript">
+                $(".deansubdiv dd").each(function(s) {
+                    $(this).hover(
+                        function() {
+                            $(".deansubpt").eq(s).show();
+                        },
+                        function() {
+                            $(".deansubpt").eq(s).hide();
+                        })
+                })
+            </script>
+
+            <ul class="51buypic" >
+                {maccms:vod num="5" level="9" order="desc" by="time"}
+                <li>
+                    <img src="{$vo.vod_pic_slide|mac_url_img}"  style="background-color: #EEEEEE;" />
+                    <div class="banner-detail">
+                        <div class="banner-info">
+                            <span class="rat-bg"></span>
+                            <span class="rat">{$vo.vod_score}</span>
+                            <span class="actor">{$vo.vod_actor}</span>
+                        </div>
+                        <div class="banner-name">{$vo.vod_name} </div>
+                        <div class="vod-d">{$vo.vod_content}</div>
+                        <div class="banner-b">
+                            <a class="play" href="{:mac_url_vod_detail($vo)}" data-id="{$vo.vod_id}">
+                                <span class="p-bg"></span>
+                                <span data-lang="string_vod_bofang">{:lang_web('string_vod_bofang')}</span>
+                            </a>
+                            {php}
+                            if($GLOBALS['user']['user_id']){
+                                $user_id = $GLOBALS['user']['user_id'];
+                                $res = model('ulog')->where(['user_id' => $user_id,'ulog_type' => 2])->column('ulog_rid','ulog_id');
+                                if(in_array($vo['vod_id'],$res)){
+                                    $ulog_id = array_keys($res,$vo['vod_id']);
+                                    $ulog_id = $ulog_id?$ulog_id[0]:'';
+                                {/php}
+                                    <div style="cursor:pointer" class="mac_ulog is_fav" data-type="2" data-mid="{$vo.mid}" data-id="{$vo.vod_id}" data-uid='{$ulog_id}'>
+                                        <i class="iconfont">&#xe614;</i>
+                                        <span data-lang="string_isfav" style="margin-left: 10px;">{:lang_web('string_isfav')}</span>
+                                    </div>
+                                {php}
+                                    }else{
+                                {/php}
+                                    <div href="javascript:void(0);" style="cursor:pointer" class="mac_ulog" data-type="2" data-mid="{$vo.mid}" data-id="{$vo.vod_id}" data-uid='{$ulog_id}'>
+                                        <i class="iconfont">&#xe60f;</i>
+                                        <span data-lang="string_fav" style="margin-left: 10px;">{:lang_web('string_fav')}</span>
+
+                                    </div>
+                                {php}
+                                }
+                            }else{
+                            {/php}
+                                <div href="javascript:void(0);" style="cursor:pointer" class="mac_ulog" data-type="2" data-mid="{$vo.mid}" data-id="{$vo.vod_id}" data-uid='{$ulog_id}'>
+                                    <i class="iconfont">&#xe60f;</i>
+                                    <span data-lang="string_fav" style="margin-left: 10px;">{:lang_web('string_fav')}</span>
+                                </div>
+                            {php}
+                            }
+                            {/php}
+                        </div>
+                    </div>
+                </li>
+                {/maccms:vod}
+            </ul>
+            <div class="num">
+                <ul class="banner-num"></ul>
+            </div>
+
+        </div>
+
+        <div class="home-detail">
+            {if $tplconfig['theme']['type']['meunbtn']}
+            <!-- 热门推荐 -->
+            <div class="layout fn-clear box" id="latest-focus">
+                <div class="latest-tab-nav">
+                    <ul class="fn-clear nav-list">
+                        <li id="latest1" onmouseover="setTab('latest',1,7);" class="current">
+                            <span>
+                                <i class="iconfont ali-icon">&#xe60c;</i>
+                                <span data-lang="string_hot_tj" style="margin: 0;">{:lang_web('string_hot_tj')}</span>
+                            </span>
+                        </li>
+                        {maccms:type ids="'.$tplconfig['theme']['type']['meunid'].'" order="asc" by="sort" id="vo1" key="key1"}
+                        <!-- 循环开始 -->
+                        <li id="latest{$key+2}" onmouseover="setTab('latest',{$key+2},7);">
+                            <span >
+                                <i class="iconfont ali-icon"> &#xe60c; </i>
+
+                                <span style="margin: 0;"> <span data-lang="string_hot_dy">{:lang_web('string_hot_dy')}</span> {$vo1.type_name}</span>
+                            </span>
+                        </li>
+                        <!-- 循环结束 -->
+                        {/maccms:type}
+                    </ul>
+                </div>
+                <div class="latest-tab-box">
+                    <div id="con_latest_1" class="latest-item wei-latest ">
+                        <div class="silder-cnt">
+                            <ul class="img-list">
+                                {maccms:vod num="6" level="1,2,3,4,5,6,7,8,9" order="desc" by="hits_month"}
+                                {notempty name="vo"}
+                                    {include file="widget/vod_box"}
+                                {else}
+                                {include file="public/notempty"}
+                                {/notempty}
+                                {/maccms:vod}
+
+                            </ul>
+                        </div>
+                        <ul class="txt-list">
+                            {maccms:vod num="12" type="1" start="6" level="1,2,3,4,5,6,7,8,9" order="desc" by="hits_month"}
+                            <li><span>{$vo.vod_time|date='m-d',###}.</span><a href="{:mac_url_vod_detail($vo)}" title="{$vo.vod_name}">{$vo.vod_name}</a>/ {$vo.vod_remarks}</li>
+                            {/maccms:vod}
+                        </ul>
+
+                    </div>
+                    {maccms:type ids="'.$tplconfig['theme']['type']['meunid'].'" order="asc" by="sort" id="vo1" key="key1"}
+                    <!-- 循环开始 -->
+                    <div id="con_latest_{$key1+1}" class="latest-item movie-latest fn-hide">
+                        <div class="silder-cnt">
+                            <ul class="img-list">
+                                {maccms:vod num="6" type="'.$vo1['type_id'].'" order="desc" by="hits_month"}
+                                {notempty name="vo"}
+                                    {include file="widget/vod_box"}
+                                {else}
+                                {include file="public/notempty"}
+                                {/notempty}
+                                {/maccms:vod}
+                            </ul>
+                        </div>
+                        <ul class="txt-list">
+                            {maccms:vod num="12" type="'.$vo1['type_id'].'" start="6" order="desc" by="hits_month"}
+                            <li>
+                                <span>{$vo.vod_time|date='m-d',###}.</span>
+                                <a href="{:mac_url_vod_detail($vo)}" title="{$vo.vod_name}">{$vo.vod_name}</a>
+                            </li>
+                            {/maccms:vod}
+                        </ul>
+                    </div>
+                    <!-- 循环结束 -->
+                    {/maccms:type}
+                </div>
+            </div>
+
+            {maccms:type ids="'.$tplconfig['theme']['type']['hom'].'" order="asc" by="sort" id="vo2" key="key1"}
+            <!-- 循环开始 -->
+            <div class="box latest-tab-box">
+                <div class="title">
+                    {if condition="$key == 0"}
+                        <img class="laset_new_img" src="{:MAC_BASE_PATH}/template/default/images/pro/home-icon1.png" >
+                    {elseif condition="$key == 1"}
+                        <img class="laset_new_img" src="{:MAC_BASE_PATH}/template/default/images/pro/home-icon2.png" >
+                    {elseif condition="$key == 2"}
+                        <img class="laset_new_img" src="{:MAC_BASE_PATH}/template/default/images/pro/home-icon3.png" >
+                    {elseif condition="$key == 3"}
+                        <img class="laset_new_img" src="{:MAC_BASE_PATH}/template/default/images/pro/home-icon4.png" >
+                    {elseif condition="$key == 4"}
+                        <img class="laset_new_img" src="{:MAC_BASE_PATH}/template/default/images/pro/home-icon1.png" >
+                    {else /}
+                        <img class="laset_new_img" src="{:MAC_BASE_PATH}/template/default/images/pro/home-icon1.png" >
+                    {/if}
+                    <h2 > 
+                        <h2 data-lang="string_zuixin">{:lang_web('string_zuixin')}</h2>
+                        <h2>{$vo2.type_name}</h2>
+                    </h2>
+                    <dl>
+                        {maccms:type parent="'.$vo2['type_id'].'" order="asc" by="sort" id="vo3" num="8"}
+                        <dd><a href="{:mac_url_type($vo3)}">{$vo3.type_name}</a></dd>
+                        {/maccms:type}
+                    </dl>
+                    <a class="pc_more" href="{:MAC_BASE_URL}/vod/type/id/{$vo2.type_id}.html"> <span data-lang="string_type_more2">{:lang_web('string_type_more2')}</span> <i class="iconfont more_i">&#xe623;</i></a>
+                </div>
+                <div class=" latest-item">
+                    <ul class="img-list dis">
+                        <!-- 内循环开始 -->
+                        {maccms:vod num="'.$tplconfig['theme']['vod']['hnum'].'" type="'.$vo2['type_id'].'" order="desc" by="time"}
+
+                        {include file="widget/vod_box"}
+                        {/maccms:vod}
+                        <!-- 内循环结束 -->
+                    </ul>
+                </div>
+            </div>
+            <!-- 循环结束 -->
+            {/maccms:type}
+
+            {/if}
+
+            {include file="ads/ads_all"}
+            {php} $config_theme = config('mctheme'); {/php}
+            {if $config_theme['theme']['actor']['hbtn'] && $config_theme['theme']['actor']['id']}
+            <!--TODO 明星模块待处理 START-->
+            <div class="box mingxing">
+                <div class="title">
+                    <img class="laset_new_img" src="{:MAC_BASE_PATH}/template/default/images/pro/home-icon6.png" >
+                    <h2 >{$config_theme['theme']['actor']['htitle']}</h2>
+                    <a class="pc_more" href="{:MAC_BASE_URL}/actor/index.html"><span data-lang="string_type_more2">{:lang_web('string_type_more2')}</span><i class="iconfont more_i">&#xe623;</i></a>
+                </div>
+                <div class="latest-item">
+                    <ul class="img-list dis">
+                        <!--TODO 明星模块内循环待处理 START-->
+                        {maccms:actor ids="'.$config_theme['theme']['actor']['id'].'" num="8" order="desc" by="time"}
+                        <li  class="topiclist_item num_{$key}">
+                            <a class="topiclist_thumb lazyload" href="{:MAC_BASE_URL}/actor/detail/id/{$vo.actor_id}.html" data-original="{$vo.actor_pic}">
+                            </a>
+                            <a href="{:MAC_BASE_URL}/actor/detail/id/{$vo.actor_id}.html">
+                                <p>{$vo.actor_name}</p>
+                            </a>
+
+                        </li>
+                        {/maccms:actor}
+                    </ul>
+                </div>
+            </div>
+            <!--TODO 明星模块待处理 END-->
+            {/if}
+            {if $config_theme['theme']['topic']['hbtn']}
+            <!--TODO 专题模块待处理 START-->
+            <div class="box">
+                <!--TODO 专题模块待处理 START-->
+                <div class="title">
+                    <img class="laset_new_img" src="{:MAC_BASE_PATH}/template/default/images/pro/home-icon7.png" >
+                    <h2 >{$config_theme['theme']['topic']['htitle']}</h2>
+                    <a class="pc_more" href="{:MAC_BASE_URL}/topic/index.html"><span data-lang="string_type_more2">{:lang_web('string_type_more2')}</span><i class="iconfont more_i">&#xe623;</i></a>
+                </div>
+                <div class="latest-item">
+                    <ul class="img-list dis">
+                        {maccms:topic num="5" order="desc" by="time"}
+                            {include file="widget/topic_box"}
+                        {/maccms:topic}
+                    </ul>
+                </div>
+            </div>
+            <!--TODO 专题模块待处理 END-->
+            {/if}
+
+            {if $tplconfig['theme']['art']['hbtn']}
+            {if count($art_type_array) > 0}
+            <!--最新影视资讯-->
+            <div class="box latest-tab-box">
+                <div class="title">
+                    <img class="laset_new_img" src="{:MAC_BASE_PATH}/template/default/images/pro/home-icon8.png" >
+                    <h2 >{$tplconfig['theme']['art']['htitle']}</h2>
+                    <dl>
+                        <dd class="font" data-lang="string_new_zx_desc">{:lang_web('string_new_zx_desc')}</dd>
+                    </dl>
+                    <a class="pc_more" href="{:MAC_BASE_URL}/art/type/id/{$first_type_id}.html"><span data-lang="string_type_more2">{:lang_web('string_type_more2')}</span><i class="iconfont more_i">&#xe623;</i></a>
+                </div>
+                <div class="latest-item">
+                    <ul class="img-list dis">
+                        {php}
+                        //$models_b = model('art')->whereIn('type_id',$art_type_array)->order('art_time desc')->limit($tplconfig['theme']['art']['hnum'])->select();
+                        $models_b = model('art')->whereIn('type_id',$art_type_array)->order('art_time desc')->limit(5)->select();
+                        $model_array_b = [];
+                        foreach ($models_b as $index => $model) {
+                            array_push($model_array_b,$model->toArray());
+                        }
+                        {/php}
+                        {foreach name="model_array_b" item="vo" key="k"}
+                        <li class="vodlist_item zixun">
+                            <a class="vodlist_thumb zixun_img lazyload" href="{:MAC_BASE_URL}/art/detail/id/{$vo.art_id}.html" data-original="{:mac_url_img($vo.art_pic)}">
+                            </a>
+                            <h5>
+                                <a href="{:MAC_BASE_URL}/art/detail/id/{$vo.art_id}.html" title="{$vo.art_name}">{$vo.art_name}</a>
+                            </h5>
+                            <p class="actor">{$vo.art_actor}</p>
+                        </li>
+                        {/foreach}
+                    </ul>
+                </div>
+            </div>
+            {/if}
+            {/if}
+
+            {if $config_theme['theme']['rank']['hbtn']}
+            <!--TODO 排名模块待处理 START-->
+            <div class="box">
+                <div class="title">
+                    <img class="laset_new_img" src="{:MAC_BASE_PATH}/template/default/images/pro/home-icon9.png" >
+                    <h2 >{$config_theme['theme']['rank']['htitle']}</h2>
+                    <a class="pc_more" href="{:MAC_BASE_URL}/label/rank.html"><span data-lang="string_type_more2">{:lang_web('string_type_more2')}</span><i class="iconfont more_i">&#xe623;</i></a>
+                </div>
+                <div class="latest-item">
+                    <ul class="img-list dis">
+                        {maccms:type ids="'.$config_theme['theme']['rank']['hid'].'" id="vo"}
+                        {include file="module/hom_rank"}
+                        {/maccms:type}
+                    </ul>
+                </div>
+            </div>
+            <!--TODO 排名模块待处理 END-->
+            {/if}
+
+            <!-- 友情链接 -->
+            {include file="public/friendLink"}
+        </div>
+    </div>
+    <div class="container show-mobile">
+        {include file="public/head"}
+        {include file="module/banner"}
+        {include file="module/home_menu"}
+        <!-- <i class="iconfont {switch name="vo1.type_id"}{case value="1"}icon-dianying2{/case}{case value="2"}icon-dianshiju1{/case}{case value="3"}icon-zongyi1{/case}{case value="4"}icon-dongman1{/case}{case value="5"}icon-dianying2{/case}{case value="$tplconfig['theme']['type']['zb']"}icon-dianying2{/case}{default /}icon-dianying2{/switch}"></i>-->
+        {foreach name="last_updates" item="vo" key="key" }
+        {if count($vo['vod_detail_array']) > 0}
+
+        <div class="pannel">
+            <div class="pannel_head clearfix data_list">
+                <h2 class="title">
+                    {if condition="$key == 1"}
+                        <img class="laset_new_img" src="{:MAC_BASE_PATH}/template/default/images/pro/home-icon1.png" >
+                    {elseif condition="$key == 2"}
+                        <img class="laset_new_img" src="{:MAC_BASE_PATH}/template/default/images/pro/home-icon2.png" >
+                    {elseif condition="$key == 3"}
+                        <img class="laset_new_img" src="{:MAC_BASE_PATH}/template/default/images/pro/home-icon3.png" >
+                    {elseif condition="$key == 4"}
+                        <img class="laset_new_img" src="{:MAC_BASE_PATH}/template/default/images/pro/home-icon4.png" >
+                    {elseif condition="$key == 23"}
+                        <img class="laset_new_img" src="{:MAC_BASE_PATH}/template/default/images/pro/home-icon1.png" >
+                    {else /}
+                        <img class="laset_new_img" src="{:MAC_BASE_PATH}/template/default/images/pro/home-icon1.png" >
+                    {/if}
+                    <span data-lang="string_zuixin">{:lang_web('string_zuixin')}</span><span data-lang="vod_type_name">{$vo['vod_type_name']}</span>
+                    <a href="{:MAC_BASE_URL}/vod/show/id/{$key}.html">
+                        {php}
+                        //var_dump($vo['vod_count']);die;
+                        {/php}
+                        {if $vo['vod_count'] > 0}
+                            <span class="laset_new"> <span data-lang="string_zuijingx">{:lang_web('string_zuijingx')}</span>  <span class="count">{$vo['vod_count']}</span> </span>
+                        {/if}
+                    </a>
+                </h2>
+                <a class="text_muted pull_left more_data" href="{:MAC_BASE_URL}/vod/show/id/{$key}.html"><span data-lang="string_type_more2">{:lang_web('string_type_more2')}</span><i class="iconfont more_i">&#xe623;</i></a>
+            </div>
+            <div class="cbox_list">
+                <div class="detail cbox1">
+                    <ul class="vodlist vodlist_wi list_v6 clearfix">
+                    {foreach name="$vo['vod_detail_array']" key="key" item="v"}
+                        <li class="vodlist_item num_{$key1}">
+                            <a class="vodlist_thumb lazyload" href="{:MAC_BASE_URL}/vod/detail/id/{$v['vod_id']}.html" data-original="{$v['vod_pic']}">
+                                {if $v.vod_is_trysee eq 1}
+                                <img data-num="num_{$key}" class="vod_vip" src="{:MAC_BASE_PATH}/template/default/images/pro/head-vip.png" >
+                                {/if}
+                            </a>
+                            <div class="vodlist_titbox">
+                                <p class="vodlist_title">
+                                <a>{$v['vod_name']}</a>
+                                </p>
+                                <p class="vodlist_sub">{$v['vod_blurb']}</p>
+                            </div>
+                        </li>
+                    {/foreach}
+                    </ul>
+                </div>
+            </div>
+        </div>
+        {/if}
+        {/foreach}
+
+        {php} $config_theme = config('mctheme'); {/php}
+            {if $config_theme['theme']['actor']['hbtn'] && $config_theme['theme']['actor']['id']}
+            <!--TODO 明星模块待处理 START-->
+            <div class="pannel mingxing">
+                <div class="pannel_head data_list">
+                    <h2>
+                        <img class="laset_new_img" src="{:MAC_BASE_PATH}/template/default/images/pro/home-icon6.png" >
+                        <span>{$config_theme['theme']['actor']['htitle']}</span>
+                    </h2>
+                    <a class="ext_muted pull_left more_data" href="{:MAC_BASE_URL}/actor/index.html"><span data-lang="string_type_more2">{:lang_web('string_type_more2')}</span><i class="iconfont more_i">&#xe623;</i></a>
+                </div>
+                <div class="latest-item">
+                    <ul class="img-list dis">
+                        <!--TODO 明星模块内循环待处理 START-->
+                        {maccms:actor ids="'.$config_theme['theme']['actor']['id'].'" num="8" order="desc" by="time"}
+                        <li  class="topiclist_item num_{$key}">
+                            <a class="topiclist_thumb lazyload" href="{:MAC_BASE_URL}/actor/detail/id/{$vo.actor_id}.html" data-original="{$vo.actor_pic}">
+                            </a>
+                            <a href="{:MAC_BASE_URL}/actor/detail/id/{$vo.actor_id}.html">
+                                <p>{$vo.actor_name}</p>
+                            </a>
+
+                        </li>
+                        {/maccms:actor}
+                    </ul>
+                </div>
+            </div>
+            <!--TODO 明星模块待处理 END-->
+            {/if}
+            {if $config_theme['theme']['topic']['hbtn']}
+            <!--TODO 专题模块待处理 START-->
+            <div class="pannel zhuanti">
+                <!--TODO 专题模块待处理 START-->
+                <div class="pannel_head data_list">
+                    <h2 >
+                        <img class="laset_new_img" src="{:MAC_BASE_PATH}/template/default/images/pro/home-icon7.png" >
+                        <span>{$config_theme['theme']['topic']['htitle']}</span>
+                    </h2>
+                    <a class="ext_muted pull_left more_data" href="{:MAC_BASE_URL}/topic/index.html"><span data-lang="string_type_more2">{:lang_web('string_type_more2')}</span><i class="iconfont more_i">&#xe623;</i></a>
+                </div>
+                <div class="latest-item">
+                    <ul class="img-list dis">
+                        <!--TODO 专题模块内循环待处理 START-->
+                        {maccms:topic num="5" order="desc" by="time"}
+                            {include file="widget/topic_box"}
+                        {/maccms:topic}
+                        <!--TODO 专题模块内循环待处理 END-->
+                    </ul>
+                </div>
+            </div>
+            <!--TODO 专题模块待处理 END-->
+            {/if}
+
+            {if $tplconfig['theme']['art']['hbtn']}
+            {if count($art_type_array) > 0}
+            <!--最新影视资讯-->
+            <div class="pannel zixun">
+                <div class="pannel_head data_list">
+                    <h2 >
+                        <img class="laset_new_img" src="{:MAC_BASE_PATH}/template/default/images/pro/home-icon8.png" >
+                        <span>{$tplconfig['theme']['art']['htitle']}</span>
+                    </h2>
+                    <a class="ext_muted pull_left more_data" href="{:MAC_BASE_URL}/art/type/id/{$first_type_id}.html"><span data-lang="string_type_more2">{:lang_web('string_type_more2')}</span><i class="iconfont more_i">&#xe623;</i></a>
+                </div>
+                <div class="latest-item">
+                    <ul class="img-list dis">
+                        {php}
+                        //$models_b = model('art')->whereIn('type_id',$art_type_array)->order('art_time desc')->limit($tplconfig['theme']['art']['hnum'])->select();
+                        $models_b = model('art')->whereIn('type_id',$art_type_array)->order('art_time desc')->limit(5)->select();
+                        $model_array_b = [];
+                        foreach ($models_b as $index => $model) {
+                            array_push($model_array_b,$model->toArray());
+                        }
+                        {/php}
+                        {foreach name="model_array_b" item="vo" key="k"}
+                        <li class="topiclist_item ">
+                            <a class="topiclist_thumb zixun_img lazyload" href="{:MAC_BASE_URL}/art/detail/id/{$vo.art_id}.html" data-original="{:mac_url_img($vo.art_pic)}">
+                            </a>
+                            <h5 class="name">
+                                <a  href="{:MAC_BASE_URL}/art/detail/id/{$vo.art_id}.html" title="{$vo.art_name}">{$vo.art_name}</a>
+                            </h5>
+                            <p class="actor">{$vo.art_actor}</p>
+                        </li>
+                        {/foreach}
+                    </ul>
+
+                </div>
+            </div>
+            {/if}
+            {/if}
+
+            {if $config_theme['theme']['rank']['hbtn']}
+            <!--TODO 排名模块待处理 START-->
+            <div class="pannel">
+                <div class="pannel_head data_list">
+                    <h2 >
+                        <img class="laset_new_img" src="{:MAC_BASE_PATH}/template/default/images/pro/home-icon9.png" >
+                        <span>{$config_theme['theme']['rank']['htitle']}</span>
+                    </h2>
+                    <a class="ext_muted pull_left more_data" href="{:MAC_BASE_URL}/label/rank.html"><span data-lang="string_type_more2">{:lang_web('string_type_more2')}</span><i class="iconfont more_i">&#xe623;</i></a>
+                </div>
+                <div class="latest-item">
+                    <div class="rank_tab_list">
+
+                    </div>
+                    <ul class="img-list dis">
+                        {maccms:type ids="'.$config_theme['theme']['rank']['hid'].'" id="vo"}
+                        {include file="module/hom_rank_mobile"}
+                        {/maccms:type}
+                    </ul>
+                </div>
+                <script>
+                    (function(){
+                        let tabs=[]
+                        let rank_html=''
+                        let rank_avtive=0
+                        $('.rank_t_m').each((index,item)=>{
+                            tabs.push($(item).html())
+                        })
+                        tabs.forEach((item,index)=>{
+                            rank_html+=`<p class='rank_tab' data-index=${index}>${item}</p>`
+                        })
+                        $('.rank_tab_list').html(rank_html)
+
+                        selectTab()
+                        selectList()
+                        $('.rank_tab_list .rank_tab').click(function(){
+                            rank_avtive=$(this).attr('data-index')
+                            selectTab()
+                            selectList()
+                        })
+
+                        // 排行榜列表
+                        function selectList(){
+                            $('.rank_mobile_list').each((index,item)=>{
+                                if(index=== Number(rank_avtive)){
+                                    $(item).show()
+                                }else{
+                                    $(item).hide()
+                                }
+                            })
+                        }
+
+
+                        function selectTab(){
+                            $('.rank_tab_list .rank_tab').each((index,item)=>{
+                                if(index===Number(rank_avtive) ){
+                                    $(item).addClass('active')
+                                }else{
+                                    $(item).removeClass('active')
+                                }
+                            })
+                        }
+
+                    })()
+                </script>
+            </div>
+            <!--TODO 排名模块待处理 END-->
+            {/if}
+
+    </div>
+</div>
+    {include file="public/foot"}
+</body>
+<script>
+    (function(){
+        changeLogo()
+        $(window).scroll(function(){
+            changeLogo()
+        })
+        function changeLogo(){
+            if($.cookie('mystyle')=='white'){
+                var targetTop = $(this).scrollTop();
+                var width = $(window).width();
+                if(targetTop> (width>820? 50:200)){
+                    $('.black_logo').hide()
+                    $('.white_logo').show()
+                }else{
+                    $('.black_logo').show()
+                    $('.white_logo').hide()
+                }
+            }
+        }
+    })()
+</script>
+</html>

@@ -1,0 +1,75 @@
+{if condition="$tplconfig['theme']['rank']['vby'] eq 'week'"}   
+<div class="pannel clearfix">
+    <div class="pannel_head clearfix">
+        {if condition="$tplconfig['theme']['rank']['btn'] eq 1"}
+        <a class="text_muted pull_right" href="{:mac_url('label/rank')}"><span>{:lang_web('string_type_more2')}</span><i class="iconfont more_i">&#xe623;</i></a>
+        {/if}
+        <h3 class="title">{$obj.type.type_name}<span data-lang="home_week">{:lang_web('home_week')}</span>{if $tplconfig['theme']['rank']['title']}{$tplconfig['theme']['rank']['title']}{else}<span data-lang="home_top_tab">{:lang_web('home_top_tab')}</span>{/if}</h3>
+    </div>
+    <ul class="vodlist clearfix">
+        {maccms:vod num="1" type="current" order="desc" by="hits_week"}
+			{include file="widget/rank_box_week"}
+		{/maccms:vod}
+		{maccms:vod num="9" type="'.$vo['type_id'].'" start="2" order="desc" by="hits_week"}
+        <li class="part_eone">
+            {in name="vo.type_id" value="$tplconfig['theme']['type']['hb']"}
+            <a href="{:mac_url_vod_play($vo,['sid'=>$vo.sid,'nid'=>1])}">
+            <span class="part_nums part_num{$key+1}">{$key+1}</span><span class="text_muted pull_right renqi"><i class="iconfont">&#xe631;</i>&nbsp;{$vo.vod_hits_week}</span>{$vo.vod_name}</a>
+            {else}
+            <a {if condition="$tplconfig['theme']['playlink']['btn'] eq 1" }href="{:mac_url_vod_play($vo,['sid'=>$vo.sid,'nid'=>1])}" {else/}href="{:mac_url_vod_detail($vo)}" {/if}>
+            <span class="part_nums part_num{$key+1}">{$key+1}</span><span class="text_muted pull_right renqi"><i class="iconfont">&#xe631;</i>&nbsp;{$vo.vod_hits_week}</span>{$vo.vod_name}</a>
+            {/in}
+        </li>
+        {/maccms:vod}
+    </ul>
+</div>{/if}
+{if condition="$tplconfig['theme']['rank']['vby'] eq 'month'"} 
+<div class="pannel clearfix">
+    <div class="pannel_head clearfix">
+        {if condition="$tplconfig['theme']['rank']['btn'] eq 1"}
+        <a class="text_muted pull_right" href="{:mac_url('label/rank')}"><span data-lang="string_type_more2">{:lang_web('string_type_more2')}</span><i class="iconfont more_i">&#xe623;</i></a>
+        {/if}
+        <h3 class="title">{$obj.type.type_name}<span data-lang="home_mouth">{:lang_web('home_mouth')}</span>{if $tplconfig['theme']['rank']['title']}{$tplconfig['theme']['rank']['title']}{else}<span data-lang="home_top_tab">{:lang_web('home_top_tab')}</span>{/if}</h3>
+    </div>
+    <ul class="vodlist clearfix">
+        {maccms:vod num="1" type="current" order="desc" by="hits_month"}
+			{include file="widget/rank_box_month"}
+		{/maccms:vod}
+		{maccms:vod num="9" type="'.$vo['type_id'].'" start="2" order="desc" by="hits_month"}
+        <li class="part_eone">
+            {in name="vo.type_id" value="$tplconfig['theme']['type']['hb']"}
+            <a href="{:mac_url_vod_play($vo,['sid'=>$vo.sid,'nid'=>1])}">
+            <span class="part_nums part_num{$key+1}">{$key+1}</span><span class="text_muted pull_right renqi"><i class="iconfont">&#xe631;</i>&nbsp;{$vo.vod_hits_month}</span>{$vo.vod_name}</a>
+            {else}
+            <a {if condition="$tplconfig['theme']['playlink']['btn'] eq 1" }href="{:mac_url_vod_play($vo,['sid'=>$vo.sid,'nid'=>1])}" {else/}href="{:mac_url_vod_detail($vo)}" {/if}>
+            <span class="part_nums part_num{$key+1}">{$key+1}</span><span class="text_muted pull_right renqi"><i class="iconfont">&#xe631;</i>&nbsp;{$vo.vod_hits_month}</span>{$vo.vod_name}</a>
+            {/in}
+        </li>
+        {/maccms:vod}
+    </ul>
+</div>{/if}
+{if condition="$tplconfig['theme']['rank']['vby'] eq 'all'"} 
+<div class="pannel clearfix">
+    <div class="pannel_head clearfix">
+        {if condition="$tplconfig['theme']['rank']['btn'] eq 1"}
+        <a class="text_muted pull_right" href="{:mac_url('label/rank')}"><span data-lang="string_type_more2">{:lang_web('string_type_more2')}</span><i class="iconfont more_i">&#xe623;</i></a>
+        {/if}
+        <h3 class="title">{$obj.type.type_name}{if $tplconfig['theme']['rank']['title']}{$tplconfig['theme']['rank']['title']}{else}<span data-lang="home_top_tab">{:lang_web('home_top_tab')}</span>{/if}</h3>
+    </div>
+    <ul class="vodlist clearfix">
+        {maccms:vod num="1" type="current" order="desc" by="hits"}
+			{include file="widget/rank_box_all"}
+		{/maccms:vod}
+		{maccms:vod num="9" type="'.$vo['type_id'].'" start="2" order="desc" by="hits"}
+        <li class="part_eone">
+            {in name="vo.type_id" value="$tplconfig['theme']['type']['hb']"}
+            <a href="{:mac_url_vod_play($vo,['sid'=>$vo.sid,'nid'=>1])}">
+            <span class="part_nums part_num{$key+1}">{$key+1}</span><span class="text_muted pull_right renqi"><i class="iconfont">&#xe631;</i>&nbsp;{$vo.vod_hits}</span>{$vo.vod_name}</a>
+            {else}
+            <a {if condition="$tplconfig['theme']['playlink']['btn'] eq 1" }href="{:mac_url_vod_play($vo,['sid'=>$vo.sid,'nid'=>1])}" {else/}href="{:mac_url_vod_detail($vo)}" {/if}>
+            <span class="part_nums part_num{$key+1}">{$key+1}</span><span class="text_muted pull_right renqi"><i class="iconfont">&#xe631;</i>&nbsp;{$vo.vod_hits}</span>{$vo.vod_name}</a>
+            {/in}
+        </li>
+        {/maccms:vod}
+    </ul>
+</div>{/if}

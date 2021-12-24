@@ -1,0 +1,27 @@
+{if$tplconfig['theme']['ads']['btn']==1||$tplconfig['theme']['ads']['btn']==2&&$user.group_id lt 3}
+{if condition="$tplconfig['theme']['ads']['bottom']['btn'] eq 1"}
+<div id="bottom_ads" class="hl_bottom_ads" style="min-height: 1px;">
+<a class="close_ads_btn" href="javascript:void(0)"><i class="iconfont">&#xe616;</i></a>
+{$tplconfig['theme']['ads']['bottom']['content']}
+</div>
+<script type="text/javascript">$(function(){var o = document.getElementById("bottom_ads");var h = o.offsetHeight; if (h > 0) {$(".foot").addClass("foot_stem");}});</script>
+{/if}{if condition="$tplconfig['theme']['ads']['bottom']['btn'] eq 2"}
+<div id="bottom_ads" class="hl_bottom_ads">
+<a class="close_ads_btn" href="javascript:void(0)"><i class="iconfont">&#xe616;</i></a>
+<iframe width="100%" height="100%" id="adiframe" class="bottom_ads_box" src="{:mac_url('label/ads_iframe')}" frameborder="0" border="0" marginwidth="0" marginheight="0" scrolling="no" onLoad="iFrameHeight()"></iframe>
+<script type="text/javascript">
+	function iFrameHeight() {
+	var ifm= document.getElementById("adiframe");
+		var subWeb = document.frames ? document.frames["adiframe"].document : ifm.contentDocument;
+		if(ifm != null && subWeb != null) {
+			ifm.style.height = 'auto';
+			ifm.style.height = subWeb.body.scrollHeight+'px';
+		}
+		var height = $("#adiframe").height();
+		if (height > 0) {
+			$(".foot").addClass("foot_stem");
+		}
+	};
+</script>
+</div>
+{/if}{/if}

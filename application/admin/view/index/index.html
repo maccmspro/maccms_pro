@@ -1,0 +1,138 @@
+{include file="../../../application/admin/view/public/head" /}
+
+<!-- 布 局 框 架 -->
+<div class="layui-layout layui-layout-admin">
+    <div class="layui-header">
+        <!-- 顶 部 左 侧 功 能 -->
+        <ul class="layui-nav layui-layout-left">
+            <li class="collaspe layui-nav-item"><a href="#" class="layui-icon layui-icon-shrink-right"></a></li>
+            <li class="refresh layui-nav-item"><a href="#" class="layui-icon layui-icon-refresh-1" loading = 600></a></li>
+        </ul>
+        <!-- 多 系 统 菜 单 -->
+        <div id="control" class="layui-layout-control"></div>
+        <!-- 顶 部 右 侧 菜 单 -->
+        <ul class="layui-nav layui-layout-right">
+            <li class="layui-nav-item layui-hide-xs"><a href="#" class="fullScreen layui-icon layui-icon-screen-full"></a></li>
+            <!-- <li class="layui-nav-item layui-hide-xs"><a href="http://www.pearadmin.com" class="layui-icon layui-icon-website"></a></li> -->
+            <li class="layui-nav-item layui-hide-xs message"></li>
+            <li class="layui-nav-item user">
+                <!-- 头 像 -->
+                <a href="javascript:;">
+                    <!-- <img src="admin/images/avatar.jpg" class="layui-nav-img"> -->
+                    <span class="layui-nav-img">
+                        {:lang('opt')}
+                        <i href="#" class="layui-icon layui-icon-down"></i>
+                    </span>
+                    
+                </a>
+                
+                <!-- 功 能 菜 单 -->
+                <dl class="layui-nav-child">
+                    <dd><a href="javascript:void(0);" id="lockScreen" class="clearCache">{:lang('admin/index/index/menu_lock')}</a></dd>
+                    <dd><a href="{:url('index/clear')}" class="lock">{:lang('admin/index/index/menu_cache_clear')}</a></dd>
+                    <dd><a href="{:url('index/logout')}" class="logout">{:lang('admin/index/index/menu_logout')}</a></dd>
+                </dl>
+            </li>
+            <li class="layui-nav-item layui-hide-xs">
+                <a href="__ROOT__/" target="_blank">{:lang('admin/index/index/menu_index')}</a>
+            </li>
+            <!-- 主 题 配 置 -->
+            <li class="layui-nav-item setting"><a href="#" class="layui-icon layui-icon-more-vertical"></a></li>
+        </ul>
+    </div>
+    <!-- 侧 边 区 域 -->
+    <div class="layui-side layui-bg-black">
+        <!-- 菜 单 顶 部 -->
+        <div class="layui-logo">
+            <!-- 图 标 -->
+            <img class="logo"></img>
+            <!-- 标 题 -->
+            <span class="title"></span>
+        </div>
+        <!-- 菜 单 内 容 -->
+        <div class="layui-side-scroll">
+            <div id="sideMenu"></div>
+        </div>
+    </div>
+    <!-- 视 图 页 面 -->
+    <div class="layui-body">
+        <!-- 内 容 页 面 -->
+        <div id="content"></div>
+    </div>
+    <!-- 遮 盖 层 -->
+    <div class="pear-cover"></div>
+    <!-- 加 载 动 画-->
+    <div class="loader-main">
+        <img src="__STATIC__/images/other/login-loading.gif" alt="">
+        <!-- <div class="loader"></div> -->
+    </div>
+    <!-- js中的多语言处理 -->
+    <div class="hidden-element">
+        <div class="languege-change-url">{:url('index/lang')}</div>
+        
+        <div class="whole-style">{:lang('admin/system/whole_style')}</div>
+        <div class="theme-color">{:lang('admin/system/theme_color')}</div>
+        <div class="lang-change">{:lang('admin/system/lang_change')}</div>
+        
+        <div class="close-current">{:lang('admin/system/close_current')}</div>
+        <div class="close-other">{:lang('admin/system/close_other')}</div>
+        <div class="close-all">{:lang('admin/system/close_all')}</div>
+    </div>
+</div>
+
+{include file="../../../application/admin/view/public/foot" /}
+<!-- 初始化pear-admin，生成菜单 -->
+<script>
+    var obj = <?=json_encode($menus)?>;
+    var arr = obj2Arr(obj);
+    var parsedArr = originDataParse2PearAdminMenu(arr);
+    var language_current = '<?=$language_current?>';
+    var language_list = <?=json_encode($language_list)?>;
+    layui.use(['admin','jquery','convert','popup'], function() {
+				var admin = layui.admin;
+				var $ = layui.jquery;
+				var convert = layui.convert;
+				var popup = layui.popup;
+                
+                // 传入菜单数据
+                pearConfig.menu.data = parsedArr;
+                // 传入多语言选项
+                pearConfig.language_list = language_list,
+                pearConfig.language_current = language_current,
+
+                // admin.setAvatar("__STATIC__/admin/images/avatar.jpg","就眠仪式");
+				admin.render(pearConfig);
+				
+				// 初始化消息回调
+				// admin.message();
+				
+				// 重写消息回调 [消息列表点击事件]
+				// admin.message(function(id, title, context, form) {});
+			})
+</script>
+
+<script>
+    window.localStorage.clear();
+</script>
+
+<script type="text/javascript">
+    $(function(){
+        setInterval("checkCache()", 30*1000);
+    });
+
+    //检查缓存并保持登录状态
+    function checkCache(){
+        $.ajax({
+            url: "{:url('checkcache')}",
+            cache: false,
+            success: function(r){
+                if(r=='haved'){
+                    layer.msg('{:lang("admin/index/cache_data")}', {time: 3000});
+                }
+            }
+        });
+    }
+</script>
+
+</body>
+</html>

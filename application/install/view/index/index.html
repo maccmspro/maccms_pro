@@ -1,0 +1,75 @@
+{include file="../../../application/install/view/index/head" /}
+<div class="install-box">
+    
+    <div class="title">{:lang('install/user_agreement_title')}</div>
+    <div class="desc">{:lang('install/user_agreement')}</div>
+
+    <form class="layui-form" action="" method="post">
+        <div class="layui-form-item">
+            <label class="layui-form-label">{:lang('install/lang')}</label>
+            <div class="layui-input-inline w200 ">
+                <select class="" name="lang" lay-filter="lang" style="z-index:99999;">
+                    <option value="">{:lang('install/select_lang')}</option>
+                    {volist name="langs" id="vo"}
+                    <option value="{$vo}" {if condition="$lang eq $vo"}selected {/if}>{$vo}</option>
+                    {/volist}
+                </select>
+            </div>
+            <div class="layui-form-mid layui-word-aux">{:lang('install/lang_tip')}</div>
+        </div>
+    </form>
+    <div class="step-btns">
+        <a href="?step=2" class="btn btn-primary btn-large">{:lang('install/user_agreement_agree')}</a>
+    </div>
+</div>
+{include file="../../../application/install/view/index/foot" /}
+<script type="text/javascript">
+    var test=0;
+    layui.define(['element', 'form'], function(exports) {
+        var $ = layui.jquery, layer = layui.layer, form = layui.form;
+        form.on('select(lang)',function(data){
+            if(data.value !='') {
+                setCookie('install_lang_cookie',data.value);
+                location.href = BASE_URL_FULL + "/install.php?lang=" + data.value;
+            }
+        });
+    });
+
+    if ((getCookie('install_lang_cookie')!=null) || (getCookie('install_lang_cookie') != undefined)){
+        this_lang = getUrlParameter('lang');
+        if( this_lang != getCookie('install_lang_cookie')){
+            location.href = BASE_URL_FULL + "/install.php?lang=" + getCookie('install_lang_cookie');
+        }
+    }
+
+    //设置cookie
+    function setCookie(name,value){
+        if(!name||!value) return;
+        var Days = 30;//默认30天
+        var exp  = new Date();
+        exp.setTime(exp.getTime() + Days*24*60*60*1000);
+        document.cookie = name + "="+ encodeURIComponent(value) +";expires="+ exp.toUTCString();
+    }
+
+    //获取cookie
+    function getCookie(name){
+        var arr = document.cookie.match(new RegExp("(^| )"+name+"=([^;]*)(;|$)"));
+        if(arr != null) return decodeURIComponent(arr[2]);
+        return null;
+    }
+
+    function getUrlParameter(strParame){
+        var args = new Object( );
+        var query = location.search.substring(1);
+        var pairs = query.split("&");
+        for(var i = 0; i < pairs.length; i++) {
+            var pos = pairs[i].indexOf('=');
+            if (pos == -1) continue;
+            var argname = pairs[i].substring(0,pos);
+            var value = pairs[i].substring(pos+1);
+            value = decodeURIComponent(value);
+            args[argname] = value;
+        }
+        return args[strParame];
+    }
+</script>

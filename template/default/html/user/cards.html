@@ -1,0 +1,96 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>{:lang_web('user_czkjz')} - {$maccms.site_name}</title>
+<meta name="keywords" content="{$maccms.site_keywords}"/>
+<meta name="description" content="{$maccms.site_description}"/>
+{include file="user/include" /}
+</head>
+<style>
+	#member{
+		height: auto;
+	}
+</style>
+<body>
+{include file="public/head" /}
+<!-- 会员中心 -->
+<div class="member-wrap member-wrap-bg">
+<div id="member" class="fn-clear">
+	<div id="left">
+        <div class="m-nav">
+			<a href="javascript:MAC.GoBack()" class="btn-left"><i class="iconfont ico-right">&#xe625;</i></a>
+			<a href="{:MAC_BASE_PATH}/" class="btn-right"><i class="iconfont ico-right">&#xe634;</i></a>
+			<span class="mb-title" data-lang="user_grzx">{:lang_web('user_grzx')}</span>
+	    </div>
+		        {include file="user/left_nav" /}
+	</div>
+    <div id="right">
+        <div class="m-nav">
+			<a href="javascript:MAC.GoBack()" class="btn-left"><i class="iconfont ico-right">&#xe625;</i></a>
+			<span class="mb-title" data-lang="user_czkjz">{:lang_web('user_czkjz')}</span>
+	    </div>
+	    <div class="co-right co-right-bg">
+		<div id="tab">
+			<div class="user-info">
+				<ul class="fn-clear">
+					<li class=""><a href="{:url('user/orders')}"  data-lang="user_zxczjl">{:lang_web('user_zxczjl')}</a></li>
+					<li class="cur " data-lang="user_czkjz">{:lang_web('user_czkjz')}</li>
+				</ul>
+			</div>
+		</div>
+		<ul class="order__list clearfix">
+		{volist name="list" id="vo"}
+			<li class="order__item">
+                <div class="order__txt">								
+	                <h4 class="order__title">
+	                <span data-lang="user_kh">{:lang_web('user_kh')}</span>{$vo.card_no}
+	                </h4>
+	                <p> <span data-lang="string_vod_time">{:lang_web('string_vod_time')}</span> {$vo.card_use_time|date='Y-m-d H:i',###}</p>
+                </div>
+                {if condition="$vo.order_status eq 0"}
+				<div class="card__mo clearfix">
+				    <span class="jf-shuliang">+{$vo.card_points}<i class="iconfont">&#xe662;</i></span>
+					<p> <span data-lang="user_mz">{:lang_web('user_mz')}</span>  ¥{$vo.card_money}</p>
+			    </div>
+                {/if}   		
+            </li>
+	    {/volist}
+	    	{if $__PAGING__.record_total==0}
+			{include file="public/notempty"}
+            {/if}
+	    </ul>
+		<div class="member-page">
+		{if$__PAGING__.page_total>1}
+			<ul class="page text-center cleafix">
+				<li><a href="{$__PAGING__.page_url|mac_url_page=1}"{if$__PAGING__['page_current']==1} class="btns-disad"{/if} data-lang="string_home"> {:lang_web('string_home')}</a></li>
+				<li><a href="{$__PAGING__.page_url|mac_url_page=$__PAGING__.page_prev}"{if$__PAGING__['page_current']==1} class="btns-disad"{/if} data-lang="string_syy">{:lang_web('string_syy')}</a></li>							
+				{maccms:foreach name="$__PAGING__.page_num" id="num"}
+				<li class="hidden-xs {if condition="$__PAGING__['page_current'] eq $num"}active{/if}"><a href="{$__PAGING__.page_url|mac_url_page=$num}">{$num}</a></li>
+				{/maccms:foreach}
+				<li class="hidden-xs active"><span class="num btns-disad">{$__PAGING__.page_current}/{$__PAGING__.page_total}</span></li>
+				<li><a href="{$__PAGING__.page_url|mac_url_page=$__PAGING__.page_next}"{if$__PAGING__['page_current']==$__PAGING__.page_total} class="btns-disad"{/if} data-lang="string_xyy">{:lang_web('string_xyy')}</a></li>
+				<li><a href="{$__PAGING__.page_url|mac_url_page=$__PAGING__.page_total}"{if$__PAGING__['page_current']==$__PAGING__.page_total} class="btns-disad"{/if} data-lang="string_last_page">{:lang_web('string_last_page')}</a></li>							
+			</ul>
+			<div class="page-tips visible-xs"> 
+				<span data-lang="string_now">{:lang_web('string_now')}</span> 
+				<span> 
+					<span data-lang="string_is">{:lang_web('string_is')}</span>{$__PAGING__.page_current} 
+					<span data-lang="string_page"> {:lang_web('string_page')}</span>
+					</span>&nbsp;/&nbsp; 
+					<span data-lang="string_zg"> {:lang_web('string_zg')} </span>  {$__PAGING__.page_total}<span data-lang="string_page"> {:lang_web('string_page')}</span>
+			</div>
+		{/if}
+		</div>
+    </div>
+    </div>
+</div>
+<div style="width:30rem;margin: 2rem auto;">
+	{include file="public/friendLink" }
+</div>
+</div>
+<script>
+
+</script>
+{include file="public/foot" /}
+</body>
+</html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+	{include file="public/include"}
+</head>
+<style>
+    @media screen and (min-width:820px){
+		.container{
+			padding-top: 120px;
+		}
+        .head_menu_a li a {
+            color: #333;
+        }
+        .head_menu_a li.active a{
+            color: #ff5f00 ;
+        }
+        .vodlist_titbox{
+            height: auto;
+        }
+        .pannel_head .pan_right{
+            color: #F7502D;
+            font-size: 14px;
+            font-weight: 400;
+        }
+        .row{
+            min-height: 700px;
+        }
+    }
+</style>
+<body>
+  {include file="public/head"}
+  <div class="member-wrap last-bg">
+  <div class="container ">
+        {include file="ads/ads_all"}
+        <div class="row">
+	        <div class="pannel clearfix" >
+                <div class="pannel_head clearfix show-mobile">
+                    <a class="text_muted pull_right" href="{:mac_url_type($obj,['id'=>'1'],'show')}"><i class="iconfont shaixuan_i">&#xe61d;</i>&nbsp;<span data-lang="str_shaixuan">{:lang_web('str_shaixuan')}</span></a>
+					<h2 class="title">{if $tplconfig['theme']['map']['title']}{$tplconfig['theme']['map']['title']}{else}<span data-lang="string_zuixin">{:lang_web('string_zuixin')}</span>{/if}</h2>
+	            </div>
+                
+                <div class="pannel_head clearfix show-pc">
+                    <h2 class="title" >
+                        <span data-lang="string_zuijingx">{:lang_web('string_zuijingx')}</span> 
+                        <span class="pan_right">
+                            <span data-lang="string_zuijin">{:lang_web('string_zuijin')}</span>
+                            <em class="mac_total"></em> <span data-lang="string_gengxinshu">{:lang_web('string_gengxinshu')}</span>
+                        </span>
+                    </h2>
+                    
+                </div>
+				<!-- 列表 -->			
+                <div class="vodlist_smt clearfix">
+					<ul>
+						{maccms:vod num="120" paging='yes' type="'.$tplconfig['theme']['map']['id'].'" order="desc" by="time"}
+                           {include file="widget/vod_box_sm"}
+						{/maccms:vod}
+					</ul>
+                </div>				
+				<!-- end 列表 -->	
+			</div>
+        </div>
+        <!-- 友情链接 -->
+        {include file="public/friendLink"}
+    </div>
+    
+</div>
+	{include file="public/foot"}
+</body>
+<script type="text/javascript">
+    $('.mac_total').html('{$__PAGING__.record_total}');
+</script>
+</html>

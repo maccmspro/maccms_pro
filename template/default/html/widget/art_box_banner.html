@@ -1,0 +1,9 @@
+{if condition="$vo.art_pic neq ''"}
+<li class="artbanner_item swiper-slide">  
+	<div class="artbanner_img">
+		<a class="artbanner_thumb swiper-lazy" href="{:mac_url_art_detail($vo)}" title="{$vo.art_name}" data-background="{$vo.art_pic|mac_url_img}">						
+			<span class="artbanner_title">{$vo.art_name}</span>
+	    </a>
+	</div>
+</li>
+{/if}

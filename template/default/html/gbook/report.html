@@ -1,0 +1,27 @@
+<!--登录弹窗开始-->
+<div class="mac_report reply_box">
+    <form class="gbook_form">
+        <textarea class="gbook_content" name="gbook_content">{$param.name}</textarea>
+        <div class="msg_code">
+            <div class="remaining-r"> 
+                <span data-lang='string_gbook_hksr'>{:lang_web('string_gbook_hksr')}</span> 
+                <span class="gbook_remaining remaining" >200</span>
+                <span data-lang="string_pinglun_zi">{:lang_web('string_pinglun_zi')}</span>
+            </div>
+            <input type="text" name="verify" data-placeholder='user_yanzhengma' placeholder="{:lang_web('user_yanzhengma')}" class="verify">
+            <img class="comm-code" src="{:mac_url('verify/index')}" data-title='string_pinglun_kan' data-role="{:mac_url('verify/index')}" title="{:lang_web('string_pinglun_kan')}" onClick="this.src=this.src+'?v={:time()}'" />
+        </div>
+        <div style="text-align: center;display: block;overflow: hidden;">
+            <input type="button" data-value='string_gbook_tjly' class="gbook_submit submit_btn" style="width:100%" value="{:lang_web('string_gbook_tjly')}">
+        </div>
+
+    </form>
+</div>
+<!--登录弹窗结束-->
+<script>
+    $(function(){
+        MAC.Gbook.Login = {$gbook.login};
+        MAC.Gbook.Verify = {$gbook.verify};
+        MAC.Gbook.Init();
+    });
+</script>

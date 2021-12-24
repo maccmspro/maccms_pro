@@ -1,0 +1,91 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no">
+    <title>{:lang_web('play_bfq')}</title>
+    <style>*{word-wrap:break-word;outline:none} html,body{width:100%;height:100%;background:#000;color:#fff;}
+    .player_popeom{width: 90%;text-align: center;position: absolute;top: 50%;left: 50%;z-index: 99999;transform: translate(-50%, -50%);}
+    .player_popeom a{display: inline-block;padding: 8px 32px;font-size: 16px;line-height: 20px;border-radius: 32px; color: #623A0C;  background: #E2C078;margin: 10px;text-decoration: none;background-image: linear-gradient(-135deg, #FBE8A8 0%, #F8E7AC 15%, #E2C078 100%);}
+	.player_popeom p {line-height: 10px;}
+	.player_popeom .sk-time {font-size: 18px;padding-bottom: 2px;}
+	.player_popeom .user-wbg {background: #fff;color: #333;}
+	.player_popeom .mscz {background: #ff5f00;color: #fff;border: 1px solid #ff5f00;}
+	.player_popeom .qrgm {background: none;color: #ff5f00;border: 1px solid #ff5f00;}
+	.player_popeom small {color: #999;}
+	
+	@media (max-width: 767px){
+		.player_popeom a{display: inline-block;padding: 6px 28px;font-size: 14px;margin: 5px 5px 0;}
+		.player_popeom p {line-height: 6px;}
+		.player_popeom .sk-smm {font-size: 13px;}
+		}
+    </style>
+    <script src="{:MAC_BASE_PATH}/static/js/jquery.js"></script>
+    <script src="{:MAC_BASE_PATH}/template/default/js/jquery.base.js"></script>
+    <script src="{:MAC_BASE_PATH}/template/default/js/jquery.i18n.properties-1.0.9.js"></script>
+    {include file="public/jsvar"}
+</head>
+<body topmargin="0" leftmargin="0" marginheight="0" marginwidth="0">
+{$player_data}
+{$player_js}
+{if condition="$popedom.code gt 1"/}
+<div class="player_showtry" style="display:none;">
+    <div class="player_box">
+        <div class="player_popeom">
+            {if condition="$obj.vod_points_play eq 0"}
+            <p class="sk-time"> 
+                <span data-lang="play_sk">{:lang_web('play_sk')}</span>
+                {$obj.vod_trysee_time}
+                <span data-lang="play_mjs">{:lang_web('play_mjs')}</span> 
+            </p>
+			<p class="sk-smm" data-lang="play_wzgk">{:lang_web('play_wzgk')}</p>
+            <small data-lang="play_tshi">{:lang_web('play_tshi')}</small>
+            <p>
+                <a data-lang="play_mssj" href="{:url('user/upgrade')}" target="_blank">{:lang_web('play_mssj')}</a>
+                <a data-lang="string_mac_hyzx" class="user-wbg" href="{:url('user/index')}" target="_blank">
+                    {:lang_web('string_mac_hyzx')}
+                </a>
+            </p>
+            {else/}
+            <p class="sk-time">
+                <span data-lang="play_sk">{:lang_web('play_sk')}</span>{$obj.vod_trysee_time}
+                <span data-lang="play_mjs">{:lang_web('play_mjs')}</span> 
+            </p>
+			<p class="sk-smm">
+                <span data-lang="play_wzhf">{:lang_web('play_wzhf')}</span>
+                {$obj.vod_points_play}
+                <span data-lang="play_zfgk">{:lang_web('play_zfgk')}</span>
+            </p>
+            <small data-lang="play_yczf">{:lang_web('play_yczf')}</small>
+            {if condition="$user.group.group_id eq 1"}
+                <p>
+                    <a data-lang="play_msdl" class="mscz" href="{:url('user/login')}" target="_blank">{:lang_web('play_msdl')}</a>
+                </p>
+            {else/}
+                <p>
+                    <a data-lang="play_mscz" class="qrgm" href="{:url('user/buy')}" target="_blank">{:lang_web('play_mscz')}</a>
+				   <a class="mscz" href="javascript:;" onclick="window.parents.MAC.User.BuyPopedom(this)" data-id="{$obj.vod_id}" data-sid="{$param.sid}" data-nid="{$param.nid}" data-type="4" data-lang="play_qrgm" >{:lang_web('play_qrgm')}</a>
+                </p>
+            {/if}
+            {/if}
+
+        </div>
+    </div>
+</div>
+<script>
+    var lang=localStorage.getItem('lang')
+	language_pack.loadProperties(lang);
+    //方式一本页面计算
+     window.setTimeout(function(){
+     $('.MacPlayer').html( $('.player_showtry').html() );
+     },1000*{$obj.vod_trysee_time});
+
+    //方式二调用父页面公共函数库
+    //window.parent.MAC.User.PopedomCallBack({$popedom.trysee},$('.player_showtry').html() );
+</script>
+{/if}
+
+
+</body>
+</html>
+

@@ -1,0 +1,579 @@
+<style>
+    .all_menu_box {
+        display: none;
+    }
+
+    .head_box.nav_fixed {
+        top: 0rem;
+    }
+
+    .head_box.nav_fixed .head_menu_a a {
+        color: #333333;
+    }
+
+    .head_box.nav_top .head_menu_a a {
+        color: #333333;
+    }
+    .head_box.nav_top .head_menu_a .active a{
+        color: #ff5f00;
+    }
+
+    @media screen and (min-width:820px) {
+        .header {
+            width: 100%;
+            padding: 20px 0;
+            height: auto;
+            min-width: 34rem;
+        }
+        .nav_top .header{
+            background-color: transparent;
+        }
+    }
+    .nav_top .header{
+        background-color: transparent;
+    }
+
+    .head_a {
+        width: 100%;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        padding:0 1rem;
+    }
+
+    .head_menu_a {
+        position: relative;
+        top: 0;
+        left: 0;
+        transform: translate(0, 0);
+    }
+
+    .head_search {
+        height: 40px;
+        border-radius: 4px;
+        background: #F8F8F8;
+    }
+
+    .head_search .rank {
+        left: 9.2rem;
+        /* left: 10rem; */
+    }
+
+    .mac_pop .pop_top {
+        border: none;
+    }
+
+    .mac_login {
+        padding: 0;
+        height: auto;
+    }
+
+    .mac_login .mac_login_form input.login_form_submit {
+        border-radius: 36px;
+        background: linear-gradient(270deg, #F53E2D 0%, #FE6232 100%);
+    }
+
+    .mac_login .mac_login_form input.login_form_submit:hover {
+        background: linear-gradient(270deg, #F53E2D 0%, #FE6232 100%);
+    }
+
+    .user_list_box {
+        width: 100%;
+    }
+    .top_link{
+        position: relative;
+    }
+    .lang-wrap{
+        position: absolute;
+        top: 0.8rem;
+        width: 3rem;
+        background: #fff;
+        color: #999;
+        text-align: center;
+        border-radius: 13px;
+        font-size: 0.4rem;
+        left: -1rem;
+        overflow: hidden;
+        display: none;
+        border: 1px solid #F2F2F2;
+        box-shadow: 0px 2px 10px 0px rgba(0, 0, 0, 0.06);
+    }
+    .lang-wrap .lang{
+        line-height: 1rem;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .lang-wrap .lang .lang-img{
+        width: 0.5rem;
+        height: 0.5rem;
+    }
+    .lang-wrap .lang .lang-txt{
+        width: 1.6rem;
+        margin-left: 10px;
+        display: block;
+    }
+    .lang-wrap .lang:hover{
+        background-color: #f5f5f5;
+        color: #333333;
+    }
+    .show-lang{
+        display: block !important;
+    }
+    @media screen and (max-width:820px) {
+        .header {
+            width: 100%;
+            padding: 10px 0;
+            height: auto;
+        }
+        .mac_pop {
+            width: 340px !important;
+            left: 50% !important;
+        }
+        .all_menu_box {
+            display: block;
+        }
+        .head_box.nav_fixed .change-lang-mobile{
+            background-image: url('{:MAC_BASE_PATH}/template/default/images/pro/dyy_black.png');
+        }
+        .share-drop-wrap{
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 100%;
+            background: transparent;
+            z-index: 9999;
+            display: none;
+        }
+        .dropdown{
+            bottom: 39%;
+            border-radius: 0.5rem;
+        }
+        .bds_share_title{
+            margin-bottom: 0.5rem;
+            color: #333;
+            font-size: 18px;
+            font-weight: bold;
+        }
+        .bdsharebuttonbox{
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+        }
+        .bdsharebuttonbox div a{
+            margin: 0 !important;
+            width: 100% !important;
+        }
+        .bdsharebuttonbox div {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 1.2rem;
+        }
+        .close-img{
+            width: 0.6rem;
+            position: absolute;
+            right: 0.3rem;
+            top: 0.4rem;
+        }
+        .content_detail .playbtn.o_share{
+            margin-top: 0.3rem;
+        }
+        .head_a {
+            padding:0 0.5rem;
+        }
+    }
+    @font-face{
+        font-family: 'iconfont';
+        src:url('//at.alicdn.com/t/font_2776795_88ee3yvqa8.woff2?t=1630499346123') format('woff2'),
+        url('//at.alicdn.com/t/font_2776795_88ee3yvqa8.woff?t=1630499346123') format('woff'),
+        url('//at.alicdn.com/t/font_2776795_88ee3yvqa8.ttf?t=1630499346123') format('truetype');
+    }
+</style>
+<div id="topnav" class="head_box show-pc">
+    <div class="header ">
+        <div class="head_a">
+            <div class="head_logo">
+                {if condition="isset($GLOBALS['config']['site'])"}
+                <a title="{$maccms.site_name}" class="logo logo_b white_logo" style="background-image: url({:mac_url_img($maccms.site_logo_w)});" href="{:MAC_BASE_PATH}/"></a>
+                <a title="{$maccms.site_name}" class="logo logo_b black_logo" style="background-image: url({:mac_url_img($maccms.site_logo_b)});" href="{:MAC_BASE_PATH}/"></a>
+                {else}
+                <a title="{$maccms.site_name}" class="logo logo_b" style="background-image: url({:mac_url_img($maccms.site_logo)});" href="{:MAC_BASE_PATH}/"></a>
+                {/if}
+                <script>
+                    (function(){
+                        let color=$.cookie('mystyle')
+                        if(color=='black'){
+                            $('.black_logo').show()
+                            $('.white_logo').hide()
+                        }else{
+                            $('.black_logo').hide()
+                            $('.white_logo').show()
+                        }
+                    })()
+
+                </script>
+            </div>
+            <div class="head_menu_a hidden_xs hidden_mi">
+                <ul class="top_nav clearfix">
+                    <li data-sid="0"  {if condition="$maccms.aid eq 1" }class="active" {/if}>
+                    <a href="{:MAC_BASE_PATH}/" title="{:lang_web('string_home')}" data-lang="string_home">{:lang_web('string_home')}</a></li>
+                    {maccms:type num="7" order="asc" by="sort" ids="'.$tplconfig['theme']['nav']['id'].'"}
+                    <li data-sid="{$vo.type_id}" {if condition="($vo.type_id eq $GLOBALS['type_id'] || $vo.type_id eq $GLOBALS['type_pid'])" }class="active" {/if}>
+                        <a href="{:mac_url_type($vo)}">{$vo.type_name}</a>
+                    </li>
+                    {/maccms:type}
+
+                    {if condition="$tplconfig['theme']['nav']['zdybtn'] eq 1"}
+                        {if condition="$tplconfig['theme']['nav']['zdybtn1'] eq 1"}
+                        <li><a href="{$tplconfig['theme']['nav']['zdylink1']}" title="{$tplconfig['theme']['nav']['zdyname1']}" target="_blank">{$tplconfig['theme']['nav']['zdyname1']}</a></li>
+                        {/if}
+
+                        {if condition="$tplconfig['theme']['nav']['zdybtn2'] eq 1"}
+                        <li><a href="{$tplconfig['theme']['nav']['zdylink2']}" title="{$tplconfig['theme']['nav']['zdyname2']}" target="_blank">{$tplconfig['theme']['nav']['zdyname2']}</a></li>
+                        {/if}
+
+                        {if condition="$tplconfig['theme']['nav']['zdybtn3'] eq 1"}
+                        <li><a href="{$tplconfig['theme']['nav']['zdylink3']}" title="{$tplconfig['theme']['nav']['zdyname3']}" target="_blank">{$tplconfig['theme']['nav']['zdyname3']}</a></li>
+                        {/if}
+
+                        {if condition="$tplconfig['theme']['nav']['zdybtn4'] eq 1"}
+                        <li><a href="{$tplconfig['theme']['nav']['zdylink4']}" title="{$tplconfig['theme']['nav']['zdyname4']}" target="_blank">{$tplconfig['theme']['nav']['zdyname4']}</a></li>
+                        {/if}
+                    {/if}
+
+                    {php}
+                        $art_type_id = model('type')->where(['type_mid' => 2,'type_pid' => 0,'type_status' => 1])->order('type_sort desc')->limit(1)->column('type_id');
+                        if($art_type_id){
+                            $first_type_id = $art_type_id[0];
+                        }else{
+                            $first_type_id = 1;
+                        }
+                    {/php}
+                    <li data-sid="6" {if condition="$maccms.aid eq 30" }class="active" {/if}><a href="{:mac_url('topic/index')}" title="{:lang_web('string_topic')}" data-lang="string_topic">{:lang_web('string_topic')}</a></li>
+                    <li data-sid="7" {if condition="$maccms.aid eq 10" }class="active" {/if}><a href="{:mac_url('vod/last_vod')}" title="{:lang_web('string_foot_gx1')}" data-lang="string_foot_gx1" data-title="string_foot_gx1">{:lang_web('string_foot_gx1')}</a></li>
+                    <script>
+                        (function(){
+                            let headHrefs=[]
+                            let pathname=location.pathname
+                            $('.top_nav li').each((index,item)=>{
+                                headHrefs.push($(item).find('a').attr('href'))
+                                if(pathname==$(item).find('a').attr('href')){
+                                    $(item).addClass('active')
+                                }else{
+                                    $(item).removeClass('active')
+                                }
+                            })
+                        })()
+                    </script>
+                </ul>
+            </div>
+
+            <div class="head_search">
+                <form id="search" name="search" method="get" action="{:mac_url('vod/search')}" onsubmit="return qrsearch();">
+                    <input id="txt" type="text" name="wd" class="mac_wd form_control" value="{$param.wd}" placeholder="{:config('mctheme')['theme']['search']['text']}">
+                   <a href="{:mac_url('label/rank')}" title="{$tplconfig['theme']['rank']['title']}"><i class="iconfont rank">&#xe618;</i>
+                    </a>
+                    <button class="submit" id="searchbutton" type="submit" name="submit">
+                        <i class="iconfont">&#xe633;</i>
+                    </button>
+                </form>
+                {php}
+                $config = config('maccms');
+                $site_keywords = explode(",",$config['site']['site_keywords']);
+                {/php}
+                <div class="mac_results" style="display: none;">
+                    <div class="histpry mac_item">
+                        <p data-lang="historical_search">{:lang_web('historical_search')}</p>
+                        <ul >
+                            {foreach name="site_keywords" key="key" item="vo"}
+                            <li>{$vo}</li>
+                            {/foreach}
+                        </ul>
+                    </div>
+                    <div class="hot mac_item">
+                        <p class="mac_title" data-lang="hot_search">{:lang_web('hot_search')}</p>
+                        <ul >
+                            {foreach name="site_keywords" key="key" item="vo"}
+                            <li >
+                                <span class="s1">{$key+1}</span>
+                                <span class="s2 search_key">{$vo}</span>
+                            </li>
+                            {/foreach}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="head_user">
+                <ul>
+                    <li class="top_ico change-lang">
+                        <a title="{:lang_web('string_lang_change')}" data-title="string_lang_change" class="top_link ">
+                            <i class="iconfont no-lang">&#xe611;</i>
+                            <img src="" class="has-lang">
+
+                            <div class="lang-wrap">
+                                <div class="lang" data-lang="cn">
+                                    <img class="lang-img" src="{:MAC_BASE_PATH}/template/default/images/pro/lang-zh.png">
+                                    <span class="lang-txt" data-lang="string_lang_zh">{:lang_web('string_lang_zh')}</span>
+                                </div>
+
+                                <div class="lang" data-lang="en">
+                                    <img class="lang-img" src="{:MAC_BASE_PATH}/template/default/images/pro/lang-en.png">
+                                    <span class="lang-txt" data-lang="string_lang_en">{:lang_web('string_lang_en')}</span>
+                                </div>
+                            </div>
+
+                        </a>
+                    </li>
+                    {if condition="strpos($tplconfig['theme']['rtnav']['ym'],'a') !==false"}
+                    {/if} {if condition="$tplconfig['theme']['topic']['btn'] eq 1"} {if condition="strpos($tplconfig['theme']['rtnav']['ym'],'b') !==false"}
+                    {/if} {/if} {if condition="$GLOBALS['config']['gbook']['status'] eq 1"} {if condition="strpos($tplconfig['theme']['rtnav']['ym'],'c') !==false"}
+                    <li class="top_ico">
+                        {if cookie('user_id')}
+                        <a class="top_link" data-title="string_ly" href="{:mac_url('gbook/index')}" title="{$tplconfig['theme']['gbook']['title']}">
+                            <i class="iconfont">&#xe612;</i>
+                        </a>
+                        {else}
+                        <a class="user_login top_link"  href=" javascript:; " data-title="string_ly" title="notice">
+                            <i class="iconfont">&#xe612;</i>
+                        </a>
+                        {/if}
+                    </li>
+
+                    <!-- 收藏 -->
+                    <li class="top_ico">
+                        {if cookie('user_id')}
+                        <a class="top_link" href="{:mac_url('user/favs')}" data-title="string_fav" title="like">
+                            <i class="iconfont">&#xe60f;</i>
+                        </a>
+                        {else}
+                        <a class="user_login top_link"  href=" javascript:; " data-title="string_fav" title="like">
+                            <i class="iconfont">&#xe60f;</i>
+                        </a>
+                        {/if}
+                    </li>
+                    {/if} {/if} {if condition="$tplconfig['theme']['map']['btn'] eq 1"} {if condition="strpos($tplconfig['theme']['rtnav']['ym'],'d') !==false"}
+                    <li class="top_ico">
+                        <a class="top_link" href="{:mac_url('map/index')}" title="{$tplconfig['theme']['map']['title']}"><i class="iconfont">&#xe652;</i></a>
+                    </li>
+                    {/if} {/if} {if condition="$tplconfig['theme']['rank']['btn'] eq 1"} {if condition="strpos($tplconfig['theme']['rtnav']['ym'],'e') !==false"}
+                    {/if} {/if} {if condition="$tplconfig['theme']['apps']['btn'] eq 1"} {if condition="strpos($tplconfig['theme']['rtnav']['ym'],'f') !==false"}
+                    <li class="top_ico">
+                        <a href="{$tplconfig['theme']['apps']['link']}" title="Download APP" target="_blank"><i class="iconfont">&#xe653;</i></a>
+
+                    </li>
+                    {/if} {/if} {if condition="$tplconfig['theme']['qq']['btn'] eq 1"} {if condition="strpos($tplconfig['theme']['rtnav']['ym'],'g') !==false"}
+                    <li class="top_ico">
+                        <a href="{$tplconfig['theme']['qq']['link']}" title="{$tplconfig['theme']['qq']['title']|mac_default='QQ'}" target="_blank"><i class="iconfont">&#xe66a;</i></a>
+                    </li>
+                    {/if} {/if} {if condition="$tplconfig['theme']['weixin']['btn'] eq 1"} {if condition="strpos($tplconfig['theme']['rtnav']['ym'],'h') !==false"}
+                    {/if} {/if} {if condition="$tplconfig['theme']['rtnav']['zdybtn1'] eq 1"}
+                    {/if} {if condition="$tplconfig['theme']['rtnav']['zdybtn2'] eq 1"}
+                    {/if}
+
+                    {if condition="$GLOBALS['config']['user']['status'] eq 1"}
+                        {if condition="!$GLOBALS['user']['user_id']"}
+                            <!-- 未登录 -->
+                            {if condition="strpos($tplconfig['theme']['rtnav']['ym'],'i') !==false"}
+                            <li class="top_ico">
+                                <a class="mac_user top_link"
+                                    href=" javascript:;"
+                                    data-title="string_hy"
+                                    title="{if $tplconfig['theme']['user']['title']}{$tplconfig['theme']['user']['title']}{else}<span data-lang="string_hy">{:lang_web('string_hy')}</span>{/if}">
+                                    <i class="iconfont ">&#xe610;</i>
+                                </a>
+                            </li>
+                            {/if}
+                        {else}
+                        <!-- 已登录 -->
+                        <li class="top_ico">
+                            <img class="user_img vip mac_user" onerror=src='{:MAC_BASE_PATH}/template/default/images/member/touxiang.png' src="{:mac_get_user_portrait()}" alt="">
+                        </li>
+                        {/if}
+
+                        {if condition="cookie('is_member')"}
+                        <li class="top_ico">
+                            <img class="top_img vip" src="{:MAC_BASE_PATH}/template/default/images/member/vip.png ">
+                        </li>
+                        {/if}
+                    {/if}
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="topnav " class="head_box show-mobile mobile-head ">
+    <div class="header ">
+            <div class="head_a ">
+                <div class="head_logo ">
+
+                    {if condition="isset($GLOBALS['config']['site'])"}
+                    <a title="{$maccms.site_name}" class="logo logo_b white_logo" style="background-image: url({:mac_url_img($maccms.site_waplogo_w)});" href="{:MAC_BASE_PATH}/"></a>
+                    <a title="{$maccms.site_name}" class="logo logo_b black_logo" style="background-image: url({:mac_url_img($maccms.site_waplogo_b)});" href="{:MAC_BASE_PATH}/"></a>
+                    {else /}
+                    <a title="{$maccms.site_name}" class="logo logo_b" style="background-image: url({:mac_url_img($maccms.site_waplogo)});" href="{:MAC_BASE_PATH}/"></a>
+                    {/if}
+                    <script>
+                        (function(){
+                            let mcolor=$.cookie('mystyle')
+                            if(mcolor=='black'){
+                                $('.black_logo').show()
+                                $('.white_logo').hide()
+                            }else{
+                                $('.black_logo').hide()
+                                $('.white_logo').show()
+                            }
+                        })()
+
+                    </script>
+                </div>
+                <div class="head_user ">
+                    <ul>
+                        {if condition="strpos($tplconfig[ 'theme'][ 'rtnav'][ 'ym'], 'a') !==false "}
+                        <li class="top_ico ">
+                            <a href="javascript:; " class="history " title="{:lang_web('watch_history')}"><i class="iconfont ">&#xe624;</i></a>
+                        </li>
+                        {/if} {if condition="$tplconfig[ 'theme'][ 'topic'][ 'btn'] eq 1 "} {if condition="strpos($tplconfig[ 'theme'][ 'rtnav'][ 'ym'], 'b') !==false "}
+                        {/if} {/if} {if condition="$GLOBALS[ 'config'][ 'gbook'][ 'status'] eq 1 "} {if condition="strpos($tplconfig[ 'theme'][ 'rtnav'][ 'ym'], 'c') !==false "}
+                        <li class="top_ico ">
+                            <a href="{:mac_url('gbook/index')}" title="{$tplconfig['theme']['gbook']['title']}"><i class="iconfont ">&#xe632;</i></a>
+                        </li>
+                        {/if} {/if} {if condition="$tplconfig[ 'theme'][ 'map'][ 'btn'] eq 1 "} {if condition="strpos($tplconfig[ 'theme'][ 'rtnav'][ 'ym'], 'd') !==false "}
+                        <li class="top_ico ">
+                            <a href="{:mac_url('map/index')}" title="{$tplconfig['theme']['map']['title']}"><i class="iconfont ">&#xe652;</i></a>
+                        </li>
+                        {/if} {/if} {if condition="$tplconfig[ 'theme'][ 'rank'][ 'btn'] eq 1 "} {if condition="strpos($tplconfig[ 'theme'][ 'rtnav'][ 'ym'], 'e') !==false "}
+                        {/if} {/if} {if condition="$tplconfig[ 'theme'][ 'apps'][ 'btn'] eq 1 "} {if condition="strpos($tplconfig[ 'theme'][ 'rtnav'][ 'ym'], 'f') !==false "}
+                        <li class="top_ico ">
+                            <a href="{$tplconfig[ 'theme'][ 'apps'][ 'link']} " title="下载APP " target="_blank "><i class="iconfont ">&#xe653;</i></a>
+                        </li>
+                        {/if} {/if} {if condition="$tplconfig[ 'theme'][ 'qq'][ 'btn'] eq 1 "} {if condition="strpos($tplconfig[ 'theme'][ 'rtnav'][ 'ym'], 'g') !==false "}
+                        <li class="top_ico ">
+                            <a href="{$tplconfig[ 'theme'][ 'qq'][ 'link']} " title="{$tplconfig[ 'theme'][ 'qq'][ 'title']|mac_default='QQ' } " target="_blank "><i class="iconfont ">&#xe66a;</i></a>
+                        </li>
+                        {/if} {/if} {if condition="$tplconfig[ 'theme'][ 'weixin'][ 'btn'] eq 1 "} {if condition="strpos($tplconfig[ 'theme'][ 'rtnav'][ 'ym'], 'h') !==false "}
+                        {/if} {/if} {if condition="$tplconfig[ 'theme'][ 'rtnav'][ 'zdybtn1'] eq 1 "}
+                        <li class="top_ico ">
+                            <a href="{$tplconfig[ 'theme'][ 'rtnav'][ 'zdylink1']} " title="{$tplconfig[ 'theme'][ 'rtnav'][ 'zdyname1']} " target="_blank "><i class="iconfont ">&#xe666;</i></a>
+                        </li>
+                        {/if} {if condition="$tplconfig[ 'theme'][ 'rtnav'][ 'zdybtn2'] eq 1 "}
+                        <li class="top_ico ">
+                            <a href="{$tplconfig[ 'theme'][ 'rtnav'][ 'zdylink2']} " title="{$tplconfig[ 'theme'][ 'rtnav'][ 'zdyname2']} " target="_blank "><i class="iconfont ">&#xe668;</i></a>
+                        </li>
+                        {/if}{if condition="strpos($tplconfig[ 'theme'][ 'rtnav'][ 'ym'], 'a') !==false "}
+                        <li class="top_ico ">
+                            <a title="{:lang_web('string_lang_change')}" class="change_lang_mobile" >
+                                <i class="iconfont no-lang">&#xe60e;</i>
+                                <img src="" class="has-lang">
+                            </a>
+                            <div class="lang-wrap">
+                                <div class="lang" data-lang="cn">
+                                    <img class="lang-img" src="{:MAC_BASE_PATH}/template/default/images/pro/lang-zh.png">
+                                    <span class="lang-txt" data-lang="string_lang_zh">{:lang_web('string_lang_zh')}</span>
+                                </div>
+
+                                <div class="lang" data-lang="en">
+                                    <img class="lang-img" src="{:MAC_BASE_PATH}/template/default/images/pro/lang-en.png">
+                                    <span class="lang-txt" data-lang="string_lang_en">{:lang_web('string_lang_en')}</span>
+                                </div>
+                            </div>
+                        </li>
+                        {/if}
+
+                        {if condition="$GLOBALS['config']['user']['status'] eq 1"}
+                            {if condition="!$GLOBALS['user']['user_id']"}
+                                <!-- 未登录 -->
+                                {if condition="strpos($tplconfig['theme']['rtnav']['ym'],'i') !==false"}
+                                <li class="top_ico">
+                                    <a class=" top_link"
+                                        href="{if$user.user_id}{:mac_url('user/index')}{else}{:mac_url('user/login')}{/if}"
+                                        data-title="string_hy"
+                                        title="{if $tplconfig['theme']['user']['title']}{$tplconfig['theme']['user']['title']}{else}<span data-lang="string_hy">{:lang_web('string_hy')}</span>{/if}">
+                                        <i class="iconfont ">&#xe610;</i>
+                                    </a>
+                                </li>
+                                {/if}
+                            {else}
+                            <!-- 已登录 -->
+                            <li class="top_ico">
+                                <img class="user_img vip mac_user" onerror=src='{:MAC_BASE_PATH}/template/default/images/member/touxiang.png' src="{:mac_get_user_portrait()}" alt="">
+                            </li>
+                            {/if}
+                        {/if}
+                    </ul>
+                </div>
+            </div>
+    </div>
+    <div class="header box">
+            <div class="head_b ">
+                <a class="bk_btn fl " href="javascript:MAC.GoBack() " title="{:lang_web('string_fh')}"><i class="iconfont ">&#xe625;</i></a>
+                <span class="hd_tit fl ">{$obj.vod_name}{$obj.topic_name}{$obj.art_name}</span>
+                <a class="se_btn fr open-share " href="javascript:void(0) " title="{:lang_web('string_vod_share')}"><i class="iconfont ">&#xe615;</i></a> {if condition="$GLOBALS[ 'config'][ 'comment'][ 'status'] eq 1 "}
+                {include file="widget/share"}
+                <a class="se_btn pl_btn fr " href="#pinglun " title="{:lang_web('string_play_pl')}"><i class="iconfont ">&#xe632;</i></a> {/if}
+                <div class="head_menu_b">
+                    <a class="menu " href="javascript:void(0)" title="{:lang_web('all_types')}">
+                        <i class="iconfont menu_ico ">&#xe640;</i>
+                        <span class="hidden_xs">&nbsp;<span data-lang="all_types">{:lang_web('all_types')}</span></span>
+                    </a>
+                    {include file="widget/all_menu"}
+                </div>
+                <div class="head_search">
+                    <form id="search" name="search" method="get" action="{:mac_url('vod/search')}" onsubmit="return qrsearch();">
+                        <i class="iconfont">&#xe633;</i>
+                        <input id="txt" type="text" name="wd" class="mac_wd form_control" value="{$param.wd}" placeholder="{:config('mctheme')['theme']['search']['text']}">
+                       <button class="submit" id="searchbutton" data-lang="string_search" type="submit" name="submit">{:lang_web('string_search')}</button>
+                    </form>
+                    <a class="rank" href="{:mac_url('label/rank')}" title="{$tplconfig['theme']['rank']['title']}">
+                        <i class="iconfont rank-i">&#xe618;</i>
+                    </a>
+                </div>
+                <div class="head_hot_search hidden_xs ">
+                    <ul class="pops_list ">
+                        <li><span class="hot_search_tit "><i class="iconfont ">&#xe631;</i>&nbsp;<span data-lang="hot_search">{:lang_web('hot_search')}</span></span></li>
+                        {maccms:foreach name=":explode( ',',$maccms.search_hot)"}{if condition="$key lt 5"}
+                        <li><a href="{:mac_url('vod/search',[ 'wd'=>$vo])}"><span class="hot_name">{$vo}</span></a>
+                    </li>{/if} {/maccms:foreach}
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    (function() {
+        $('.change-lang').hover(function(){
+            $('.lang-wrap').show()
+        },function(){
+            $('.lang-wrap').hide()
+        })
+
+        $('input').focus(function(e) {
+            $('.rank-i').addClass('fo')
+        })
+        $('input').blur(function(e) {
+            $('.rank-i').removeClass('fo')
+        })
+
+        $(window).scroll(function() {
+        var targetTop = $(this).scrollTop();
+        if (targetTop >= 50) {
+            $("#topnav").addClass("nav_top");
+            $('.mobile-nav').addClass("nav_top");
+        } else {
+            $("#topnav").removeClass("nav_top");
+            $('.mobile-nav').removeClass("nav_top");
+        };
+        if (targetTop >= 200) {
+            $("#topnav,.listnow,.mobile-head").addClass("nav_fixed");
+            $("body").addClass("fixres");
+        } else {
+            $("#topnav,.listnow,.mobile-head").removeClass("nav_fixed");
+            $("body").removeClass("fixres");
+        }
+    });
+
+    })()
+
+</script>

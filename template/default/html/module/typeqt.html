@@ -1,0 +1,47 @@
+<style>
+    @media (min-width:820px) {
+		.container{
+			padding-top: 120px;
+		}
+	}
+	@media (max-width:820px) {
+		.container{
+			padding-top: 50px;
+		}
+	}
+</style>
+<body>
+    {include file="public/head"} 
+    <div class="container " >
+        {include file="ads/ads_all"}
+        <div class="vod_row tit_up">
+        <div class="pannel clearfix">
+            <div class="pannel_head clearfix">
+                <span class="pull_right">
+                    <span data-lang='string_zg'>{:lang_web('string_zg')}</span>
+                    <em class="mac_total"></em><span data-lang="string_yingpian">{:lang_web('string_yingpian')}</span> 
+                </span>
+                <h2 class="title">{$obj.type_name}</h2>
+                <a class="text_muted pull_left" href="{:mac_url_type($obj,[],'show')}">
+                    <span data-lang="str_shaixuan">{:lang_web('str_shaixuan')}</span>
+                    <i class="iconfont more_i">&#xe623;</i>
+                </a>
+                <span class="hidden_xs pull_left">
+                    {maccms:vod num="3" type="current" order="desc" by="hits" id="vo"}
+                    <span class="split_line"></span><a {if condition="$tplconfig['theme']['playlink']['btn'] eq 1"}href="{:mac_url_vod_play($vo,['sid'=>$vo.sid,'nid'=>1])}"{else/}href="{:mac_url_vod_detail($vo)}"{/if} title="{$vo.vod_name}" class="text_muted">{$vo.vod_name|mac_substring=16}</a>
+                    {/maccms:vod}
+                </span>
+            </div>
+            <!-- 列表 -->
+            <ul class="vodlist vodlist_wi clearfix" style="width: auto;"> 
+                {maccms:vod num="36" paging="yes" half="3" type="current" order="desc" by="sort"} {include file="widget/vod_box"} {/maccms:vod}
+            </ul>
+            <!-- end 列表 -->
+            {include file="widget/page"}
+            <!-- 翻页-->
+        </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        $('.mac_total').html('{$__PAGING__.record_total}');
+    </script>

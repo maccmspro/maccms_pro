@@ -1,0 +1,15 @@
+<div id="rating" class="rating-list" data-mid="{$maccms.mid}" data-id="{$obj.vod_id}" data-score="{$obj.vod_score/2|ceil}">
+    <div class="player-num" >
+    <a rel="nofollow" class="Up digg_link" href="javascript:void(0)" data-id="{$obj.actor_id}" data-mid="{$maccms.mid}" data-type="up" id="up"><i class="iconfont">&#58958;</i> <strong class="digg_num"> {$obj.actor_up}</strong></a>&nbsp;&nbsp;<p class="split_line"></p>&nbsp;
+    <a rel="nofollow" class="Down digg_link" href="javascript:void(0)" data-id="{$obj.actor_id}" data-mid="{$maccms.mid}" data-type="down" id="down"><i class="iconfont">&#58959;</i> <strong class="digg_num"> {$obj.actor_down}</strong></a>
+                <li class="notice col-hl-2">
+				    <div class="smlist_box">
+					{include file="actor/blurb"}
+					</div>
+				</li>
+</div>
+</div>
+<link href="{:MAC_BASE_PATH}/template/default/css/qirebox.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="{:MAC_BASE_PATH}/template/default/js/qireobj.js"></script>
+<script type="text/javascript" src="{:MAC_BASE_PATH}/template/default/js/gold.js"></script>
+

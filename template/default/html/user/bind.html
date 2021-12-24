@@ -1,0 +1,168 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>{:lang_web('user_unbound')} - {:lang_web('string_mac_hyzx')} - {$maccms.site_name}</title>
+	<meta name="keywords" content="">
+	<meta name="description" content="">
+	{include file="user/include" /}
+</head>
+<body>
+{include file="public/head" /}
+<!-- 会员中心 -->
+<div class="member-wrap">
+<div id="member" class="fn-clear">
+	<div id="left">
+        <div class="m-nav">
+			<a href="javascript:MAC.GoBack()" class="btn-left"><i class="iconfont ico-right">&#xe625;</i></a>
+			<a href="{:MAC_BASE_PATH}/" class="btn-right"><i class="iconfont ico-right">&#xe634;</i></a>
+			<span class="mb-title">{:lang_web('string_user_center')}</span>
+	    </div>
+        {include file="user/left_nav" /}
+	</div>
+	<div id="right">
+	    <div class="m-nav">
+			<a href="javascript:MAC.GoBack()" class="btn-left"><i class="iconfont ico-right">&#xe625;</i></a>
+			<span class="mb-title">{:lang_web('user_unbound')}{if condition="$ac eq 'phone'"}{:lang_web('user_phone')}{else/}{:lang_web('user_place_email1')}{/if}</span>
+	    </div>
+	    <div class="co-right co-right-bg">
+		<h2>{:lang_web('user_unbound')}{if condition="$ac eq 'phone'"}{:lang_web('user_phone')}{else/}{:lang_web('user_place_email1')}{/if}</h2>
+		<div id="tab">
+			<div id="listCon">
+				<!-- 修改信息 -->
+				<div class="cur w-bind">
+					<form id="fm" name="fm" method="post" action="" >
+						<input type="hidden" name="ac" value="{$ac}">
+						<p><span class="xiang">{if condition="$ac eq 'phone'"}{:lang_web('user_phone')}{else/}{:lang_web('user_place_email1')}{/if}</span><input type="text" name="to" class="member-input wt-input" placeholder="{:lang_web('user_place_qsr')}{if condition="$ac eq 'phone'"}{:lang_web('user_sjhm')}{else/}{:lang_web('user_place_email1')}{/if}" value=""><a href="javascript:void(0)" class="bind-a" type="button" id="btn_bind_send" value="{:lang_web('get_verification_code')}">{:lang_web('get_verification_code')}</a></p>
+						<p><span class="xiang">{:lang_web('user_yanzhengma')}</span><input type="text" name="code" class="member-input" value="" placeholder="{:lang_web('user_place_yanzm')}"></p>
+						<p><span class="xiang"></span><input type="button" id="btn_submit" class="search-button" value="{:lang_web('confirm_binding')}"></p>
+					</form>
+				</div>
+
+			</div>
+		</div>
+	</div>
+	</div>
+</div>
+</div>
+<script type="text/javascript">
+	var countdown=60;
+	var lang=localStorage.getItem('lang')
+	function settime(val) {
+		if (countdown == 0) {
+			val.removeAttribute("disabled");
+			val.value="{:lang_web('get_verification_code')}";
+			countdown = 60;
+			return true;
+		} else {
+			val.setAttribute("disabled", true);
+			val.value="{:lang_web('string_resend')}(" + countdown + ")";
+			countdown--;
+		}
+		setTimeout(function() {settime(val) },1000)
+	}
+
+	$('#btn_bind_send').click(function(){
+	    var ac = $('input[name="ac"]').val();
+		var to = $('input[name="to"]').val();
+		if(ac=='email') {
+            var pattern = /^([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+@([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+\.[a-zA-Z]{2,3}$/;
+            var ex = pattern.test(to);
+            if (!ex) {
+                alert(lang==1?'The mailbox format is incorrect':'{:lang_web("email_format_is_incorrect")}');
+                return;
+            }
+        }
+        else if(ac=='phone') {
+            var pattern=/^[1][0-9]{10}$/;
+            var ex = pattern.test(to);
+            if (!ex) {
+                alert(lang==1?'Incorrect mobile phone number format':'{:lang_web("phone_number_format_is_incorrect")}');
+                return;
+            }
+        }
+		else{
+		    alert(lang==1?'Parameter error':'{:lang_web("parameter_error")}');
+			return;
+		}
+
+
+		settime(this);
+		var data = $("#fm").serialize();
+
+		$.ajax({
+			url: "{:url('user/bindmsg')}",
+			type: "post",
+			dataType: "json",
+			data: data,
+			beforeSend: function () {
+				//开启loading
+			},
+			success: function (r) {
+				alert(r.msg);
+			},
+			complete: function () {
+				//结束loading
+			}
+		});
+	});
+
+	$("#btn_submit").click(function() {
+        var ac = $('input[name="ac"]').val();
+        var to = $('input[name="to"]').val();
+
+        if(ac=='email') {
+            var pattern = /^([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+@([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+\.[a-zA-Z]{2,3}$/;
+            var ex = pattern.test(to);
+            if (!ex) {
+                alert(lang==1?'The mailbox format is incorrect':'{:lang_web("email_format_is_incorrect")}');
+                return;
+            }
+        }
+        else if(ac=='phone') {
+            var pattern=/^[1][0-9]{10}$/;
+            var ex = pattern.test(to);
+            if (!ex) {
+                alert(lang==1?'Incorrect mobile phone number format':'{:lang_web("phone_number_format_is_incorrect")}');
+                return;
+            }
+        }
+        else{
+            alert(lang==1?'Parameter error':'{:lang_web("parameter_error")}');
+            return;
+        }
+
+		var code = $('input[name="code"]').val();
+		if(code==''){
+			alert(lang==1?'Please enter the verification code':'{:lang_web("user_place_yanzm")}');
+			return;
+		}
+		var data = $("#fm").serialize();
+
+		$.ajax({
+			url: "{:url('user/bind')}",
+			type: "post",
+			dataType: "json",
+			data: data,
+			beforeSend: function () {
+				//开启loading
+				//$(".loading_box").css("display","block");
+				$("#btn_submit").css("background","#fd6a6a").val("loading...");
+			},
+			success: function (r) {
+				alert(r.msg);
+				if(r.code==1){
+					location.href="{:url('user/info')}";
+				}
+			},
+			complete: function () {
+				//结束loading
+				//$(".loading_box").css("display","none");
+				$("#btn_submit").css("background","#fa4646").val("{:lang_web('string_tj')}");
+			}
+		});
+	});
+
+</script>
+{include file="public/foot" /}
+</body>
+</html>

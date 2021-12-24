@@ -1,0 +1,55 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>最新电影角色_电视剧角色_明星饰演的角色 - {$maccms.site_name}</title>
+    <meta name="keywords" content="电影角色,电视剧角色,明星主演的角色" />
+    <meta name="description" content="最新电影电视剧角色，为各位提供电视剧主要角色介绍，电影中主要角色介绍，角色名电影角色介绍，等丰富的节目主演角色介绍" /> 
+	{include file="public/include"}
+	<link rel="stylesheet" href="{:MAC_BASE_PATH}/template/default/asset/css/hlrole.css" type="text/css" />
+</head>
+<body>
+	{include file="public/head"}
+	<div class="container ">
+		{include file="ads/ads_all"}
+		<div class="row">
+			<!-- 列表 -->
+			<div class="vodlist_smt clearfix">
+				<ul>
+					<div class="row tit_up">
+						<div class="pannel">
+							<div class="pannel_head clearfix">
+								<h2 class="title"><i class="iconfont">&#xe654;</i>角色演员</h2>
+								
+								<span class="text_muted pull_right"><a class="text_muted pull_left" href="{:mac_url('role/show')}">更多<i class="iconfont more_i">&#xe623;</i></a></span>
+							</div>
+							{maccms:vod num="60" paging="yes" pageurl="role/show" id="v2" order="desc" by="time" level="3"}
+							<div class="rank_hom list_scroll">
+								<!-- 排行榜列表 -->
+								<div class="rank_info">
+									<div class="list_info">
+										<div class="pannel_head clearfix">
+											<h3 class="title">《{$v2.vod_name}》&nbsp;演员表</h3>
+										<ul class="part_rows">
+											{maccms:role num="3" rid="'.$v2['vod_id'].'" order="asc" by="time"}
+                                            {include file="widget/role_box_week"} 
+                                            {/maccms:role}
+										</ul>
+                                          </div>
+									</div>
+								</div>
+								<!-- end 排行榜列表 -->
+							</div>
+                          	{/maccms:vod}
+						</div>
+					</div>
+				</ul>
+			</div>
+			<!-- end 列表 -->
+		</div>
+	</div>
+	<script type="text/javascript">
+		$('.mac_total').html('{$__PAGING__.record_total}');
+	</script>
+	{include file="public/foot"}
+</body>
+</html>

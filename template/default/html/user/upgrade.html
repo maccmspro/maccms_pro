@@ -1,0 +1,198 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>{:lang_web('string_user_huiyuanzu')} - {$maccms.site_name}</title>
+<meta name="keywords" content="{$maccms.site_keywords}"/>
+<meta name="description" content="{$maccms.site_description}"/>
+{include file="user/include" /}
+</head>
+<style>
+	@font-face {
+  		font-family: 'iconfont';  /* Project id 2776795 */
+  		src: url('//at.alicdn.com/t/font_2776795_2e598cd2vde.woff2?t=1630501041768') format('woff2'),
+       		url('//at.alicdn.com/t/font_2776795_2e598cd2vde.woff?t=1630501041768') format('woff'),
+       		url('//at.alicdn.com/t/font_2776795_2e598cd2vde.ttf?t=1630501041768') format('truetype');
+	}
+</style>
+<body>
+{include file="public/head" /}
+<!-- 会员中心 -->
+<div class="member-wrap member-wrap-bg">
+<div id="member" class="fn-clear">
+	<div id="left">
+        <div class="m-nav">
+			<a href="javascript:MAC.GoBack()" class="btn-left"><i class="iconfont ico-right">&#xe625;</i></a>
+			<a href="{:MAC_BASE_PATH}/" class="btn-right"><i class="iconfont ico-right">&#xe634;</i></a>
+			<span class="mb-title" data-lang='string_user_center'>{:lang_web('string_user_center')}</span>
+	    </div>
+        {include file="user/left_nav" /}
+	</div>
+
+    <div id="right">
+		<div class="m-nav">
+			<a href="javascript:MAC.GoBack()" class="btn-left"><i class="iconfont ico-right">&#xe625;</i></a>
+			<span class="mb-title" data-lang="string_user_sjhyz">{:lang_web('string_user_sjhyz')}</span>
+	    </div>
+	    <div class="co-right co-hi">
+		<h2 data-lang="string_user_sjhy">{:lang_web('string_user_sjhy')}</h2>
+		<div id="listCon">
+	      <div class="cur">
+		    <form id="fm" name="fm" method="post" action="" >
+			<p>
+				<span class="xiang" data-lang="user_huiyuanzu"> {:lang_web('user_huiyuanzu')}</span>
+				<span>{if condition="$obj.group_id lt 3"}{$user.group.group_name}{else}<i class="iconfont user_vip">&#xe638;</i>{$obj.group.group_name}{/if}</span></p>
+			<p><span class="xiang" data-lang="user_syjf">{:lang_web('user_syjf')}</span>{$obj.user_points}</p>
+			<p><span class="xiang" data-lang="string_user_dqsj">{:lang_web('string_user_dqsj')}</span>
+				<span class="fen">{if condition="$obj.group_id lt 3"} <span data-lang="user_valid">{:lang_web('user_valid')}</span>{else}{$obj.user_end_time|mac_day}{/if}</span></p>
+			</form>
+			</div>
+		</div>
+		</div>
+		<div class="co-right co-hi co-bottom">
+		<form action="" method="post" name="form3" id="form3">
+		<div class="sjhy-ts">
+		<p><span class="fen"> <i class="iconfont">&#xe613;</i> <span data-lang="string_user_sjts">{:lang_web('string_user_sjts')}</span> </span></p>
+		</div>
+		<div >
+			<!-- BEGIN row -->
+			<ul class="shengji">
+			{volist name="group_list" id="vo"}
+				{if condition="$vo.group_id gt 2 && $vo.group_status eq 1"}
+				<li data-index='0' class="shengji-item select-vip">
+					<a class="grade" data-id="{$vo.group_id}" data-name="{$vo.group_name}" data-points="{$vo.group_points_day}" data-long="day">
+						<span data-lang="string_user_bt">{:lang_web('string_user_bt')}</span>
+						{$vo.group_name}
+						<p class="time" data-lang="string_user_24xs">{:lang_web('string_user_24xs')}</p>
+						<p class="point">
+							<span class="fen">{$vo.group_points_day}</span><span data-lang="string_jf">{:lang_web('string_jf')}</span> 
+						</p>
+					</a>
+				</li>
+				<li data-index='1' class="shengji-item">
+					<a class="grade" data-id="{$vo.group_id}" data-name="{$vo.group_name}" data-points="{$vo.group_points_week}" data-long="week">
+						<span data-lang="string_user_bz">{:lang_web('string_user_bz')}</span>
+						{$vo.group_name}
+						<p class="time" data-lang="string_user_7t">{:lang_web('string_user_7t')}</p>
+						<p class="point">
+							<span class="fen">{$vo.group_points_week}</span><span data-lang="string_jf">{:lang_web('string_jf')}</span> 
+						</p>
+					</a>
+				</li>
+				<li data-index='2' class="shengji-item">
+					<a class="grade" data-id="{$vo.group_id}" data-name="{$vo.group_name}" data-points="{$vo.group_points_month}" data-long="month">
+						<span data-lang="string_user_by">{:lang_web('string_user_by')}</span>
+						{$vo.group_name}
+						<p class="time" data-lang="string_user_30t">{:lang_web('string_user_30t')}</p>
+						<p class="point">
+							<span class="fen">{$vo.group_points_month}</span></span><span data-lang="string_jf">{:lang_web('string_jf')}</span> 
+						</p>
+					</a>
+				</li>
+				<li data-index='3' class="shengji-item">
+					<a class="grade" data-id="{$vo.group_id}" data-name="{$vo.group_name}" data-points="{$vo.group_points_year}" data-long="year">
+					<span data-lang="string_user_bn">{:lang_web('string_user_bn')}</span>
+					{$vo.group_name}
+					<p class="time" data-lang="string_user_365t">{:lang_web('string_user_365t')}</p>
+						<p class="point">
+							<span class="fen">{$vo.group_points_year}</span></span><span data-lang="string_jf">{:lang_web('string_jf')}</span> 
+						</p>
+					</a>
+				</li>
+				{/if}
+			{/volist}
+			</ul>
+			<!-- END row -->
+			
+		</div>
+		
+	</form>
+   </div>
+	<div class="submit-vip" data-lang="string_submit">{:lang_web('string_submit')}</div>
+
+   
+    </div>
+</div>
+<div style="width:30rem;margin: 2rem auto;">
+	{include file="public/friendLink" }
+</div>
+</div>
+<script>
+	var lang=localStorage.getItem('lang')
+
+	$('.shengji-item').click(function(){
+		let index=$(this).attr('data-index')
+		$('.shengji-item').each((i,item)=>{
+			if(index==i){
+				$(this).addClass('select-vip')
+			}else{
+				$(item).removeClass('select-vip')
+			}
+
+		})
+	})
+	$('.submit-vip').click(function(){
+		let that=$('.select-vip').children('.grade')
+		var group_id = that.attr('data-id');
+		var group_name = that.attr('data-name');
+		var long = that.attr('data-long');
+		var points = that.attr('data-points');
+
+		if(  lang==1?
+			confirm('Are you sure you want to upgrade to ['+group_name+'] ? Need to spend ['+points+'] integral'):
+			confirm('确定要升级到【'+group_name+'】吗,需要花费【'+points+'】积分')
+		) {
+			$.ajax({
+				url: "{:url('user/upgrade')}",
+				type: "post",
+				dataType: "json",
+				data: {group_id: group_id,long:long },
+				beforeSend: function () {
+					$("#btn_submit").css("background","#fd6a6a").val("loading...");
+				},
+				success: function (r) {
+					alert(r.msg);
+					if (r.code == 1) {
+						location.reload();
+					}
+				},
+				complete: function () {
+					$("#btn_submit").css("background","#fa4646").val("提交");
+				}
+			});
+		}
+	})
+	$('.grade').click(function(){
+		return
+		var that=$(this);
+		var group_id = that.attr('data-id');
+		var group_name = that.attr('data-name');
+		var long = that.attr('data-long');
+		var points = that.attr('data-points');
+		if(  lang==1?
+			confirm('Are you sure you want to upgrade to ['+group_name+'] ? Need to spend ['+points+'] integral'):
+			confirm('确定要升级到【'+group_name+'】吗,需要花费【'+points+'】积分')
+		){
+			$.ajax({
+				url: "{:url('user/upgrade')}",
+				type: "post",
+				dataType: "json",
+				data: {group_id: group_id,long:long },
+				beforeSend: function () {
+					$("#btn_submit").css("background","#fd6a6a").val("loading...");
+				},
+				success: function (r) {
+					alert(r.msg);
+					if (r.code == 1) {
+						location.reload();
+					}
+				},
+				complete: function () {
+					$("#btn_submit").css("background","#fa4646").val("提交");
+				}
+			});
+		}
+	});
+</script>
+{include file="public/foot" /}
+</body>
+</html>

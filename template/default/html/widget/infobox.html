@@ -1,0 +1,20 @@
+<div class="infobox" style="display: none!important;">
+<input type="hidden" id="wx_title" value="{$tplconfig['theme']['weixin']['title']|mac_default=''}">
+<input type="hidden" id="wx_text" value="{$tplconfig['theme']['weixin']['text']|mac_default=''}">
+<input type="hidden" id="wx_qrcode" value="{$tplconfig['theme']['weixin']['qrcode']|mac_url_img}">
+<input type="hidden" id="zans_title" value="{$tplconfig['theme']['zans']['title']|mac_default=''}">
+<input type="hidden" id="zans_text" value="{$tplconfig['theme']['zans']['text']|mac_default=''}">
+<input type="hidden" id="zans_qrcode" value="{$tplconfig['theme']['zans']['qrcode']|mac_url_img}">
+<input type="hidden" id="tips_title" value="{$tplconfig['theme']['tips']['title']|mac_default=''}">
+<input type="hidden" id="tips_text" value="{$tips_text|mac_default='Welcome!'}">
+<input type="hidden" id="shareurl" value="{$tplconfig['theme']['share']['link']}">
+<input type="hidden" id="version"  value="{:system_version()}">
+{if$tplconfig['theme']['share']['api']==sina}
+<input type="hidden" id="openapi"  value="sina">
+<input type="hidden" id="apiurl"  value="{$tplconfig['theme']['share']['apiurl']|mac_default='#'}">
+{/if}{if$tplconfig['theme']['share']['api']==bd}
+<input type="hidden" id="openapi"  value="bd">
+<input type="hidden" id="Tok"  value="{$tplconfig['theme']['share']['tok']|mac_default='#'}">
+{if$tplconfig['theme']['share']['term']==long}<input type="hidden" id="Term"  value="long-term">{/if}{if$tplconfig['theme']['share']['term']==one}<input type="hidden" id="Term"  value="1-year">{/if}
+{/if}
+</div>

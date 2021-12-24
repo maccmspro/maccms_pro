@@ -1,0 +1,79 @@
+<div class="pannel vod_all clearfix">
+    <div class="listnow">
+        <div class="list_type_title">
+            <div class="sx_title hidden_xs" data-lang="string_yixuan">{:lang_web('string_yixuan')}</div>
+            <div class="sx_title2">{$obj.type_name}</div>
+            <ul class="sx_txt">
+                {notempty name="$param['class']"}
+                <li><em>+</em>{$param['class']}</li>{/notempty} {notempty name="$param['area']"}
+                <li><em>+</em>{$param['area']}</li>{/notempty} {notempty name="$param['year']"}
+                <li><em>+</em>{$param['year']}</li>{/notempty} {notempty name="$param['lang']"}
+                <li><em>+</em>{$param['lang']}</li>{/notempty} {notempty name="$param['letter']"}
+                <li><em>+</em>{$param['letter']}</li>{/notempty}
+            </ul>
+            <span>
+                <a href="{:mac_url_type($obj,[],'show')}">
+                    <i class="iconfont">&#xe621;</i> 
+                    <p style="display: inline;" data-lang="string_shaixuan">{:lang_web('string_shaixuan')}</p> 
+                </a>
+            </span>
+        </div>
+    </div>
+    
+    {if condition="strpos($tplconfig['theme']['show']['filter'],'c') !==false"}
+    <div class="wrapper_fl" id="hl03">
+        <div class="scroller">
+            <ul class="screen_list clearfix">
+                <li class="text hidden_xs"><span class="text_muted" data-lang="string_show_dq">{:lang_web('string_show_dq')}</span>
+                </li>
+                <li></li>
+                <li {if condition="$param['area'] eq ''" } class="hl tplconfig-03" {/if}><a href="{:mac_url_type($obj,['area'=>'','lang'=>$param['lang'],'year'=>$param['year'],'level'=>$param['level'],'letter'=>$param['letter'],'state'=>$param['state'],'tag'=>$param['tag'],'class'=>$param['class'],'order'=>$param['order'],'by'=>$param['by'] ],'show')}" data-lang="string_show_all">{:lang_web('string_show_all')}</a>
+                </li>
+                {empty name="$obj.type_extend.area"} {maccms:foreach name=":explode(',',$obj.parent.type_extend.area)" id="vo2" key="key2"}
+                <li {if condition="$param['area'] eq $vo2" } class="hl tplconfig-03" {/if}><a href="{:mac_url_type($obj,['area'=>$vo2,'lang'=>$param['lang'],'year'=>$param['year'],'level'=>$param['level'],'letter'=>$param['letter'],'state'=>$param['state'],'tag'=>$param['tag'],'class'=>$param['class'],'order'=>$param['order'],'by'=>$param['by'] ],'show')}">{$vo2}</a>
+                </li>
+                {/maccms:foreach} {else /} {maccms:foreach name=":explode(',',$obj.type_extend.area)" id="vo2" key="key2"}
+                <li {if condition="$param['area'] eq $vo2" } class="hl tplconfig-03" {/if}><a href="{:mac_url_type($obj,['area'=>$vo2,'lang'=>$param['lang'],'year'=>$param['year'],'level'=>$param['level'],'letter'=>$param['letter'],'state'=>$param['state'],'tag'=>$param['tag'],'class'=>$param['class'],'order'=>$param['order'],'by'=>$param['by'] ],'show')}">{$vo2}</a>
+                </li>
+                {/maccms:foreach} {/empty}
+            </ul>
+        </div>
+    </div>
+    {/if}
+    {if condition="strpos($tplconfig['theme']['show']['filter'],'d') !==false"}
+    <div class="wrapper_fl" id="hl04">
+        <div class="scroller">
+            <ul class="screen_list clearfix">
+                <li class="text hidden_xs"><span class="text_muted" data-lang="string_show_nf">{:lang_web('string_show_nf')}</span>
+                </li>
+                <li></li>
+                <li {if condition="$param['year'] eq ''" } class="hl tplconfig-04" {/if}><a href="{:mac_url_type($obj,['area'=>$param['area'],'lang'=>$param['lang'],'year'=>'','level'=>$param['level'],'letter'=>$param['letter'],'state'=>$param['state'],'tag'=>$param['tag'],'class'=>$param['class'],'order'=>$param['order'],'by'=>$param['by'] ],'show')}" data-lang="string_show_all">{:lang_web('string_show_all')}</a>
+                </li>
+                {empty name="$obj.type_extend.year"} {maccms:foreach name=":explode(',',$obj.parent.type_extend.year)" id="vo2" key="key2"}
+                <li {if condition="$param['year'] eq $vo2" } class="hl tplconfig-04" {/if}><a href="{:mac_url_type($obj,['area'=>$param['area'],'lang'=>$param['lang'],'year'=>$vo2,'level'=>$param['level'],'letter'=>$param['letter'],'state'=>$param['state'],'tag'=>$param['tag'],'class'=>$param['class'],'order'=>$param['order'],'by'=>$param['by'] ],'show')}">{$vo2}</a>
+                </li>
+                {/maccms:foreach} {else /} {maccms:foreach name=":explode(',',$obj.type_extend.year)" id="vo2" key="key2"}
+                <li {if condition="$param['year'] eq $vo2" } class="hl tplconfig-04" {/if}><a href="{:mac_url_type($obj,['area'=>$param['area'],'lang'=>$param['lang'],'year'=>$vo2,'level'=>$param['level'],'letter'=>$param['letter'],'state'=>$param['state'],'tag'=>$param['tag'],'class'=>$param['class'],'order'=>$param['order'],'by'=>$param['by'] ],'show')}">{$vo2}</a>
+                </li>
+                {/maccms:foreach} {/empty}
+            </ul>
+        </div>
+    </div>
+    {/if}
+ 
+    <div class="wrapper_fl" id="hl06">
+        <div class="scroller">
+            <ul class="screen_list clearfix">
+                <li class="text hidden_xs"><span class="text_muted" data-lang="string_show_zm">{:lang_web('string_show_zm')}</span>
+                </li>
+                <li></li>
+                <li {if condition="$param['letter'] eq ''" } class="hl tplconfig-06" {/if}><a href="{:mac_url_type($obj,['area'=>$param['area'],'lang'=>$param['lang'],'year'=>$param['year'],'level'=>$param['level'],'letter'=>'','state'=>$param['state'],'tag'=>$param['tag'],'class'=>$param['class'],'order'=>$param['order'],'by'=>$param['by'] ],'show')}" data-lang="string_show_all">{:lang_web('string_show_all')}</a>
+                </li>
+                {maccms:foreach name=":explode(',','A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z,0-9')" id="vo2" key="key2"}
+                <li {if condition="$param['letter'] eq $vo2" } class="hl tplconfig-06" {/if}><a href="{:mac_url_type($obj,['area'=>$param['area'],'lang'=>$param['lang'],'year'=>$param['year'],'level'=>$param['level'],'letter'=>$vo2,'state'=>$param['state'],'tag'=>$param['tag'],'class'=>$param['class'],'order'=>$param['order'],'by'=>$param['by'] ],'show')}">{$vo2}</a>
+                </li>
+                {/maccms:foreach}
+            </ul>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE10" />
+	<meta name="renderer" content="webkit|ie-comp|ie-stand">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+	<title data-lang="string_jfgmqx">{:lang_web('string_jfgmqx')}</title>
+	<link rel="stylesheet" href="{:MAC_BASE_PATH}/template/default/asset/css/hlstyle.css">
+	<style>
+		body{background:#fff;}
+	</style>
+	<script src="{:MAC_BASE_PATH}/static/js/jquery.js"></script>
+	<script type="text/javascript" src="{:MAC_BASE_PATH}/template/default/asset/js/hlhtml.js"></script>
+	{include file="public/jsvar"}
+	<script src="{:MAC_BASE_PATH}/static/js/home.js"></script>
+	<script src="{:MAC_BASE_PATH}/template/default/js/jquery.base.js"></script>
+	<script src="{:MAC_BASE_PATH}/template/default/js/jquery.i18n.properties-1.0.9.js"></script>
+</head>
+<body>
+
+<div class="weui_msg_jump">
+    <div class="weui_icon"><i class="iconfont weui_icon_msg">&#xe636;</i></div>
+    <div class="weui_text">
+        <h4 class="weui_msg_title" data-lang='string_xitonts'>{:lang_web('string_xitonts')}</h4>
+        <p class="weui_xtts">{$popedom.msg}</p>
+        <p class="weui_tips" data-lang="string_sm_ycff">{:lang_web('string_sm_ycff')}</p>
+        <div class="weui-btn">
+        {if condition="$user.group.group_id eq 1"}
+		<p class="weui-p">
+			<a href="javascript:;" data-lang="play_msdl" class="mac_user" target="_blank">{:lang_web('play_msdl')}</a>
+		</p>
+        {else/}
+		<p class="weui-p">
+			<a href="javascript:;" data-lang="play_qrgm" onclick="MAC.User.BuyPopedom(this)" data-id="{$obj.vod_id}" data-sid="{$param.sid}" data-nid="{$param.nid}" data-mid="1" data-type="{if condition="$obj.player_info.flag eq 'play'"}4{else/}5{/if}">{:lang_web('play_qrgm')}</a>
+		</p>
+        <p class="weui-p">
+			<a class="weui-a" data-lang="play_mscz" href="{:url('user/buy')}" target="_blank">{:lang_web('play_mscz')}</a>
+		</p>
+        {/if}
+        </div>
+    </div>
+</div>
+</body>
+</html>
+
+
+

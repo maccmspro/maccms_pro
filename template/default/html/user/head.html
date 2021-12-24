@@ -1,0 +1,16 @@
+<div class="header">
+	<div class="layout fn-clear">
+	    <div class="user-logo">
+			<a title="{$maccms.site_name}" style="background-image: url({$tplconfig['theme']['logo']['wpic']|mac_default=substr($maccms['path_tpl'], strlen($maccms['path'])).'asset/img/logo_white.png'|mac_url_img});" href="{:MAC_BASE_PATH}/"></a>
+		</div>
+		<div class="user-n"><span data-lang="user_grzx">{:lang_web('user_grzx')}</span></div>
+		<ul class="nav">
+		    <li class="nav-item"><a class="nav-link" href="javascript:MAC.GoBack()" data-lang="string_fh">{:lang_web('string_fh')}</a></li>
+			<li class="nav-item"><a class="nav-link" href="{:MAC_BASE_PATH}/" data-lang="string_fhsy">{:lang_web('string_fhsy')}</a></li>
+			<li class="nav-item" ><a class="nav-link">{$obj.user_nick_name|mac_default=$obj.user_name}</a></li>
+			<li class="nav-item" ><a class="nav-link" href="{:url('user/logout')}" data-lang="string_tc">{:lang_web('string_tc')}</a></li>
+		</ul>
+	</div>
+</div>
+<!-- // i-header end -->
+

@@ -1,0 +1,98 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<title >{:lang_web('string_pay_title')} - {$maccms.site_name}</title>
+	<meta name="keywords" content="{$maccms.site_keywords}"/>
+	<meta name="description" content="{$maccms.site_description}"/>
+	{include file="user/include" /}
+</head>
+<body>
+{include file="public/head" /}
+<div class="member-wrap member-wrap-bg">
+<div id="member" class="fn-clear">
+	<div id="left">
+        <div class="m-nav">
+			<a href="javascript:MAC.GoBack()" class="btn-left"><i class="iconfont ico-right">&#xe625;</i></a>
+			<a href="{:MAC_BASE_PATH}/" class="btn-right"><i class="iconfont ico-right">&#xe634;</i></a>
+			<span class="mb-title" data-lang='string_user_center'>{:lang_web('string_user_center')}</span>
+	    </div>
+        {include file="user/left_nav" /}
+	</div>
+	<div id="right">
+	    <div class="m-nav">
+			<a href="javascript:MAC.GoBack()" class="btn-left"><i class="iconfont ico-right">&#xe625;</i></a>
+			<span class="mb-title" data-lang="string_pay_qrdd">{:lang_web('string_pay_qrdd')} </span>
+	    </div>
+	    <div class="co-right co-right-bg">
+		<h2 data-lang="string_pay_qrdd">{:lang_web('string_pay_qrdd')} </h2>
+		<form method="post" target="_blank" action="{:url('user/gopay')}">
+			<input type="hidden" name="order_id" value="{$info.order_id}">
+			<input type="hidden" name="order_code" value="{$info.order_code}">
+		<div id="listCon">
+		<div class="cur">
+			<p><span class="xiang" data-lang="string_pay_ddbh">{:lang_web('string_pay_ddbh')} </span>{$info.order_code}</p>
+			<p><span class="xiang" data-lang="string_pay_ddje">{:lang_web('string_pay_ddje')} </span>{$info.order_price}<span data-lang="user_yuan">元</span> </p>
+			<p>
+				<span class="xiang" data-lang="string_pay_zffs">{:lang_web('string_pay_zffs')} </span>
+				<select name="payment" id="payment" class="member-input pay-select">
+					<option value ="" data-lang="string_pay_xzzffs">{:lang_web('string_pay_xzzffs')} </option>
+					{volist name="ext_list" id="vo"}
+					<option value="{$key}">{$vo}<span data-lang="user_zf">{:lang_web('user_zf')} </span> </option>
+					{/volist}
+				</select>
+			</p>
+
+			<p class="info-item" id="paytype_box" style="display:none;">
+				<span class="xiang" data-lang="string_pay_zflx">{:lang_web('string_pay_zflx')} </span><select class="paytype member-input pay-select" id="paytype" name="paytype"></select>
+			</p>
+
+			<p><input type="submit" id="btn_submit" data-value='string_submit' class="search-button" value="{:lang_web('string_submit')} "></p>
+		</div>
+		</div>
+		</form>
+	</div>
+	</div>
+</div>
+<div style="width:30rem;margin: 2rem auto;">
+	{include file="public/friendLink" }
+</div>
+</div>
+<script>
+	var lang=localStorage.getItem('lang')
+	$(document).click(function(e){
+		lang=localStorage.getItem('lang')
+	})
+	if(lang==1){
+		var codepay_type = '{maccms:foreach name=":explode(',',$config.codepay.type)"}<option value ="{$vo}">{if condition="$vo==1"}Alipay 2D code{elseif condition="$vo==2"/}QQ wallet QR code{elseif condition="$vo==3"/}Wechat QR code{/if}</option>{/maccms:foreach}';
+		var zhapay_type ='{maccms:foreach name=":explode(',',$config.zhapay.type)"}<option value ="{$vo}">{if condition="$vo==1"}Wechat{elseif condition="$vo==2"/}Alipay{/if}</option> {/maccms:foreach}';
+	}else{
+		var codepay_type = '{maccms:foreach name=":explode(',',$config.codepay.type)"}<option value ="{$vo}">{if condition="$vo==1"}支付宝二维码{elseif condition="$vo==2"/}QQ钱包二维{elseif condition="$vo==3"/}微信二维码{/if}</option>{/maccms:foreach}';
+		var zhapay_type ='{maccms:foreach name=":explode(',',$config.zhapay.type)"}<option value ="{$vo}">{if condition="$vo==1"}微信{elseif condition="$vo==2"/}支付宝{/if}</option> {/maccms:foreach}';
+	}
+
+	
+
+	$("#payment").change(function() {
+		$('#paytype').html('');
+		if($("#payment").val()=="codepay" || $("#payment").val()=="zhapay" ){
+			if($("#payment").val()=="codepay") {
+				$('#paytype').html(codepay_type);
+			}
+			if($("#payment").val()=="zhapay") {
+				$('#paytype').html(zhapay_type);
+			}
+			$("#paytype_box").slideDown();
+		}
+		else{
+			$("#paytype_box").slideUp();
+		}
+	});
+
+	$(".paytype").change(function() {
+		$('#paytype').val( $(this).val() );
+	});
+</script>
+{include file="public/foot" /}
+</body>
+</html>

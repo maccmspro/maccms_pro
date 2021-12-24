@@ -1,0 +1,44 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>{$obj.type_name}{:lang_web('website_wzsl')} - {$maccms.site_name}</title>
+    <meta name="keywords" content="{$obj.type_key}" />
+    <meta name="description" content="{$obj.type_des}" />
+    {include file="public/include"}
+</head>
+<style>
+    @media screen and (max-width:820px) {
+        body{
+            padding-top: 0;
+        }
+    }
+</style>
+<body>
+    <div class="show-pc">
+    {include file="public/head"}
+    </div>
+    <div class="show-mobile">
+        <div id="ui-nav" class="m-nav">
+            <a href="javascript:MAC.GoBack()" class="btn-left"><i class="iconfont ico-right">&#xe625;</i></a>
+            <span class="mb-title" data-lang="string_show_leixing">{:lang_web('string_show_leixing')} </span>
+        </div>
+    </div>
+<!--当前位置-->
+<div class="bread-crumb-nav fn-clear show-pc">
+    <ul class="bread-crumbs">
+        <li class="home"><a href="{:MAC_BASE_PATH}/" data-lang="string_home">{:lang_web('string_home')} </a></li>
+        <li><a href="{:mac_url_type($obj)}">{$obj.type_name}</a></li>
+        <li class="back"><a href="javascript:MAC.GoBack()" data-lang="website_fanh">{:lang_web('website_fanh')} </a></li>
+    </ul>
+</div>
+<!--列表部分-->
+{include file="website/tableList"}
+<div style="width:30rem;margin: 2.5rem auto;" class="show-pc">
+	{include file="public/friendLink" }
+</div>
+
+{include file="public/foot"}
+</body>
+
+</html>

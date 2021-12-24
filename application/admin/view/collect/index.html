@@ -1,0 +1,103 @@
+{include file="../../../application/admin/view/public/head" /}
+
+<div class="">
+
+    <div class="layui-card">
+        <div class="layui-card-body">
+          <table id="role-table" lay-filter="role-table"></table>
+          <div
+            class="layui-form layui-border-box layui-table-view"
+            lay-filter="LAY-table-1"
+            lay-id="role-table"
+            style=""
+          >
+            <div class="layui-table-tool">
+              <div class="layui-table-tool-temp">
+                <a data-href="{:url('info')}" class="pear-btn pear-btn-primary pear-btn-md j-iframe" data-width="800px" data-height="610px"><i class="layui-icon">&#xe654;</i>{:lang('add')}</a>
+                <a data-href="{:url('del')}" class="pear-btn pear-btn-primary pear-btn-md j-page-btns confirm"><i class="layui-icon">&#xe640;</i>{:lang('del')}</a>
+                <a data-href="{:url('clearbind')}" class="pear-btn pear-btn-primary pear-btn-md j-page-btns confirm" data-checkbox="false" data-ajax="yes"><i class="layui-icon">&#xe640;</i>{:lang('admin/collect/clear_bind')}</a>
+    
+                    {if condition="$collect_break_vod neq ''"}
+                    <a href="{:url('load')}?flag=vod" class="pear-btn pear-btn-danger pear-btn-md ">【{:lang('admin/collect/index/video_collect')}】</a>
+                    {/if}
+                    {if condition="$collect_break_art neq ''"}
+                    <a href="{:url('load')}?flag=art" class="pear-btn pear-btn-danger pear-btn-md ">【{:lang('admin/collect/index/art_collect')}】</a>
+                    {/if}
+                    {if condition="$collect_break_actor neq ''"}
+                    <a href="{:url('load')}?flag=actor" class="pear-btn pear-btn-danger pear-btn-md ">【{:lang('admin/collect/index/star_collect')}】</a>
+                    {/if}
+                    {if condition="$collect_break_role neq ''"}
+                    <a href="{:url('load')}?flag=role" class="pear-btn pear-btn-danger pear-btn-md ">【{:lang('admin/collect/index/role_collect')}】</a>
+                    {/if}
+                    {if condition="$collect_break_website neq ''"}
+                    <a href="{:url('load')}?flag=website" class="pear-btn pear-btn-danger pear-btn-md ">【{:lang('admin/collect/index/website_collect')}】</a>
+                    {/if}
+
+              </div>
+            </div>
+            <div class="layui-table-box">
+              <div class="layui-table-header">
+        <form class="layui-form" method="post" id="pageListForm" >
+          <table
+          cellspacing="0"
+          cellpadding="0"
+          border="0"
+          class="layui-table"
+          lay-skin="line"
+          >
+          <thead>
+            <tr>
+                <th width="25"><input type="checkbox" lay-skin="primary" lay-filter="allChoose"></th>
+                <th width="100">{:lang('id')}</th>
+                <th width="100">{:lang('admin/collect/index/api_type')}</th>
+                <th width="100">{:lang('admin/collect/index/source_type')}</th>
+                <th>{:lang('admin/collect/index/source_website')}</th>
+                <th width="300">{:lang('admin/collect/index/collect_item')}</th>
+                <th width="120">{:lang('opt')}</th>
+            </tr>
+          </thead>
+          <tbody>
+            {volist name="list" id="vo"}
+            <tr>
+                <td><input type="checkbox" name="ids[]" value="{$vo.collect_id}" class="layui-checkbox checkbox-ids" lay-skin="primary"></td>
+                <td>{$vo.collect_id}</td>
+                <td>{if condition="$vo['collect_type'] eq 1"}xml{else/}json{/if} </td>
+                <td>{$vo.collect_mid|mac_get_mid_text}</td>
+                <td><a class="layui-badge-rim" href="{:url('api')}?{:http_build_query(['ac'=>'list','cjflag'=>md5($vo.collect_url),'cjurl'=>$vo.collect_url,'h'=>'','t'=>'','ids'=>'','wd'=>'','type'=>$vo.collect_type,'mid'=>$vo.collect_mid,'opt'=>$vo.collect_opt,'filter'=>$vo.collect_filter,'filter_from'=>$vo.collect_filter_from,'param'=>base64_encode($vo.collect_param)])}" title="进入资源库">【{$vo.collect_name}】{$vo.collect_url}</a></td>
+                <td>
+                    <a class="pear-btn pear-btn-primary pear-btn-md" href="{:url('api')}?{:http_build_query(['ac'=>'cj','cjflag'=>md5($vo.collect_url),'cjurl'=>$vo.collect_url,'h'=>'24','t'=>'','ids'=>'','wd'=>'','type'=>$vo.collect_type,'mid'=>$vo.collect_mid,'opt'=>$vo.collect_opt,'filter'=>$vo.collect_filter,'filter_from'=>$vo.collect_filter_from,'param'=>base64_encode($vo.collect_param)])}" title="{:lang('admin/collect/index/collect_today')}">{:lang('admin/collect/index/collect_today')}</a>
+                    <a class="pear-btn pear-btn-primary pear-btn-md" href="{:url('api')}?{:http_build_query(['ac'=>'cj','cjflag'=>md5($vo.collect_url),'cjurl'=>$vo.collect_url,'h'=>'168','t'=>'','ids'=>'','wd'=>'','type'=>$vo.collect_type,'mid'=>$vo.collect_mid,'opt'=>$vo.collect_opt,'filter'=>$vo.collect_filter,'filter_from'=>$vo.collect_filter_from,'param'=>base64_encode($vo.collect_param)])}" title="{:lang('admin/collect/index/collect_week')}">{:lang('admin/collect/index/collect_week')}</a>
+                    <a class="pear-btn pear-btn-primary pear-btn-md" href="{:url('api')}?{:http_build_query(['ac'=>'cj','cjflag'=>md5($vo.collect_url),'cjurl'=>$vo.collect_url,'h'=>'','t'=>'','ids'=>'','wd'=>'','type'=>$vo.collect_type,'mid'=>$vo.collect_mid,'opt'=>$vo.collect_opt,'filter'=>$vo.collect_filter,'filter_from'=>$vo.collect_filter_from,'param'=>base64_encode($vo.collect_param)])}" title="{:lang('admin/collect/index/collect_all')}">{:lang('admin/collect/index/collect_all')}</a>
+                </td>
+                <td>
+                    <a class="pear-btn pear-btn-primary pear-btn-md j-iframe" data-href="{:url('info?id='.$vo['collect_id'])}" data-width="800px" data-height="610px" href="javascript:;" title="{:lang('edit')}">{:lang('edit')}</a>
+                    <a class="pear-btn pear-btn-danger pear-btn-md j-tr-del" data-href="{:url('del?ids='.$vo['collect_id'])}" href="javascript:;" title="{:lang('del')}">{:lang('del')}</a>
+                </td>
+            </tr>
+            {/volist}
+          </tbody>
+          </table>
+        </form>
+              </div>
+              
+            </div>
+            
+            
+          </div>
+        </div>
+      </div>
+      
+    <div id="pages" class="center"></div>
+  </div>
+
+{include file="../../../application/admin/view/public/foot" /}
+<script type="text/javascript">
+    layui.use(['laypage', 'layer'], function() {
+        var laypage = layui.laypage
+                , layer = layui.layer;
+
+
+    });
+</script>
+</body>
+</html>

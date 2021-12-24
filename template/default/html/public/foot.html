@@ -1,0 +1,145 @@
+
+<textarea class="hide" id="dt__t1">{if condition="cookie_get('mystyle') eq white"} white {/if}</textarea>
+<textarea class="hide" id="dt__t2">{php} echo cookie_get('mystyle'); {/php}</textarea>
+
+
+<style>
+    .foot-wrap{
+        padding: 0;
+        min-height: 170px !important;
+        height: 170px !important;
+    }
+    .foot{
+        background: url('{:MAC_BASE_PATH}/template/default/images/pro/foot-bg.png') no-repeat;
+        background-size: 100% 100%;
+        position: relative;
+        margin: 0;
+    }
+    
+    .f-bg1{
+        position: absolute;
+        left: 0;
+        top: -90px;
+        width: 5rem;
+        height: 5rem;
+        background: url('{:MAC_BASE_PATH}/template/default/images/pro/foot-bg1.png') no-repeat;
+        background-size: 100% 100%;
+    }
+    .foot-logo{
+        background-image: url('{:MAC_BASE_PATH}/template/default/images/pro/logo_black.png');
+        background-size: 100% 100%;
+        width: 103px;
+        height: 58px;
+        margin: auto
+    }
+    .foot-list{
+        display: flex;
+        justify-content: center;
+        margin-top: 20px;
+        color: #343434;
+    }
+    @media (max-width: 820px){
+        .foot{
+            background: none;
+        }
+        .foot-wrap{
+            height: 0!important;
+            min-height: 0 !important;
+        }
+        .foot-list{
+            display: none;
+            justify-content: center;
+            margin-top: 20px;
+            color: #343434;
+        }
+    }
+</style>
+<div class="foot lazyload  {if condition="$tplconfig['theme']['fnav']['btn'] eq 1"}foot_nav{/if} clearfix">
+    <div src="{:MAC_BASE_PATH}/template/default/images/pro/foot-bg1.png" class="f-bg1 show-pc"></div>
+    <div class="container foot-wrap ">
+        <ul class="extra clearfix ">
+            <li id="backtop-ico">
+                <a class="backtop" href="javascript:scroll(0,0)" data-title="string_foot_toTop" title="返回顶部"><span class="top_ico"><i class="iconfont">&#xe628;</i></span></a>
+            </li>
+            <li class="hidden_xs">
+                <a class="mobil_q" href="javascript:void(0)" data-title="string_foot_visit" title="手机访问"><span class="m_ico"><i class="iconfont">&#xe620;</i></span></a>
+                <div class="sideslip">
+                    <div class="cans"></div>
+                    <div class="col_pd">
+                    <p class="qrcode"></p>
+                    <p class="text_center" data-lang="string_foot_code">{:lang_web('string_foot_code')}</p>
+                    </div>
+                </div>
+            </li>
+            {if condition="$tplconfig['theme']['qq']['btn'] eq 1"}
+            <li>
+                <a href="{$tplconfig['theme']['qq']['link']}" data-title="string_foot_contact" title="{$tplconfig['theme']['qq']['title']|mac_default='QQ'}" target="_blank"><span class="m_ico"><i class="iconfont">&#xe66a;</i></span></a>
+            </li>
+            {/if}
+            {if condition="$tplconfig['theme']['color']['sbtn'] eq 1"}
+            <li>
+                <a class="btn_theme" data-title="string_foot_color" href="javascript:void(0)" title="主题颜色"><span class="m_ico"><i class="iconfont">&#xe665;</i></span></a>
+                <div class="sideslip">
+                    <div class="themecolor">
+                    <p class="text_center"><i class="iconfont">&#xe665;</i>&nbsp; <span data-lang="string_foot_color">{:lang_web('string_foot_color')}</span>  </p>
+                        <ul id="themes"> 
+                            <li id="default" class="color_default" data-lang="string_foot_orange">{:lang_web('string_foot_orange')}</li>
+                            <li id="green" class="color_green" data-lang="string_foot_green">{:lang_web('string_foot_green')}</li>
+                            <li id="blue" class="color_blue" data-lang="string_foot_blue">{:lang_web('string_foot_blue')}</li>
+                            <li id="pink" class="color_pink" data-lang="string_foot_pink">{:lang_web('string_foot_pink')}</li>
+                            <li id="red" class="color_red" data-lang="string_foot_red">{:lang_web('string_foot_red')}</li>
+                            <li id="gold" class="color_gold" data-lang="string_foot_gold">{:lang_web('string_foot_gold')}</li>
+                        </ul>
+                    </div>
+                </div>
+            </li>
+            {/if}
+            {if condition="$tplconfig['theme']['color']['mbtn'] eq 1"}
+            <li>
+            <a id="black" data-title="string_foot_black" class="mycolor {if tplconfig_get_current_theme_color($tplconfig) == 'black'}hide{/if}" href="javascript:void(0)" title="暗夜模式">
+                <span class="m_ico theme_ico"><i class="iconfont">&#xe656;</i></span>
+            </a>
+            <a id="white" data-title="string_foot_white" class="mycolor {if tplconfig_get_current_theme_color($tplconfig) == 'white'}hide{/if}" href="javascript:void(0)" title="白昼模式">
+                <span class="m_ico theme_ico"><i class="iconfont">&#xe657;</i></span>
+            </a>
+            </li>
+            {/if}
+            
+            
+        </ul>
+        <div class="foot-logo show-pc"></div>
+        <ul class="foot-list ">
+        </ul>
+        <div class="fo_t show-pc">
+            {$tplconfig['theme']['foot']['text']}
+            <p>&copy;&nbsp;{:date('Y')}&nbsp;{$maccms.site_url}&nbsp;&nbsp;E-Mail：{$maccms.site_email}&nbsp;&nbsp;<span {if condition="$tplconfig['theme']['tj']['btn'] eq 0"}class="hide"{/if}>{$maccms.site_tj}</span></p>
+        </div>                      
+    </div>
+    {include file="widget/foot_nav"}
+    {include file="ads/ads_bottom"}
+
+    {include file="widget/infobox"}
+{include file="widget/copy"}
+</div>
+
+<div class="tplconfig_history_pop {if condition="$GLOBALS['config']['user']['status'] eq 1"}user_log{/if}">
+    <div class="tplconfig_history_bg">
+        <div class="tplconfig_history_title">
+            <span data-lang="user_view_record">{:lang_web('user_view_record')}</span>
+            <a id="close_history" target="_self" href="javascript:void(0)"><i class="iconfont">&#xe616;</i></a>
+        </div>
+        <div class="tplconfig_history_box">
+            <ul class="vodlist" id="tplconfig_history"></ul>
+        </div>
+    </div>
+</div>
+<div style="display: none;" class="mac_timming" data-file="" ></div>
+<script type="text/javascript" src="{:MAC_BASE_PATH}/template/default/asset/js/hlstem.js?v={:system_version()}"></script>
+<script type="text/javascript" src="{:MAC_BASE_PATH}/template/default/asset/js/hlexpand.js?v={:system_version()}"></script>
+{if condition="$tplconfig['theme']['tips']['btn'] eq 1"}
+<script type="text/javascript">TplConfigEx.Notice();</script>{/if}
+{if condition="$tplconfig['theme']['search']['lxbtn'] eq 1"}
+<script type="text/javascript" src="{:MAC_BASE_PATH}/template/default/asset/js/jquery.ac.js"></script>
+{/if}{if condition="$tplconfig['theme']['font'] eq 1"}
+<script type="text/javascript" src="{:MAC_BASE_PATH}/template/default/asset/js/strantext.js"></script>{/if}
+{include file="ads/ads_double"}

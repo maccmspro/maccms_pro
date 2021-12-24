@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" src="{:MAC_BASE_PATH}/static/js/jquery.js"></script>
+    <link rel="stylesheet" href="{:MAC_BASE_PATH}/static/css/home.css">
+    {include file="public/include"}
+</head>
+<body>
+{include file="public/head"}
+    <!--评论开始-->
+<div class="mac_comment comm_list">
+<ul class="part_rows">
+    {maccms:comment num="10" paging="yes" order="desc" by="id"}
+	<li class="comm_each line_top margin">
+		<img class="comm_avat part_roun" src="{$vo.user_id|mac_get_user_portrait}" />
+		<div class="comm_head">
+			<strong class="text_line">{$vo.comment_name}</strong>
+			<span class="part_tips">{$vo.comment_time|date='Y-m-d H:i:s',###}</span>
+		</div>
+		<div class="comm_cont">
+			<div class="comm_content">{$vo.comment_content|mac_em_replace}</div>
+			<div class="gw_action">
+				<a class="digg_link" data-id="{$vo.comment_id}" data-mid="4" data-type="up" href="javascript:;"><i class="iconfont">&#xe64e;</i><em class="digg_num icon-num">{$vo.comment_up}</em></a>
+				<a class="digg_link" data-id="{$vo.comment_id}" data-mid="4" data-type="down" href="javascript:;"><i class="iconfont">&#xe64f;</i><em class="digg_num icon-num">{$vo.comment_down}</em></a>
+				<a class="comment_reply" data-id="{$vo.comment_id}" href="javascript:;" data-lang='string_pinglun_huifu'>{:lang_web('string_pinglun_huifu')}</a>
+				<a class="comment_report" data-id="{$vo.comment_id}" href="javascript:;" data-lang="string_pinglun_jubao">{:lang_web('string_pinglun_jubao')}</a>	
+			</div>
+			{maccms:foreach name="$vo.sub" id="child"}
+			<div class="comm_reply comm_reply_child back_ashen comm_tops">
+				<div class="comm_rp_head">
+					<span class="text_line">{$child.comment_name} ／ {$child.comment_time|date='H:i',###}</span>
+					<div class="comm_content">{$child.comment_content|mac_em_replace}</div>
+						<div class="gw_action">
+						<a class="digg_link" data-id="{$child.comment_id}" data-mid="4" data-type="up" href="javascript:;"><i class="iconfont">&#xe64e;</i><em class="digg_num icon-num">{$child.comment_up}</em></a>
+						<a class="digg_link" data-id="{$child.comment_id}" data-mid="4" data-type="down" href="javascript:;"><i class="iconfont">&#xe64f;</i><em class="digg_num icon-num">{$child.comment_down}</em></a>
+						<a class="comment_report_child" data-id="{$child.comment_id}" href="javascript:;" data-lang="string_pinglun_jubao">{:lang_web('string_pinglun_jubao')}</a>	
+					</div>
+				</div>
+			</div>
+			{/maccms:foreach}
+		</div>
+	</li>
+    {/maccms:comment}
+</ul>
+<!--评论结束-->
+<script>
+    MAC.Comment.Init();
+</script>
+</div>
+</body>
+<script>
+
+</script>
+</html>

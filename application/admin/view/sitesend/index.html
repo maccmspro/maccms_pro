@@ -1,0 +1,396 @@
+{include file="../../../application/admin/view/public/head" /}
+
+<div class="page-container">
+    <div class="layui-tab layui-tab-brief" lay-filter="tb2">
+        <ul class="layui-tab-title">
+            <li class="layui-this" lay-id="config_1">{:lang('admin/system/config/site_baidu_send')}</li>
+            <li lay-id="config_2">{:lang('admin/system/config/site_360_send')}</li>
+            <li lay-id="config_3">{:lang('admin/system/config/site_sougou_send')}</li>
+            <li lay-id="config_4">{:lang('admin/system/config/site_shenma_send')}</li>
+        </ul>
+        <div class="layui-tab-content">
+            <div class="layui-tab-item layui-show">
+                <form class="layui-form" action="{:url('baidusend')}">
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">百度收录域名：</label>
+                        <div class="layui-input-block">
+                            <input type="text" name="site_baidu_site" placeholder="" value="{$config['site']['baidu_urlsend']['site']}" class="layui-input" readonly>
+                            <a class="layui-badge-rim j-iframe" data-full="1" data-href="{:url('system/config')}?fromUrlSend" href="javascript:;">设置</a>
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">{:lang('admin/system/config/site_baidu_token')}：</label>
+                        <div class="layui-input-block">
+                            <input type="text" name="site_baidu_token" placeholder="" value="{$config['site']['baidu_urlsend']['token']}" class="layui-input" readonly>
+                            <a class="layui-badge-rim j-iframe" data-full="1" data-href="{:url('system/config')}?fromUrlSend" href="javascript:;">设置</a>
+                        </div>
+                    </div>
+                    <div class="layui-form-item" style="display: none">
+                        <label class="layui-form-label">{:lang('admin/system/config/site_send_apiurl')}：</label>
+                        <div class="layui-input-block">
+                            <input type="text" name="site_baidu_send_url" value="http://data.zz.baidu.com/urls?site={$config.site.baidu_urlsend.site}&token={$config.site.baidu_urlsend.token}" class="layui-input">
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">{:lang('admin/system/config/site_send_urls')}<br/>(系统生成)：</label>
+                        <div class="layui-input-block">
+                            <div>
+                                <label class="layui-form-label">{:lang('admin/urlsend/page_send_num')}：</label>
+                                <div class="layui-input-inline w40">
+                                    <input type="text" name="limit" id="limit_baidu" value="50" class="layui-input">
+                                </div>
+                            </div>
+                            <div>
+                                <label class="layui-form-label">{:lang('admin/urlsend/start_page')}：</label>
+                                <div class="layui-input-inline w40">
+                                    <input type="text" name="page" id="page_baidu" value="1" class="layui-input">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label"></label>
+                        <div class="layui-input-block">
+                            <input type="button" value="{:lang('that_day')}{:lang('vod')}" class="pear-btn pear-btn-primary pear-btn-md pear-btn-marigin" onclick="post('ac2=today&mid=1','baidu');">
+                            <input type="button" value="{:lang('all')}{:lang('vod')}" class="pear-btn pear-btn-primary pear-btn-md pear-btn-marigin" onclick="post('ac2=all&mid=1','baidu');">
+                            <input type="button" value="{:lang('that_day')}{:lang('art')}" class="pear-btn pear-btn-primary pear-btn-md pear-btn-marigin" onclick="post('ac2=today&mid=2','baidu');">
+                            <input type="button" value="{:lang('all')}{:lang('art')}" class="pear-btn pear-btn-primary pear-btn-md pear-btn-marigin" onclick="post('ac2=all&mid=2','baidu');">
+
+                            <input type="button" value="{:lang('that_day')}{:lang('topic')}" class="pear-btn pear-btn-primary pear-btn-md pear-btn-marigin" onclick="post('ac2=today&mid=3','baidu');">
+                            <input type="button" value="{:lang('all')}{:lang('topic')}" class="pear-btn pear-btn-primary pear-btn-md pear-btn-marigin" onclick="post('ac2=all&mid=3','baidu');">
+                            <input type="button" value="{:lang('that_day')}{:lang('actor')}" class="pear-btn pear-btn-primary pear-btn-md pear-btn-marigin" onclick="post('ac2=today&mid=8','baidu');">
+                            <input type="button" value="{:lang('all')}{:lang('actor')}" class="pear-btn pear-btn-primary pear-btn-md pear-btn-marigin" onclick="post('ac2=all&mid=8','baidu');">
+
+                            <input type="button" value="{:lang('that_day')}{:lang('role')}" class="pear-btn pear-btn-primary pear-btn-md pear-btn-marigin" onclick="post('ac2=today&mid=9','baidu');">
+                            <input type="button" value="{:lang('all')}{:lang('role')}" class="pear-btn pear-btn-primary pear-btn-md pear-btn-marigin" onclick="post('ac2=all&mid=9','baidu');">
+                            <input type="button" value="{:lang('that_day')}{:lang('website')}" class="pear-btn pear-btn-primary pear-btn-md pear-btn-marigin" onclick="post('ac2=today&mid=11','baidu');">
+                            <input type="button" value="{:lang('all')}{:lang('website')}" class="pear-btn pear-btn-primary pear-btn-md pear-btn-marigin" onclick="post('ac2=all&mid=11','baidu');">
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label"></label>
+                        <div class="layui-input-block">
+                            <textarea name="send_urls_s" class="layui-textarea send_urls_b" readonly="readonly" placeholder="{:lang('admin/system/config/site_send_urls_tip')}"></textarea>
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">{:lang('admin/system/config/site_send_urls')}<br/>(手动输入)：</label>
+                        <div class="layui-input-block">
+                            <textarea name="send_urls" class="layui-textarea"  placeholder="{:lang('admin/system/config/site_send_urls_tip')}"></textarea>
+                        </div>
+                    </div>
+
+                    <div class="bottom">
+                        <div class="button-container">
+                          <button type="submit" class="pear-btn pear-btn-primary pear-btn-sm" lay-submit="" lay-filter="formSubmit" data-child=""><i class="layui-icon layui-icon-ok"></i>{:lang('btn_save')}</button>
+                          <button type="reset" class="pear-btn pear-btn-sm"><i class="layui-icon layui-icon-refresh"></i>{:lang('btn_reset')}</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <div class="layui-tab-item">
+                <form class="layui-form" action="{:url('do360send')}">
+                    <input type="hidden" name="so360_cooke_name" value="{$so360_cooke_name}" />
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">{:lang('admin/system/config/site_360_email')}：</label>
+                        <div class="layui-input-block">
+                            <input type="text" name="site_360_email" placeholder="" value="{$config.site.360_urlsend.email}" class="layui-input">
+                            <a class="layui-badge-rim j-iframe" data-full="1" data-href="{:url('system/config')}?fromUrlSend" href="javascript:;">设置</a>
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">{:lang('admin/system/config/site_send_urls')}<br/>(系统生成)：</label>
+                        <div class="layui-input-block">
+                            <div>
+                                <label class="layui-form-label">{:lang('admin/urlsend/page_send_num')}：</label>
+                                <div class="layui-input-inline w40">
+                                    <input type="text" name="limit" id="limit_360" value="50" class="layui-input">
+                                </div>
+                            </div>
+                            <div>
+                                <label class="layui-form-label">{:lang('admin/urlsend/start_page')}：</label>
+                                <div class="layui-input-inline w40">
+                                    <input type="text" name="page" id="page_360" value="1" class="layui-input">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label"></label>
+                        <div class="layui-input-block">
+                            <input type="button" value="{:lang('that_day')}{:lang('vod')}" class="pear-btn pear-btn-primary pear-btn-md pear-btn-marigin" onclick="post('ac2=today&mid=1','360');">
+                            <input type="button" value="{:lang('all')}{:lang('vod')}" class="pear-btn pear-btn-primary pear-btn-md pear-btn-marigin" onclick="post('ac2=all&mid=1','360');">
+                            <input type="button" value="{:lang('that_day')}{:lang('art')}" class="pear-btn pear-btn-primary pear-btn-md pear-btn-marigin" onclick="post('ac2=today&mid=2','360');">
+                            <input type="button" value="{:lang('all')}{:lang('art')}" class="pear-btn pear-btn-primary pear-btn-md pear-btn-marigin" onclick="post('ac2=all&mid=2','360');">
+
+                            <input type="button" value="{:lang('that_day')}{:lang('topic')}" class="pear-btn pear-btn-primary pear-btn-md pear-btn-marigin" onclick="post('ac2=today&mid=3','360');">
+                            <input type="button" value="{:lang('all')}{:lang('topic')}" class="pear-btn pear-btn-primary pear-btn-md pear-btn-marigin" onclick="post('ac2=all&mid=3','360');">
+                            <input type="button" value="{:lang('that_day')}{:lang('actor')}" class="pear-btn pear-btn-primary pear-btn-md pear-btn-marigin" onclick="post('ac2=today&mid=8','360');">
+                            <input type="button" value="{:lang('all')}{:lang('actor')}" class="pear-btn pear-btn-primary pear-btn-md pear-btn-marigin" onclick="post('ac2=all&mid=8','360');">
+
+                            <input type="button" value="{:lang('that_day')}{:lang('role')}" class="pear-btn pear-btn-primary pear-btn-md pear-btn-marigin" onclick="post('ac2=today&mid=9','360');">
+                            <input type="button" value="{:lang('all')}{:lang('role')}" class="pear-btn pear-btn-primary pear-btn-md pear-btn-marigin" onclick="post('ac2=all&mid=9','360');">
+                            <input type="button" value="{:lang('that_day')}{:lang('website')}" class="pear-btn pear-btn-primary pear-btn-md pear-btn-marigin" onclick="post('ac2=today&mid=11','360');">
+                            <input type="button" value="{:lang('all')}{:lang('website')}" class="pear-btn pear-btn-primary pear-btn-md pear-btn-marigin" onclick="post('ac2=all&mid=11','360');">
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label"></label>
+                        <div class="layui-input-block">
+                            <textarea name="send_urls_s" class="layui-textarea send_urls_b" readonly="readonly" placeholder="{:lang('admin/system/config/site_send_urls_tip')},由于360官网限制单次最多推送5条网址"></textarea>
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">{:lang('admin/system/config/site_send_urls')}<br/>(手动输入)：</label>
+                        <div class="layui-input-block">
+                            <textarea name="send_urls" class="layui-textarea"  placeholder="{:lang('admin/system/config/site_send_urls_tip')},由于360官网限制单次最多推送5条网址"></textarea>
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">验证码：</label>
+                        <div class="layui-input-block w300">
+                            <div class="layui-input-inline" style="width: 150px">
+                                <input type="text" name="site_360_verfity" value="" class="layui-input">
+                            </div>
+                            <div style="float: right"><img src="data:image/png;base64,{$so360_content}" /></div><div style="clear: both"></div>
+                        </div>
+                    </div>
+
+                    <div class="bottom">
+                        <div class="button-container">
+                            <button type="submit" class="pear-btn pear-btn-primary pear-btn-sm" lay-submit="" lay-filter="formSubmit" data-child=""><i class="layui-icon layui-icon-ok"></i>{:lang('btn_save')}</button>
+                            <button type="reset" class="pear-btn pear-btn-sm"><i class="layui-icon layui-icon-refresh"></i>{:lang('btn_reset')}</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <div class="layui-tab-item">
+                <form class="layui-form" action="{:url('sougousend')}">
+                    <input type="hidden" name="sougou_cooke_name" value="{$sougou_cooke_name}" />
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">用户名：</label>
+                        <div class="layui-input-block">
+                            <input type="text" name="site_sougou_username" placeholder="" value="{$config.site.sougou_urlsend.user_name}" class="layui-input">
+                            <a class="layui-badge-rim j-iframe" data-full="1" data-href="{:url('system/config')}?fromUrlSend" href="javascript:;">设置</a>
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">邮箱：</label>
+                        <div class="layui-input-block">
+                            <input type="text" name="site_sougou_mail" placeholder="" value="{$config.site.sougou_urlsend.mail}" class="layui-input">
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">{:lang('admin/system/config/site_send_urls')}<br/>(系统生成)：</label>
+                        <div class="layui-input-block">
+                            <div>
+                                <label class="layui-form-label">{:lang('admin/urlsend/page_send_num')}：</label>
+                                <div class="layui-input-inline w40">
+                                    <input type="text" name="limit" id="limit_sougou" value="50" class="layui-input">
+                                </div>
+                            </div>
+                            <div>
+                                <label class="layui-form-label">{:lang('admin/urlsend/start_page')}：</label>
+                                <div class="layui-input-inline w40">
+                                    <input type="text" name="page" id="page_sougou" value="1" class="layui-input">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label"></label>
+                        <div class="layui-input-block">
+                            <input type="button" value="{:lang('that_day')}{:lang('vod')}" class="pear-btn pear-btn-primary pear-btn-md pear-btn-marigin" onclick="post('ac2=today&mid=1','sougou');">
+                            <input type="button" value="{:lang('all')}{:lang('vod')}" class="pear-btn pear-btn-primary pear-btn-md pear-btn-marigin" onclick="post('ac2=all&mid=1','sougou');">
+                            <input type="button" value="{:lang('that_day')}{:lang('art')}" class="pear-btn pear-btn-primary pear-btn-md pear-btn-marigin" onclick="post('ac2=today&mid=2','sougou');">
+                            <input type="button" value="{:lang('all')}{:lang('art')}" class="pear-btn pear-btn-primary pear-btn-md pear-btn-marigin" onclick="post('ac2=all&mid=2','sougou');">
+
+                            <input type="button" value="{:lang('that_day')}{:lang('topic')}" class="pear-btn pear-btn-primary pear-btn-md pear-btn-marigin" onclick="post('ac2=today&mid=3','sougou');">
+                            <input type="button" value="{:lang('all')}{:lang('topic')}" class="pear-btn pear-btn-primary pear-btn-md pear-btn-marigin" onclick="post('ac2=all&mid=3','sougou');">
+                            <input type="button" value="{:lang('that_day')}{:lang('actor')}" class="pear-btn pear-btn-primary pear-btn-md pear-btn-marigin" onclick="post('ac2=today&mid=8','sougou');">
+                            <input type="button" value="{:lang('all')}{:lang('actor')}" class="pear-btn pear-btn-primary pear-btn-md pear-btn-marigin" onclick="post('ac2=all&mid=8','sougou');">
+
+                            <input type="button" value="{:lang('that_day')}{:lang('role')}" class="pear-btn pear-btn-primary pear-btn-md pear-btn-marigin" onclick="post('ac2=today&mid=9','sougou');">
+                            <input type="button" value="{:lang('all')}{:lang('role')}" class="pear-btn pear-btn-primary pear-btn-md pear-btn-marigin" onclick="post('ac2=all&mid=9','sougou');">
+                            <input type="button" value="{:lang('that_day')}{:lang('website')}" class="pear-btn pear-btn-primary pear-btn-md pear-btn-marigin" onclick="post('ac2=today&mid=11','sougou');">
+                            <input type="button" value="{:lang('all')}{:lang('website')}" class="pear-btn pear-btn-primary pear-btn-md pear-btn-marigin" onclick="post('ac2=all&mid=11','sougou');">
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label"></label>
+                        <div class="layui-input-block">
+                            <textarea name="send_urls_s" class="layui-textarea send_urls_b" readonly="readonly" placeholder="{:lang('admin/system/config/site_send_urls_tip')}"></textarea>
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">{:lang('admin/system/config/site_send_urls')}<br/>(手动输入)：</label>
+                        <div class="layui-input-block">
+                            <textarea name="send_urls" class="layui-textarea"  placeholder="{:lang('admin/system/config/site_send_urls_tip')}"></textarea>
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">验证码：</label>
+                        <div class="layui-input-block w300">
+                            <div class="layui-input-inline">
+                                <input type="text" name="site_sougou_verfity" placeholder="" value="" class="layui-input">
+                            </div>
+                            <div style="float: right">{$sougou_content}</div><div style="clear: both"></div>
+                        </div>
+                    </div>
+
+                    <div class="bottom" style="margin-bottom: -20px">
+                        <div class="button-container">
+                            <button type="submit" class="pear-btn pear-btn-primary pear-btn-sm" lay-submit="" lay-filter="formSubmit" data-child=""><i class="layui-icon layui-icon-ok"></i>{:lang('btn_save')}</button>
+                            <button type="reset" class="pear-btn pear-btn-sm"><i class="layui-icon layui-icon-refresh"></i>{:lang('btn_reset')}</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <div class="layui-tab-item">
+                <form class="layui-form" action="{:url('shenmasend')}">
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">神马用户名：</label>
+                        <div class="layui-input-block">
+                            <input type="text" name="site_shenma_username" placeholder="" value="{$config['site']['shenma_urlsend']['user_name']}" class="layui-input" readonly>
+                            <a class="layui-badge-rim j-iframe" data-full="1" data-href="{:url('system/config')}?fromUrlSend" href="javascript:;">设置</a>
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">神马收录域名：</label>
+                        <div class="layui-input-block">
+                            <input type="text" name="site_shenma_domain" placeholder="" value="{$config['site']['shenma_urlsend']['site']}" class="layui-input" readonly>
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">{:lang('admin/system/config/site_shenma_token')}：</label>
+                        <div class="layui-input-block">
+                            <input type="text" name="site_shenma_token" placeholder="" value="{$config['site']['shenma_urlsend']['token']}" class="layui-input" readonly>
+                        </div>
+                    </div>
+                    <div class="layui-form-item" style="display: none">
+                        <label class="layui-form-label">{:lang('admin/system/config/site_url')}：</label>
+                        <div class="layui-input-block">
+                            <input type="text" name="site_shenma_send_url" value="http://data.zhanzhang.sm.cn/push?site={$config.site.shenma_urlsend.site}&user_name={$config.site.shenma_urlsend.user_name}&resource_name=mip_add&token={$config.site.shenma_urlsend.token}" class="layui-input">
+                        </div>
+                    </div>
+
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">{:lang('admin/system/config/site_send_urls')}<br/>(系统生成)：</label>
+                        <div class="layui-input-block">
+                            <div>
+                                <label class="layui-form-label">{:lang('admin/urlsend/page_send_num')}：</label>
+                                <div class="layui-input-inline w40">
+                                    <input type="text" name="limit" id="limit_shenma" value="50" class="layui-input">
+                                </div>
+                            </div>
+                            <div>
+                                <label class="layui-form-label">{:lang('admin/urlsend/start_page')}：</label>
+                                <div class="layui-input-inline w40">
+                                    <input type="text" name="page" id="page_shenma" value="1" class="layui-input">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label"></label>
+                        <div class="layui-input-block">
+                            <input type="button" value="{:lang('that_day')}{:lang('vod')}" class="pear-btn pear-btn-primary pear-btn-md pear-btn-marigin" onclick="post('ac2=today&mid=1','shenma');">
+                            <input type="button" value="{:lang('all')}{:lang('vod')}" class="pear-btn pear-btn-primary pear-btn-md pear-btn-marigin" onclick="post('ac2=all&mid=1','shenma');">
+                            <input type="button" value="{:lang('that_day')}{:lang('art')}" class="pear-btn pear-btn-primary pear-btn-md pear-btn-marigin" onclick="post('ac2=today&mid=2','shenma');">
+                            <input type="button" value="{:lang('all')}{:lang('art')}" class="pear-btn pear-btn-primary pear-btn-md pear-btn-marigin" onclick="post('ac2=all&mid=2','shenma');">
+
+                            <input type="button" value="{:lang('that_day')}{:lang('topic')}" class="pear-btn pear-btn-primary pear-btn-md pear-btn-marigin" onclick="post('ac2=today&mid=3','shenma');">
+                            <input type="button" value="{:lang('all')}{:lang('topic')}" class="pear-btn pear-btn-primary pear-btn-md pear-btn-marigin" onclick="post('ac2=all&mid=3','shenma');">
+                            <input type="button" value="{:lang('that_day')}{:lang('actor')}" class="pear-btn pear-btn-primary pear-btn-md pear-btn-marigin" onclick="post('ac2=today&mid=8','shenma');">
+                            <input type="button" value="{:lang('all')}{:lang('actor')}" class="pear-btn pear-btn-primary pear-btn-md pear-btn-marigin" onclick="post('ac2=all&mid=8','shenma');">
+
+                            <input type="button" value="{:lang('that_day')}{:lang('role')}" class="pear-btn pear-btn-primary pear-btn-md pear-btn-marigin" onclick="post('ac2=today&mid=9','shenma');">
+                            <input type="button" value="{:lang('all')}{:lang('role')}" class="pear-btn pear-btn-primary pear-btn-md pear-btn-marigin" onclick="post('ac2=all&mid=9','shenma');">
+                            <input type="button" value="{:lang('that_day')}{:lang('website')}" class="pear-btn pear-btn-primary pear-btn-md pear-btn-marigin" onclick="post('ac2=today&mid=11','shenma');">
+                            <input type="button" value="{:lang('all')}{:lang('website')}" class="pear-btn pear-btn-primary pear-btn-md pear-btn-marigin" onclick="post('ac2=all&mid=11','shenma');">
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label"></label>
+                        <div class="layui-input-block">
+                            <textarea name="send_urls_s" class="layui-textarea send_urls_b" readonly="readonly" placeholder="{:lang('admin/system/config/site_send_urls_tip')}"></textarea>
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">{:lang('admin/system/config/site_send_urls')}<br/>(手动输入)：</label>
+                        <div class="layui-input-block">
+                            <textarea name="send_urls" class="layui-textarea"  placeholder="{:lang('admin/system/config/site_send_urls_tip')}"></textarea>
+                        </div>
+                    </div>
+                    <div class="bottom" style="margin-bottom: -20px">
+                        <div class="button-container">
+                          <button type="submit" class="pear-btn pear-btn-primary pear-btn-sm" lay-submit="" lay-filter="formSubmit" data-child=""><i class="layui-icon layui-icon-ok"></i>{:lang('btn_save')}</button>
+                          <button type="reset" class="pear-btn pear-btn-sm"><i class="layui-icon layui-icon-refresh"></i>{:lang('btn_reset')}</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+{include file="../../../application/admin/view/public/foot" /}
+<script type="text/javascript" src="{:MAC_BASE_PATH}/static/js/jquery.cookie.js"></script>
+<script type="text/javascript">
+    var curUrl = "{:url('getpushlist')}";
+    layui.use(['element','form','upload', 'layer'], function(){
+        // 操作对象
+        var element = layui.element;
+
+        element.on('tab(tb2)', function(){
+            $.cookie('config_tab_2', this.getAttribute('lay-id'));
+        });
+
+        if( $.cookie('config_tab_2') !=null ) {
+            element.tabChange('tb2', $.cookie('config_tab_2'));
+        }
+    });
+    function post(p,m) {
+        var limit;
+        var page;
+        if ( m == 'baidu' ){
+            limit = $('#limit_baidu').val();
+            page = $('#page_baidu').val();
+        }
+        if ( m == 'sougou' ){
+            limit = $('#limit_sougou').val();
+            page = $('#page_bougou').val();
+        }
+        if ( m == '360' ){
+            limit = $('#limit_360').val();
+            page = $('#page_360').val();
+        }
+        if ( m == 'shenma' ){
+            limit = $('#limit_shenma').val();
+            page = $('#page_shenma').val();
+        }
+        console.log(curUrl + "?"+'limit='+limit +'&page='+page +'&' + p);
+        $.ajax({
+            type: 'get',
+            dataType:'json',
+            url: curUrl + "?"+ 'limit='+limit +'&page='+page +'&' + p,
+            success:function($r){
+                console.log($r);
+                if($r.urls ==''){
+                    $(".send_urls_b").val('');
+                    layer.msg('无数据');
+                    return;
+                }
+                $(".send_urls_b").val($r.urls);
+            },
+            complete:function(){
+                //layer.msg("未知错误");
+            }
+        });
+    }
+</script>
+</body>
+</html>

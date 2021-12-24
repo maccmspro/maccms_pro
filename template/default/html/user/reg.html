@@ -1,0 +1,179 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<title >{:lang_web('user_yhzhuce')}  - {$maccms.site_name}</title>
+	<meta name="keywords" content="{$maccms.site_keywords}"/>
+	<meta name="description" content="{$maccms.site_description}"/>
+	{include file="user/include" /}
+</head>
+<body id="reg">
+	<div class="show-mobile">
+        <div id="ui-nav" class="m-nav">
+            <a href="javascript:MAC.GoBack()" class="btn-left"><i class="iconfont ico-right">&#xe625;</i></a>
+            <span class="mb-title" data-lang="user_yhzhuce">{:lang_web('user_yhzhuce')}</span>
+        </div>
+    </div>
+	<div class="reg-w">
+	    <div class="reg-logo">
+			<a class="show-mobile" title="{$maccms.site_name}" style="background-image: url(/template/default/asset/img/logo-mobile-white.png)" >
+			</a>
+		</div>
+		<form method="post" id="fm" action="">
+			<!-- <h4>用户注册</h4> -->
+			<div class="reg-group">
+				<img class="l-icon" src="{:MAC_BASE_PATH}/template/default/images/member/login-user.png" >
+				<input type="text" data-placeholder="user_place_dlzh" id="user_name" name="user_name" class="reg-control" placeholder="{:lang_web('user_place_dlzh')}">
+			</div>
+			<div class="reg-group">
+				<img class="l-icon" src="{:MAC_BASE_PATH}/template/default/images/member/login-pwd.png" >
+				<input type="password" data-placeholder="user_place_mm" id="user_pwd" name="user_pwd" class="reg-control" placeholder="{:lang_web('user_place_mm')}">
+			</div>
+			<div class="reg-group">
+				<img class="l-icon" src="{:MAC_BASE_PATH}/template/default/images/member/login-user.png" >
+				<input type="password" data-placeholder="user_place_querenmm" id="user_pwd2" name="user_pwd2" class="reg-control" placeholder="{:lang_web('user_place_querenmm')}">
+			</div>
+			{if condition="$user_config.reg_phone_sms neq 0"}
+			<input type="hidden" name="ac" value="phone">
+			<div class="reg-group">
+				<label data-lang="user_sjhm">{:lang_web('user_sjhm')}</label>
+				<input data-placeholder="user_place_shouji" type="text" class="reg-control w150" id="to" name="to" placeholder="{:lang_web('user_place_shouji')}">
+				<input type="button" data-value="btn_fsyzm" class="fr m-hi reg-yzm" id="btn_send_sms" value="{:lang_web('btn_fsyzm')}"/>
+			</div>
+			<div class="reg-group">
+				<label data-lang="user_yanzhengma">{:lang_web('user_yanzhengma')}</label>
+				<input type="text" data-lang="user_place_yanzm" class="reg-control" id="code" name="code" placeholder="{:lang_web('user_place_yanzm')}">
+			</div>
+			{elseif condition="$user_config.reg_email_sms neq 0"}
+			<input type="hidden" name="ac" value="email">
+			<div class="reg-group">
+				<label data-lang="user_yxdz">{:lang_web('user_yxdz')}</label>
+				<input type="text" data-lang="user_place_email" class="reg-control w150" id="to" name="to" placeholder="{:lang_web('user_place_email')}">
+				<input type="button" data-lang="btn_fsyzm" class="fr m-hi reg-yzm" id="btn_send_sms" value="{:lang_web('btn_fsyzm')}"/>
+			</div>
+			<div class="reg-group">
+				<label data-lang="user_yanzhengma">{:lang_web('user_yanzhengma')}</label>
+				<input type="text" data-lang="user_place_yanzm"  class="reg-control" id="code" name="code" placeholder="{:lang_web('user_place_yanzm')}">
+			</div>
+			{/if}
+
+			{if condition="$user_config.reg_verify neq 0"}
+			<div class="reg-group verify_code">
+				<label data-lang="user_yanzhengma">{:lang_web('user_yanzhengma')}</label>
+				<input type="text" data-lang="user_place_yanzm" class="reg-control w150" id="verify" name="verify" placeholder="{:lang_web('user_place_yanzm')}">
+				<img class="fr m-hi" id="verify_img" src="{:url('verify/index')}" onClick="this.src=this.src+'?'"   />
+			</div>
+			{/if}
+			<input type="button" data-value="btn_lijizhuce" id="btn_submit" class="btn-brand btn-sub" value="{:lang_web('btn_lijizhuce')}">
+		</form>
+	<div class="reg-ts">
+		   <a href="{:url('user/login')}" data-lang="user_qudl">{:lang_web('user_qudl')}</a>
+    </div>
+	</div>
+
+<!-- // sign-box#regbox end -->
+<script type="text/javascript">
+	var lang=localStorage.getItem('lang')
+    var countdown=60;
+    function settime(val) {
+        if (countdown == 0) {
+            val.removeAttribute("disabled");
+            val.value=MAC.GetLang('string_login_yzm');
+            countdown = 60;
+            return true;
+        } else {
+            val.setAttribute("disabled", true);
+            val.value=MAC.GetLang('string_login_cxfs')+'('+ countdown + ")";
+            countdown--;
+        }
+        setTimeout(function() {settime(val) },1000)
+    }
+		$("body").bind('keyup',function(event) {
+			if(event.keyCode==13){ $('#btnLogin').click(); }
+		});
+
+        $('#btn_send_sms').click(function(){
+            var ac = $('input[name="ac"]').val();
+            var to = $('input[name="to"]').val();
+            if(ac=='email') {
+                var pattern = /^([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+@([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+\.[a-zA-Z]{2,3}$/;
+                var ex = pattern.test(to);
+                if (!ex) {
+                    alert(MAC.GetLang('string_login_yxgscw'));
+                    return;
+                }
+            }
+            else if(ac=='phone') {
+                var pattern=/^[1][0-9]{10}$/;
+                var ex = pattern.test(to);
+                if (!ex) {
+                    alert(MAC.GetLang('string_login_sjhcw'));
+                    return;
+                }
+            }
+            else{
+                alert(MAC.GetLang('string_login_cscw'));
+                return;
+            }
+
+
+            settime(this);
+            var data = $("#fm").serialize();
+
+            $.ajax({
+                url: "{:url('user/reg_msg')}",
+                type: "post",
+                dataType: "json",
+                data: data,
+                beforeSend: function () {
+                    //开启loading
+                },
+                success: function (r) {
+                    alert(r.msg);
+                },
+                complete: function () {
+                    //结束loading
+                }
+            });
+        });
+
+		$('#btn_submit').click(function() {
+			if ($('#user_name').val()  == '') { alert(MAC.GetLang('string_login_sryh')); $("#user_name").focus(); return false; }
+			if ($('#user_pwd').val()  == '') { alert(MAC.GetLang('string_login_srmm')); $("#user_pwd").focus(); return false; }
+			if ($('#verify').val()  == '') { alert(MAC.GetLang('string_login_sryzm')); $("#verify").focus(); return false; }
+
+			$.ajax({
+				url: "{:url('user/reg')}",
+				type: "post",
+				dataType: "json",
+				data: $('#fm').serialize(),
+				beforeSend: function () {
+					$("#btn_submit").css("background","#fd6a6a").val("loading...");
+				},
+				success: function (r) {
+					alert(r.msg);
+					if(r.code==1){
+						location.href="{:url('user/login')}";
+					}
+					else{
+						$('#verify_img').click();
+					}
+				},
+				complete: function () {
+					$("#btn_submit").css("background","#fa4646").val(MAC.GetLang('string_login_ljzc'));
+				}
+			});
+
+		});
+
+
+</script>
+<div class="footer show-pc">
+	<div class="layout">
+		<div class="copyright">
+			<p>&copy; {:date('Y')} <a class="color" href="//{$maccms.site_url}">{$maccms.site_url}</a>  All Rights Reserved.</p>
+		</div>
+	</div>
+</div>
+</body>
+</html>

@@ -354,6 +354,7 @@ class Index extends Controller
             ['xml', lang('install/support'), 'yes', lang('install/function')],
             ['file_get_contents', lang('install/support'), 'yes', lang('install/function')],
             ['mb_strlen', lang('install/support'), 'yes', lang('install/function')],
+            ['putenv', lang('install/support'), 'yes', lang('install/function')],
         ];
 
         if(version_compare(PHP_VERSION,'5.6.0','ge') && version_compare(PHP_VERSION,'5.7.0','lt')){
@@ -361,7 +362,7 @@ class Index extends Controller
         }
 
         foreach ($items as &$v) {
-            if(('类'==$v[3] && !class_exists($v[0])) || (lang('install/model')==$v[3] && !extension_loaded($v[0])) || (lang('install/function')==$v[3] && !function_exists($v[0])) || (lang('install/config')==$v[3] && ini_get('always_populate_raw_post_data')!=-1)) {
+            if((lang('install/class')==$v[3] && !class_exists($v[0])) || (lang('install/model')==$v[3] && !extension_loaded($v[0])) || (lang('install/function')==$v[3] && !function_exists($v[0])) || (lang('install/config')==$v[3] && ini_get('always_populate_raw_post_data')!=-1)) {
                 $v[1] = lang('install/not_support');
                 $v[2] = 'no';
                 session('install_error', true);

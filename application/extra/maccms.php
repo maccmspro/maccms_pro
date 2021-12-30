@@ -120,7 +120,7 @@ return array (
     'makesize' => '30',
     'admin_login_verify' => '1',
     'editor' => 'Ueditor',
-    'lang' => 'en-us',
+    'lang' => 'zh-cn',
   ),
   'user' => 
   array (

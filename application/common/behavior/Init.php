@@ -55,9 +55,10 @@ class Init
         define('MAC_ADDON_PATH', ROOT_PATH . 'addons' . '/');
         define('MAC_ADDON_PATH_STATIC', ROOT_PATH . 'static/addons/');
         // 兼容多级目录
+        $base_script_name = '/' . basename($_SERVER['SCRIPT_NAME']);
         define('MAC_BASE_URL', get_url_pre(request()->root()));
-        define('MAC_BASE_PATH', str_replace($_SERVER['SCRIPT_NAME'], '', request()->root()));
-        define('MAC_BASE_URL_FULL', str_replace($_SERVER['SCRIPT_NAME'], '', request()->root(true)));
+        define('MAC_BASE_PATH', str_replace($base_script_name, '', request()->root()));
+        define('MAC_BASE_URL_FULL', str_replace($base_script_name, '', request()->root(true)));
 
         $GLOBALS['MAC_ROOT_TEMPLATE'] = ROOT_PATH .'template/'.$TMP_TEMPLATEDIR.'/'. $TMP_HTMLDIR .'/';
         $GLOBALS['MAC_PATH_TEMPLATE'] = MAC_PATH.'template/'.$TMP_TEMPLATEDIR.'/';

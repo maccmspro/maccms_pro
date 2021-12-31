@@ -3,6 +3,7 @@ String.prototype.replaceAll  = function(s1,s2){ return this.replace(new RegExp(s
 String.prototype.trim=function(){ return this.replace(/(^\s*)|(\s*$)/g, ""); }
 var base64EncodeChars="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";var base64DecodeChars=new Array(-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,62,-1,-1,-1,63,52,53,54,55,56,57,58,59,60,61,-1,-1,-1,-1,-1,-1,-1,0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,-1,-1,-1,-1,-1,-1,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,-1,-1,-1,-1,-1);function base64encode(str){var out,i,len;var c1,c2,c3;len=str.length;i=0;out="";while(i<len){c1=str.charCodeAt(i++)&0xff;if(i==len){out+=base64EncodeChars.charAt(c1>>2);out+=base64EncodeChars.charAt((c1&0x3)<<4);out+="==";break}c2=str.charCodeAt(i++);if(i==len){out+=base64EncodeChars.charAt(c1>>2);out+=base64EncodeChars.charAt(((c1&0x3)<<4)|((c2&0xF0)>>4));out+=base64EncodeChars.charAt((c2&0xF)<<2);out+="=";break}c3=str.charCodeAt(i++);out+=base64EncodeChars.charAt(c1>>2);out+=base64EncodeChars.charAt(((c1&0x3)<<4)|((c2&0xF0)>>4));out+=base64EncodeChars.charAt(((c2&0xF)<<2)|((c3&0xC0)>>6));out+=base64EncodeChars.charAt(c3&0x3F)}return out}function base64decode(str){var c1,c2,c3,c4;var i,len,out;len=str.length;i=0;out="";while(i<len){do{c1=base64DecodeChars[str.charCodeAt(i++)&0xff]}while(i<len&&c1==-1);if(c1==-1)break;do{c2=base64DecodeChars[str.charCodeAt(i++)&0xff]}while(i<len&&c2==-1);if(c2==-1)break;out+=String.fromCharCode((c1<<2)|((c2&0x30)>>4));do{c3=str.charCodeAt(i++)&0xff;if(c3==61)return out;c3=base64DecodeChars[c3]}while(i<len&&c3==-1);if(c3==-1)break;out+=String.fromCharCode(((c2&0XF)<<4)|((c3&0x3C)>>2));do{c4=str.charCodeAt(i++)&0xff;if(c4==61)return out;c4=base64DecodeChars[c4]}while(i<len&&c4==-1);if(c4==-1)break;out+=String.fromCharCode(((c3&0x03)<<6)|c4)}return out}function utf16to8(str){var out,i,len,c;out="";len=str.length;for(i=0;i<len;i++){c=str.charCodeAt(i);if((c>=0x0001)&&(c<=0x007F)){out+=str.charAt(i)}else if(c>0x07FF){out+=String.fromCharCode(0xE0|((c>>12)&0x0F));out+=String.fromCharCode(0x80|((c>>6)&0x3F));out+=String.fromCharCode(0x80|((c>>0)&0x3F))}else{out+=String.fromCharCode(0xC0|((c>>6)&0x1F));out+=String.fromCharCode(0x80|((c>>0)&0x3F))}}return out}function utf8to16(str){var out,i,len,c;var char2,char3;out="";len=str.length;i=0;while(i<len){c=str.charCodeAt(i++);switch(c>>4){case 0:case 1:case 2:case 3:case 4:case 5:case 6:case 7:out+=str.charAt(i-1);break;case 12:case 13:char2=str.charCodeAt(i++);out+=String.fromCharCode(((c&0x1F)<<6)|(char2&0x3F));break;case 14:char2=str.charCodeAt(i++);char3=str.charCodeAt(i++);out+=String.fromCharCode(((c&0x0F)<<12)|((char2&0x3F)<<6)|((char3&0x3F)<<0));break}}return out}
 
+let maccmsType=maccms.base_url || maccms.path
 var MAC={
     'Url': document.URL,
     'Title': document.title,
@@ -194,14 +195,14 @@ var MAC={
         },
         'Click': function(){//点击刷新
             $('body').on('click', 'img.mac_verify_img', function(){
-                $(this).attr('src', maccms.base_url +'/index.php?s=/verify/index&r='+Math.random());
+                $(this).attr('src', maccmsType +'/index.php?s=/verify/index&r='+Math.random());
             });
         },
         'Refresh':function(){
-            $('.mac_verify_img').attr('src', maccms.base_url +'/index.php?s=/verify/index&r='+Math.random());
+            $('.mac_verify_img').attr('src', maccmsType +'/index.php?s=/verify/index&r='+Math.random());
         },
         'Show':function(){
-            return '<img class="mac_verify_img" src="'+ maccms.base_url +'/index.php?s=/verify/index"  title="看不清楚? 换一张！">';
+            return '<img class="mac_verify_img" src="'+ maccmsType +'/index.php?s=/verify/index"  title="看不清楚? 换一张！">';
         }
     },
     'PageGo':{
@@ -228,7 +229,7 @@ var MAC={
             }
             var $that = $(".mac_hits");
 
-            MAC.Ajax(maccms.base_url + '/index.php/ajax/hits?mid='+$that.attr("data-mid")+'&id='+$that.attr("data-id")+'&type=update','get','json','',function(r){
+            MAC.Ajax(maccmsType + '/index.php/ajax/hits?mid='+$that.attr("data-mid")+'&id='+$that.attr("data-id")+'&type=update','get','json','',function(r){
                 if (r.code == 1) {
                     $(".mac_hits").each(function(i){
                         $type = $(".mac_hits").eq(i).attr('data-type');
@@ -250,7 +251,7 @@ var MAC={
                 MAC.Score.Submit();
             });
 
-            MAC.Ajax(maccms.base_url+'/index.php/ajax/score?mid='+ $('.mac_score').attr('data-mid') +'&id=' +$('.mac_score').attr('data-id'),'post','json','',function(r){
+            MAC.Ajax(maccmsType+'/index.php/ajax/score?mid='+ $('.mac_score').attr('data-mid') +'&id=' +$('.mac_score').attr('data-id'),'post','json','',function(r){
                 MAC.Score.View(r);
             },function(){
                 $(".mac_score").html('评分加载失败');
@@ -259,7 +260,7 @@ var MAC={
         },
         'Submit':function(){
             var $s = $('.mac_score').find("input[name='score']").val();
-            MAC.Ajax(maccms.base_url+'/index.php/ajax/score?mid='+$('.mac_score').attr('data-mid')+'&id='+$('.mac_score').attr('data-id') + '&score='+ $s,'get','json','',function(r){
+            MAC.Ajax(maccmsType+'/index.php/ajax/score?mid='+$('.mac_score').attr('data-mid')+'&id='+$('.mac_score').attr('data-id') + '&score='+ $s,'get','json','',function(r){
                 MAC.Pop.Msg(100,20,r.msg,1000);
                 if(r.code==1){
                     MAC.Score.View(r);
@@ -289,7 +290,7 @@ var MAC={
                 },
                 click: function(score, evt) {
 
-                    MAC.Ajax(maccms.base_url+'/index.php/ajax/score?mid='+$('.mac_star').attr('data-mid')+'&id='+$('.mac_star').attr('data-id')+'&score='+(score*2),'get','json','',function(r){
+                    MAC.Ajax(maccmsType+'/index.php/ajax/score?mid='+$('.mac_star').attr('data-mid')+'&id='+$('.mac_star').attr('data-id')+'&score='+(score*2),'get','json','',function(r){
                         if(json.status == 1){
                             $('.star_tips').html(r.data.score);
                         }else{
@@ -309,7 +310,7 @@ var MAC={
                 var $that = $(this);
                 if($that.attr("data-id")){
 
-                    MAC.Ajax(maccms.base_url + '/index.php/ajax/digg.html?mid='+$that.attr("data-mid")+'&id='+$that.attr("data-id")+'&type='+$that.attr("data-type"),'get','json','',function(r){
+                    MAC.Ajax(maccmsType + '/index.php/ajax/digg.html?mid='+$that.attr("data-mid")+'&id='+$that.attr("data-id")+'&type='+$that.attr("data-type"),'get','json','',function(r){
                         $that.addClass('disabled');
                         if(r.code == 1){
                             if($that.attr("data-type")=='up'){
@@ -345,7 +346,7 @@ var MAC={
             });
         },
         'Show':function($page){
-            MAC.Ajax(maccms.base_url+'/index.php/gbook/index?page='+$page,'post','json','',function(r){
+            MAC.Ajax(maccmsType+'/index.php/gbook/index?page='+$page,'post','json','',function(r){
                 $(".mac_gbook_box").html(r);
             },function(){
                 $(".mac_gbook_box").html('留言加载失败，请刷新...');
@@ -356,7 +357,7 @@ var MAC={
                 MAC.Pop.Msg(100,20,'请输入您的留言!',1000);
                 return false;
             }
-            MAC.Ajax(maccms.base_url + '/index.php/gbook/saveData','post','json',$('.gbook_form').serialize(),function(r){
+            MAC.Ajax(maccmsType+ '/index.php/gbook/saveData','post','json',$('.gbook_form').serialize(),function(r){
                 MAC.Pop.Msg(100,20,r.msg,1000);
                 if(r.code == 1){
                     location.reload();
@@ -369,7 +370,7 @@ var MAC={
             });
         },
         'Report':function(name,id){
-            MAC.Pop.Show(400,300,'数据报错',maccms.base_url+'/index.php/gbook/report.html?id='+id+'&name='+ encodeURIComponent(name),function(r){
+            MAC.Pop.Show(400,300,'数据报错',maccmsType+'/index.php/gbook/report.html?id='+id+'&name='+ encodeURIComponent(name),function(r){
 
             });
         }
@@ -378,7 +379,7 @@ var MAC={
         'Init':function(){
             $('.mac_search').click(function(){
                 var that=$(this);
-                var url = that.attr('data-href') ? that.attr('data-href') : maccms.base_url+'/index.php/vod/search.html';
+                var url = that.attr('data-href') ? that.attr('data-href') : maccmsType+'/index.php/vod/search.html';
                 location.href = url + '?wd='+ encodeURIComponent($("#wd").val());
             });
         },
@@ -390,7 +391,7 @@ var MAC={
     'Suggest':{
         'Init':function($obj,$mid,$jumpurl){
             try {
-                $($obj).autocomplete(maccms.base_url+'/index.php/ajax/suggest?mid=' + $mid, {
+                $($obj).autocomplete(maccmsType+'/index.php/ajax/suggest?mid=' + $mid, {
                     inputClass: "mac_input",
                     resultsClass: "mac_results",
                     loadingClass: "mac_loading",
@@ -525,12 +526,12 @@ var MAC={
 
         },
         'Get':function(mid,id,type,page,limit,call){
-            MAC.Ajax(maccms.base_url+'/index.php/user/ajax_ulog/?ac=list&mid='+mid+'&id='+id+'&type='+type+'&page='+page+'&limit='+limit,'get','json','',call);
+            MAC.Ajax(maccmsType+'/index.php/user/ajax_ulog/?ac=list&mid='+mid+'&id='+id+'&type='+type+'&page='+page+'&limit='+limit,'get','json','',call);
         },
         'Set':function(){
             if($(".mac_ulog_set").attr('data-mid')){
                 var $that = $(".mac_ulog_set");
-                $.get(maccms.base_url+'/index.php/user/ajax_ulog/?ac=set&mid='+$that.attr("data-mid")+'&id='+$that.attr("data-id")+'&sid='+$that.attr("data-sid")+'&nid='+$that.attr("data-nid")+'&type='+$that.attr("data-type"));
+                $.get(maccmsType+'/index.php/user/ajax_ulog/?ac=set&mid='+$that.attr("data-mid")+'&id='+$that.attr("data-id")+'&sid='+$that.attr("data-sid")+'&nid='+$that.attr("data-nid")+'&type='+$that.attr("data-type"));
             }
         },
         'Click':function(){
@@ -544,7 +545,7 @@ var MAC={
 
                 var $that = $(this);
                 if($that.attr("data-id")){
-                    MAC.Ajax(maccms.base_url+'/index.php/user/ajax_ulog/?ac=set&mid='+$that.attr("data-mid")+'&id='+$that.attr("data-id")+'&type='+$that.attr("data-type"),'get','json','',function(r){
+                    MAC.Ajax(maccmsType+'/index.php/user/ajax_ulog/?ac=set&mid='+$that.attr("data-mid")+'&id='+$that.attr("data-id")+'&type='+$that.attr("data-type"),'get','json','',function(r){
                         MAC.Pop.Msg(100,20,r.msg,1000);
                         if(r.code == 1){
                             $that.addClass('disabled');
@@ -572,7 +573,7 @@ var MAC={
                 return;
             }
             domain = mc[2];
-            MAC.Ajax(maccms.base_url + '/index.php/ajax/referer?domain='+encodeURIComponent(domain)+'&url='+encodeURIComponent(url)+'&type=update','get','json','',function(r){
+            MAC.Ajax(maccmsType + '/index.php/ajax/referer?domain='+encodeURIComponent(domain)+'&url='+encodeURIComponent(url)+'&type=update','get','json','',function(r){
                 if (r.code == 1) {
                 }
                 console.log(r);
@@ -606,7 +607,7 @@ var MAC={
             }
 
             if(MAC.Cookie.Get('user_id') !=undefined && MAC.Cookie.Get('user_id')!=''){
-                var url = maccms.base_url+'/index.php/user';
+                var url = maccmsType+'/index.php/user';
                 MAC.User.UserId = MAC.Cookie.Get('user_id');
                 MAC.User.UserName = MAC.Cookie.Get('user_name');
                 MAC.User.GroupId = MAC.Cookie.Get('group_id');
@@ -648,12 +649,12 @@ var MAC={
             if(MAC.Cookie.Get('user_id') !=undefined && MAC.Cookie.Get('user_id')!=''){
                 ac= 'ajax_info';
             }
-            MAC.Pop.Show(400,380,'用户登录',maccms.base_url+'/index.php/user/'+ac,function(r){
+            MAC.Pop.Show(400,380,'用户登录',maccmsType+'/index.php/user/'+ac,function(r){
                 $('body').off('click', '.login_form_submit');
                 $('body').on('click', '.login_form_submit', function(e){
                     $(this).unbind('click');
 
-                    MAC.Ajax(maccms.base_url + '/index.php/user/login','post','json',$('.mac_login_form').serialize(),function(r){
+                    MAC.Ajax(maccmsType + '/index.php/user/login','post','json',$('.mac_login_form').serialize(),function(r){
                         alert(r.msg);
                         if(r.code == 1){
                             location.reload();
@@ -663,10 +664,10 @@ var MAC={
             });
         },
         'Logout':function(){
-            MAC.Ajax(maccms.base_url + '/index.php/user/logout','post','json','',function(r){
+            MAC.Ajax(maccmsType + '/index.php/user/logout','post','json','',function(r){
                 MAC.Pop.Msg(100,20,r.msg,1000);
                 if(r.code == 1){
-                    location.href=maccms.base_url + '/index.php';
+                    location.href=maccmsType + '/index.php';
                 }
             });
         },
@@ -679,7 +680,7 @@ var MAC={
             var $that = $(o);
             if($that.attr("data-id")){
                 if (confirm('您确认购买此条数据访问权限吗？')) {
-                    MAC.Ajax(maccms.base_url + '/index.php/user/ajax_buy_popedom.html?id=' + $that.attr("data-id") + '&mid=' + $that.attr("data-mid") + '&sid=' + $that.attr("data-sid") + '&nid=' + $that.attr("data-nid") + '&type=' + $that.attr("data-type"),'get','json','',function(r){
+                    MAC.Ajax(maccmsType + '/index.php/user/ajax_buy_popedom.html?id=' + $that.attr("data-id") + '&mid=' + $that.attr("data-mid") + '&sid=' + $that.attr("data-sid") + '&nid=' + $that.attr("data-nid") + '&type=' + $that.attr("data-type"),'get','json','',function(r){
                         $that.addClass('disabled');
                         MAC.Pop.Msg(300, 50, r.msg, 2000);
                         if (r.code == 1) {
@@ -743,7 +744,7 @@ var MAC={
         'Check':function(o){
             var $that = $(o);
             if($that.attr("data-id")){
-                    MAC.Ajax(maccms.base_url + '/index.php/ajax/pwd.html?id=' + $that.attr("data-id") + '&mid=' + $that.attr("data-mid") + '&type=' + $that.attr("data-type") + '&pwd='+ $that.parents('form').find('input[name="pwd"]').val() ,'get','json','',function(r){
+                    MAC.Ajax(maccmsType + '/index.php/ajax/pwd.html?id=' + $that.attr("data-id") + '&mid=' + $that.attr("data-mid") + '&type=' + $that.attr("data-type") + '&pwd='+ $that.parents('form').find('input[name="pwd"]').val() ,'get','json','',function(r){
                         $that.addClass('disabled');
                         MAC.Pop.Msg(300, 50, r.msg, 2000);
                         if (r.code == 1) {
@@ -767,7 +768,7 @@ var MAC={
         });
     },
     'Desktop':function(s){
-        location.href= maccms.base_url + '/index.php?s=/ajax/desktop&name='+encodeURI(s)+'&url=' + encodeURI(location.href);
+        location.href= maccmsType + '/index.php?s=/ajax/desktop&name='+encodeURI(s)+'&url=' + encodeURI(location.href);
     },
     'Timming':function(){
         if($('.mac_timming').length==0){
@@ -777,7 +778,7 @@ var MAC={
         if(infile==undefined || infile == ''){
             infile = 'api.php';
         }
-        var t=(new Image());t.src=maccms.base_url + '/'+infile+'/timming/index?t='+Math.random();
+        var t=(new Image());t.src=maccmsType + '/'+infile+'/timming/index?t='+Math.random();
     },
     'Error':function(tab,id,name){
 
@@ -820,7 +821,7 @@ var MAC={
             $('body').on('click', '.comment_report', function(e){
                 var $that = $(this);
                 if($(this).attr("data-id")){
-                    MAC.Ajax(maccms.base_url + '/index.php/comment/report.html?id='+$that.attr("data-id"),'get','json','',function(r){
+                    MAC.Ajax(maccmsType + '/index.php/comment/report.html?id='+$that.attr("data-id"),'get','json','',function(r){
                         $that.addClass('disabled');
                         MAC.Pop.Msg(100,20,r.msg,1000);
                         if(r.code == 1){
@@ -860,7 +861,7 @@ var MAC={
         },
         'Show':function($page){
             if($(".mac_comment").length>0){
-                MAC.Ajax(maccms.base_url + '/index.php/comment/ajax.html?rid='+$('.mac_comment').attr('data-id')+'&mid='+ $('.mac_comment').attr('data-mid') +'&page='+$page,'get','json','',function(r){
+                MAC.Ajax(maccmsType + '/index.php/comment/ajax.html?rid='+$('.mac_comment').attr('data-id')+'&mid='+ $('.mac_comment').attr('data-mid') +'&page='+$page,'get','json','',function(r){
                     $(".mac_comment").html(r);
                 },function(){
                     $(".mac_comment").html('<a href="javascript:void(0)" onclick="MAC.Comment.Show('+$page+')">评论加载失败，点击我刷新...</a>');
@@ -884,7 +885,7 @@ var MAC={
                 MAC.Pop.Msg(100,20,'关联id错误！',1000);
                 return false;
             }
-            MAC.Ajax(maccms.base_url + '/index.php/comment/saveData','post','json',$(form).serialize() + '&comment_mid='+ $('.mac_comment').attr('data-mid') + '&comment_rid=' + $('.mac_comment').attr('data-id'),function(r){
+            MAC.Ajax(maccmsType + '/index.php/comment/saveData','post','json',$(form).serialize() + '&comment_mid='+ $('.mac_comment').attr('data-mid') + '&comment_rid=' + $('.mac_comment').attr('data-id'),function(r){
                 MAC.Pop.Msg(100,20,r.msg,1000);
                 if(r.code == 1){
                     MAC.Comment.Show(1);

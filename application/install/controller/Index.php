@@ -379,13 +379,13 @@ class Index extends Controller
     private function mkDatabase(array $data)
     {
         $code = <<<INFO
-# app
+; app
 app_debug=true
 app_trace=true
 app_environment=production
 config_save_in_db=false
 
-# 数据库
+; 数据库
 database_type=mysql
 database_host={$data['hostname']}
 database_port={$data['hostport']}

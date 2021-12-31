@@ -14,8 +14,8 @@ class Base extends Model {
         //需要调用`Model`的`initialize`方法
         parent::initialize();
         // 自定义的初始化
-        $this->primaryId = $this->primaryId ?? $this->name . '_id';
-        $this->readFromMaster = $this->readFromMaster ?? false;
+        $this->primaryId = isset($this->primaryId) ? $this->primaryId : $this->name . '_id';
+        $this->readFromMaster = isset($this->readFromMaster) ? $this->readFromMaster : false;
         // 表创建或修改
         if (method_exists($this, 'createTableIfNotExists')) {
             $this->createTableIfNotExists();
@@ -55,7 +55,7 @@ class Base extends Model {
             $query_object = $query_object->master();
         }
         $object = $query_object->getOneByCond($cond, $orderby, $field);
-        return $object[$field] ?? '';
+        return isset($object[$field]) ? $object[$field] : '';
     }
 
     public function updateByCond($cond, $data)

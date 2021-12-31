@@ -13,12 +13,13 @@ class Funpay {
             $pay_type = intval($param['paytype']);
         }
         // 参与签名字段
+        $bankcode_map = [1 => 901, 2 => 904];
         $base_data = [
             'pay_memberid'    => trim($GLOBALS['config']['pay']['funpay']['appid']),
             'pay_orderid'     => $order['order_code'],
             'pay_amount'      => $order['order_price'],
             'pay_applydate'   => date('Y-m-d H:i:s'),
-            'pay_bankcode'    => [1 => 901, 2 => 904][$pay_type] ?? $pay_type,//1微信 2支付宝
+            'pay_bankcode'    => isset($bankcode_map[$pay_type]) ? $bankcode_map[$pay_type] : $pay_type,//1微信 2支付宝
             'pay_notifyurl'   => $GLOBALS['http_type'] . $_SERVER['HTTP_HOST'] . '/payment/notify/pay_type/funpay',
             'pay_callbackurl' => '',
         ];
@@ -50,7 +51,7 @@ class Funpay {
     {
         $params = $_POST;
 
-        $order_code = $params['orderid'] ?? $_REQUEST['orderid'];
+        $order_code = isset($params['orderid']) ? $params['orderid'] : $_REQUEST['orderid'];
         $where_order = ['order_code' => $order_code];
         $order = model('Order')->infoData($where_order);
         if ($order['code'] != 1) {

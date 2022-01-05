@@ -337,7 +337,7 @@ layui.define(['message', 'table', 'jquery', 'element', 'yaml', 'form', 'tab', 'm
 		});
 
 		body.on("click", ".setting", function() {
-			var title = $(".whole-style").text();
+			var title = i18n.whole_style;
 			var bgColorHtml =
 				'<li class="layui-this" data-select-bgcolor="dark-theme" >' +
 				'<a href="javascript:;" data-skin="skin-blue" style="" class="clearfix full-opacity-hover">' +
@@ -411,7 +411,7 @@ layui.define(['message', 'table', 'jquery', 'element', 'yaml', 'form', 'tab', 'm
 						    type: 'get',
 						    dataType:'json',
 						    // url: location.origin + location.pathname.replace("index.html","lang.html") + `?lang=${val}`,
-						    url: $('.languege-change-url').text() + `?lang=${val}`,
+						    url: i18n.languege_change_url + `?lang=${val}`,
 						    success:function(){
 						        location.reload();
 						    }
@@ -422,7 +422,8 @@ layui.define(['message', 'table', 'jquery', 'element', 'yaml', 'form', 'tab', 'm
 		});
 
 		function bottomTool() {
-			return "<button id='closeTheme' style='position: absolute;bottom: 20px;left: 20px;' class='pear-btn'>关闭</button>"
+
+			return "<button id='closeTheme' style='position: absolute;bottom: 20px;left: 20px;' class='pear-btn'>"+i18n.close+"</button>"
 		}
 
 		body.on('click', '[data-select-bgcolor]', function() {
@@ -489,7 +490,7 @@ layui.define(['message', 'table', 'jquery', 'element', 'yaml', 'form', 'tab', 'm
 
 		function buildColorHtml() {
 			var colors = "";
-			var title = $(".theme-color").text();
+			var title = i18n.theme_color;
 			$.each(config.colors, function(i, value) {
 				colors += "<span class='select-color-item' color-id='" + value.id + "' style='background-color:" + value.color +
 					";'></span>";
@@ -500,7 +501,7 @@ layui.define(['message', 'table', 'jquery', 'element', 'yaml', 'form', 'tab', 'm
 		// 多语言选项
 		function buildLanguageHtml() {
 			var languages = '';
-			var title = $(".lang-change").text();
+			var title = i18n.lang_change;
 			$.each(config.language_list, function(i, value) {
 				
 				languages += `<option value="${value}" ${value === config.language_current?' selected':''}>${value}</option>`;

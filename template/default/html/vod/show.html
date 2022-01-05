@@ -107,8 +107,10 @@
                         </span>
                     </div>
 
-                    <ul class="vodlist {in name=" obj.type_id " value="$tplconfig[ 'theme'][ 'type'][ 'hb'] "}vodlist_hb{else/}vodlist_wi{/in} author*qq3626/95/000 clearfix">
-                        {maccms:vod num="60" paging="yes" half="3" pageurl="vod/show" type="current" order="desc" by="time"} {include file="widget/vod_box"} {/maccms:vod}
+                    <ul class="vodlist {in name="$obj.type_id" value="$tplconfig['theme']['type']['hb']"} vodlist_hb {else/} vodlist_wi {/in} author*qq3626/95/000 clearfix">
+                    {maccms:vod num="60" paging="yes" half="3" pageurl="vod/show" type="current" order="desc" by="time"}
+                        {include file="widget/vod_box"}
+                    {/maccms:vod}
                     </ul>
 
                     {include file="widget/page"}

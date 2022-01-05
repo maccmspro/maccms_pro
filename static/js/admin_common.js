@@ -22,7 +22,7 @@ layui.define(['element', 'form'], function(exports) {
         layer.open({
             title: false,
             type: 1,
-            content: '<div class="lock-screen"><input type="password" class="unlockedPwd layui-input" placeholder="请输入登录密码解锁..." autocomplete="off"><button class="unlocked layui-btn">解锁</button><div class="unlockTips"></div></div>',
+            content: '<div class="lock-screen"><input type="password" class="unlockedPwd layui-input" placeholder="'+i18n.tip17+'" autocomplete="off"><button class="unlocked layui-btn">'+i18n.tip18+'</button><div class="unlockTips"></div></div>',
             closeBtn: 0,
             shade: 0.95,
             offset: '350px'
@@ -152,7 +152,7 @@ layui.define(['element', 'form'], function(exports) {
         }
         $.post(_url, query, function(res) {
             layer.closeAll('dialog');
-            var lay = layer.open({type:1, title:_title, content:res, area: [_width+'px', _height+'px']});
+            var lay = layer.open({type:1, title:_title||parent.i18n.tip19, content:res.msg||res, area: [_width+'px', _height+'px']});
             form.render('select');
         });
     });
@@ -169,13 +169,13 @@ layui.define(['element', 'form'], function(exports) {
 
 
         if (!_url) {
-            layer.msg('请设置href参数');
+            layer.msg(parent.i18n.tip10);
             return false;
         }
         
         if(_checkbox){
             if ($('.checkbox-ids:checked').length <= 0) {
-                layer.msg('请选择要操作的数据');
+                layer.msg(parent.i18n.tip11);
                 return false;
             }
 
@@ -188,7 +188,7 @@ layui.define(['element', 'form'], function(exports) {
             _ids = ids.join(',');
             _url = _url.indexOf('?') > -1 ? _url + '&ids='+_ids : _url + '?ids=' + _ids;
         }
-        var lay = layer.open({type:2, title:_title, content:_url, area: [_width+'', _height+'']});
+        var lay = layer.open({type:2, title:_title||parent.i18n.tip19, content:_url, area: [_width+'', _height+'']});
         if(_full=='1'){
             layer.full(lay);
         }
@@ -215,7 +215,7 @@ layui.define(['element', 'form'], function(exports) {
     form.on('switch(switchStatus)', function(data) {
         var that = $(this), status = 0;
         if (!that.attr('data-href')) {
-            layer.msg('请设置data-href参数');
+            layer.msg(parent.i18n.tip12);
             return false;
         }
         if (this.checked) {
@@ -248,7 +248,7 @@ layui.define(['element', 'form'], function(exports) {
                 CKEDITOR.instances[instance].updateElement();
             }
         }
-        layer.msg('数据提交中...',{time:500000});
+        layer.msg(parent.i18n.tip13,{time:500000});
         $.ajax({
             type: "POST",
             url: _form.attr('action'),
@@ -288,9 +288,9 @@ layui.define(['element', 'form'], function(exports) {
     $('.j-tr-del').click(function() {
         var that = $(this),
             href = !that.attr('data-href') ? that.attr('href') : that.attr('data-href');
-        layer.confirm('删除之后无法恢复，您确定要删除吗？', {title:false, closeBtn:0}, function(index){
+        layer.confirm(parent.i18n.tip14, {title:parent.i18n.tip19, btn:[parent.i18n.tip20,parent.i18n.tip21]}, function(index){
             if (!href) {
-                layer.msg('请设置data-href参数');
+                layer.msg(parent.i18n.tip12);
                 return false;
             }
             $.get(href, function(res){
@@ -311,12 +311,12 @@ layui.define(['element', 'form'], function(exports) {
             href = !that.attr('data-href') ? that.attr('href') : that.attr('data-href'),
             refresh = !that.attr('refresh') ? 'yes' : that.attr('refresh');
         if (!href) {
-            layer.msg('请设置data-href参数');
+            layer.msg(parent.i18n.tip12);
             return false;
         }
 
         if (!that.attr('confirm')) {
-            layer.msg('数据提交中...', {time:500000});
+            layer.msg(parent.i18n.tip13, {time:500000});
             $.get(href, {}, function(res) {
                 layer.msg(res.msg, {}, function() {
                     if (refresh == 'yes') {
@@ -331,8 +331,8 @@ layui.define(['element', 'form'], function(exports) {
             layer.close();
         }
         else {
-            layer.confirm(that.attr('confirm'), {title:false, closeBtn:0}, function(index){
-                layer.msg('数据提交中...', {time:500000});
+            layer.confirm(that.attr('confirm'), {title:parent.i18n.tip19, btn:[parent.i18n.tip20,parent.i18n.tip21]}, function(index){
+                layer.msg(parent.i18n.tip13, {time:500000});
                 $.get(href, {}, function(res) {
                     layer.msg(res.msg, {}, function() {
                         if (refresh == 'yes') {
@@ -367,7 +367,7 @@ layui.define(['element', 'form'], function(exports) {
         if (_val == '') return false;
         if (that.attr('data-value') == _val) return false;
         if (!that.attr('data-href')) {
-            layer.msg('请设置data-href参数');
+            layer.msg(parent.i18n.tip12);
             return false;
         }
         $.post(that.attr('data-href'), {val:_val}, function(res) {
@@ -402,13 +402,13 @@ layui.define(['element', 'form'], function(exports) {
                 _ajax = !that.attr('data-ajax') ? 'yes' : that.attr('data-ajax'),
                 _ids = '';
                 if (!href) {
-                    layer.msg('请设置data-href参数');
+                    layer.msg(parent.i18n.tip12);
                     return false;
                 }
 
                 if(_checkbox=='yes') {
                     if ($('.checkbox-ids:checked').length <= 0) {
-                        layer.msg('请选择要操作的数据');
+                        layer.msg(parent.i18n.tip11);
                         return false;
                     }
                     var ids = [];
@@ -425,7 +425,7 @@ layui.define(['element', 'form'], function(exports) {
                     } else {
                         var query = $('#pageListForm').serialize();
                     }
-                    layer.msg('数据提交中...', {time: 500000});
+                    layer.msg(parent.i18n.tip13, {time: 500000});
                     $.post(href, query, function (res) {
                         layer.msg(res.msg, {}, function () {
                             if (res.code != 0) {
@@ -439,8 +439,8 @@ layui.define(['element', 'form'], function(exports) {
                 }
             };
         if (that.hasClass('confirm')) {
-            var tips = that.attr('tips') ? that.attr('tips') : '您确定要执行此操作吗？';
-            layer.confirm(tips, {title:false, closeBtn:0}, function(index){
+            var tips = that.attr('tips') ? that.attr('tips') : parent.i18n.tip15;
+            layer.confirm(tips, {title:parent.i18n.tip19, btn:[parent.i18n.tip20,parent.i18n.tip21]}, function(index){
                 code(that);
                 layer.close(index);
             });
@@ -470,7 +470,7 @@ function onSelectResult(input,obj){
             }
         }
     });
-    alert('添加成功!');
+    alert(parent.i18n.tip16);
 }
 
 function rndNum(under, over){

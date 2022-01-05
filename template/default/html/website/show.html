@@ -30,9 +30,10 @@
         .website-list{
             padding:0px 20px;
         }
-       
+
     }
 </style>
+{php}$info = ['type_mid' => 11,'type_id' => ''];{/php}
 <body>
 <div class="show-pc">
     {include file="public/head"}
@@ -46,19 +47,37 @@
 <!-- 搜索条件 -->
 <div class="member-wrap">
 <div class=" filter-focus">
-    <div class="ui-title"><h3>{$obj.type_name} - <span data-lang="website_gjsl">{:lang_web('website_gjsl')} </span> </h3></div>
+    <div class="ui-title"><h3>{$obj.type_name}<span data-lang="website_gjsl">{:lang_web('website_gjsl')}</span> </h3></div>
     <div class="ui-cnt">
-        
+
         <div id="hl06">
             <div class="scroller">
                 <ul class="screen_list clearfix">
                     <li class="text hidden_xs"><span class="text_muted" data-lang="string_show_zm">{:lang_web('string_show_zm')} </span>
                     </li>
                     <li></li>
-                    <li {if condition="$param['letter'] eq ''" } class="hl tplconfig-06" {/if}><a href="{:mac_url_type($obj,['area'=>$param['area'],'lang'=>$param['lang'],'year'=>$param['year'],'level'=>$param['level'],'letter'=>'','state'=>$param['state'],'tag'=>$param['tag'],'class'=>$param['class'],'order'=>$param['order'],'by'=>$param['by'] ],'show')}" data-lang="string_show_all">{:lang_web('string_show_all')} </a>
+                    <li {if condition="$param['letter'] eq ''" } class="hl tplconfig-06" {/if}><a href="{:mac_url_type($info,['letter'=>''],'show')}" data-lang="string_show_all">{:lang_web('string_show_all')} </a>
                     </li>
-                    {maccms:foreach name=":explode(',','A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z,0-9')" id="vo2" key="key2"}
-                    <li {if condition="$param['letter'] eq $vo2" } class="hl tplconfig-06" {/if}><a href="{:mac_url_type($obj,['area'=>$param['area'],'lang'=>$param['lang'],'year'=>$param['year'],'level'=>$param['level'],'letter'=>$vo2,'state'=>$param['state'],'tag'=>$param['tag'],'class'=>$param['class'],'order'=>$param['order'],'by'=>$param['by'] ],'show')}">{$vo2}</a>
+                    {maccms:foreach name=":explode(',','A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z')" id="vo2" key="key2"}
+                    <li {if condition="$param['letter'] eq $vo2" } class="hl tplconfig-06" {/if}>
+                    <a href="{:mac_url_type($info,['letter'=>$vo2],'show')}">{$vo2}</a>
+                    </li>
+                    {/maccms:foreach}
+                </ul>
+            </div>
+        </div>
+        <div id="hl07">
+            <div class="scroller">
+                <ul class="screen_list clearfix">
+                    <li class="text hidden_xs"><span class="text_muted" data-lang="string_show_website_number">{:lang_web('string_show_website_number')} </span>
+                    </li>
+                    <li></li>
+                    <li {if condition="$param['letter'] eq ''" } class="hl tplconfig-07" {/if}>
+                    <a href="{:mac_url_type($info,['letter'=>''],'show')}" data-lang="string_show_all">{:lang_web('string_show_all')}</a>
+                    </li>
+                    {maccms:foreach name=":explode(',','0,1,2,3,4,5,6,7,8,9')" id="vo3" key="key3"}
+                    <li {if condition="$param['letter'] eq $vo3" } class="hl tplconfig-07" {/if}>
+                    <a href="{:mac_url_type($info,['letter'=>$vo3],'show')}">{$vo3}</a>
                     </li>
                     {/maccms:foreach}
                 </ul>
@@ -69,9 +88,9 @@
 <!-- 排序方式 -->
 <div class="ui-bar fn-clear">
     <div class="view-filter">
-        <a href="{:mac_url_type($obj,['area'=>$param['area'],'lang'=>$param['lang'],'level'=>$param['level'],'letter'=>$param['letter'],'tag'=>$param['tag'],'class'=>$param['class'],'order'=>$param['order'],'by'=>'time' ],'show')}" class="order {if condition="$param.by eq '' || $param.by eq 'time'"}current{/if}" data-lang="website_asj">{:lang_web('website_asj')} </a>
-        <a href="{:mac_url_type($obj,['area'=>$param['area'],'lang'=>$param['lang'],'level'=>$param['level'],'letter'=>$param['letter'],'tag'=>$param['tag'],'class'=>$param['class'],'order'=>$param['order'],'by'=>'hits' ],'show')}" class="order {if condition="$param.by eq 'hits'"}current{/if}" data-lang="website_arq">{:lang_web('website_arq')} </a>
-        <a href="{:mac_url_type($obj,['area'=>$param['area'],'lang'=>$param['lang'],'level'=>$param['level'],'letter'=>$param['letter'],'tag'=>$param['tag'],'class'=>$param['class'],'order'=>$param['order'],'by'=>'score' ],'show')}" class="order {if condition="$param.by eq 'score'"}current{/if}" data-lang="website_apf">{:lang_web('website_apf')} </a>
+        <a href="{:mac_url_type($info,['letter'=>$param['letter'],'by'=>'time'],'show')}" class="order {if condition="$param.by eq '' || $param.by eq 'time'"}current{/if}" data-lang="website_asj">{:lang_web('website_asj')}</a>
+        <a href="{:mac_url_type($info,['letter'=>$param['letter'],'by'=>'hits'],'show')}" class="order {if condition="$param.by eq 'hits'"}current{/if}" data-lang="website_arq">{:lang_web('website_arq')}</a>
+        <a href="{:mac_url_type($info,['letter'=>$param['letter'],'by'=>'score'],'show')}" class="order {if condition="$param.by eq 'score'"}current{/if}" data-lang="website_apf">{:lang_web('website_apf')}</a>
     </div>
 </div>
 <!--列表部分-->

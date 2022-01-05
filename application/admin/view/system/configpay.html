@@ -13,7 +13,15 @@
                 <li class="layui-this" lay-id="configpay_1">{:lang('admin/system/configpay/title')}</li>
                 <li lay-id="configpay_2">{:lang('admin/system/configpay/card')}</li>
                 {volist name="$extends['ext_list']" id="vo"}
-                <li data-key="{$key}" lay-id="configpay_{$i+2}">{$vo}</li>
+                <li data-key="{$key}" lay-id="configpay_{$i+2}">
+                    {if $vo == '支付宝'}
+                        <span data-lang="admin/pay/type/lfpay">{:lang('admin/pay/type/alipay')}</span>
+                    {elseif $vo == '乐付支付'}
+                        <span data-lang="admin/pay/type/wechatpay">{:lang('admin/pay/type/lfpay')}</span>
+                    {else}
+                        <span data-lang="admin/pay/type/alipay">{:lang('admin/pay/type/wechatpay')}</span>
+                    {/if}
+                </li>
                 {/volist}
                 
             </ul>

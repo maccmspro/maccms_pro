@@ -12,30 +12,30 @@
                 <input id="gbook_rid" name="gbook_rid" type="hidden" value="{$info.gbook_rid}">
                 <div class="layui-form-item">
 
-                    <label class="layui-form-label">昵称：</label>
+                    <label class="layui-form-label">{:lang('admin/extend/upload/title46')}：</label>
                     <div class="layui-input-inline w80">
                         <input type="text" class="layui-input" value="{$info.gbook_name}" readonly="readonly" name="gbook_name" >
                     </div>
-                    <label class="layui-form-label">留言时间：</label>
+                    <label class="layui-form-label">{:lang('admin/extend/upload/title47')}：</label>
                     <div class="layui-input-inline w130">
                         <input type="text" class="layui-input" value="{$info.gbook_time|date='Y-m-d H:i:s',###}" readonly="readonly">
                     </div>
-                    <label class="layui-form-label">回复时间：</label>
+                    <label class="layui-form-label">{:lang('admin/extend/upload/title48')}：</label>
                     <div class="layui-input-inline w130">
                         <input type="text" class="layui-input" value="{$info.gbook_reply_time|date='Y-m-d H:i:s',###}" readonly="readonly">
                     </div>
                 </div>
 
                 <div class="layui-form-item">
-                    <label class="layui-form-label">留言内容：</label>
+                    <label class="layui-form-label">{:lang('admin/extend/upload/title49')}：</label>
                     <div class="layui-input-block">
-                        <textarea type="text" class="layui-textarea" lay-verify="gbook_content" placeholder="请输入评论内容" name="gbook_content">{$info.gbook_content}</textarea>
+                        <textarea type="text" class="layui-textarea" lay-verify="gbook_content" placeholder="{:lang('admin/extend/upload/title51')}" name="gbook_content">{$info.gbook_content}</textarea>
                     </div>
                 </div>
                 <div class="layui-form-item">
-                    <label class="layui-form-label">回复内容：</label>
+                    <label class="layui-form-label">{:lang('admin/extend/upload/title50')}：</label>
                     <div class="layui-input-block">
-                        <textarea type="text" class="layui-textarea" lay-verify="gbook_reply" placeholder="请输入回复内容" name="gbook_reply">{$info.gbook_reply}</textarea>
+                        <textarea type="text" class="layui-textarea" lay-verify="gbook_reply" placeholder="{:lang('admin/extend/upload/title52')}" name="gbook_reply">{$info.gbook_reply}</textarea>
                     </div>
                 </div>
 

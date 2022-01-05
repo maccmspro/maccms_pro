@@ -7,19 +7,19 @@
         <div class="my-toolbar-box">
             <div class="center mb10">
                 <fieldset class="layui-elem-field">
-                    <legend>问题反馈</legend>
+                    <legend>{:lang('admin/addon/marketfeedback/desc1')}</legend>
                     <div class="layui-field-box">
                         <div class="layui-form-item">
-                            <label class="layui-form-label">应用名称:</label>
+                            <label class="layui-form-label">{:lang('admin/addon/marketfeedback/desc2')}:</label>
                             <div class="layui-input-block">
                                 <input name="name" type="text" value="{$info.name}" class="layui-input" readonly="readonly">
                             </div>
                         </div>
                         <div class="layui-form-item">
-                            <label class="layui-form-label">版本号:</label>
+                            <label class="layui-form-label">{:lang('admin/addon/marketfeedback/desc3')}:</label>
                             <div class="layui-input-block">
                                 <select name="version">
-                                    <option value="">请选择版本号</option>
+                                    <option value="">{:lang('admin/addon/marketfeedback/desc4')}</option>
                                     {volist name="version_history" id="vo"}
                                     <option value="{$vo}">V{$vo}</option>
                                     {/volist}
@@ -27,30 +27,30 @@
                             </div>
                         </div>
                         <div class="layui-form-item">
-                            <label class="layui-form-label">反馈内容：</label>
+                            <label class="layui-form-label">{:lang('admin/addon/marketfeedback/desc5')}：</label>
                             <div class="layui-input-block">
                                 <textarea name="content" class="layui-textarea"  placeholder="0/300"></textarea>
                             </div>
                         </div>
                         <div class="layui-form-item">
-                            <label class="layui-form-label">问题截图：</label>
+                            <label class="layui-form-label">{:lang('admin/addon/marketfeedback/desc6')}：</label>
                             <div class="layui-input-block">
                                 <input type="file" class="pear-btn pear-btn-primary pear-btn-md layui-upload" name="images" />
                             </div>
                             <div style="clear: both"></div>
-                            <p>支持图片格式JPG,PNG，每张最大3MB</p>
+                            <p>{:lang('admin/addon/marketfeedback/desc7')}</p>
                         </div>
                         <div class="layui-form-item">
-                            <label class="layui-form-label">问题视频：</label>
+                            <label class="layui-form-label">{:lang('admin/addon/marketfeedback/desc8')}：</label>
                             <div class="layui-input-block">
                                 <input type="file" class="pear-btn pear-btn-primary pear-btn-md layui-upload" name="videos" />
                             </div>
                             <div style="clear: both"></div>
-                            <p>支持视频格式AVI,MP4,MPEG，每个最大3MB</p>
+                            <p>{:lang('admin/addon/marketfeedback/desc9')}</p>
                         </div>
                         
                         <div class="layui-form-item" style="margin-top: 20px">
-                            <button type="submit" class="layui-btn"> 确定提交 </button>
+                            <button type="submit" class="layui-btn"> {:lang('admin/addon/marketfeedback/desc10')} </button>
                         </div>
                     </div>
                 </fieldset>

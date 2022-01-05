@@ -144,7 +144,7 @@
                                         <div class="layui-input-inline w300">
                                             <textarea name="data[title_rule]" id="title_rule" class="layui-textarea">{$data.title_rule}</textarea>
                                             <div class="layui-form-mid layui-word-aux">
-                                                {:lang('use')}"<a href="javascript:insertText('title_rule', '[内容]')"> [内容] </a>"{:lang('admin/cj/wildcard_tip')}
+                                                {:lang('use')}"<a href="javascript:insertText('title_rule', '[{:lang('admin/cj/info/title2')}]')"> [{:lang('admin/cj/info/title2')}] </a>"{:lang('admin/cj/wildcard_tip')}
                                             </div>
                                         </div>
                                         <div class="layui-form-mid">{:lang('admin/cj/filter_rule')}：</div>
@@ -166,7 +166,7 @@
                                     <div class="layui-input-inline w300">
                                         <textarea name="data[type_rule]" id="type_rule" class="layui-textarea">{$data.type_rule}</textarea>
                                         <div class="layui-form-mid layui-word-aux">
-                                            {:lang('use')}"<a href="javascript:insertText('content_rule', '[内容]')"> [内容] </a>"{:lang('admin/cj/wildcard_tip')}
+                                            {:lang('use')}"<a href="javascript:insertText('content_rule', '[{:lang('admin/cj/info/title2')}]')"> [{:lang('admin/cj/info/title2')}] </a>"{:lang('admin/cj/wildcard_tip')}
                                         </div>
                                     </div>
                                     <div class="layui-form-mid">{:lang('admin/cj/filter_rule')}：</div>
@@ -188,7 +188,7 @@
                                         <div class="layui-input-inline w300">
                                             <textarea name="data[content_rule]" id="content_rule" class="layui-textarea">{$data.content_rule}</textarea>
                                             <div class="layui-form-mid layui-word-aux">
-                                                {:lang('use')}"<a href="javascript:insertText('content_rule', '[内容]')"> [内容] </a>"{:lang('admin/cj/wildcard_tip')}
+                                                {:lang('use')}"<a href="javascript:insertText('content_rule', '[{:lang('admin/cj/info/title2')}]')"> [{:lang('admin/cj/info/title2')}] </a>"{:lang('admin/cj/wildcard_tip')}
                                             </div>
                                         </div>
                                         <div class="layui-form-mid">{:lang('admin/cj/filter_rule')}：</div>
@@ -219,7 +219,7 @@
                                     </div>
                                     <div class="layui-form-item">
                                         <label class="layui-form-label">{:lang('admin/cj/match_rule')}：</label>
-                                        从 <textarea rows="5" cols="40" name="data[content_page_start]" id="content_page_start">{$data.content_page_start}</textarea> {:lang('to')}
+                                        {:lang('admin/cj/info/title1')} <textarea rows="5" cols="40" name="data[content_page_start]" id="content_page_start">{$data.content_page_start}</textarea> {:lang('to')}
                                         <textarea rows="5" cols="40" name="data[content_page_end]" id="content_page_end">{$data.content_page_end}</textarea>
                                     </div>
                                 </div>
@@ -248,7 +248,7 @@
                         <label class="layui-form-label">{:lang('admin/cj/match_rule')}：</label>
                         <div class="layui-input-inline">
                             <textarea name="data[customize_config][rule][]" id="role_'+caiji+'" class="layui-textarea">{$vo.rule}</textarea>
-                            <div class="layui-form-mid layui-word-aux">{:lang('use')}"<a href="javascript:insertText('title_rule', '[内容]')"> [内容] </a>"{:lang('admin/cj/wildcard_tip')}    </div>
+                            <div class="layui-form-mid layui-word-aux">{:lang('use')}"<a href="javascript:insertText('title_rule', '[{:lang('admin/cj/info/title2')}]')"> [{:lang('admin/cj/info/title2')}] </a>"{:lang('admin/cj/wildcard_tip')}    </div>
                         </div>
                         <div class="layui-form-mid">{:lang('admin/cj/filter_rule')}：</div>
                         <div class="layui-input-inline">

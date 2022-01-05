@@ -84,7 +84,7 @@
                         <input id="c-{$item.name}" class="layui-input upload-input upload-img" size="37" name="row[{$item.name}]" type="text" value="{$item.value}" data-tip="{$item.tip}">
                         </div>
                     <div class="layui-input-inline w100">
-                        <button type="button" class="pear-btn pear-btn-primary pear-btn-md layui-upload" lay-data="{data:{thumb:0,thumb_class:''}}" >上传</button>
+                        <button type="button" class="pear-btn pear-btn-primary pear-btn-md layui-upload" lay-data="{data:{thumb:0,thumb_class:''}}" >{:lang('upload')}</button>
                         </div>
         
                         {/case}
@@ -94,14 +94,14 @@
                         <input id="c-{$item.name}" class="layui-input upload-input" size="37" name="row[{$item.name}]" type="text" value="{$item.value}" data-tip="{$item.tip}">
                     </div>
                     <div class="layui-input-inline w100">
-                        <button type="button" class="pear-btn pear-btn-primary pear-btn-md layui-upload" lay-data="{data:{thumb:0,thumb_class:''}}" >上传</button>
+                        <button type="button" class="pear-btn pear-btn-primary pear-btn-md layui-upload" lay-data="{data:{thumb:0,thumb_class:''}}" >{:lang('upload')}</button>
                     </div>
         
                         {/case}
                         {case bool}
                         <div class="layui-input-inline">
-                        <input id="row[{$item.name}]-yes" name="row[{$item.name}]" type="radio" value="1" {$item.value?'checked':''} data-tip="{$item.tip}" title="是"/>
-                        <input id="row[{$item.name}]-no" name="row[{$item.name}]" type="radio" value="0" {$item.value?'':'checked'} data-tip="{$item.tip}" title="否"/>
+                        <input id="row[{$item.name}]-yes" name="row[{$item.name}]" type="radio" value="1" {$item.value?'checked':''} data-tip="{$item.tip}" title="{:lang('yes')}"/>
+                        <input id="row[{$item.name}]-no" name="row[{$item.name}]" type="radio" value="0" {$item.value?'':'checked'} data-tip="{$item.tip}" title="{:lang('not')}"/>
                         </div>
                         {/case}
                         {/switch}

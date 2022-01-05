@@ -67,22 +67,39 @@
         <!-- <div class="loader"></div> -->
     </div>
     <!-- js中的多语言处理 -->
-    <div class="hidden-element">
-        <div class="languege-change-url">{:url('index/lang')}</div>
-        
-        <div class="whole-style">{:lang('admin/system/whole_style')}</div>
-        <div class="theme-color">{:lang('admin/system/theme_color')}</div>
-        <div class="lang-change">{:lang('admin/system/lang_change')}</div>
-        
-        <div class="close-current">{:lang('admin/system/close_current')}</div>
-        <div class="close-other">{:lang('admin/system/close_other')}</div>
-        <div class="close-all">{:lang('admin/system/close_all')}</div>
-    </div>
+    <div class="hidden-element"></div>
 </div>
 
 {include file="../../../application/admin/view/public/foot" /}
 <!-- 初始化pear-admin，生成菜单 -->
 <script>
+    // 国际化，js中的多语言文本
+    window.i18n = {
+        languege_change_url: "{:url('index/lang')}",
+        whole_style: "{:lang('admin/system/whole_style')}",
+        theme_color: "{:lang('admin/system/theme_color')}",
+        lang_change: "{:lang('admin/system/lang_change')}",
+        close_current: "{:lang('admin/system/close_current')}",
+        close_other: "{:lang('admin/system/close_other')}",
+        close_all: "{:lang('admin/system/close_all')}",
+        close: "{:lang('close')}",
+        tip10: "{:lang('admin/public/index/title10')}",
+        tip11: "{:lang('admin/public/index/title11')}",
+        tip12: "{:lang('admin/public/index/title12')}",
+        tip13: "{:lang('admin/public/index/title13')}",
+        tip14: "{:lang('admin/public/index/title14')}",
+        tip15: "{:lang('admin/public/index/title15')}",
+        tip16: "{:lang('admin/public/index/title16')}",
+        tip17: "{:lang('admin/public/index/title17')}",
+        tip18: "{:lang('admin/public/index/title18')}",
+        tip19: "{:lang('admin/public/index/title19')}",
+        tip20: "{:lang('admin/public/index/title20')}",
+        tip21: "{:lang('admin/public/index/title21')}",
+        tip22: "{:lang('admin/public/index/title22')}",
+        tip23: "{:lang('admin/public/index/title23')}",
+        tip24: "{:lang('admin/public/index/title24')}",
+    }
+    
     var obj = <?=json_encode($menus)?>;
     var arr = obj2Arr(obj);
     var parsedArr = originDataParse2PearAdminMenu(arr);
@@ -112,7 +129,7 @@
 </script>
 
 <script>
-    window.localStorage.clear();
+    // window.localStorage.clear();
 </script>
 
 <script type="text/javascript">

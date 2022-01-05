@@ -3,15 +3,15 @@
     <div class="my-toolbar-box">
         <div class="center mb10" style="text-align: center">
             <fieldset class="layui-elem-field" style="width: 460px;margin: auto">
-                <legend>授权码验证</legend>
+                <legend>{:lang('admin/addon/marketlicense/desc1')}</legend>
                 <div class="layui-field-box">
                     <div class="layui-form-item">
                         <div class="layui-input-block" style="margin-left: 10px;margin-top: 20px">
-                            <input id="license" type="text" autocomplete="off" placeholder="请输入授权码" class="layui-input" name="license" value="">
+                            <input id="license" type="text" autocomplete="off" placeholder="{:lang('admin/addon/marketlicense/desc2')}" class="layui-input" name="license" value="">
                         </div>
                     </div>
                     <div class="layui-form-item">
-                        <button id="convertbut" class="layui-btn" style="margin-top: 20px">立即验证</button>
+                        <button id="convertbut" class="layui-btn" style="margin-top: 20px">{:lang('admin/addon/marketlicense/desc3')}</button>
                     </div>
                 </div>
             </fieldset>
@@ -25,7 +25,7 @@
     layui.use(['form','element'], function() {
         $(document).on('click', '#convertbut', function() {
             if(''==$("#license").val()){
-                layer.msg('请填写兑换码');return;
+                layer.msg("{:lang('admin/addon/marketlicense/desc4')}");return;
             }
             $.ajax({
                 type: 'post',
@@ -37,18 +37,18 @@
                         //window.open($r.data.down_url);    //打开下载链接
                         if($r.data.type == "plugins"){
                             url_href = "{:url('downandinstalladdon')}";
-                            show_str = '安装应用'
-                            show_str2 = '下载应用'
+                            show_str = "{:lang('admin/addon/marketlicense/desc5')}"
+                            show_str2 = "{:lang('admin/addon/marketlicense/desc6')}"
                         }
                         if($r.data.type == "theme"){
                             url_href = "{:url('downandinstalltheme')}";
-                            show_str = '安装模板'
-                            show_str2 = '下载模板'
+                            show_str = "{:lang('admin/addon/marketlicense/desc7')}"
+                            show_str2 = "{:lang('admin/addon/marketlicense/desc8')}"
                         }
                         url_href = url_href + "?down_url="+$r.data.down_url+"&file_name="+$r.data.file_name;
                         layer.open({
                             type:1,
-                            title:"系统信息",
+                            title:"{:lang('admin/addon/marketlicense/desc9')}",
                             content:"<div style='padding:20px'><a class='layui-btn' href="+url_href+" title='"+show_str+"'>"+show_str+"</a><a class='layui-btn' href='"+$r.data.down_url+"'>"+show_str2+"</a></div>",
                             area:["400px","140px"],
                             offset:"top"

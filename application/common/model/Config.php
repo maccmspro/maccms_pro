@@ -3,7 +3,6 @@
 namespace app\common\model;
 
 use think\Db;
-use think\Config as ThinkConfig;
 
 class Config extends Base {
     // 设置数据表（不含前缀）
@@ -19,8 +18,8 @@ class Config extends Base {
         if ($this->lockTableUpdate(0) === true) {
             return true;
         }
-        if (!Db::execute("SHOW TABLES LIKE '". config('database.prefix') . $this->name ."'")) {
-            $sql = "CREATE TABLE `". config('database.prefix') . $this->name ."` (
+        if (!Db::execute("SHOW TABLES LIKE '". $this->tablePrefix . $this->name ."'")) {
+            $sql = "CREATE TABLE `". $this->tablePrefix . $this->name ."` (
                 `config_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
                 `config_key` varchar(200) DEFAULT NULL,
                 `config_value` longtext DEFAULT NULL,

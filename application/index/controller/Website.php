@@ -24,8 +24,7 @@ class Website extends Base
     public function show()
     {
         $this->check_show();
-        $info = $this->label_type();
-        return $this->label_fetch( mac_tpl_fetch('website',$info['type_tpl_list'],'show') );
+        return $this->label_fetch('website/show');
     }
 
     public function ajax_show()

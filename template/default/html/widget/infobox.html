@@ -9,12 +9,12 @@
 <input type="hidden" id="tips_text" value="{$tips_text|mac_default='Welcome!'}">
 <input type="hidden" id="shareurl" value="{$tplconfig['theme']['share']['link']}">
 <input type="hidden" id="version"  value="{:system_version()}">
-{if$tplconfig['theme']['share']['api']==sina}
+{if$tplconfig['theme']['share']['api']=='sina'}
 <input type="hidden" id="openapi"  value="sina">
 <input type="hidden" id="apiurl"  value="{$tplconfig['theme']['share']['apiurl']|mac_default='#'}">
-{/if}{if$tplconfig['theme']['share']['api']==bd}
+{/if}{if$tplconfig['theme']['share']['api']=='bd'}
 <input type="hidden" id="openapi"  value="bd">
 <input type="hidden" id="Tok"  value="{$tplconfig['theme']['share']['tok']|mac_default='#'}">
-{if$tplconfig['theme']['share']['term']==long}<input type="hidden" id="Term"  value="long-term">{/if}{if$tplconfig['theme']['share']['term']==one}<input type="hidden" id="Term"  value="1-year">{/if}
+{if$tplconfig['theme']['share']['term']=='long'}<input type="hidden" id="Term"  value="long-term">{/if}{if$tplconfig['theme']['share']['term']=='one'}<input type="hidden" id="Term"  value="1-year">{/if}
 {/if}
 </div>

@@ -10,14 +10,14 @@
         <div class="main-container">
             <div class="main-container">
                 <blockquote class="layui-elem-quote layui-quote-nm">
-                    提示信息：部分标签参数可能不全面
+                    {:lang('admin/system/config/desc35')}
                 </blockquote>
                 
                 <div class="layui-form-item">
-                    <label class="layui-form-label">标签类别：</label>
+                    <label class="layui-form-label">{:lang('admin/system/config/desc36')}：</label>
                     <div class="layui-input-block">
                         <input type="button" class="pear-btn pear-btn-primary pear-btn-md pear-btn-margin" value="link({:lang('link')})" onclick="showex('link')"/>
-                        <input type="button" class="pear-btn pear-btn-primary pear-btn-md pear-btn-margin" value="banner(广告)" onclick="showex('banner')"/>
+                        <input type="button" class="pear-btn pear-btn-primary pear-btn-md pear-btn-margin" value="banner({:lang('admin/system/config/desc7')})" onclick="showex('banner')"/>
         
                         <input type="button" class="pear-btn pear-btn-primary pear-btn-md pear-btn-margin" value="type({:lang('type')})" onclick="showex('type')"/>
                         <input type="button" class="pear-btn pear-btn-primary pear-btn-md pear-btn-margin" value="topic({:lang('topic')})" onclick="showex('topic')"/>
@@ -55,13 +55,13 @@
                     <div class="layui-input-inline w100">
                         <select id="order_banner"><option value="desc">{:lang('admin/template/reverse_order')}</option><option value="asc">{:lang('admin/template/positive_order')}</option></select>
                     </div>
-                    <label class="layui-form-label w50">排序：</label>
+                    <label class="layui-form-label w50">{:lang('admin/system/config/desc38')}：</label>
                     <div class="layui-input-inline w100">
                         <select id="by_banner"><option value="order">{:lang('sort')}</option><option value="id">{:lang('id')}</option></select>
                     </div>
-                    <label class="layui-form-label w50">数据：</label>
+                    <label class="layui-form-label w50">{:lang('admin/system/config/desc39')}：</label>
                     <div class="layui-input-inline w100">
-                        <select id="type_banner"><option value="all">全部广告</option><option value="top">自定义编码</option></select>
+                        <select id="type_banner"><option value="all">{:lang('admin/system/config/desc40')}</option><option value="top">{:lang('admin/system/config/desc41')}</option></select>
                     </div>
                 </div>
         
@@ -129,7 +129,7 @@
                     </div>
                     <label class="layui-form-label w50">{:lang('data')}：</label>
                     <div class="layui-input-inline w100">
-                        <select id="ids_type"><option value="all">{:lang('all')}</option><option value="parent">一级{:lang('type')}</option><option value="child">二级{:lang('type')}</option><option value="1,2,3">{:lang('diy_ids')}</option></select>
+                        <select id="ids_type"><option value="all">{:lang('all')}</option><option value="parent">{:lang('admin/system/config/desc42')}{:lang('type')}</option><option value="child">{:lang('admin/system/config/desc43')}{:lang('type')}</option><option value="1,2,3">{:lang('diy_ids')}</option></select>
                     </div>
                 </div>
         
@@ -140,7 +140,7 @@
                     </div>
                     <label class="layui-form-label w50">{:lang('sort')}：</label>
                     <div class="layui-input-inline w100">
-                        <select id="by_topic"><option value="time">{:lang('update_time')}</option><option value="time_add">{:lang('add_time')}</option><option value="id">ID</option><option value="hits">{:lang('hits')}</option><option value="hits_day">{:lang('hits_day')}</option><option value="hits_week">{:lang('hits_week')}</option><option value="hits_month">{:lang('hits_month')}</option><option value="up">顶数</option><option value="down">踩数</option><option value="level">{:lang('level')}</option></select>
+                        <select id="by_topic"><option value="time">{:lang('update_time')}</option><option value="time_add">{:lang('add_time')}</option><option value="id">ID</option><option value="hits">{:lang('hits')}</option><option value="hits_day">{:lang('hits_day')}</option><option value="hits_week">{:lang('hits_week')}</option><option value="hits_month">{:lang('hits_month')}</option><option value="up">{:lang('admin/system/config/desc44')}</option><option value="down">{:lang('admin/system/config/desc45')}</option><option value="level">{:lang('level')}</option></select>
                     </div>
                     <label class="layui-form-label w50">{:lang('data')}：</label>
                     <div class="layui-input-inline w100">
@@ -157,13 +157,13 @@
                 </div>
         
                 <div class="layui-form-item vs v_art" style="display: none;">
-                    <label class="layui-form-label">标签参数：</label>
+                    <label class="layui-form-label">{:lang('admin/system/config/desc46')}：</label>
                     <div class="layui-input-inline w100">
                         <select id="order_art"><option value="desc">{:lang('admin/template/reverse_order')}</option><option value="asc">{:lang('admin/template/positive_order')}</option></select>
                     </div>
                     <label class="layui-form-label w50">{:lang('sort')}：</label>
                     <div class="layui-input-inline w100">
-                        <select id="by_art"><option value="time">{:lang('update_time')}</option><option value="time_add">{:lang('add_time')}</option><option value="id">ID</option><option value="hits">{:lang('hits')}</option><option value="hits_day">{:lang('hits_day')}</option><option value="hits_week">{:lang('hits_week')}</option><option value="hits_month">{:lang('hits_month')}</option><option value="up">顶数</option><option value="down">踩数</option><option value="level">{:lang('level')}</option><option value="rnd">{:lang('rnd_data')}</option></select>
+                        <select id="by_art"><option value="time">{:lang('update_time')}</option><option value="time_add">{:lang('add_time')}</option><option value="id">ID</option><option value="hits">{:lang('hits')}</option><option value="hits_day">{:lang('hits_day')}</option><option value="hits_week">{:lang('hits_week')}</option><option value="hits_month">{:lang('hits_month')}</option><option value="up">{:lang('admin/system/config/desc44')}</option><option value="down">{:lang('admin/system/config/desc45')}</option><option value="level">{:lang('level')}</option><option value="rnd">{:lang('rnd_data')}</option></select>
                     </div>
                     <label class="layui-form-label w50">{:lang('level')}：</label>
                     <div class="layui-input-inline w100">
@@ -191,7 +191,7 @@
                     </div>
                     <label class="layui-form-label w50">{:lang('sort')}：</label>
                     <div class="layui-input-inline w100">
-                        <select id="by_vod"><option value="time">{:lang('update_time')}</option><option value="time_add">{:lang('add_time')}</option><option value="id">ID</option><option value="hits">{:lang('hits')}</option><option value="hits_day">{:lang('hits_day')}</option><option value="hits_week">{:lang('hits_week')}</option><option value="hits_month">{:lang('hits_month')}</option><option value="up">顶数</option><option value="down">踩数</option><option value="level">{:lang('level')}</option><option value="rnd">{:lang('rnd_data')}</option></select>
+                        <select id="by_vod"><option value="time">{:lang('update_time')}</option><option value="time_add">{:lang('add_time')}</option><option value="id">ID</option><option value="hits">{:lang('hits')}</option><option value="hits_day">{:lang('hits_day')}</option><option value="hits_week">{:lang('hits_week')}</option><option value="hits_month">{:lang('hits_month')}</option><option value="up">{:lang('admin/system/config/desc44')}</option><option value="down">{:lang('admin/system/config/desc45')}</option><option value="level">{:lang('level')}</option><option value="rnd">{:lang('rnd_data')}</option></select>
                     </div>
                     <label class="layui-form-label w50">{:lang('level')}：</label>
                     <div class="layui-input-inline w100">
@@ -315,7 +315,7 @@
                 break;
             case 'banner':
                 p= ['order','by','type'];
-                c= [ ['key','序号'],['banner_id','编号'],['banner_title','名称'],['banner_pic','图片'],['banner_link','链接地址'] ];
+                c= [ ['key',"{:lang('admin/system/config/desc47')}"],['banner_id',"{:lang('admin/system/config/desc48')}"],['banner_title',"{:lang('admin/system/config/desc49')}"],['banner_pic',"{:lang('admin/system/config/desc50')}"],['banner_link',"{:lang('admin/system/config/desc51')}"] ];
                 break;
             case 'gbook':
                 p= ['order','by','num'];
@@ -359,7 +359,7 @@
                 break;
             case 'vod':
                 p= ['order','by','num','paging','ids','type','level'];
-                c= [ ['key',"{:lang('serial_num')}"],['vod_id',"{:lang('id')}"],['vod_name',"{:lang('name')}"],['vod_en',"{:lang('en')}"],['vod_sub',"{:lang('sub')}"],['vod_content',"{:lang('content')}"],['vod_remarks',"{:lang('remarks')}"],['vod_blurb',"{:lang('blurb')}"],['vod_letter',"{:lang('letter')}"],['vod_total',"{:lang('admin/vod/total')}"],['vod_serial',"{:lang('admin/vod/serial')}"],['vod_tv',"{:lang('admin/vod/tv')}"],['vod_weekday',"{:lang('admin/vod/weekday')}"],['vod_version',"{:lang('admin/vod/version')}"],['vod_isend',"{:lang('admin/vod/isend')}"],['vod_author',"{:lang('author')}"],['vod_jumpurl',"{:lang('jumpurl')}"],['vod_color',"{:lang('color')}"],['vod_hits',"{:lang('hits')}"],['vod_hits_day',"{:lang('hits_day')}"],['vod_hits_week',"{:lang('hits_week')}"],['vod_hits_month',"{:lang('hits_month')}"],['vod_up',"{:lang('up')}"],['vod_down',"{:lang('hate')}"],['vod_time_add',"{:lang('add_time')}"],['vod_time',"{:lang('update_time')}"],['vod_level',"{:lang('level')}"],['vod_state',"{:lang('admin/vod/state')}"],['vod_pic',"{:lang('pic')}"],['vod_pic_thumb',"{:lang('pic_thumb')}"],['vod_pic_slide',"{:lang('slide')}"],['vod_tag','tag'],['vod_actor',"{:lang('actor')}"],['vod_director',"{:lang('director')}"],['vod_area',"{:lang('area')}"],['vod_year',"{:lang('years')}"],['vod_stint_play',"{:lang('admin/vod/stint_play')}"],['vod_stint_down',"{:lang('admin/vod/stint_down')}"],['vod_score',"{:lang('score')}"],['vod_score_all',"{:lang('score_all')}"],['vod_score_num',"{:lang('score_num')}"],['vod_duration',"{:lang('admin/vod/duration')}"],['vod_play_from','播放器类型'],['vod_down_from','下载器类型'],[':mac_url_vod_detail($vo)',"{:lang('url')}"],[':mac_url_vod_play($vo,1,1)',"{:lang('play')}{:lang('url')}"],[':mac_url_vod_down($vo,1,1)',"{:lang('down')}{:lang('url')}"],['type.type_id',"{:lang('type_id')}"],['type.type_id_1',"{:lang('parent_type_id')}"],['type.type_name',"{:lang('type_name')}"],['type.type_en',"{:lang('type')}{:lang('en')}"],['type.type_key',"{:lang('type')}{:lang('seo_key')}"],['type.type_des',"{:lang('type')}{:lang('seo_des')}"],['type.type_title',"{:lang('type')}{:lang('seo_title')}"],[':mac_url_type($vo.type)',"{:lang('type')}{:lang('url')}"] ];
+                c= [ ['key',"{:lang('serial_num')}"],['vod_id',"{:lang('id')}"],['vod_name',"{:lang('name')}"],['vod_en',"{:lang('en')}"],['vod_sub',"{:lang('sub')}"],['vod_content',"{:lang('content')}"],['vod_remarks',"{:lang('remarks')}"],['vod_blurb',"{:lang('blurb')}"],['vod_letter',"{:lang('letter')}"],['vod_total',"{:lang('admin/vod/total')}"],['vod_serial',"{:lang('admin/vod/serial')}"],['vod_tv',"{:lang('admin/vod/tv')}"],['vod_weekday',"{:lang('admin/vod/weekday')}"],['vod_version',"{:lang('admin/vod/version')}"],['vod_isend',"{:lang('admin/vod/isend')}"],['vod_author',"{:lang('author')}"],['vod_jumpurl',"{:lang('jumpurl')}"],['vod_color',"{:lang('color')}"],['vod_hits',"{:lang('hits')}"],['vod_hits_day',"{:lang('hits_day')}"],['vod_hits_week',"{:lang('hits_week')}"],['vod_hits_month',"{:lang('hits_month')}"],['vod_up',"{:lang('up')}"],['vod_down',"{:lang('hate')}"],['vod_time_add',"{:lang('add_time')}"],['vod_time',"{:lang('update_time')}"],['vod_level',"{:lang('level')}"],['vod_state',"{:lang('admin/vod/state')}"],['vod_pic',"{:lang('pic')}"],['vod_pic_thumb',"{:lang('pic_thumb')}"],['vod_pic_slide',"{:lang('slide')}"],['vod_tag','tag'],['vod_actor',"{:lang('actor')}"],['vod_director',"{:lang('director')}"],['vod_area',"{:lang('area')}"],['vod_year',"{:lang('years')}"],['vod_stint_play',"{:lang('admin/vod/stint_play')}"],['vod_stint_down',"{:lang('admin/vod/stint_down')}"],['vod_score',"{:lang('score')}"],['vod_score_all',"{:lang('score_all')}"],['vod_score_num',"{:lang('score_num')}"],['vod_duration',"{:lang('admin/vod/duration')}"],['vod_play_from',"{:lang('admin/system/config/desc52')}"],['vod_down_from',"{:lang('admin/system/config/desc53')}"],[':mac_url_vod_detail($vo)',"{:lang('url')}"],[':mac_url_vod_play($vo,1,1)',"{:lang('play')}{:lang('url')}"],[':mac_url_vod_down($vo,1,1)',"{:lang('down')}{:lang('url')}"],['type.type_id',"{:lang('type_id')}"],['type.type_id_1',"{:lang('parent_type_id')}"],['type.type_name',"{:lang('type_name')}"],['type.type_en',"{:lang('type')}{:lang('en')}"],['type.type_key',"{:lang('type')}{:lang('seo_key')}"],['type.type_des',"{:lang('type')}{:lang('seo_des')}"],['type.type_title',"{:lang('type')}{:lang('seo_title')}"],[':mac_url_type($vo.type)',"{:lang('type')}{:lang('url')}"] ];
                 break;
         }
 

@@ -140,13 +140,27 @@ function config_db_set($name, $data) {
 function config_db_get($name) {
     $config_name = 'config_db_' . $name;
     if (!isset($GLOBALS[$config_name])) {
-        // 获取配置时，Config模型会递归调用，此处抑制
-        $old_value = Config::get('config_save_in_db');
-        Config::set('config_save_in_db', false);
-        $value = model('Config', 'common\model')->getValueByCond("config_key='{$name}'", "config_value");
-        Config::set('config_save_in_db', $old_value);
+        $config_model = model('Config', 'common\model');
+        if (strpos($name, '.') !== false) {
+            $config_keys = $config_model->column('config_key');
+            $exploded = explode('.', $name);
+            $reset = reset($exploded);
+            if (in_array($reset, $config_keys)) {
+                $name = $reset;
+            }
+        }
+        $value = $config_model->getValueByCond("config_key='{$name}'", "config_value");
         if (!empty($value)) {
-            $GLOBALS[$config_name] = unserialize($value);
+            if (isset($exploded)) {
+                $config_value = unserialize($value);
+                array_shift($exploded);
+                foreach ($exploded as $item) {
+                    $config_value = $config_value[$item];
+                }
+                $GLOBALS[$config_name] = $config_value;
+            } else {
+                $GLOBALS[$config_name] = unserialize($value);
+            }
         }
     }
     return isset($GLOBALS[$config_name]) ? $GLOBALS[$config_name] : null;
@@ -1972,7 +1986,7 @@ function mac_url($model,$param=[],$info=[])
                     $id = mac_alphaID($info['type_id'],false,$config['rewrite']['encode_len'],$config['rewrite']['encode_key']);
                     break;
                 default:
-                    $id = $info['type_id'];
+                    $id = isset($info['type_id']) ? $info['type_id'] : $info;
                     break;
             }
             if(!empty($id)){

@@ -150,9 +150,20 @@ class Index extends Base
     }
 
     /**
-     * 获取服务器运行状态         walle
+     * 获取服务器运行状态
      */
     private function getServerUsedStatus(){
+        return [
+            'cpu_nums'       => '-',
+            'cpu_usage'      => '-',
+            'mem_total'      => '-',
+            'mem_usage'      => '-',
+            'hd_avail'       => '-',
+            'hd_usage'       => '-',
+            'tast_running'   => '-',
+            'detection_time' => date('Y-m-d H:i:s'),
+        ];
+
         $fp = popen('top -b -n 2 | grep -E "^(Cpu|Mem|Tasks)"',"r");//获取某一时刻系统cpu和内存使用情况
         $rs = "";
         while(!feof($fp)){
@@ -193,8 +204,10 @@ class Index extends Base
             }else{
                 $cpu_info[0] = NULL;
             }
+            $tast_running = isset($tast_info[1]) ? $tast_info[1] : lang('admin/system/php_com_dotnet');
         } else {
             $cpu_info = sys_getloadavg();
+            $tast_running = isset($tast_info[1]) ? $tast_info[1] : '-';
         }
         $fp = popen('cat /proc/meminfo |grep MemTotal',"r");
         $rs = "";
@@ -203,8 +216,6 @@ class Index extends Base
         }
         pclose($fp);
         $mem_info = explode(":",$rs); //内存大小 数组
-
-        $tast_running = isset($tast_info[1]) ? $tast_info[1] : NULL;//正在运行的进程数
         //$cpu_usage = $cpu_info[0]*100 . '%'; //CPU占有量//百分比
         $cpu_usage = $cpu_info[0] ? round($cpu_info[0]/$cpu_nums * 100,2) . '%' : '-'; //CPU占有量//百分比        除以cpu个数   walle    2021-09-09
         $mem_total = isset($mem_info[1]) ? $mem_info[1] : 0;//内存大小
@@ -222,9 +233,6 @@ class Index extends Base
         /*硬盘使用率 end*/
         $detection_time = date('Y-m-d H:i:s');
         $mem_total = $mem_total > 0 ? to_byte_string(intval($mem_total) * 1024, 0) : '-';
-
-        $tast_running = $tast_running ? $tast_running : lang('admin/system/php_com_dotnet');
-
         return ['cpu_nums'=>$cpu_nums, 'cpu_usage'=>$cpu_usage, 'mem_total'=>$mem_total, 'mem_usage'=>$mem_usage, 'hd_avail'=>$hd_avail, 'hd_usage'=>$hd_usage, 'tast_running'=>$tast_running, 'detection_time'=>$detection_time];
     }
 

@@ -376,25 +376,25 @@
                             <div class="layui-form-mid layui-word-aux">{:lang('admin/system/config/search_timespan_tip')}</div>
                         </div>
                         <div class="layui-form-item">
-                            <label class="layui-form-label">搜索频次-分：</label>
+                            <label class="layui-form-label">{:lang('admin/system/config/desc12')}：</label>
                             <div class="layui-input-inline">
                                 <input type="text" name="app[search_ip_limit_minute]" placeholder="" value="{$config['app']['search_ip_limit_minute']}" class="layui-input w150">
                             </div>
-                            <div class="layui-form-mid layui-word-aux">单IP 每分钟最大搜索次数，可控制QPS</div>
+                            <div class="layui-form-mid layui-word-aux">{:lang('admin/system/config/desc13')}</div>
                         </div>
                         <div class="layui-form-item">
-                            <label class="layui-form-label">搜索频次-时：</label>
+                            <label class="layui-form-label">{:lang('admin/system/config/desc14')}：</label>
                             <div class="layui-input-inline">
                                 <input type="text" name="app[search_ip_limit_hour]" placeholder="" value="{$config['app']['search_ip_limit_hour']}" class="layui-input w150">
                             </div>
-                            <div class="layui-form-mid layui-word-aux">单IP 每小时最大搜索次数，一般为爬虫持续搜索</div>
+                            <div class="layui-form-mid layui-word-aux">{:lang('admin/system/config/desc15')}</div>
                         </div>
                         <div class="layui-form-item">
-                            <label class="layui-form-label">搜索频次-天：</label>
+                            <label class="layui-form-label">{:lang('admin/system/config/desc16')}：</label>
                             <div class="layui-input-inline">
                                 <input type="text" name="app[search_ip_limit_day]" placeholder="" value="{$config['app']['search_ip_limit_day']}" class="layui-input w150">
                             </div>
-                            <div class="layui-form-mid layui-word-aux">单IP 24小时最大搜索次数，服务器负载高时可设置小一些</div>
+                            <div class="layui-form-mid layui-word-aux">{:lang('admin/system/config/desc17')}</div>
                         </div>
 
                         <div class="layui-form-item">
@@ -627,28 +627,28 @@
                             <div class="layui-input-inline">
                                 <input type="text" name="site[site_cc_time]" placeholder="5" value="{$config['site']['site_cc_time']}" class="layui-input w150">
                             </div>
-                            <span>秒</span>
+                            <span>{:lang('admin/system/config/desc1')}8</span>
                         </div>
                         <div class="layui-form-item">
                             <label class="layui-form-label">{:lang('admin/system/config/site_refresh_time')}：</label>
                             <div class="layui-input-inline">
                                 <input type="text" name="site[site_refresh_time]" placeholder="20" value="{$config['site']['site_refresh_time']}" class="layui-input w150">
                             </div>
-                            <span>每秒次数</span>
+                            <span>{:lang('admin/system/config/desc19')}</span>
                         </div>
                     </div>
 
                     <div class="layui-tab-item">
                         <fieldset class="layui-elem-field">
-                            <legend>百度</legend>
+                            <legend>{:lang('admin/system/config/desc20')}</legend>
                             <div class="layui-field-box">
                                 <div class="layui-form-item">
                                     <div class="layui-form-item">
-                                        <label class="layui-form-label" style="width: 120px">百度收录域名：</label>
+                                        <label class="layui-form-label" style="width: 120px">{:lang('admin/system/config/desc21')}：</label>
                                         <div class="layui-input-inline">
-                                            <input type="text" name="site[baidu_urlsend][site]" placeholder="请填写百度收录域名" value="{$config['site']['baidu_urlsend']['site']}" class="layui-input">
+                                            <input type="text" name="site[baidu_urlsend][site]" placeholder="{:lang('admin/system/config/desc22')}" value="{$config['site']['baidu_urlsend']['site']}" class="layui-input">
                                         </div>
-                                        <div class="layui-input-inline"><a href="http://data.zz.baidu.com" target="_blank"><span style="color: #cc0000">*</span>申请地址</a></div>
+                                        <div class="layui-input-inline"><a href="http://data.zz.baidu.com" target="_blank"><span style="color: #cc0000">*</span>{:lang('admin/system/config/desc23')}</a></div>
                                     </div>
                                     <label class="layui-form-label" style="width: 120px">{:lang('admin/system/config/site_baidu_token')}：</label>
                                     <div class="layui-input-inline">
@@ -665,19 +665,19 @@
                                     <div class="layui-input-inline">
                                         <input type="text" name="site[360_urlsend][email]" placeholder="{:lang('admin/system/config/site_360_username_tip')}" value="{$config['site']['360_urlsend']['email']}" class="layui-input">
                                     </div>
-                                    <div class="layui-input-inline"><a href="https://zhanzhang.so.com/sitetool/page_include" target="_blank"><span style="color: #cc0000">*</span>申请地址</a></div>
+                                    <div class="layui-input-inline"><a href="https://zhanzhang.so.com/sitetool/page_include" target="_blank"><span style="color: #cc0000">*</span>{:lang('admin/system/config/desc23')}</a></div>
                                 </div>
                             </div>
                         </fieldset>
                         <fieldset class="layui-elem-field">
-                            <legend>搜狗</legend>
+                            <legend>{:lang('admin/system/config/desc24')}</legend>
                             <div class="layui-field-box">
                                 <div class="layui-form-item">
                                     <label class="layui-form-label" style="width: 120px">{:lang('admin/system/config/site_sougou_user_name')}：</label>
                                     <div class="layui-input-inline">
                                         <input type="text" name="site[sougou_urlsend][user_name]" placeholder="{:lang('admin/system/config/site_sougou_user_name_tip')}" value="{$config['site']['sougou_urlsend']['user_name']}" class="layui-input">
                                     </div>
-                                    <div class="layui-input-inline"><a href="https://zhanzhang.sogou.com/index.php/sitelink/index" target="_blank"><span style="color: #cc0000">*</span>申请地址</a></div>
+                                    <div class="layui-input-inline"><a href="https://zhanzhang.sogou.com/index.php/sitelink/index" target="_blank"><span style="color: #cc0000">*</span>{:lang('admin/system/config/desc23')}</a></div>
                                 </div>
                                 <div class="layui-form-item">
                                     <label class="layui-form-label" style="width: 120px">{:lang('admin/system/config/site_sougou_mail')}：</label>
@@ -688,19 +688,19 @@
                             </div>
                         </fieldset>
                         <fieldset class="layui-elem-field">
-                            <legend>神马</legend>
+                            <legend>{:lang('admin/system/config/desc25')}</legend>
                             <div class="layui-field-box">
                                 <div class="layui-form-item">
-                                    <label class="layui-form-label" style="width: 120px">域名：</label>
+                                    <label class="layui-form-label" style="width: 120px">{:lang('admin/system/config/desc26')}：</label>
                                     <div class="layui-input-inline">
-                                        <input type="text" name="site[shenma_urlsend][site]" placeholder="请填写神马收录域名" value="{$config['site']['shenma_urlsend']['site']}" class="layui-input">
+                                        <input type="text" name="site[shenma_urlsend][site]" placeholder="{:lang('admin/system/config/desc22')}" value="{$config['site']['shenma_urlsend']['site']}" class="layui-input">
                                     </div>
-                                    <div class="layui-input-inline"><a href="https://zhanzhang.sm.cn/open/detialPage" target="_blank"><span style="color: #cc0000">*</span>申请地址</a></div>
+                                    <div class="layui-input-inline"><a href="https://zhanzhang.sm.cn/open/detialPage" target="_blank"><span style="color: #cc0000">*</span>{:lang('admin/system/config/desc23')}</a></div>
                                 </div>
                                 <div class="layui-form-item">
-                                    <label class="layui-form-label" style="width: 120px">神马用户名：</label>
+                                    <label class="layui-form-label" style="width: 120px">{:lang('admin/system/config/desc27')}：</label>
                                     <div class="layui-input-inline">
-                                        <input type="text" name="site[shenma_urlsend][user_name]" placeholder="神马用户" value="{$config['site']['shenma_urlsend']['user_name']}" class="layui-input">
+                                        <input type="text" name="site[shenma_urlsend][user_name]" placeholder="{:lang('admin/system/config/desc28')}" value="{$config['site']['shenma_urlsend']['user_name']}" class="layui-input">
                                     </div>
                                 </div>
                                 <div class="layui-form-item">

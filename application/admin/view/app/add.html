@@ -4,24 +4,24 @@
         <div class="my-toolbar-box">
             <div class="center mb10">
                 <div class="layui-form-item">
-                    <label class="layui-form-label">APP名称:</label>
+                    <label class="layui-form-label">{:lang('admin/app/add/title1')}:</label>
                     <div class="layui-input-block">
                         <input type="text" name="name" value="" class="layui-input">
                     </div>
                 </div>
 
                 <div class="layui-form-item">
-                    <label class="layui-form-label">版本号:</label>
+                    <label class="layui-form-label">{:admin/addon/marketfeedback/desc3')}:</label>
                     <div class="layui-input-block">
                         <input type="text" name="ver_num" value="" class="layui-input">
                     </div>
                 </div>
 
                 <div class="layui-form-item">
-                    <label class="layui-form-label">平台:</label>
+                    <label class="layui-form-label">{:lang('admin/app/add/title')}:</label>
                     <div class="layui-input-block">
                         <select name="type">
-                            <option value="">平台</option>
+                            <option value="">{:lang('admin/app/add/title2')}</option>
                             <option value="1">IOS</option>
                             <option value="2">Android</option>
                         </select>
@@ -29,30 +29,30 @@
                 </div>
 
                 <div class="layui-form-item">
-                    <label class="layui-form-label">强制更新:</label>
+                    <label class="layui-form-label">{:lang('admin/app/add/title3')}:</label>
                     <div class="layui-input-block">
-                        <label class="layui-form-label"><input type="radio" name="is_force_update" checked value="1">是</label>
-                        <label class="layui-form-label"><input type="radio" name="is_force_update" value="0">否</label>
+                        <label class="layui-form-label"><input type="radio" name="is_force_update" checked value="1">{:lang('yes')}</label>
+                        <label class="layui-form-label"><input type="radio" name="is_force_update" value="0">{:lang('not')}</label>
                     </div>
                 </div>
 
                 <div class="layui-form-item">
-                    <label class="layui-form-label">下载类型:</label>
+                    <label class="layui-form-label">{:lang('admin/app/add/title4')}:</label>
                     <div class="layui-input-block">
-                        <label class="layui-form-label" style="width: 120px"><input type="radio" name="down_type" checked value="1">应用商店</label>
-                        <label class="layui-form-label" style="width: 120px"><input type="radio" name="down_type" value="0">URL地址</label>
+                        <label class="layui-form-label" style="width: 120px"><input type="radio" name="down_type" checked value="1">{:lang('online_app')}</label>
+                        <label class="layui-form-label" style="width: 120px"><input type="radio" name="down_type" value="0">{:lang('admin/app/add/title5')}</label>
                     </div>
                 </div>
 
                 <div class="layui-form-item">
-                    <label class="layui-form-label">下载地址:</label>
+                    <label class="layui-form-label">{:lang('downurl')}:</label>
                     <div class="layui-input-block">
                         <input type="text" name="down_url" value="" class="layui-input">
                     </div>
                 </div>
 
                 <div class="layui-form-item">
-                    <label class="layui-form-label">升级说明:</label>
+                    <label class="layui-form-label">{:lang('admin/app/add/title6')}:</label>
                     <div class="layui-input-block">
                         <textarea name="content" class="layui-textarea"  placeholder="0/300"></textarea>
                     </div>
@@ -67,7 +67,7 @@
                 </button>
                 <button type="reset" class="pear-btn pear-btn-sm">
                     <i class="layui-icon layui-icon-refresh"></i>
-                    还 原
+                    {:lang('btn_reset')}
                 </button>
             </div>
         </div>

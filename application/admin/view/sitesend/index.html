@@ -12,17 +12,17 @@
             <div class="layui-tab-item layui-show">
                 <form class="layui-form" action="{:url('baidusend')}">
                     <div class="layui-form-item">
-                        <label class="layui-form-label">百度收录域名：</label>
+                        <label class="layui-form-label">{:lang('admin/system/config/desc2')}：</label>
                         <div class="layui-input-block">
                             <input type="text" name="site_baidu_site" placeholder="" value="{$config['site']['baidu_urlsend']['site']}" class="layui-input" readonly>
-                            <a class="layui-badge-rim j-iframe" data-full="1" data-href="{:url('system/config')}?fromUrlSend" href="javascript:;">设置</a>
+                            <a class="layui-badge-rim j-iframe" data-full="1" data-href="{:url('system/config')}?fromUrlSend" href="javascript:;">{:lang('admin/system/config/desc3')}</a>
                         </div>
                     </div>
                     <div class="layui-form-item">
                         <label class="layui-form-label">{:lang('admin/system/config/site_baidu_token')}：</label>
                         <div class="layui-input-block">
                             <input type="text" name="site_baidu_token" placeholder="" value="{$config['site']['baidu_urlsend']['token']}" class="layui-input" readonly>
-                            <a class="layui-badge-rim j-iframe" data-full="1" data-href="{:url('system/config')}?fromUrlSend" href="javascript:;">设置</a>
+                            <a class="layui-badge-rim j-iframe" data-full="1" data-href="{:url('system/config')}?fromUrlSend" href="javascript:;">{:lang('admin/system/config/desc3')}</a>
                         </div>
                     </div>
                     <div class="layui-form-item" style="display: none">
@@ -32,7 +32,7 @@
                         </div>
                     </div>
                     <div class="layui-form-item">
-                        <label class="layui-form-label">{:lang('admin/system/config/site_send_urls')}<br/>(系统生成)：</label>
+                        <label class="layui-form-label">{:lang('admin/system/config/site_send_urls')}<br/>({:lang('admin/system/config/desc4')})：</label>
                         <div class="layui-input-block">
                             <div>
                                 <label class="layui-form-label">{:lang('admin/urlsend/page_send_num')}：</label>
@@ -74,7 +74,7 @@
                         </div>
                     </div>
                     <div class="layui-form-item">
-                        <label class="layui-form-label">{:lang('admin/system/config/site_send_urls')}<br/>(手动输入)：</label>
+                        <label class="layui-form-label">{:lang('admin/system/config/site_send_urls')}<br/>({:lang('admin/system/config/desc5')})：</label>
                         <div class="layui-input-block">
                             <textarea name="send_urls" class="layui-textarea"  placeholder="{:lang('admin/system/config/site_send_urls_tip')}"></textarea>
                         </div>
@@ -96,11 +96,11 @@
                         <label class="layui-form-label">{:lang('admin/system/config/site_360_email')}：</label>
                         <div class="layui-input-block">
                             <input type="text" name="site_360_email" placeholder="" value="{$config.site.360_urlsend.email}" class="layui-input">
-                            <a class="layui-badge-rim j-iframe" data-full="1" data-href="{:url('system/config')}?fromUrlSend" href="javascript:;">设置</a>
+                            <a class="layui-badge-rim j-iframe" data-full="1" data-href="{:url('system/config')}?fromUrlSend" href="javascript:;">{:lang('admin/system/config/desc3')}</a>
                         </div>
                     </div>
                     <div class="layui-form-item">
-                        <label class="layui-form-label">{:lang('admin/system/config/site_send_urls')}<br/>(系统生成)：</label>
+                        <label class="layui-form-label">{:lang('admin/system/config/site_send_urls')}<br/>({:lang('admin/system/config/desc4')})：</label>
                         <div class="layui-input-block">
                             <div>
                                 <label class="layui-form-label">{:lang('admin/urlsend/page_send_num')}：</label>
@@ -138,17 +138,17 @@
                     <div class="layui-form-item">
                         <label class="layui-form-label"></label>
                         <div class="layui-input-block">
-                            <textarea name="send_urls_s" class="layui-textarea send_urls_b" readonly="readonly" placeholder="{:lang('admin/system/config/site_send_urls_tip')},由于360官网限制单次最多推送5条网址"></textarea>
+                            <textarea name="send_urls_s" class="layui-textarea send_urls_b" readonly="readonly" placeholder="{:lang('admin/system/config/site_send_urls_tip')},{:lang('admin/system/config/desc6')}"></textarea>
                         </div>
                     </div>
                     <div class="layui-form-item">
-                        <label class="layui-form-label">{:lang('admin/system/config/site_send_urls')}<br/>(手动输入)：</label>
+                        <label class="layui-form-label">{:lang('admin/system/config/site_send_urls')}<br/>({:lang('admin/system/config/desc5')})：</label>
                         <div class="layui-input-block">
-                            <textarea name="send_urls" class="layui-textarea"  placeholder="{:lang('admin/system/config/site_send_urls_tip')},由于360官网限制单次最多推送5条网址"></textarea>
+                            <textarea name="send_urls" class="layui-textarea"  placeholder="{:lang('admin/system/config/site_send_urls_tip')},{:lang('admin/system/config/desc6')}"></textarea>
                         </div>
                     </div>
                     <div class="layui-form-item">
-                        <label class="layui-form-label">验证码：</label>
+                        <label class="layui-form-label">{:lang('admin/system/config/desc7')}：</label>
                         <div class="layui-input-block w300">
                             <div class="layui-input-inline" style="width: 150px">
                                 <input type="text" name="site_360_verfity" value="" class="layui-input">
@@ -170,20 +170,20 @@
                 <form class="layui-form" action="{:url('sougousend')}">
                     <input type="hidden" name="sougou_cooke_name" value="{$sougou_cooke_name}" />
                     <div class="layui-form-item">
-                        <label class="layui-form-label">用户名：</label>
+                        <label class="layui-form-label">{:lang('admin/system/config/desc8')}：</label>
                         <div class="layui-input-block">
                             <input type="text" name="site_sougou_username" placeholder="" value="{$config.site.sougou_urlsend.user_name}" class="layui-input">
-                            <a class="layui-badge-rim j-iframe" data-full="1" data-href="{:url('system/config')}?fromUrlSend" href="javascript:;">设置</a>
+                            <a class="layui-badge-rim j-iframe" data-full="1" data-href="{:url('system/config')}?fromUrlSend" href="javascript:;">{:lang('admin/system/config/desc3')}</a>
                         </div>
                     </div>
                     <div class="layui-form-item">
-                        <label class="layui-form-label">邮箱：</label>
+                        <label class="layui-form-label">{:lang('admin/system/config/desc9')}：</label>
                         <div class="layui-input-block">
                             <input type="text" name="site_sougou_mail" placeholder="" value="{$config.site.sougou_urlsend.mail}" class="layui-input">
                         </div>
                     </div>
                     <div class="layui-form-item">
-                        <label class="layui-form-label">{:lang('admin/system/config/site_send_urls')}<br/>(系统生成)：</label>
+                        <label class="layui-form-label">{:lang('admin/system/config/site_send_urls')}<br/>({:lang('admin/system/config/desc4')})：</label>
                         <div class="layui-input-block">
                             <div>
                                 <label class="layui-form-label">{:lang('admin/urlsend/page_send_num')}：</label>
@@ -225,13 +225,13 @@
                         </div>
                     </div>
                     <div class="layui-form-item">
-                        <label class="layui-form-label">{:lang('admin/system/config/site_send_urls')}<br/>(手动输入)：</label>
+                        <label class="layui-form-label">{:lang('admin/system/config/site_send_urls')}<br/>({:lang('admin/system/config/desc5')})：</label>
                         <div class="layui-input-block">
                             <textarea name="send_urls" class="layui-textarea"  placeholder="{:lang('admin/system/config/site_send_urls_tip')}"></textarea>
                         </div>
                     </div>
                     <div class="layui-form-item">
-                        <label class="layui-form-label">验证码：</label>
+                        <label class="layui-form-label">{:lang('admin/system/config/desc7')}：</label>
                         <div class="layui-input-block w300">
                             <div class="layui-input-inline">
                                 <input type="text" name="site_sougou_verfity" placeholder="" value="" class="layui-input">
@@ -252,14 +252,14 @@
             <div class="layui-tab-item">
                 <form class="layui-form" action="{:url('shenmasend')}">
                     <div class="layui-form-item">
-                        <label class="layui-form-label">神马用户名：</label>
+                        <label class="layui-form-label">{:lang('admin/system/config/desc10')}：</label>
                         <div class="layui-input-block">
                             <input type="text" name="site_shenma_username" placeholder="" value="{$config['site']['shenma_urlsend']['user_name']}" class="layui-input" readonly>
-                            <a class="layui-badge-rim j-iframe" data-full="1" data-href="{:url('system/config')}?fromUrlSend" href="javascript:;">设置</a>
+                            <a class="layui-badge-rim j-iframe" data-full="1" data-href="{:url('system/config')}?fromUrlSend" href="javascript:;">{:lang('admin/system/config/desc3')}</a>
                         </div>
                     </div>
                     <div class="layui-form-item">
-                        <label class="layui-form-label">神马收录域名：</label>
+                        <label class="layui-form-label">{:lang('admin/system/config/desc11')}：</label>
                         <div class="layui-input-block">
                             <input type="text" name="site_shenma_domain" placeholder="" value="{$config['site']['shenma_urlsend']['site']}" class="layui-input" readonly>
                         </div>
@@ -278,7 +278,7 @@
                     </div>
 
                     <div class="layui-form-item">
-                        <label class="layui-form-label">{:lang('admin/system/config/site_send_urls')}<br/>(系统生成)：</label>
+                        <label class="layui-form-label">{:lang('admin/system/config/site_send_urls')}<br/>({:lang('admin/system/config/desc4')})：</label>
                         <div class="layui-input-block">
                             <div>
                                 <label class="layui-form-label">{:lang('admin/urlsend/page_send_num')}：</label>
@@ -320,7 +320,7 @@
                         </div>
                     </div>
                     <div class="layui-form-item">
-                        <label class="layui-form-label">{:lang('admin/system/config/site_send_urls')}<br/>(手动输入)：</label>
+                        <label class="layui-form-label">{:lang('admin/system/config/site_send_urls')}<br/>({:lang('admin/system/config/desc5')})：</label>
                         <div class="layui-input-block">
                             <textarea name="send_urls" class="layui-textarea"  placeholder="{:lang('admin/system/config/site_send_urls_tip')}"></textarea>
                         </div>
@@ -381,7 +381,7 @@
                 console.log($r);
                 if($r.urls ==''){
                     $(".send_urls_b").val('');
-                    layer.msg('无数据');
+                    layer.msg("{:lang('admin/system/config/desc54')}");
                     return;
                 }
                 $(".send_urls_b").val($r.urls);

@@ -25,7 +25,7 @@
                 iv_maketype = window.setInterval('maketype()',1000*60* time['maketype']);
             }
             $("#dsinfo").css("display",'');
-            $(this).val('执行中...');
+            $(this).val("{:lang('admin/collect/timing/title1')}...");
             $("#btnGO").attr('disabled',true);
             $("#btnCancel").attr('disabled',false);
             $b=true;
@@ -40,7 +40,7 @@
             $("#sp_makeindex").html('');
             $("#sp_maketype").html('');
             $("#dsinfo").css("display",'none');
-            $("#btnGO").val('执行任务');
+            $("#btnGO").val("{:lang('admin/collect/timing/title2')}");
             $("#btnGO").attr('disabled',false);
             $("#btnCancel").attr('disabled',true);
             $b=false;
@@ -73,7 +73,7 @@
     function maketype()
     {
         if(typeids==''){
-            $("#sp_maketype").html("今日没有更新的数据，所以栏目无需更新!");
+            $("#sp_maketype").html("{:lang('admin/collect/timing/title3')}!");
         }
         else{
             $("#sp_maketype").html("<iframe width='100%' height='200' src='{:url('make/make')}?ac=type&tab=vod&vodtype="+typeids+"' scrolling='auto'></iframe>");
@@ -89,31 +89,31 @@
 <div class="page-container p10">
     <div style="width:650px; height:420px; margin:0 auto;">
 
-        <blockquote class="layui-elem-quote">定时采集生成插件WEB挂机版<br>注：不需要定时操作的模块,请填写0</blockquote>
+        <blockquote class="layui-elem-quote">{:lang('admin/collect/timing/title4')}<br>{:lang('admin/collect/timing/title5')}</blockquote>
 
 
         <table style="">
             <tr>
                 <td width="50%" rowspan="4"> <div style="">  </div></td>
-                <td>采集抓取频率(分钟/次)：</td>
+                <td>{:lang('admin/collect/timing/title6')}：</td>
                 <td><input id="ds_cj" name="ds_cj" type="text" class="layui-input w50" value="5" /></td>
             </tr>
             <tr>
-                <td>内容生成频率(分钟/次)： </td>
+                <td>{:lang('admin/collect/timing/title7')}： </td>
                 <td><input id="ds_makeinfo" name="ds_makeinfo" class="layui-input w50" type="text"  value="6" /></td>
             </tr>
             <tr>
-                <td>首页生成频率(分钟/次)： </td>
+                <td>{:lang('admin/collect/timing/title8')}： </td>
                 <td><input id="ds_makeindex" name="ds_makeindex" class="layui-input w50" type="text"  value="20"/></td>
             </tr>
             <tr>
-                <td>栏目生成频率(分钟/次)： </td>
+                <td>{:lang('admin/collect/timing/title9')}： </td>
                 <td><input id="ds_maketype" name="ds_maketype" class="layui-input w50" type="text" value="120"/></td>
             </tr>
             <tr>
                 <td colspan="2" style="text-align:center" class="p10">
-                    <input type="button" id="btnGO" class="layui-btn" value="执行任务"/>&nbsp;
-                    <input type="button" id="btnCancel" class="layui-btn layui-btn-warm" value="停止执行" disabled=true/>
+                    <input type="button" id="btnGO" class="layui-btn" value="{:lang('admin/collect/timing/title2')}"/>&nbsp;
+                    <input type="button" id="btnCancel" class="layui-btn layui-btn-warm" value="{:lang('admin/collect/timing/title10')}" disabled=true/>
                 </td>
             </tr>
         </table>
@@ -123,17 +123,17 @@
     <div style="width:100%;height:50px;"></div>
     <div id="dsinfo" style="width:650px;margin:0 auto;display:none;">
         <table border='0' cellpadding='0' cellspacing='0' width='760' height='100%' align='center' style="border:1px solid #CCCCCC; font-size:12px">
-            <tr><td valign='top' style="background:#ECF5FF">视频_定时采集</td></tr>
-            <tr><td valign='top' id='sp_cj' height='150'>等侍中...</td></tr>
+            <tr><td valign='top' style="background:#ECF5FF">{:lang('admin/collect/timing/title11')}</td></tr>
+            <tr><td valign='top' id='sp_cj' height='150'>{:lang('admin/collect/timing/title15')}...</td></tr>
             <tr><td valign='top' height='1' style="background:#e8e8e8"></td></tr>
-            <tr><td valign='top' style="background:#ECF5FF">视频_定时生成内容页</td></tr>
-            <tr><td valign='top' id='sp_makeinfo' height='150'>等侍中...</td></tr>
+            <tr><td valign='top' style="background:#ECF5FF">{:lang('admin/collect/timing/title12')}</td></tr>
+            <tr><td valign='top' id='sp_makeinfo' height='150'>{:lang('admin/collect/timing/title15')}...</td></tr>
             <tr><td valign='top' height='1' style="background:#e8e8e8"></td></tr>
-            <tr><td valign='top' style="background:#ECF5FF">视频_定时生成首页</td></tr>
-            <tr><td valign='top' id='sp_makeindex' height='150'>等侍中...</td></tr>
+            <tr><td valign='top' style="background:#ECF5FF">{:lang('admin/collect/timing/title13')}</td></tr>
+            <tr><td valign='top' id='sp_makeindex' height='150'>{:lang('admin/collect/timing/title15')}...</td></tr>
             <tr><td valign='top' height='1' style="background:#e8e8e8"></td></tr>
-            <tr><td valign='top' style="background:#ECF5FF">视频_定时生成栏目页</td></tr>
-            <tr><td valign='top' id='sp_maketype' height='150'>等侍中...</td></tr>
+            <tr><td valign='top' style="background:#ECF5FF">{:lang('admin/collect/timing/title14')}</td></tr>
+            <tr><td valign='top' id='sp_maketype' height='150'>{:lang('admin/collect/timing/title15')}...</td></tr>
         </table>
         <span id="sp_reflogin"></span>
     </div>

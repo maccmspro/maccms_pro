@@ -5,19 +5,19 @@
     <div class="my-toolbar-box">
         <div class="layui-btn-group">
             {if condition="$collect_break_vod neq ''"}
-            <a href="{:url('load')}?flag=vod" class="pear-btn pear-btn-danger pear-btn-md ">【进入视频断点采集】</a>
+            <a href="{:url('load')}?flag=vod" class="pear-btn pear-btn-danger pear-btn-md ">【{:lang('admin/collect/index/video_collect')}】</a>
             {/if}
             {if condition="$collect_break_art neq ''"}
-            <a href="{:url('load')}?flag=art" class="pear-btn pear-btn-danger pear-btn-md ">【进入文章断点采集】</a>
+            <a href="{:url('load')}?flag=art" class="pear-btn pear-btn-danger pear-btn-md ">【{:lang('admin/collect/index/art_collect')}】</a>
             {/if}
             {if condition="$collect_break_actor neq ''"}
-            <a href="{:url('load')}?flag=actor" class="pear-btn pear-btn-danger pear-btn-md ">【进入明星断点采集】</a>
+            <a href="{:url('load')}?flag=actor" class="pear-btn pear-btn-danger pear-btn-md ">【{:lang('admin/collect/index/star_collect')}】</a>
             {/if}
             {if condition="$collect_break_role neq ''"}
-            <a href="{:url('load')}?flag=role" class="pear-btn pear-btn-danger pear-btn-md ">【进入角色断点采集】</a>
+            <a href="{:url('load')}?flag=role" class="pear-btn pear-btn-danger pear-btn-md ">【{:lang('admin/collect/index/role_collect')}】</a>
             {/if}
             {if condition="$collect_break_website neq ''"}
-            <a href="{:url('load')}?flag=website" class="pear-btn pear-btn-danger pear-btn-md ">【进入网址断点采集】</a>
+            <a href="{:url('load')}?flag=website" class="pear-btn pear-btn-danger pear-btn-md ">【{:lang('admin/collect/index/website_collect')}】</a>
             {/if}
         </div>
     </div>

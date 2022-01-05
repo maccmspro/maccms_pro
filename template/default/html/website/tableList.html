@@ -14,12 +14,12 @@
                     <h5 class="show-tipinfo"><a href="{:mac_url_website_detail($vo)}">{$vo.website_name}</a><em></em></h5>
                 </div>
                 <div class="table-body lasted-type fn-left"><a href="{:mac_url_type($vo.type)}">{$vo.type.type_name}</a></div>
-                <div class="table-body lasted-tags fn-left"><a href='{:mac_url_type($vo.type,['area'=>$vo.website_area],'list')}' target='_blank'>{$vo.website_area}</a> </div>
+                <div class="table-body lasted-tags fn-left"><span target='_blank'>{$vo.website_area}</span></div>
                 <div class="table-body lasted-time fn-right">{$vo.website_time|date='Y-m-d',###}</div>
             </li>
             {/maccms:website}
         </ul>
-        {include file="public/paging"}
+        {//include file="public/paging"}
     </div>
 </div>
 

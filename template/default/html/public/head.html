@@ -244,14 +244,6 @@
                         {/if}
                     {/if}
 
-                    {php}
-                        $art_type_id = model('type')->where(['type_mid' => 2,'type_pid' => 0,'type_status' => 1])->order('type_sort desc')->limit(1)->column('type_id');
-                        if($art_type_id){
-                            $first_type_id = $art_type_id[0];
-                        }else{
-                            $first_type_id = 1;
-                        }
-                    {/php}
                     <li data-sid="6" {if condition="$maccms.aid eq 30" }class="active" {/if}><a href="{:mac_url('topic/index')}" title="{:lang_web('string_topic')}" data-lang="string_topic">{:lang_web('string_topic')}</a></li>
                     <li data-sid="7" {if condition="$maccms.aid eq 10" }class="active" {/if}><a href="{:mac_url('vod/last_vod')}" title="{:lang_web('string_foot_gx1')}" data-lang="string_foot_gx1" data-title="string_foot_gx1">{:lang_web('string_foot_gx1')}</a></li>
                     <script>

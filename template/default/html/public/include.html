@@ -24,13 +24,13 @@
 <link rel="shortcut icon" href="{$tplconfig['theme']['logo']['icon']|mac_default=substr($maccms['path_tpl'], strlen($maccms['path'])).'asset/img/favicon.png'|mac_url_img}" type="image/x-icon" />
 
 <link rel="stylesheet" type="text/css" href="{:MAC_BASE_PATH}/template/default/asset/css/hlstyle.css?v={$static_version}">
-{if$tplconfig['theme']['color']['select']==green}
-<link rel="stylesheet" type="text/css" href="{:MAC_BASE_PATH}/template/default/asset/css/green.css?v={$static_version}" name="skin"> {elseif$tplconfig['theme']['color']['select']==blue}
-<link rel="stylesheet" type="text/css" href="{:MAC_BASE_PATH}/template/default/asset/css/blue.css?v={$static_version}" name="skin"> {elseif$tplconfig['theme']['color']['select']==pink}
-<link rel="stylesheet" type="text/css" href="{:MAC_BASE_PATH}/template/default/asset/css/pink.css?v={$static_version}" name="skin"> {elseif$tplconfig['theme']['color']['select']==red}
-<link rel="stylesheet" type="text/css" href="{:MAC_BASE_PATH}/template/default/asset/css/red.css?v={$static_version}" name="skin"> {elseif$tplconfig['theme']['color']['select']==gold}
+{if$tplconfig['theme']['color']['select']=='green'}
+<link rel="stylesheet" type="text/css" href="{:MAC_BASE_PATH}/template/default/asset/css/green.css?v={$static_version}" name="skin"> {elseif$tplconfig['theme']['color']['select']=='blue'}
+<link rel="stylesheet" type="text/css" href="{:MAC_BASE_PATH}/template/default/asset/css/blue.css?v={$static_version}" name="skin"> {elseif$tplconfig['theme']['color']['select']=='pink'}
+<link rel="stylesheet" type="text/css" href="{:MAC_BASE_PATH}/template/default/asset/css/pink.css?v={$static_version}" name="skin"> {elseif$tplconfig['theme']['color']['select']=='red'}
+<link rel="stylesheet" type="text/css" href="{:MAC_BASE_PATH}/template/default/asset/css/red.css?v={$static_version}" name="skin"> {elseif$tplconfig['theme']['color']['select']=='gold'}
 <link rel="stylesheet" type="text/css" href="{:MAC_BASE_PATH}/template/default/asset/css/gold.css?v={$static_version}" name="skin"> {else}
-<link rel="stylesheet" type="text/css" href="{:MAC_BASE_PATH}/template/default/asset/css/default.css?v={$static_version}" name="skin">{/if} {if$tplconfig['theme']['color']['ms']==black}
+<link rel="stylesheet" type="text/css" href="{:MAC_BASE_PATH}/template/default/asset/css/default.css?v={$static_version}" name="skin">{/if} {if$tplconfig['theme']['color']['ms']=='black'}
 <link rel="stylesheet" type="text/css" href="{:MAC_BASE_PATH}/template/default/asset/css/black.css?v={$static_version}" name="color"> {else}
 <link rel="stylesheet" type="text/css" href="{:MAC_BASE_PATH}/template/default/asset/css/white.css?v={$static_version}" name="color">{/if}
 <script type="text/javascript" src="{:MAC_BASE_PATH}/template/default/asset/js/jquery.cookie.js"></script>

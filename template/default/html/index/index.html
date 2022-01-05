@@ -385,6 +385,7 @@
                     <dl>
                         {php}$nav_id=$tplconfig['theme']['nav']['id']?$tplconfig['theme']['nav']['id']:'';{/php}
                         {maccms:type ids="'.$nav_id.'" order="asc" by="sort" id="vo1" key="key1"}
+                        {if $vo1['type_mid'] == 1 || $vo1['type_mid'] == 8 || $vo1['type_mid'] == 11}
                         <dd class="deanddt{$key}">
                             <h3><a href="{:mac_url_type($vo1)}">{$vo1.type_name} </a><span></span></h3>
                             <div class="deansubpt">
@@ -420,6 +421,11 @@
                                 </div>
                             </div>
                         </dd>
+                        {else}
+                        <dd class="deanddt{$key}">
+                            <h3><a href="{:mac_url_type($vo1)}" data-lang="string_art">{:lang_web('string_art')}</a><span></span></h3>
+                        </dd>
+                        {/if}
                         {/maccms:type}
                         <dd class="deanddt5">
                             <h3><a href="{:mac_url('label/rank')}" data-lang="string_show_pai">{:lang_web('string_show_pai')}</a><span></span></h3>
@@ -619,7 +625,7 @@
             {include file="ads/ads_all"}
             {php} $config_theme = config('mctheme'); {/php}
             {if $config_theme['theme']['actor']['hbtn'] && $config_theme['theme']['actor']['id']}
-            <!--TODO 明星模块待处理 START-->
+            <!--明星模块待处理 START-->
             <div class="box mingxing">
                 <div class="title">
                     <img class="laset_new_img" src="{:MAC_BASE_PATH}/template/default/images/pro/home-icon6.png" >
@@ -628,7 +634,7 @@
                 </div>
                 <div class="latest-item">
                     <ul class="img-list dis">
-                        <!--TODO 明星模块内循环待处理 START-->
+                        <!--明星模块内循环待处理 START-->
                         {maccms:actor ids="'.$config_theme['theme']['actor']['id'].'" num="8" order="desc" by="time"}
                         <li  class="topiclist_item num_{$key}">
                             <a class="topiclist_thumb lazyload" href="{:MAC_BASE_URL}/actor/detail/id/{$vo.actor_id}.html" data-original="{$vo.actor_pic}">
@@ -642,12 +648,12 @@
                     </ul>
                 </div>
             </div>
-            <!--TODO 明星模块待处理 END-->
+            <!--明星模块待处理 END-->
             {/if}
             {if $config_theme['theme']['topic']['hbtn']}
-            <!--TODO 专题模块待处理 START-->
+            <!--专题模块待处理 START-->
             <div class="box">
-                <!--TODO 专题模块待处理 START-->
+                <!--专题模块待处理 START-->
                 <div class="title">
                     <img class="laset_new_img" src="{:MAC_BASE_PATH}/template/default/images/pro/home-icon7.png" >
                     <h2 >{$config_theme['theme']['topic']['htitle']}</h2>
@@ -661,7 +667,7 @@
                     </ul>
                 </div>
             </div>
-            <!--TODO 专题模块待处理 END-->
+            <!--专题模块待处理 END-->
             {/if}
 
             {if $tplconfig['theme']['art']['hbtn']}
@@ -703,7 +709,7 @@
             {/if}
 
             {if $config_theme['theme']['rank']['hbtn']}
-            <!--TODO 排名模块待处理 START-->
+            <!--排名模块待处理 START-->
             <div class="box">
                 <div class="title">
                     <img class="laset_new_img" src="{:MAC_BASE_PATH}/template/default/images/pro/home-icon9.png" >
@@ -718,7 +724,7 @@
                     </ul>
                 </div>
             </div>
-            <!--TODO 排名模块待处理 END-->
+            <!--排名模块待处理 END-->
             {/if}
 
             <!-- 友情链接 -->
@@ -731,7 +737,7 @@
         {include file="module/home_menu"}
         <!-- <i class="iconfont {switch name="vo1.type_id"}{case value="1"}icon-dianying2{/case}{case value="2"}icon-dianshiju1{/case}{case value="3"}icon-zongyi1{/case}{case value="4"}icon-dongman1{/case}{case value="5"}icon-dianying2{/case}{case value="$tplconfig['theme']['type']['zb']"}icon-dianying2{/case}{default /}icon-dianying2{/switch}"></i>-->
         {foreach name="last_updates" item="vo" key="key" }
-        {if count($vo['vod_detail_array']) > 0}
+        {if count((array)$vo['vod_detail_array']) > 0}
 
         <div class="pannel">
             <div class="pannel_head clearfix data_list">
@@ -751,9 +757,6 @@
                     {/if}
                     <span data-lang="string_zuixin">{:lang_web('string_zuixin')}</span><span data-lang="vod_type_name">{$vo['vod_type_name']}</span>
                     <a href="{:MAC_BASE_URL}/vod/show/id/{$key}.html">
-                        {php}
-                        //var_dump($vo['vod_count']);die;
-                        {/php}
                         {if $vo['vod_count'] > 0}
                             <span class="laset_new"> <span data-lang="string_zuijingx">{:lang_web('string_zuijingx')}</span>  <span class="count">{$vo['vod_count']}</span> </span>
                         {/if}
@@ -788,7 +791,7 @@
 
         {php} $config_theme = config('mctheme'); {/php}
             {if $config_theme['theme']['actor']['hbtn'] && $config_theme['theme']['actor']['id']}
-            <!--TODO 明星模块待处理 START-->
+            <!--明星模块待处理 START-->
             <div class="pannel mingxing">
                 <div class="pannel_head data_list">
                     <h2>
@@ -799,7 +802,7 @@
                 </div>
                 <div class="latest-item">
                     <ul class="img-list dis">
-                        <!--TODO 明星模块内循环待处理 START-->
+                        <!--明星模块内循环待处理 START-->
                         {maccms:actor ids="'.$config_theme['theme']['actor']['id'].'" num="8" order="desc" by="time"}
                         <li  class="topiclist_item num_{$key}">
                             <a class="topiclist_thumb lazyload" href="{:MAC_BASE_URL}/actor/detail/id/{$vo.actor_id}.html" data-original="{$vo.actor_pic}">
@@ -813,12 +816,12 @@
                     </ul>
                 </div>
             </div>
-            <!--TODO 明星模块待处理 END-->
+            <!--明星模块待处理 END-->
             {/if}
             {if $config_theme['theme']['topic']['hbtn']}
-            <!--TODO 专题模块待处理 START-->
+            <!--专题模块待处理 START-->
             <div class="pannel zhuanti">
-                <!--TODO 专题模块待处理 START-->
+                <!--专题模块待处理 START-->
                 <div class="pannel_head data_list">
                     <h2 >
                         <img class="laset_new_img" src="{:MAC_BASE_PATH}/template/default/images/pro/home-icon7.png" >
@@ -828,15 +831,15 @@
                 </div>
                 <div class="latest-item">
                     <ul class="img-list dis">
-                        <!--TODO 专题模块内循环待处理 START-->
+                        <!--专题模块内循环待处理 START-->
                         {maccms:topic num="5" order="desc" by="time"}
                             {include file="widget/topic_box"}
                         {/maccms:topic}
-                        <!--TODO 专题模块内循环待处理 END-->
+                        <!--专题模块内循环待处理 END-->
                     </ul>
                 </div>
             </div>
-            <!--TODO 专题模块待处理 END-->
+            <!--专题模块待处理 END-->
             {/if}
 
             {if $tplconfig['theme']['art']['hbtn']}
@@ -878,7 +881,7 @@
             {/if}
 
             {if $config_theme['theme']['rank']['hbtn']}
-            <!--TODO 排名模块待处理 START-->
+            <!--排名模块待处理 START-->
             <div class="pannel">
                 <div class="pannel_head data_list">
                     <h2 >
@@ -943,7 +946,7 @@
                     })()
                 </script>
             </div>
-            <!--TODO 排名模块待处理 END-->
+            <!--排名模块待处理 END-->
             {/if}
 
     </div>

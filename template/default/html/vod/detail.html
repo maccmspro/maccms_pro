@@ -153,8 +153,8 @@
     <div class="detail_list_box">
          <div class="detail_list">
 				<div class="content_box clearfix">
-					<div class="content_thumb fl">											
-						<a class="vodlist_thumb lazyload" href="{:mac_url_vod_play($obj,['sid'=>$vo.sid,'nid'=>1])}" title="{$obj.vod_name}" data-original="{:mac_url_img($obj.vod_pic)}"><span class="play hidden_xs"></span>
+					<div class="content_thumb fl">
+						<a class="vodlist_thumb lazyload" href="{:mac_url_vod_play($obj,['sid'=>isset($vo.sid)?$vo.sid:$vo,'nid'=>1])}" title="{$obj.vod_name}" data-original="{:mac_url_img($obj.vod_pic)}"><span class="play hidden_xs"></span>
 						</a>								
 					</div>	
 					<div class="content_detail content_top fl">

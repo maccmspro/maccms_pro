@@ -954,24 +954,24 @@
     {include file="public/foot"}
 </body>
 <script>
-    (function(){
-        changeLogo()
-        $(window).scroll(function(){
-            changeLogo()
-        })
-        function changeLogo(){
-            if($.cookie('mystyle')=='white'){
-                var targetTop = $(this).scrollTop();
-                var width = $(window).width();
-                if(targetTop> (width>820? 50:200)){
-                    $('.black_logo').hide()
-                    $('.white_logo').show()
-                }else{
-                    $('.black_logo').show()
-                    $('.white_logo').hide()
-                }
-            }
-        }
-    })()
+    // (function(){
+    //     changeLogo()
+    //     $(window).scroll(function(){
+    //         changeLogo()
+    //     })
+    //     function changeLogo(){
+    //         if($.cookie('mystyle')=='white'){
+    //             var targetTop = $(this).scrollTop();
+    //             var width = $(window).width();
+    //             if(targetTop> (width>820? 50:200)){
+    //                 $('.black_logo').hide()
+    //                 $('.white_logo').show()
+    //             }else{
+    //                 $('.black_logo').show()
+    //                 $('.white_logo').hide()
+    //             }
+    //         }
+    //     }
+    // })()
 </script>
 </html>

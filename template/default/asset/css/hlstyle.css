@@ -6908,19 +6908,24 @@ a.actor_part:hover {
         display: block !important;
     }
     .head_user li {
-        line-height: 1.25rem;
+        /* line-height: 1.25rem; */
+        line-height: 1rem;
     }
     .head_user li a {
         font-size: 0.5rem;
     }
     .head_logo {
-        width: 2.6rem;
+        width: 3rem;
+        display: flex;
+        text-align: center;
         /* margin-top: 0.28rem; */
     }
     .head_logo .logo {
-        background-size: 100% 100%;
+        /* background-size: 100% 100%; */
+        background-size: contain;
         width: 3.5rem;
         height: 1rem;
+        background-position: 50%
     }
     .head_menu_b a.menu {
         padding: 0;

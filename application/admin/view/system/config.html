@@ -83,6 +83,16 @@
                                     <button type="button" class="pear-btn pear-btn-primary pear-btn-md layui-upload" lay-data="{data:{thumb:0,thumb_class:'site[site_logo]'}}" id="upload1">{:lang('upload_pic')}</button>
                                 </div>
                             </div>
+                            <div class="layui-form-item">
+                                <label class="layui-form-label">{:lang('admin/system/config/site_waplogo')}：</label>
+                                <div class="layui-input-inline w600">
+                                    <input type="text" name="site[site_waplogo]" placeholder="{:lang('admin/system/config/site_logo_tip')}" value="{$config['site']['site_waplogo']}" class="layui-input upload-input">
+                                </div>
+                                <div class="layui-input-inline ">
+                                    <button type="button" class="pear-btn pear-btn-primary pear-btn-md layui-upload" lay-data="{data:{thumb:0,thumb_class:'upload-thumb'}}" id="upload2">{:lang('upload_pic')}</button>
+                                </div>
+                            </div>
+
 
                             <div class="layui-form-item">
                                 <label class="layui-form-label">{:lang('admin/system/config/site_logo_w')}：</label>
@@ -101,16 +111,6 @@
                                 </div>
                                 <div class="layui-input-inline ">
                                     <button type="button" class="pear-btn pear-btn-primary pear-btn-md layui-upload" lay-data="{data:{thumb:0,thumb_class:'site[site_logo_b]'}}" id="upload1">{:lang('upload_pic')}</button>
-                                </div>
-                            </div>
-
-                            <div class="layui-form-item">
-                                <label class="layui-form-label">{:lang('admin/system/config/site_waplogo')}：</label>
-                                <div class="layui-input-inline w600">
-                                    <input type="text" name="site[site_waplogo]" placeholder="{:lang('admin/system/config/site_logo_tip')}" value="{$config['site']['site_waplogo']}" class="layui-input upload-input">
-                                </div>
-                                <div class="layui-input-inline ">
-                                    <button type="button" class="pear-btn pear-btn-primary pear-btn-md layui-upload" lay-data="{data:{thumb:0,thumb_class:'upload-thumb'}}" id="upload2">{:lang('upload_pic')}</button>
                                 </div>
                             </div>
 

@@ -687,7 +687,7 @@ return [
     'model/user/visit_tip'=>'Only get %s promotion visit points per day',
     'model/user/visit_err'=>'Failed to insert promotion record, please try again',
     'model/user/visit_ok'=>'Successful promotion',
-    'model/user/reward_tip'=>'User [%s, %s] consumes %S points and gets reward %s points',
+    'model/user/reward_tip'=>'User [%s, %s] consumes %s points and gets reward %s points',
     'model/user/reward_ok'=>'Distribution commission succeeded',
 
     'model/website/refer_max'=>'Can only record %s calls per day',
@@ -1900,8 +1900,8 @@ return [
     'api/require_comment_name'=>'Comment nickname must be err',
     'api/require_comment_name'=>'The content of the comment must be err',
     'api/never'=>'never',
-    'api/task_tip_exec'=>'Task: %s, status: %s, last execution time: %S---execute',
-    'api/task_tip_jump'=>'Task: %s, status: %s, last execution time: %S---Jump',
+    'api/task_tip_exec'=>'Task: %s, status: %s, last execution time: %s---execute',
+    'api/task_tip_jump'=>'Task: %s, status: %s, last execution time: %s---Jump',
 
 
     'install/title'=>'MacCMS Pro system installation',
@@ -2034,10 +2034,10 @@ return [
     'validate/require_ip'=>'ip must',
     'validate/require_time'=>'time must be',
 
-    'admin/system/config/site_logo_w' =>'Day LOGO',
-    'admin/system/config/site_logo_b' =>'黑夜LOGO',
-    'admin/system/config/site_waplogo_w' =>'Mobile station/white LOGO',
-    'admin/system/config/site_waplogo_b' =>'Mobile station/black LOGO',
+    'admin/system/config/site_logo_w' =>'Desktop day logo',
+    'admin/system/config/site_logo_b' =>'Desktop night logo',
+    'admin/system/config/site_waplogo_w' =>'Mobile day logo',
+    'admin/system/config/site_waplogo_b' =>'Mobile night logo',
 
     'menu/safety_file' =>'safety file',
     'menu/safety_data' =>'safety data',
@@ -2723,4 +2723,170 @@ The length of a single parameter of the search page + filter page is limited, th
     'admin/pay/type/lfpay' =>'Lepay',
     'admin/pay/type/wechatpay' =>'Wechat',
     'admin/pay/type/alipay' =>'Alipay',
+
+    'admin/menu/switch' => 'switch Layout',
+    'admin/menu/clearCache' => 'clear Cache',
+    'admin/menu/lock' => 'lock Screen Unlock',
+    'admin/menu/public' => 'public Drop Down Selection Box',
+    'admin/menu/file' => 'file Upload',
+
+    'admin/menu/timing' => 'timing Task Information Maintenance',
+    'admin/menu/scheduled' => 'scheduled Task Deletion',
+    'admin/menu/timed' => 'timed Task Status',
+
+    'admin/menu/station_del' => 'station Group Delete',
+    'admin/menu/station_exp' => 'station Group Export',
+    'admin/menu/station_imp' => 'station Group Import',
+
+    'admin/menu/classification_info' => 'classification Information Maintenance',
+    'admin/menu/classification_bat' => 'classification Batch Modification',
+    'admin/menu/category' => 'category Delete',
+    'admin/menu/classification' => 'classification Status',
+    'admin/menu/classification_ext' => 'classification Extension Configuration Information',
+
+    'admin/menu/thematic_info' => 'thematic Information Maintenance',
+    'admin/menu/thematic_bat' => 'thematic Batch Modification',
+    'admin/menu/thematic_del' => 'topic Deletion',
+    'admin/menu/topic' => 'topic Status',
+
+    'admin/menu/friendsChainInformationMaintenance' => 'friends Chain Information Maintenance',
+    'admin/menu/bulkModificationOfFriendsChain' => 'bulk Modification Of Friends Chain',
+    'admin/menu/friendsChainDelete' => 'friends Chain Delete',
+    'admin/menu/friendsChainStatus' => 'friends Chain Status',
+
+    'admin/menu/messageMaintenance' => 'message Maintenance',
+    'admin/menu/deleteMessage' => 'delete Message',
+    'admin/menu/messageStatus' => 'message Status',
+
+    'admin/menu/reviewInformationMaintenance' => 'review Information Maintenance',
+    'admin/menu/deleteComment' => 'delete Comment',
+    'admin/menu/commentStatus' => 'comment Status',
+
+    'admin/menu/attachmentFolder' => 'attachment Folder',
+    'admin/menu/attachmentDetection' => 'attachment Detection',
+    'admin/menu/attachmentDataInitialization' => 'attachment DataInitialization',
+    'admin/menu/attachmentDeletion' => 'attachment Deletion',
+    'admin/menu/syncPictureOptions' => 'sync Picture Options',
+    'admin/menu/syncPictureMethod' => 'sync Picture Method',
+
+    'admin/menu/adRemoval' => 'ad Removal',
+    'admin/menu/syncPictureOptions' => 'sync Picture Options',
+    'admin/menu/syncPictureMethod' => 'sync Picture Method',
+    'admin/menu/adAdd' => 'ad Add',
+    'admin/menu/adPositionAdded' => 'ad Position Added',
+    'admin/menu/adField' => 'ad Field',
+
+    'admin/menu/administration_addView' => 'App administration - addView',
+    'admin/menu/administration_processAdd' => 'APP administration - processAdd',
+    'admin/menu/administration_edit' => 'APP administration - edit',
+    'admin/menu/administration_processEditing' => 'APP administration - processEditing',
+    'admin/menu/administration_delete' => 'APP administration - delete',
+
+    'admin/menu/articleInformationMaintenance' => 'article Information Maintenance',
+    'admin/menu/articleDeletion' => 'article Deletion',
+    'admin/menu/articleStatus' => 'article Status',
+
+    'admin/menu/serverGroupInformationMaintenance' => 'server Group Information Maintenance',
+    'admin/menu/serverGroupDeletion' => 'server Group Deletion',
+    'admin/menu/serverGroupStatus' => 'server Group Status',
+
+    'admin/menu/playerInformationMaintenance' => 'player Information Maintenance',
+    'admin/menu/playerDelete' => 'player Delete',
+    'admin/menu/playerGroupStatus' => 'player Group Status',
+
+    'admin/menu/downloaderInformationMaintenance' => 'downloader Information Maintenance',
+    'admin/menu/downloaderDelete' => 'downloader Delete',
+    'admin/menu/downloaderGroupStatus' => 'downloader Group Status',
+
+    'admin/menu/videoInformationMaintenance' => 'video Information Maintenance',
+    'admin/menu/videoDeletion' => 'video Deletion',
+    'admin/menu/videoStatus' => 'video Status',
+
+    'admin/menu/actorInformationMaintenance' => 'actor Information Maintenance',
+    'admin/menu/actorDeletion' => 'actor Deletion',
+    'admin/menu/actorStatus' => 'actor Status',
+    'admin/menu/addActor' => 'add Actor',
+
+    'admin/menu/roleInformationMaintenance' => 'role Information Maintenance',
+    'admin/menu/roleDeletion' => 'role Deletion',
+    'admin/menu/roleStatus' => 'role Status',
+    'admin/menu/addRole' => 'add Role',
+
+    'admin/menu/websiteInformationMaintenance' => 'website Information Maintenance',
+    'admin/menu/urlDeletion' => 'url Deletion',
+    'admin/menu/urlStatus' => 'url Status',
+
+    'admin/menu/administratorInformationMaintenance' => 'administrator Information Maintenance',
+    'admin/menu/administratorDelete' => 'administrator Delete',
+    'admin/menu/administratorStatus' => 'administrator Status',
+
+    'admin/menu/memberGroupInformationMaintenance' => 'member Group Information Maintenance',
+    'admin/menu/memberGroupDeletion' => 'member Group Deletion',
+    'admin/menu/memberGroupStatus' => 'member Group Status',
+
+    'admin/menu/memberInformationMaintenance' => 'member Information Maintenance',
+    'admin/menu/memberDeletion' => 'member Deletion',
+    'admin/menu/memberStatus' => 'member Status',
+
+    'admin/menu/rechargeCardInformationMaintenance' => 'recharge Card Information Maintenance',
+    'admin/menu/rechargeCardDeletion' => 'recharge Card Deletion',
+
+    'admin/menu/orderDeletion' => 'order Deletion',
+
+    'admin/menu/accessLogDeletion' => 'access Log Deletion',
+
+    'admin/menu/deletePointsLog' => 'delete Points Log',
+
+    'admin/menu/withdrawalDeletion' => 'withdrawal Deletion',
+    'admin/menu/withdrawalReview' => 'withdrawal Review',
+
+    'admin/menu/templateInformationMaintenance' => 'template Information Maintenance',
+    'admin/menu/templateDeletion' => 'template Deletion',
+
+    'admin/menu/generationEntry' => 'generation Entry',
+    'admin/menu/generateRSS' => 'generate RSS',
+    'admin/menu/generateClassification' => 'generate Classification',
+    'admin/menu/generateTopicHomePage' => 'generate Topic Home Page',
+    'admin/menu/generateThematicContent' => 'generate Thematic Content',
+    'admin/menu/generateContentPage' => 'generate Content Page',
+    'admin/menu/generateCustomPage' => 'generate Custom Page',
+
+    'admin/menu/acquisitionEntrance' => 'acquisition Entrance',
+    'admin/menu/breakpointCollection' => 'breakpoint Collection',
+    'admin/menu/bindingClassification' => 'binding Classification',
+    'admin/menu/captureVideo' => 'capture Video',
+    'admin/menu/collectArticles' => 'collect Articles',
+
+    'admin/menu/userDefinedResourceInformationMaintenance' => 'user Defined Resource Information Maintenance',
+    'admin/menu/customResourceDeletion' => 'custom Resource Deletion',
+
+    'admin/menu/customRuleInformationMaintenance' => 'custom Rule Information Maintenance',
+    'admin/menu/customRuleDeletion' => 'custom Rule Deletion',
+    'admin/menu/customRulePublishingScheme' => 'custom Rule Publishing Scheme',
+    'admin/menu/customRuleCollectionURL' => 'custom Rule Collection URL',
+    'admin/menu/customRuleCollectionContent' => 'custom Rule Collection Content',
+    'admin/menu/customRulePublishingContent' => 'custom Rule Publishing Content',
+    'admin/menu/customRuleExport' => 'custom Rule Export',
+    'admin/menu/customRuleImport' => 'custom Rule Import',
+
+    'admin/menu/databaseBackup' => 'database Backup',
+    'admin/menu/databaseRestore' => 'database Restore',
+    'admin/menu/databaseOptimization' => 'database Optimization',
+    'admin/menu/databaseRepair' => 'database Repair',
+    'admin/menu/databaseDeleteBackup' => 'database Delete Backup',
+    'admin/menu/databaseTableInformation' => 'database Table Information',
+
+    'admin/menu/pushInlet' => 'push Inlet',
+    'admin/menu/baiduActivePush' => 'baidu Active Push',
+    'admin/menu/baiduBearSPawPush' => 'baidu Bear S PawPush',
+
+    'admin/menu/applicationPlugInList' => 'application PlugInList',
+    'admin/menu/applicationPlugInInstallation' => 'application Plug InInstallation',
+    'admin/menu/applicationPluginUninstall' => 'application Plugin Uninstall',
+    'admin/menu/applicationPlugInConfiguration' => 'application Plug In Configuration',
+    'admin/menu/applicationPlugInStatus' => 'application PlugIn Status',
+    'admin/menu/applicationPluginUpload' => 'application Plugin Upload',
+    'admin/menu/applicationPlugInUpgrade' => 'application PlugIn Upgrade',
+    'admin/menu/addApplicationPlugIns' => 'add Application PlugIns',
+
 ];

@@ -696,7 +696,7 @@ https://www.baidu.com/123.jpg
     'model/user/visit_tip'=>'每日僅能獲取%s次推廣訪問積分',
     'model/user/visit_err'=>'插入推廣記錄失敗，請重試',
     'model/user/visit_ok'=>'推廣成功',
-    'model/user/reward_tip'=>'用戶【%s、%s】消費%S積分，獲得獎勵%s積分',
+    'model/user/reward_tip'=>'用戶【%s、%s】消費%s積分，獲得獎勵%s積分',
     'model/user/reward_ok'=>'分銷提成成功',
 
     'model/website/refer_max'=> '每日僅能%s次來路記錄',
@@ -1897,8 +1897,8 @@ https://www.baidu.com/123.jpg
     'api/require_comment_name'=>'評論昵稱須err',
     'api/require_comment_name'=>'評論內容必須err',
     'api/never'=>'從未',
-    'api/task_tip_exec'=>'任務：%s，狀態：%s，上次執行時間：%S---執行',
-    'api/task_tip_jump'=>'任務：%s，狀態：%s，上次執行時間：%S---跳過',
+    'api/task_tip_exec'=>'任務：%s，狀態：%s，上次執行時間：%s---執行',
+    'api/task_tip_jump'=>'任務：%s，狀態：%s，上次執行時間：%s---跳過',
 
 
     'install/title'=>'MacCMS Pro系統安裝',
@@ -2034,10 +2034,10 @@ https://www.baidu.com/123.jpg
     'validate/require_ip'=>'ip必須',
     'validate/require_time'=>'時間必須',
 
-    'admin/system/config/site_logo_w' => '白天LOGO',
-    'admin/system/config/site_logo_b' => '黑夜LOGO',
-    'admin/system/config/site_waplogo_w' => '手機站/白LOGO',
-    'admin/system/config/site_waplogo_b' => '手機站/黑LOGO',
+    'admin/system/config/site_logo_w' => 'PC白天LOGO',
+    'admin/system/config/site_logo_b' => 'PC黑夜LOGO',
+    'admin/system/config/site_waplogo_w' => 'H5白天LOGO',
+    'admin/system/config/site_waplogo_b' => 'H5黑夜LOGO',
 
     'menu/safety_file' => '安全檔案',
     'menu/safety_data' => '安全數據',
@@ -2723,4 +2723,172 @@ https://www.baidu.com/123.jpg
     'admin/pay/type/lfpay' =>'樂付支付',
     'admin/pay/type/wechatpay' =>'微信支付',
     'admin/pay/type/alipay' =>'支付寶',
+
+    'admin/menu/switch' => '切換佈局',
+    'admin/menu/clearCache' => '清理緩存',
+    'admin/menu/lock' => '鎖屏解鎖',
+    'admin/menu/public' => '公共下拉選擇框',
+    'admin/menu/file' => '文件上傳',
+
+    'admin/menu/timing' => '定時任務資訊維護',
+    'admin/menu/scheduled' => '定時任務删除',
+    'admin/menu/timed' => '定時任務狀態',
+
+    'admin/menu/station_del' => '站群删除',
+    'admin/menu/station_exp' => '站群匯出',
+    'admin/menu/station_imp' => '站群導入',
+
+    'admin/menu/classification_info' => '分類資訊維護',
+    'admin/menu/classification_bat' => '分類批量修改',
+    'admin/menu/category' => '分類删除',
+    'admin/menu/classification' => '分類狀態',
+    'admin/menu/classification_ext' => '分類擴展配寘資訊',
+
+    'admin/menu/thematic_info' => '專題資訊維護',
+    'admin/menu/thematic_bat' => '專題批量修改',
+    'admin/menu/thematic_del' => '專題删除',
+    'admin/menu/topic' => '專題狀態',
+
+    'admin/menu/friendsChainInformationMaintenance' => '友鏈資訊維護',
+    'admin/menu/bulkModificationOfFriendsChain' => '友鏈批量修改',
+    'admin/menu/friendsChainDelete' => '友鏈删除',
+    'admin/menu/friendsChainStatus' => '友鏈狀態',
+
+    'admin/menu/messageMaintenance' => '留言資訊維護',
+    'admin/menu/deleteMessage' => '留言删除',
+    'admin/menu/messageStatus' => '留言狀態',
+
+    'admin/menu/reviewInformationMaintenance' => '評論資訊維護',
+    'admin/menu/deleteComment' => '評論删除',
+    'admin/menu/commentStatus' => '評論狀態',
+
+    'admin/menu/attachmentFolder' => '附件資料夾',
+    'admin/menu/attachmentDetection' => '附件檢測',
+    'admin/menu/attachmentDataInitialization' => '附件數據初始化',
+    'admin/menu/attachmentDeletion' => '附件删除',
+    'admin/menu/syncPictureOptions' => '同步圖片選項',
+    'admin/menu/syncPictureMethod' => '同步圖片方法',
+
+    'admin/menu/adRemoval' => '廣告删除',
+    'admin/menu/syncPictureOptions' => '同步圖片選項',
+    'admin/menu/syncPictureMethod' => '同步圖片方法',
+    'admin/menu/adAdd' => '廣告添加',
+    'admin/menu/adPositionAdded' => '廣告位置添加',
+    'admin/menu/adField' => '廣告欄位',
+
+    'admin/menu/administration_addView' => 'App管理-添加視圖',
+    'admin/menu/administration_processAdd' => 'APP管理-處理添加',
+    'admin/menu/administration_edit' => 'APP管理-編輯',
+    'admin/menu/administration_processEditing' => 'APP管理-處理編輯',
+    'admin/menu/administration_delete' => 'APP管理-删除',
+
+    'admin/menu/articleInformationMaintenance' => '文章資訊維護',
+    'admin/menu/articleDeletion' => '文章删除',
+    'admin/menu/articleStatus' => '文章狀態',
+
+    'admin/menu/serverGroupInformationMaintenance' => '服務器組資訊維護',
+    'admin/menu/serverGroupDeletion' => '服務器組删除',
+    'admin/menu/serverGroupStatus' => '服務器組狀態',
+
+    'admin/menu/playerInformationMaintenance' => '播放機資訊維護',
+    'admin/menu/playerDelete' => '播放機删除',
+    'admin/menu/playerGroupStatus' => '播放機組狀態',
+
+    'admin/menu/downloaderInformationMaintenance' => '下載器資訊維護',
+    'admin/menu/downloaderDelete' => '下載器删除',
+    'admin/menu/downloaderGroupStatus' => '下載器組狀態',
+
+    'admin/menu/videoInformationMaintenance' => '視頻資訊維護',
+    'admin/menu/videoDeletion' => '視頻删除',
+    'admin/menu/videoStatus' => '視頻狀態',
+
+    'admin/menu/actorInformationMaintenance' => '演員資訊維護',
+    'admin/menu/actorDeletion' => '演員删除',
+    'admin/menu/actorStatus' => '演員狀態',
+    'admin/menu/addActor' => '添加演員',
+
+    'admin/menu/roleInformationMaintenance' => '角色資訊維護',
+    'admin/menu/roleDeletion' => '角色删除',
+    'admin/menu/roleStatus' => '角色狀態',
+    'admin/menu/addRole' => '添加角色',
+
+    'admin/menu/websiteInformationMaintenance' => '網址資訊維護',
+    'admin/menu/urlDeletion' => '網址删除',
+    'admin/menu/urlStatus' => '網址狀態',
+
+    'admin/menu/administratorInformationMaintenance' => '管理員資訊維護',
+    'admin/menu/administratorDelete' => '管理員删除',
+    'admin/menu/administratorStatus' => '管理員狀態',
+
+    'admin/menu/memberGroupInformationMaintenance' => '會員組資訊維護',
+    'admin/menu/memberGroupDeletion' => '會員組删除',
+    'admin/menu/memberGroupStatus' => '會員組狀態',
+
+    'admin/menu/memberInformationMaintenance' => '會員資訊維護',
+    'admin/menu/memberDeletion' => '會員删除',
+    'admin/menu/memberStatus' => '會員狀態',
+
+    'admin/menu/rechargeCardInformationMaintenance' => '儲值卡資訊維護',
+    'admin/menu/rechargeCardDeletion' => '儲值卡删除',
+
+    'admin/menu/orderDeletion' => '訂單删除',
+
+    'admin/menu/accessLogDeletion' => '訪問日誌删除',
+
+    'admin/menu/deletePointsLog' => '積分日誌删除',
+
+    'admin/menu/withdrawalDeletion' => '提現删除',
+    'admin/menu/withdrawalReview' => '提現稽核',
+
+    'admin/menu/templateInformationMaintenance' => '範本資訊維護',
+    'admin/menu/templateDeletion' => '範本删除',
+
+    'admin/menu/generationEntry' => '生成入口',
+    'admin/menu/generateRSS' => '生成RSS',
+    'admin/menu/generateClassification' => '生成分類',
+    'admin/menu/generateTopicHomePage' => '生成專題首頁',
+    'admin/menu/generateThematicContent' => '生成專題內容',
+    'admin/menu/generateContentPage' => '生成內容頁',
+    'admin/menu/generateCustomPage' => '生成自定義頁',
+
+    'admin/menu/acquisitionEntrance' => '採集入口',
+    'admin/menu/breakpointCollection' => '中斷點採集',
+    'admin/menu/bindingClassification' => '綁定分類',
+    'admin/menu/captureVideo' => '採集視頻',
+    'admin/menu/collectArticles' => '採集文章',
+
+    'admin/menu/userDefinedResourceInformationMaintenance' => '自定義資源資訊維護',
+    'admin/menu/customResourceDeletion' => '自定義資源删除',
+
+    'admin/menu/customRuleInformationMaintenance' => '自定義規則資訊維護',
+    'admin/menu/customRuleDeletion' => '自定義規則删除',
+    'admin/menu/customRulePublishingScheme' => '自定義規則發佈方案',
+    'admin/menu/customRuleCollectionURL' => '自定義規則採集網址',
+    'admin/menu/customRuleCollectionContent' => '自定義規則採集內容',
+    'admin/menu/customRulePublishingContent' => '自定義規則發佈內容',
+    'admin/menu/customRuleExport' => '自定義規則匯出',
+    'admin/menu/customRuleImport' => '自定義規則導入',
+
+    'admin/menu/databaseBackup' => '資料庫備份',
+    'admin/menu/databaseRestore' => '資料庫還原',
+    'admin/menu/databaseOptimization' => '資料庫優化',
+    'admin/menu/databaseRepair' => '資料庫修復',
+    'admin/menu/databaseDeleteBackup' => '資料庫删除備份',
+    'admin/menu/databaseTableInformation' => '資料庫錶資訊',
+
+    'admin/menu/pushInlet' => '推送入口',
+    'admin/menu/baiduActivePush' => '百度主動推送',
+    'admin/menu/baiduBearSPawPush' => '百度熊掌推送',
+
+    'admin/menu/applicationPlugInList' => '應用挿件清單',
+    'admin/menu/applicationPlugInInstallation' => '應用挿件安裝',
+    'admin/menu/applicationPluginUninstall' => '應用挿件卸載',
+    'admin/menu/applicationPlugInConfiguration' => '應用挿件配寘',
+    'admin/menu/applicationPlugInStatus' => '應用挿件狀態',
+    'admin/menu/applicationPluginUpload' => '應用挿件上傳',
+    'admin/menu/applicationPlugInUpgrade' => '應用挿件陞級',
+    'admin/menu/addApplicationPlugIns' => '應用挿件添加',
+
+    'admin/system/config/site_security'=>'安全設置',
+    'admin/system/config/urls_send'=>'URL推送設定',
 ];

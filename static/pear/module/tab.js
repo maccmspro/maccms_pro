@@ -454,9 +454,9 @@ layui.define(['jquery', 'element'], function(exports) {
 		var control =
 			'<div class="layui-tab-control"><li class="layui-tab-prev layui-icon layui-icon-left"></li><li class="layui-tab-next layui-icon layui-icon-right"></li><li class="layui-tab-tool layui-icon layui-icon-down"><ul class="layui-nav" lay-filter=""><li class="layui-nav-item"><a href="javascript:;"></a><dl class="layui-nav-child">';
 
-		var cur = $(".close-current").text();
-		var other = $(".close-other").text();
-		var all = $(".close-all").text();
+		var cur = i18n.close_current;
+		var other = i18n.close_other;
+		var all = i18n.close_all;
 		// 处 理 选 项 卡 头 部
 		var index = 0;
 		$.each(option.data, function(i, item) {

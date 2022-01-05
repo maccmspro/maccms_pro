@@ -5,7 +5,10 @@
      <div class="all_menu_box">
 		 <ul class="nav_list clearfix">
 			 <li {if condition="$maccms.aid eq 1" }class="active"{/if}>
-				 <a class="mob_btn mob_btn7" href="{:MAC_BASE_PATH}/" title="<span data-lang="string_home">{:lang_web('string_home')}</span>"><i class="iconfont">&#xe634;</i><span><span data-lang="string_home">{:lang_web('string_home')}</span></span></a>
+				 <a class="mob_btn mob_btn7" href="{:MAC_BASE_PATH}/" title="{:lang_web('string_home')}">
+					<i class="iconfont">&#xe634;</i>
+					<span data-lang="string_home">{:lang_web('string_home')}</span>
+				</a>
 			 </li>
 			 {maccms:vod num="1" paging="no" type="all" level="2" order="desc" by="sort"}
 			 <li>

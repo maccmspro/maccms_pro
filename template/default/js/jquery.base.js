@@ -47,18 +47,18 @@ $(function() {
             data:[
                 {
                     title:'简体中文',
-                    templet:'<div class="lang" data-lang="cn"><img class="lang-img" src="' + maccms.path_tpl + '/static/images/pro/lang-zh.png"><span class="lang-txt" data-lang="string_lang_zh">简体中文</span></div>',
+                    templet:'<div class="lang" data-lang="cn"><img class="lang-img" src="' + maccms.path_tpl + '/images/pro/lang-zh.png"><span class="lang-txt" data-lang="string_lang_zh">简体中文</span></div>',
                     lang:'cn',
                     id:1,
-                    src: maccms.path_tpl + '/static/images/pro/lang-zh.png',
+                    src: maccms.path_tpl + '/images/pro/lang-zh.png',
                     href:'#'
                 },
                 {
                     title:'English',
                     lang:'en',
-                    templet:'<div class="lang" data-lang="en"><img class="lang-img" src="' + maccms.path_tpl + '/static/images/pro/lang-en.png"><span class="lang-txt" data-lang="string_lang_en">English</span></div>',
+                    templet:'<div class="lang" data-lang="en"><img class="lang-img" src="' + maccms.path_tpl + '/images/pro/lang-en.png"><span class="lang-txt" data-lang="string_lang_en">English</span></div>',
                     id:2,
-                    src: maccms.path_tpl + '/static/images/pro/lang-en.png',
+                    src: maccms.path_tpl + '/images/pro/lang-en.png',
                     href:'#'
                 },
             ],

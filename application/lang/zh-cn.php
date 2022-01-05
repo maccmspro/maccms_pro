@@ -696,7 +696,7 @@ https://www.baidu.com/123.jpg
     'model/user/visit_tip'=>'每日仅能获取%s次推广访问积分',
     'model/user/visit_err'=>'插入推广记录失败，请重试',
     'model/user/visit_ok'=>'推广成功',
-    'model/user/reward_tip'=>'用户【%s、%s】消费%S积分，获得奖励%s积分',
+    'model/user/reward_tip'=>'用户【%s、%s】消费%s积分，获得奖励%s积分',
     'model/user/reward_ok'=>'分销提成成功',
 
     'model/website/refer_max'=> '每日仅能%s次来路记录',
@@ -1942,8 +1942,8 @@ https://www.baidu.com/123.jpg
     'api/require_comment_name'=>'评论昵称须err',
     'api/require_comment_name'=>'评论内容必须err',
     'api/never'=>'从未',
-    'api/task_tip_exec'=>'任务：%s，状态：%s，上次执行时间：%S---执行',
-    'api/task_tip_jump'=>'任务：%s，状态：%s，上次执行时间：%S---跳过',
+    'api/task_tip_exec'=>'任务：%s，状态：%s，上次执行时间：%s---执行',
+    'api/task_tip_jump'=>'任务：%s，状态：%s，上次执行时间：%s---跳过',
 
 
     'install/title'=>'MacCMS Pro系统安装',
@@ -2079,10 +2079,10 @@ https://www.baidu.com/123.jpg
     'validate/require_ip'=>'ip必须',
     'validate/require_time'=>'时间必须',
 
-    'admin/system/config/site_logo_w' => '白天LOGO',
-    'admin/system/config/site_logo_b' => '黑夜LOGO',
-    'admin/system/config/site_waplogo_w' => '手机站/白LOGO',
-    'admin/system/config/site_waplogo_b' => '手机站/黑LOGO',
+    'admin/system/config/site_logo_w' => 'PC白天LOGO',
+    'admin/system/config/site_logo_b' => 'PC黑夜LOGO',
+    'admin/system/config/site_waplogo_w' => 'H5白天LOGO',
+    'admin/system/config/site_waplogo_b' => 'H5黑夜LOGO',
 
     'menu/safety_file' => '安全档案',
     'menu/safety_data' => '安全数据',
@@ -2803,4 +2803,169 @@ https://www.baidu.com/123.jpg
     'admin/pay/type/lfpay' =>'乐付支付',
     'admin/pay/type/wechatpay' =>'微信支付',
     'admin/pay/type/alipay' =>'支付宝',
+
+    'admin/menu/switch' => '切换布局',
+    'admin/menu/clearCache' => '清理缓存',
+    'admin/menu/lock' => '锁屏解锁',
+    'admin/menu/public' => '公共下拉选择框',
+    'admin/menu/file' => '文件上传',
+
+    'admin/menu/timing' => '定时任务信息维护',
+    'admin/menu/scheduled' => '定时任务删除',
+    'admin/menu/timed' => '定时任务状态',
+
+    'admin/menu/station_del' => '站群删除',
+    'admin/menu/station_exp' => '站群导出',
+    'admin/menu/station_imp' => '站群导入',
+
+    'admin/menu/classification_info' => '分类信息维护',
+    'admin/menu/classification_bat' => '分类批量修改',
+    'admin/menu/category' => '分类删除',
+    'admin/menu/classification' => '分类状态',
+    'admin/menu/classification_ext' => '分类扩展配置信息',
+
+    'admin/menu/thematic_info' => '专题信息维护',
+    'admin/menu/thematic_bat' => '专题批量修改',
+    'admin/menu/thematic_del' => '专题删除',
+    'admin/menu/topic' => '专题状态',
+
+    'admin/menu/friendsChainInformationMaintenance' => '友链信息维护',
+    'admin/menu/bulkModificationOfFriendsChain' => '友链批量修改',
+    'admin/menu/friendsChainDelete' => '友链删除',
+    'admin/menu/friendsChainStatus' => '友链状态',
+
+    'admin/menu/messageMaintenance' => '留言信息维护',
+    'admin/menu/deleteMessage' => '留言删除',
+    'admin/menu/messageStatus' => '留言状态',
+
+    'admin/menu/reviewInformationMaintenance' => '评论信息维护',
+    'admin/menu/deleteComment' => '评论删除',
+    'admin/menu/commentStatus' => '评论状态',
+
+    'admin/menu/attachmentFolder' => '附件文件夹',
+    'admin/menu/attachmentDetection' => '附件检测',
+    'admin/menu/attachmentDataInitialization' => '附件数据初始化',
+    'admin/menu/attachmentDeletion' => '附件删除',
+    'admin/menu/syncPictureOptions' => '同步图片选项',
+    'admin/menu/syncPictureMethod' => '同步图片方法',
+
+    'admin/menu/adRemoval' => '广告删除',
+    'admin/menu/syncPictureOptions' => '同步图片选项',
+    'admin/menu/syncPictureMethod' => '同步图片方法',
+    'admin/menu/adAdd' => '广告添加',
+    'admin/menu/adPositionAdded' => '广告位置添加',
+    'admin/menu/adField' => '广告字段',
+
+    'admin/menu/administration_addView' => 'App管理-添加视图',
+    'admin/menu/administration_processAdd' => 'APP管理-处理添加',
+    'admin/menu/administration_edit' => 'APP管理-编辑',
+    'admin/menu/administration_processEditing' => 'APP管理-处理编辑',
+    'admin/menu/administration_delete' => 'APP管理-删除',
+
+    'admin/menu/articleInformationMaintenance' => '文章信息维护',
+    'admin/menu/articleDeletion' => '文章删除',
+    'admin/menu/articleStatus' => '文章状态',
+
+    'admin/menu/serverGroupInformationMaintenance' => '服务器组信息维护',
+    'admin/menu/serverGroupDeletion' => '服务器组删除',
+    'admin/menu/serverGroupStatus' => '服务器组状态',
+
+    'admin/menu/playerInformationMaintenance' => '播放器信息维护',
+    'admin/menu/playerDelete' => '播放器删除',
+    'admin/menu/playerGroupStatus' => '播放器组状态',
+
+    'admin/menu/downloaderInformationMaintenance' => '下载器信息维护',
+    'admin/menu/downloaderDelete' => '下载器删除',
+    'admin/menu/downloaderGroupStatus' => '下载器组状态',
+
+    'admin/menu/videoInformationMaintenance' => '视频信息维护',
+    'admin/menu/videoDeletion' => '视频删除',
+    'admin/menu/videoStatus' => '视频状态',
+
+    'admin/menu/actorInformationMaintenance' => '演员信息维护',
+    'admin/menu/actorDeletion' => '演员删除',
+    'admin/menu/actorStatus' => '演员状态',
+    'admin/menu/addActor' => '添加演员',
+
+    'admin/menu/roleInformationMaintenance' => '角色信息维护',
+    'admin/menu/roleDeletion' => '角色删除',
+    'admin/menu/roleStatus' => '角色状态',
+    'admin/menu/addRole' => '添加角色',
+
+    'admin/menu/websiteInformationMaintenance' => '网址信息维护',
+    'admin/menu/urlDeletion' => '网址删除',
+    'admin/menu/urlStatus' => '网址状态',
+
+    'admin/menu/administratorInformationMaintenance' => '管理员信息维护',
+    'admin/menu/administratorDelete' => '管理员删除',
+    'admin/menu/administratorStatus' => '管理员状态',
+
+    'admin/menu/memberGroupInformationMaintenance' => '会员组信息维护',
+    'admin/menu/memberGroupDeletion' => '会员组删除',
+    'admin/menu/memberGroupStatus' => '会员组状态',
+
+    'admin/menu/memberInformationMaintenance' => '会员信息维护',
+    'admin/menu/memberDeletion' => '会员删除',
+    'admin/menu/memberStatus' => '会员状态',
+
+    'admin/menu/rechargeCardInformationMaintenance' => '充值卡信息维护',
+    'admin/menu/rechargeCardDeletion' => '充值卡删除',
+
+    'admin/menu/orderDeletion' => '订单删除',
+
+    'admin/menu/accessLogDeletion' => '访问日志删除',
+
+    'admin/menu/deletePointsLog' => '积分日志删除',
+
+    'admin/menu/withdrawalDeletion' => '提现删除',
+    'admin/menu/withdrawalReview' => '提现审核',
+
+    'admin/menu/templateInformationMaintenance' => '模板信息维护',
+    'admin/menu/templateDeletion' => '模板删除',
+
+    'admin/menu/generationEntry' => '生成入口',
+    'admin/menu/generateRSS' => '生成RSS',
+    'admin/menu/generateClassification' => '生成分类',
+    'admin/menu/generateTopicHomePage' => '生成专题首页',
+    'admin/menu/generateThematicContent' => '生成专题内容',
+    'admin/menu/generateContentPage' => '生成内容页',
+    'admin/menu/generateCustomPage' => '生成自定义页',
+
+    'admin/menu/acquisitionEntrance' => '采集入口',
+    'admin/menu/breakpointCollection' => '断点采集',
+    'admin/menu/bindingClassification' => '绑定分类',
+    'admin/menu/captureVideo' => '采集视频',
+    'admin/menu/collectArticles' => '采集文章',
+
+    'admin/menu/userDefinedResourceInformationMaintenance' => '自定义资源信息维护',
+    'admin/menu/customResourceDeletion' => '自定义资源删除',
+
+    'admin/menu/customRuleInformationMaintenance' => '自定义规则信息维护',
+    'admin/menu/customRuleDeletion' => '自定义规则删除',
+    'admin/menu/customRulePublishingScheme' => '自定义规则发布方案',
+    'admin/menu/customRuleCollectionURL' => '自定义规则采集网址',
+    'admin/menu/customRuleCollectionContent' => '自定义规则采集内容',
+    'admin/menu/customRulePublishingContent' => '自定义规则发布内容',
+    'admin/menu/customRuleExport' => '自定义规则导出',
+    'admin/menu/customRuleImport' => '自定义规则导入',
+
+    'admin/menu/databaseBackup' => '数据库备份',
+    'admin/menu/databaseRestore' => '数据库还原',
+    'admin/menu/databaseOptimization' => '数据库优化',
+    'admin/menu/databaseRepair' => '数据库修复',
+    'admin/menu/databaseDeleteBackup' => '数据库删除备份',
+    'admin/menu/databaseTableInformation' => '数据库表信息',
+
+    'admin/menu/pushInlet' => '推送入口',
+    'admin/menu/baiduActivePush' => '百度主动推送',
+    'admin/menu/baiduBearSPawPush' => '百度熊掌推送',
+
+    'admin/menu/applicationPlugInList' => '应用插件列表',
+    'admin/menu/applicationPlugInInstallation' => '应用插件安装',
+    'admin/menu/applicationPluginUninstall' => '应用插件卸载',
+    'admin/menu/applicationPlugInConfiguration' => '应用插件配置',
+    'admin/menu/applicationPlugInStatus' => '应用插件状态',
+    'admin/menu/applicationPluginUpload' => '应用插件上传',
+    'admin/menu/applicationPlugInUpgrade' => '应用插件升级',
+    'admin/menu/addApplicationPlugIns' => '应用插件添加',
 ];

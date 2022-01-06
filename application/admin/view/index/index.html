@@ -83,22 +83,23 @@
         close_other: "{:lang('admin/system/close_other')}",
         close_all: "{:lang('admin/system/close_all')}",
         close: "{:lang('close')}",
-        tip10: "{:lang('admin/public/index/title10')}",
-        tip11: "{:lang('admin/public/index/title11')}",
-        tip12: "{:lang('admin/public/index/title12')}",
-        tip13: "{:lang('admin/public/index/title13')}",
-        tip14: "{:lang('admin/public/index/title14')}",
-        tip15: "{:lang('admin/public/index/title15')}",
-        tip16: "{:lang('admin/public/index/title16')}",
-        tip17: "{:lang('admin/public/index/title17')}",
-        tip18: "{:lang('admin/public/index/title18')}",
-        tip19: "{:lang('admin/public/index/title19')}",
-        tip20: "{:lang('admin/public/index/title20')}",
-        tip21: "{:lang('admin/public/index/title21')}",
-        tip22: "{:lang('admin/public/index/title22')}",
-        tip23: "{:lang('admin/public/index/title23')}",
-        tip24: "{:lang('admin/public/index/title24')}",
     }
+    // 国际化，兼容iframe中的情况
+    localStorage.setItem('tip10',"{:lang('admin/public/index/title10')}")
+    localStorage.setItem('tip11',"{:lang('admin/public/index/title11')}")
+    localStorage.setItem('tip12',"{:lang('admin/public/index/title12')}")
+    localStorage.setItem('tip13',"{:lang('admin/public/index/title13')}")
+    localStorage.setItem('tip14',"{:lang('admin/public/index/title14')}")
+    localStorage.setItem('tip15',"{:lang('admin/public/index/title15')}")
+    localStorage.setItem('tip16',"{:lang('admin/public/index/title16')}")
+    localStorage.setItem('tip17',"{:lang('admin/public/index/title17')}")
+    localStorage.setItem('tip18',"{:lang('admin/public/index/title18')}")
+    localStorage.setItem('tip19',"{:lang('admin/public/index/title19')}")
+    localStorage.setItem('tip20',"{:lang('admin/public/index/title20')}")
+    localStorage.setItem('tip21',"{:lang('admin/public/index/title21')}")
+    localStorage.setItem('tip22',"{:lang('admin/public/index/title22')}")
+    localStorage.setItem('tip23',"{:lang('admin/public/index/title23')}")
+    localStorage.setItem('tip24',"{:lang('admin/public/index/title24')}")
     
     var obj = <?=json_encode($menus)?>;
     var arr = obj2Arr(obj);

@@ -462,6 +462,9 @@ textarea,
 .foot-logo{
     background-image: url('../../images/pro/logo_white.png') !important;
 }
+.fo_t .color{
+    color: #999 !important;
+}
 #show_page .head_box{
     /* background: transparent; */
 }

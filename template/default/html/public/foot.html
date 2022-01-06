@@ -38,6 +38,10 @@
         margin-top: 20px;
         color: #343434;
     }
+    .fo_t .color{
+        color: #343434;
+        font-size: 0.325rem;
+    }
     @media (max-width: 820px){
         .foot{
             background: none;
@@ -104,16 +108,27 @@
             </a>
             </li>
             {/if}
-            
-            
         </ul>
         <div class="foot-logo show-pc"></div>
         <ul class="foot-list ">
         </ul>
         <div class="fo_t show-pc">
+            <p >
+                {maccms:type ids="parent" order="asc" by="sort"}
+                    <a class="color" href="{:mac_url_type($vo)}" title="{$vo.type_name}">{$vo.type_name}</a> - {/maccms:type}
+                <a class="color" data-lang="string_zuijingx" href="{:mac_url('map/index')}" title="{:lang_web('string_zuijingx')}">
+                    {:lang_web('string_zuijingx')}
+                </a> -
+                <a class="color" data-lang="string_foot_fk1" href="{:mac_url('gbook/index')}" title="{:lang_web('string_foot_fk1')}">{:lang_web('string_foot_fk1')}</a> -
+                <a class="color"  href="{:mac_url('rss/index')}" title="rss">RSS</a> -
+                <a class="color" data-lang="string_foot_ditu" href="{:mac_url('rss/baidu')}" target="_blank" title="{:lang_web('string_foot_ditu')}">{:lang_web('string_foot_ditu')}</a>
+            </p>
             {$tplconfig['theme']['foot']['text']}
+             
             <p>&copy;&nbsp;{:date('Y')}&nbsp;{$maccms.site_url}&nbsp;&nbsp;E-Mail：{$maccms.site_email}&nbsp;&nbsp;<span {if condition="$tplconfig['theme']['tj']['btn'] eq 0"}class="hide"{/if}>{$maccms.site_tj}</span></p>
-        </div>                      
+            
+        </div> 
+                            
     </div>
     {include file="widget/foot_nav"}
     {include file="ads/ads_bottom"}

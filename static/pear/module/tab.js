@@ -309,7 +309,7 @@ layui.define(['jquery', 'element'], function(exports) {
 			var isData = false;
 			//查询当前选项卡数量
 			if ($(".layui-tab[lay-filter='" + this.option.elem + "'] .layui-tab-title li[lay-id]").length >= this.option.tabMax) {
-				layer.msg(i18n.tip22 + this.option.tabMax + i18n.tip23, {
+				layer.msg(localStorage.getItem("tip22") + this.option.tabMax + localStorage.getItem("tip23"), {
 					icon: 2,
 					time: 1000,
 					shift: 6 //抖动效果
@@ -536,7 +536,7 @@ layui.define(['jquery', 'element'], function(exports) {
 				var currentId = currentTab.attr("lay-id");
 				tabDelete(option.elem, currentId, option.closeEvent, option);
 			} else {
-				layer.msg(i18n.tip24, {
+				layer.msg(localStorage.getItem("tip24"), {
 					icon: 3,
 					time: 800
 				})

@@ -90,9 +90,7 @@ class Index extends Controller
      */
     private function step3()
     {
-        $install_dir = $_SERVER["SCRIPT_NAME"];
-        $install_dir = mac_substring($install_dir, strripos($install_dir, "/")+1);
-        $this->assign('install_dir', $install_dir);
+        $this->assign('install_dir', MAC_BASE_PATH . '/');
         return $this->fetch('install@index/step3');
     }
     
@@ -354,6 +352,7 @@ class Index extends Controller
             ['xml', lang('install/support'), 'yes', lang('install/function')],
             ['file_get_contents', lang('install/support'), 'yes', lang('install/function')],
             ['mb_strlen', lang('install/support'), 'yes', lang('install/function')],
+            ['shell_exec', lang('install/support'), 'yes', lang('install/function')],
             ['putenv', lang('install/support'), 'yes', lang('install/function')],
         ];
 
@@ -378,26 +377,76 @@ class Index extends Controller
      */
     private function mkDatabase(array $data)
     {
-        $code = <<<INFO
+        $env_code = <<<INFO
 ; app
 app_debug=true
 app_trace=true
 app_environment=production
 config_save_in_db=false
-
-; 数据库
-database_type=mysql
-database_host={$data['hostname']}
-database_port={$data['hostport']}
-database_name={$data['database']}
-database_user={$data['username']}
-database_password={$data['password']}
-database_charset=utf8
-database_table_prefix={$data['prefix']}
+INFO;
+        // 数据库配置单独写入php文件，防止.env被直接访问
+        $db_code = <<<INFO
+<?php
+// +----------------------------------------------------------------------
+// | ThinkPHP [ WE CAN DO IT JUST THINK ]
+// +----------------------------------------------------------------------
+// | Copyright (c) 2006~2016 http://thinkphp.cn All rights reserved.
+// +----------------------------------------------------------------------
+// | Licensed ( http://www.apache.org/licenses/LICENSE-2.0 )
+// +----------------------------------------------------------------------
+// | Author: liu21st <liu21st@gmail.com>
+// +----------------------------------------------------------------------
+return [
+    // 数据库类型
+    'type'            => 'mysql',
+    // 服务器地址
+    'hostname'        => '{$data['hostname']}',
+    // 数据库名
+    'database'        => '{$data['database']}',
+    // 用户名
+    'username'        => '{$data['username']}',
+    // 密码
+    'password'        => '{$data['password']}',
+    // 端口
+    'hostport'        => '{$data['hostport']}',
+    // 连接dsn
+    'dsn'             => '',
+    // 数据库连接参数
+    'params'          => [],
+    // 数据库编码默认采用utf8
+    'charset'         => 'utf8',
+    // 数据库表前缀
+    'prefix'          => '{$data['prefix']}',
+    // 数据库调试模式
+    'debug'           => false,
+    // 数据库部署方式:0 集中式(单一服务器),1 分布式(主从服务器)
+    'deploy'          => 0,
+    // 数据库读写是否分离 主从式有效
+    'rw_separate'     => false,
+    // 读写分离后 主服务器数量
+    'master_num'      => 1,
+    // 指定从服务器序号
+    'slave_no'        => '',
+    // 是否严格检查字段是否存在
+    'fields_strict'   => false,
+    // 数据集返回类型
+    'resultset_type'  => 'array',
+    // 自动写入时间戳字段
+    'auto_timestamp'  => false,
+    // 时间字段取出后的默认时间格式
+    'datetime_format' => 'Y-m-d H:i:s',
+    // 是否需要进行SQL性能分析
+    'sql_explain'     => false,
+    // Builder类
+    'builder'         => '',
+    // Query类
+    'query'           => '\\think\\db\\Query',
+];
 INFO;
         $env_path = ROOT_PATH . '.env';
         $db_path = APP_PATH . 'database.php';
-        file_put_contents($env_path, $code);
+        file_put_contents($env_path, $env_code);
+        file_put_contents($db_path, $db_code);
         // 判断写入是否成功（如有opcache手动清理一次）
         if (function_exists('opcache_invalidate')) {
             opcache_invalidate($env_path, true);

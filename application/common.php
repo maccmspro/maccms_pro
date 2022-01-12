@@ -1824,13 +1824,7 @@ function mac_url_img($url)
             $url = $GLOBALS['config']['upload']['remoteurl'] . $url;
         }
         else{
-            $url = MAC_BASE_PATH . MAC_PATH . $url;
-            // 多级目录兼容
-            if (MAC_BASE_PATH != MAC_PATH) {
-                while (substr($url, strlen(MAC_BASE_PATH)) == MAC_BASE_PATH) {
-                    $url = substr($url, strlen(MAC_BASE_PATH));
-                }
-            }
+            $url = MAC_PATH . $url;
         }
     }
     elseif(!empty($GLOBALS['config']['upload']['img_key']) && preg_match('/'.$GLOBALS['config']['upload']['img_key'].'/',$url)){

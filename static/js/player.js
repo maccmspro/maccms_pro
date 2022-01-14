@@ -109,7 +109,7 @@ var MacPlayer = {
                 this.PlayFrom = 'parse'
             }
         }
-        this.Path = maccms.base_url + '/static/player/';
+        this.Path = (maccms.base_url || maccms.path) + '/static/player/';
         if (this.Flag == "down") {
             MacPlayer.Down()
         } else {

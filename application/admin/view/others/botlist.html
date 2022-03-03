@@ -1,46 +1,79 @@
 {include file="../../../application/admin/view/public/head" /}
-<div class="page-container">
-    <table class="layui-table" >
-        <thead>
-        <td colspan="13">{:lang('others/botlist/log_stat')}</td>
-        </thead>
-        <tbody>
-        <tr>
-            <td>{:lang('others/botlist/data')}</td>
-            <td>Google</td>
-            <td>Baidu</td>
-            <td>Sogou</td>
-            <td>SOSO</td>
-            <td>Yahoo</td>
-            <td>MSN</td>
-            <td>msnbot</td>
-            <td>Sohu</td>
-            <td>Yodao</td>
-            <td>Twiceler</td>
-            <td>Alexa</td>
-            <td>{:lang('others/botlist/total')}</td>
-            <td>{:lang('others/botlist/action')}</td>
-        </tr>
-        {volist name="bot_list" id="bot_vo"}
-        <tr>
-            <td>{$key}</td>
-            <td>{$bot_vo.Google}</td>
-            <td>{$bot_vo.Baidu}</td>
-            <td>{$bot_vo.Sogou}</td>
-            <td>{$bot_vo.SOSO}</td>
-            <td>{$bot_vo.Yahoo}</td>
-            <td>{$bot_vo.MSN}</td>
-            <td>{$bot_vo.msnbot}</td>
-            <td>{$bot_vo.Sohu}</td>
-            <td>{$bot_vo.Yodao}</td>
-            <td>{$bot_vo.Twiceler}</td>
-            <td>{$bot_vo.Alexa}</td>
-            <td>{$bot_vo.Google+$bot_vo.Baidu+$bot_vo.Sogou+$bot_vo.SOSO+$bot_vo.Yahoo+$bot_vo.MSN+$bot_vo.msnbot+$bot_vo.Sohu+$bot_vo.Yodao+$bot_vo.Twiceler+$bot_vo.Alexa}</td>
-            <td><a class="layui-badge-rim j-iframe" data-full="1" data-href="{:url('botlog?data='.$key)}" href="javascript:;" title="{$bot_key}">{:lang('others/botlist/log')}</a></td>
-        </tr>
-        {/volist}
-        </tbody>
-    </table>
+<div>
+    
+    <div class="layui-card">
+        <div class="layui-card-body">
+          <table id="role-table" lay-filter="role-table"></table>
+          <div
+            class="layui-form layui-border-box layui-table-view"
+            lay-filter="LAY-table-1"
+            lay-id="role-table"
+            style=""
+          >
+            <div class="layui-table-tool">
+              <div class="layui-table-tool-temp">
+                <div>{:lang('others/botlist/log_stat')}</div>
+
+                </div>
+            </div>
+            <div class="layui-table-box">
+              <div class="layui-table-header">
+				<form class="layui-form" method="post" id="pageListForm" >
+					<table
+					cellspacing="0"
+					cellpadding="0"
+					border="0"
+					class="layui-table"
+					lay-skin="line"
+					>
+					<thead>
+						<tr>
+                            <td>{:lang('others/botlist/data')}</td>
+                            <td>Google</td>
+                            <td>Baidu</td>
+                            <td>Sogou</td>
+                            <td>SOSO</td>
+                            <td>Yahoo</td>
+                            <td>MSN</td>
+                            <td>msnbot</td>
+                            <td>Sohu</td>
+                            <td>Yodao</td>
+                            <td>Twiceler</td>
+                            <td>Alexa</td>
+                            <td>{:lang('others/botlist/total')}</td>
+                            <td>{:lang('others/botlist/action')}</td>
+                        </tr>
+					</thead>
+					<tbody>
+						{volist name="bot_list" id="bot_vo"}
+                        <tr>
+                            <td>{$key}</td>
+                            <td>{$bot_vo.Google}</td>
+                            <td>{$bot_vo.Baidu}</td>
+                            <td>{$bot_vo.Sogou}</td>
+                            <td>{$bot_vo.SOSO}</td>
+                            <td>{$bot_vo.Yahoo}</td>
+                            <td>{$bot_vo.MSN}</td>
+                            <td>{$bot_vo.msnbot}</td>
+                            <td>{$bot_vo.Sohu}</td>
+                            <td>{$bot_vo.Yodao}</td>
+                            <td>{$bot_vo.Twiceler}</td>
+                            <td>{$bot_vo.Alexa}</td>
+                            <td>{$bot_vo.Google+$bot_vo.Baidu+$bot_vo.Sogou+$bot_vo.SOSO+$bot_vo.Yahoo+$bot_vo.MSN+$bot_vo.msnbot+$bot_vo.Sohu+$bot_vo.Yodao+$bot_vo.Twiceler+$bot_vo.Alexa}</td>
+                            <td><a class="pear-btn pear-btn-md pear-btn-primary j-iframe" data-full="1" data-href="{:url('botlog?data='.$key)}" href="javascript:;" title="{$bot_key}">{:lang('others/botlist/log')}</a></td>
+                        </tr>
+                        {/volist}
+					</tbody>
+					</table>
+				</form>
+              </div>
+              
+            </div>
+            
+            
+          </div>
+        </div>
+      </div>
     {include file="../../../application/admin/view/public/foot" /}
 </div>
 </body>

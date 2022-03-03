@@ -57,6 +57,7 @@ return [
     'want_see'=>'想看',
     'play'=>'播放',
     'down'=>'下载',
+    'website'=>'网站',
     'site_name'=>'网站名称',
     'keyword'=>'关键字',
     'description'=>'描述',
@@ -281,6 +282,7 @@ return [
     'opt_err'=>'操作失败',
     'update_ok'=>'更新成功',
     'update_err'=>'更新失败',
+    'follow_global'=>'跟随全局',
 
     'btn_save' =>'保 存',
     'btn_reset' =>'还 原',
@@ -456,6 +458,7 @@ return [
     'page_not_found'=>'页面不存在',
     'search_close'=>'搜索功能关闭中',
     'show_close'=>'筛选页功能关闭中',
+    'ajax_close'=>'ajax页功能关闭中',
     'frequently'=>'请不要频繁操作',
     'search_frequently'=>'请不要频繁操作，搜索时间间隔为',
     'score_ok'=>'感谢您的参与，评分成功',
@@ -584,6 +587,8 @@ https://www.baidu.com/123.jpg
     'menu/market'=>'应用市场',
     'menu/markettheme'=>'模板市场',
     'menu/urlsend'=>'URL推送',
+    'menu/safety_file'=>'文件安全检测',
+    'menu/safety_data'=>'数据挂马检测',
     'menu/app_management'=>'APP管理',
     'menu/advertising_management'=>'广告管理',
 
@@ -645,7 +650,8 @@ https://www.baidu.com/123.jpg
 
     'model/type/to_info_err'=>'获取目标分类信息失败',
     'model/type/move_err'=>'转移失败',
-    'model/type/move_ok'=>'转移失败',
+    'model/type/move_empty'=>'没有待转移的数据',
+    'model/type/move_ok'=>'转移成功',
 
     'model/user/not_open_reg'=>'未开放注册',
     'model/user/access_denied'=>'非法访问',
@@ -662,7 +668,7 @@ https://www.baidu.com/123.jpg
     'model/user/input_old_pass'=> '请输入原密码',
     'model/user/old_pass_err'=> '原密码错误',
     'model/user/pass_not_same_pass2'=> '两次输入的新密码不一致',
-    'model/user/not_found'=>'用户不存在',
+    'model/user/not_found'=>'获取用户信息失败',
     'model/user/update_login_err'=>'更新登录信息失败',
     'model/user/update_expire_err'=>'更新会员组过期信息失败',
     'model/user/update_expire_ok'=>'更新过期信息成功',
@@ -2099,14 +2105,14 @@ https://www.baidu.com/123.jpg
 
     'menu/others' => '其他',
     'menu/others/botcensus' => '爬虫日志',
-    'admin/system/php_com_dotnet' => '需要php_com_dotnet拓展',
+    'admin/system/php_shell_exec' => '需要在 php.ini 开启 shell_exec 支持',
     'admin/system/nuclei' => '核数',
     'admin/system/nuclei_num' => '核',
     'admin/system/usage_rate' => '使用率',
     'admin/system/memory_size' => '内存大小',
-    'admin/system/memory_usage' => '内存使用率',
+    'admin/system/memory_usage' => '内存已使用',
     'admin/system/detection_time' => '检测时间',
-    'admin/system/process_status' => '进程状态',
+    'admin/system/disk_size' => '硬盘大小',
     'admin/system/hard_disk_free_space' => '硬盘可用空间',
     'admin/system/ext_used' => '已用',
 
@@ -2155,7 +2161,7 @@ https://www.baidu.com/123.jpg
     'admin/banner/index/show_loc' => '显示位置',
     'admin/banner/index/upload_img' => '上传图片',
     'admin/banner/index/start_date' => '开始日期',
-    'admin/banner/index/end_data' => '结束日期',
+    'admin/banner/index/end_date' => '结束日期',
     'admin/banner/index/show_order' => '显示顺序',
     'admin/banner/index/ad_status' => '广告状态',
     'admin/banner/index/open' => '开启',
@@ -2167,6 +2173,15 @@ https://www.baidu.com/123.jpg
     'index/ajax/watch_progress/param_lang_small' =>'观看进度太长或太小 0 ~ 100',
     'index/ajax/watch_progress/success' =>'成功',
     'index/ajax/watch_progress/db_error' =>'数据库错误或数据不存在',
+
+
+    'admin/addon/config/0/title' =>'模式',
+    'admin/addon/config/1/title' =>'固定背景图',
+    'admin/addon/config/0/tip' =>'根据自身爱好选择',
+    'admin/addon/config/1/tip' =>'请选择文件...',
+    'admin/addon/mode/fixed' =>'固定',
+    'admin/addon/mode/every_time_random' =>'每次随机',
+    'admin/addon/mode/daily_switch' =>'每日切换',
 
 
     'admin/addon/market/detail' =>'查看详情页',
@@ -2205,7 +2220,21 @@ https://www.baidu.com/123.jpg
     'admin/addon/marketlicense/desc7' =>'安装模板',
     'admin/addon/marketlicense/desc8' =>'下载模板',
     'admin/addon/marketlicense/desc9' =>'系统信息',
-    
+
+    'admin/addon/downandinstalltheme/ext_err' =>'应用扩展名必须是zip',
+    'admin/addon/downandinstalltheme/params_miss' =>'参数缺失',
+    'admin/addon/downandinstalltheme/install_zip_extension' =>'请先安装zip扩展',
+    'admin/addon/downandinstalltheme/unzip_failed' =>'解压失败',
+    'admin/addon/downandinstalltheme/tpl_auto_updated' =>'模板已自动更新',
+    'admin/addon/downandinstalltheme/tpl_installed_set_config' => '模板已安装,请前往系统-网站参数配置中设置',
+
+    'admin/addon/domarketfeedback/required_id' =>'id不能为空',
+    'admin/addon/domarketfeedback/required_version_number' =>'版本号不能为空',
+    'admin/addon/domarketfeedback/required_content' =>'内容不能为空',
+    'admin/addon/domarketfeedback/required_screenshot' =>'截图不能为空',
+    'admin/addon/domarketfeedback/required_video' =>'视频不能为空',
+    'admin/addon/domarketfeedback/feedback_success' => '反馈成功',
+
     'admin/app/add/title1' =>'APP名称',
     'admin/app/add/title2' =>'平台',
     'admin/app/add/title3' =>'强制更新',
@@ -2968,4 +2997,26 @@ https://www.baidu.com/123.jpg
     'admin/menu/applicationPluginUpload' => '应用插件上传',
     'admin/menu/applicationPlugInUpgrade' => '应用插件升级',
     'admin/menu/addApplicationPlugIns' => '应用插件添加',
+
+    'layui/upload/tip1' => '请求上传接口出现异常',
+    'layui/upload/tip2' => '获取上传后的响应信息出现异常',
+    'layui/upload/tip3' => '请对上传接口返回有效JSON',
+    'layui/upload/tip4' => '选择的文件中包含不支持的格式',
+    'layui/upload/tip5' => '选择的视频中包含不支持的格式',
+    'layui/upload/tip6' => '选择的图片中包含不支持的格式',
+    'layui/upload/tip7' => '选择的音频中包含不支持的格式',
+    'layui/upload/tip8' => '同时最多只能上传的数量为:',
+    'layui/upload/tip9' => '文件不能超过',
+    'layui/upload/tip10' => '个文件',
+
+    'layui/page/total' => '共 ',
+    'layui/page/num' => ' 条',
+    'layui/page/per_page' => ' 条/页',
+    'layui/page/prev' => '上一页',
+    'layui/page/next' => '下一页',
+    'layui/page/go' => '到第',
+    'layui/page/page' => '页',
+    'layui/page/ok' => '确定',
+    
+    
 ];

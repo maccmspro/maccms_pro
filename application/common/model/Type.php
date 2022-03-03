@@ -1,8 +1,8 @@
 <?php
 namespace app\common\model;
-use think\Db;
-use think\Cache;
 use app\common\util\Pinyin;
+use think\Cache;
+use think\Db;
 
 class Type extends Base {
     // 设置数据表（不含前缀）
@@ -332,6 +332,7 @@ class Type extends Base {
         if(empty($type_info)){
             return ['code'=>1011,'msg'=>lang('model/type/to_info_err')];
         }
+
         foreach($list as $k=>$v){
             $where2=[];
             $where2['type_id|type_id_1'] = ['eq',$v['type_id']];
@@ -340,10 +341,12 @@ class Type extends Base {
             $update['type_id_1'] = $type_info['type_pid'];
             $flag = $v['type_mid'] == 1 ? 'Vod' : 'Art';
             $cc = model($flag)->where($where2)->update($update);
-            if($cc ===false){
-                return ['code'=>1012,'msg'=>lang('model/type/move_err').'：'. $v['type_name'].''.$this->getError()  ];
+
+            if ($cc === 0) {
+                return ['code' => 1012, 'msg' => lang('model/type/move_empty')];
             }
         }
+
         return ['code'=>1,'msg'=>lang('model/type/move_ok')];
     }
 

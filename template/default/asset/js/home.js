@@ -396,6 +396,24 @@ var MAC={
             return false;
         }
     },
+    'GetHot':{
+        'Init':function(){
+            MAC.Ajax(maccms.base_url+'/index.php/ajax/suggest?mid=1&wd=1&limit=20','get','json','',function(r){
+                let words=r.site_keywords
+                let hot_html=''
+                words.forEach((item,index)=>{
+                    hot_html+=`<li class='hot_item ${index<3?'a':'b'}'  data-url=${r.url} data-key=${item}>
+                            <span class="s1">${index+1}</span>
+                            <span class="s2 search_key">${item}</span>
+                        </li>`
+                })
+                $('.hot_keys').append(hot_html)
+                $('.hot_item').click(function(e){
+                    location.href = $(this).attr('data-url').replace('mac_wd', encodeURIComponent($(this).attr('data-key')));
+                })
+            });
+        }
+    },
     'Suggest':{
         'Init':function($obj,$mid,$jumpurl){
             try {
@@ -427,7 +445,6 @@ var MAC={
                                 url:'',
                                 type:'tit'
                             }
-
                             r.site_keywords.unshift(data)
                             // 历史记录
                             history.forEach((item,index,arr)=>{
@@ -1062,8 +1079,9 @@ $(function(){
     MAC.History.Init();
     //用户访问记录初始化
     MAC.Ulog.Init();
+    MAC.GetHot.Init();
     //联想搜索初始化
-    MAC.Suggest.Init('.mac_wd',1,'');
+    // MAC.Suggest.Init('.mac_wd',1,'');
     //定时任务初始化
     MAC.Timming();
 });

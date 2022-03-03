@@ -352,7 +352,6 @@ class Index extends Controller
             ['xml', lang('install/support'), 'yes', lang('install/function')],
             ['file_get_contents', lang('install/support'), 'yes', lang('install/function')],
             ['mb_strlen', lang('install/support'), 'yes', lang('install/function')],
-            ['shell_exec', lang('install/support'), 'yes', lang('install/function')],
             ['putenv', lang('install/support'), 'yes', lang('install/function')],
         ];
 

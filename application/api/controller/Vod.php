@@ -65,6 +65,12 @@ class Vod extends Base
         if (isset($param['vod_class']) && strlen($param['vod_class']) > 0) {
             $where['vod_class'] = ['like', '%' . format_sql_string($param['vod_class']) . '%'];
         }
+        if (isset($param['vod_area']) && strlen($param['vod_area']) > 0) {
+            $where['vod_area'] = format_sql_string($param['vod_area']);
+        }
+        if (isset($param['vod_year']) && strlen($param['vod_year']) > 0) {
+            $where['vod_year'] = format_sql_string($param['vod_year']);
+        }
         // 数据获取
         $total = model('Vod')->getCountByCond($where);
         $list = [];
@@ -74,7 +80,7 @@ class Vod extends Base
             if (strlen($param['orderby']) > 0) {
                 $order = 'vod_' . $param['orderby'] . " DESC";
             }
-            $field = 'vod_id,vod_name,vod_actor,vod_hits,vod_hits_day,vod_hits_week,vod_hits_month,vod_time,vod_remarks,vod_score';
+            $field = 'vod_id,vod_name,vod_actor,vod_hits,vod_hits_day,vod_hits_week,vod_hits_month,vod_time,vod_remarks,vod_score,vod_area,vod_year';
 //            $list = model('Vod')->getListByCond($offset, $limit, $where, $order, $field, []);
             $list = model('Vod')->getListByCond($offset, $limit, $where, $order, $field);
         }

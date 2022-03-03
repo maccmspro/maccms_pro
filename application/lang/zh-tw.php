@@ -31,7 +31,7 @@ return [
     'status'=>'狀態',
     'status_parse'=>'解析狀態',
     'test'=>'測試',
-    'copy'=>'復制',
+    'copy'=>'復製',
     'run'=>'執行',
     'run_ok'=>'執行成功',
     'skip'=>'跳過',
@@ -282,6 +282,7 @@ return [
     'opt_err'=>'操作失敗',
     'update_ok'=>'更新成功',
     'update_err'=>'更新失敗',
+    'follow_global'=>'跟隨全局',
 
     'btn_save' =>'保 存',
     'btn_reset' =>'還 原',
@@ -457,6 +458,7 @@ return [
     'page_not_found'=>'頁面不存在',
     'search_close'=>'搜索功能關閉中',
     'show_close'=>'篩選頁功能關閉中',
+    'ajax_close'=>'ajax頁功能關閉中',
     'frequently'=>'請不要頻繁操作',
     'search_frequently'=>'請不要頻繁操作，搜索時間間隔為',
     'score_ok'=>'感謝您的參與，評分成功',
@@ -584,6 +586,8 @@ https://www.baidu.com/123.jpg
     'menu/market'=>'應用市場',
     'menu/markettheme'=>'模板市場',
     'menu/urlsend'=>'URL推送',
+    'menu/safety_file'=>'文件安全檢測',
+    'menu/safety_data'=>'數據掛馬檢測',
     'menu/app_management'=>'APP管理',
     'menu/advertising_management'=>'廣告管理',
 
@@ -645,7 +649,8 @@ https://www.baidu.com/123.jpg
 
     'model/type/to_info_err'=>'獲取目標分類信息失敗',
     'model/type/move_err'=>'轉移失敗',
-    'model/type/move_ok'=>'轉移失敗',
+    'model/type/move_empty'=>'沒有待轉移的數據',
+    'model/type/move_ok'=>'轉移成功',
 
     'model/user/not_open_reg'=>'未開放註冊',
     'model/user/access_denied'=>'非法訪問',
@@ -2051,14 +2056,14 @@ https://www.baidu.com/123.jpg
 
     'menu/others' => '其他',
     'menu/others/botcensus' => '爬蟲日誌',
-    'admin/system/php_com_dotnet' => '需要php_com_dotnet拓展',
+    'admin/system/php_shell_exec' => '需要在 php.ini 開啟 shell_exec 支持',
     'admin/system/nuclei' => '核數',
     'admin/system/nuclei_num' => '核',
     'admin/system/usage_rate' => '使用率',
     'admin/system/memory_size' => '内存大小',
-    'admin/system/memory_usage' => '内存使用率',
+    'admin/system/memory_usage' => '内存已使用',
     'admin/system/detection_time' => '檢測時間',
-    'admin/system/process_status' => '進程狀態',
+    'admin/system/disk_size' => '硬盘大小',
     'admin/system/hard_disk_free_space' => '硬盤可用空間',
     'admin/system/ext_used' => '已用',
 
@@ -2120,6 +2125,16 @@ https://www.baidu.com/123.jpg
     'index/ajax/watch_progress/success' =>'成功',
     'index/ajax/watch_progress/db_error' =>'數據庫錯誤或數據不存在',
 
+
+    'admin/addon/config/0/title' =>'模式',
+    'admin/addon/config/1/title' =>'固定背景圖',
+    'admin/addon/config/0/tip' =>'根據自身愛好選擇',
+    'admin/addon/config/1/tip' =>'請選擇文件...',
+    'admin/addon/mode/fixed' =>'固定',
+    'admin/addon/mode/every_time_random' =>'每次隨機',
+    'admin/addon/mode/daily_switch' =>'每日切換',
+
+
     'admin/addon/market/detail' =>'查看詳情頁',
 
     'admin/addon/marketfeedback/desc1' =>'問題反饋',
@@ -2156,6 +2171,20 @@ https://www.baidu.com/123.jpg
     'admin/addon/marketlicense/desc7' =>'安裝模板',
     'admin/addon/marketlicense/desc8' =>'下載模板',
     'admin/addon/marketlicense/desc9' =>'系統信息',
+
+    'admin/addon/downandinstalltheme/ext_err' =>'應用擴展名必須是zip',
+    'admin/addon/downandinstalltheme/params_miss' =>'參數缺失',
+    'admin/addon/downandinstalltheme/install_zip_extension' =>'請先安裝zip擴展',
+    'admin/addon/downandinstalltheme/unzip_failed' =>'解壓失敗',
+    'admin/addon/downandinstalltheme/tpl_auto_updated' =>'模板已自動更新',
+    'admin/addon/downandinstalltheme/tpl_installed_set_config' => '模板已安裝,請前往系統-網站參數配置中設置',
+
+    'admin/addon/domarketfeedback/required_id' =>'id不能為空',
+    'admin/addon/domarketfeedback/required_version_number' =>'版本號不能為空',
+    'admin/addon/domarketfeedback/required_content' =>'內容不能為空',
+    'admin/addon/domarketfeedback/required_screenshot' =>'截圖不能為空',
+    'admin/addon/domarketfeedback/required_video' =>'視頻不能為空',
+    'admin/addon/domarketfeedback/feedback_success' => '反饋成功',
 
     'admin/app/add/title1' =>'APP名稱',
     'admin/app/add/title2' =>'平台',
@@ -2891,4 +2920,24 @@ https://www.baidu.com/123.jpg
 
     'admin/system/config/site_security'=>'安全設置',
     'admin/system/config/urls_send'=>'URL推送設定',
+
+    'layui/upload/tip1' => '请求上传接口出现异常',
+    'layui/upload/tip2' => '获取上传后的响应信息出现异常',
+    'layui/upload/tip3' => '请对上传接口返回有效JSON',
+    'layui/upload/tip4' => '选择的文件中包含不支持的格式',
+    'layui/upload/tip5' => '选择的视频中包含不支持的格式',
+    'layui/upload/tip6' => '选择的图片中包含不支持的格式',
+    'layui/upload/tip7' => '选择的音频中包含不支持的格式',
+    'layui/upload/tip8' => '同时最多只能上传的数量为:',
+    'layui/upload/tip9' => '文件不能超过',
+    'layui/upload/tip10' => '个文件',
+
+    'layui/page/total' => '共 ',
+    'layui/page/num' => ' 条',
+    'layui/page/per_page' => ' 条/页',
+    'layui/page/prev' => '上一页',
+    'layui/page/next' => '下一页',
+    'layui/page/go' => '到第',
+    'layui/page/page' => '页',
+    'layui/page/ok' => '确定',
 ];

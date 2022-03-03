@@ -1,8 +1,8 @@
 <?php
 namespace app\index\controller;
-use think\Controller;
-use think\Db;
+
 use think\Request;
+use think\Cache;
 
 class Vod extends Base
 {
@@ -19,18 +19,27 @@ class Vod extends Base
     public function type(Request $request)
     {
         $param = $request->param();
-        if(isset($param['id'])){
-            $id = $param['id'];
+
+        $encode = md5(json_encode($param));
+
+        $cache_for_id_data = Cache::get('index_vod_type_' . $encode);
+
+        if (empty($cache_for_id_data)) {
+            $vod_class = model('type')->where(['type_id' => isset($param['id']) ? $param['id'] : 1])->column('type_extend');
+            $vod_class = explode(',', json_decode($vod_class[0])->class);
+            $info = $this->label_type();
+            $cache_data = ['info' => $info, 'vod_class' => $vod_class];
+            Cache::set('index_vod_type_' . $encode, $cache_data, 60);
         }else{
-            $id = 1;
+            $info = $cache_for_id_data['info'];
+            $vod_class = $cache_for_id_data['vod_class'];
         }
-        $vod_class = model('type')->where(['type_id' => $id])->column('type_extend');
-        $vod_class = explode(',',json_decode($vod_class[0])->class);
-        $info = $this->label_type();
+
         return $this->label_fetch( mac_tpl_fetch('vod',$info['type_tpl'],'type') , 1 , 'html', [
             'vod_class' => $vod_class,
             'info' => $info,
         ]);
+
     }
 
     public function show()

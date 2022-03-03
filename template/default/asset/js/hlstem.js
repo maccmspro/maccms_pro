@@ -178,16 +178,16 @@ var tplconfig = {
             if(width<=820){
                 $('.head_search .form_control').css('padding','0.15rem 3.5rem 0.15rem 1rem')
             }
-            // $('.mac_results').show()
+            $('.mac_results').show()
         });
         $("input.form_control").blur(function() {
             $(".submit").removeClass("search_btn");
             if(width<=820){
                 $('.head_search .form_control').css('padding','0.15rem 2.125rem 0.15rem 1rem')
             }
-            // setTimeout(()=>{
-            //     $('.mac_results').hide()
-            // },500)
+            setTimeout(()=>{
+                $('.mac_results').hide()
+            },500)
         });
     },
     change: function() {

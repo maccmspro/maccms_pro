@@ -1,53 +1,85 @@
 {include file="../../../application/admin/view/public/head" /}
-<div class="page-container p10">
-    <div class="my-toolbar-box">
-        <div class="layui-btn-group">
-            <a data-href="{:url('add')}" data-full="1" class="layui-btn layui-btn-primary j-iframe"><i class="layui-icon">&#xe654;</i>{:lang('add')}</a>
-            {if condition="$param.select eq 1"}
-            <a data-href="" onclick="parent.onSelectResult('{$param.input}',$('.checkbox-ids:checked'))" class="layui-btn layui-btn-normal">{:lang('select_return')}</a>
-            {/if}
+<div>
+    
+
+
+
+    <div class="layui-card">
+        <div class="layui-card-body">
+          <table id="role-table" lay-filter="role-table"></table>
+          <div
+            class="layui-form layui-border-box layui-table-view"
+            lay-filter="LAY-table-1"
+            lay-id="role-table"
+            style=""
+          >
+            <div class="layui-table-tool">
+              <div class="layui-table-tool-temp">
+                <a data-href="{:url('add')}" data-full="1" class="pear-btn pear-btn-md pear-btn-primary j-iframe"><i class="layui-icon">&#xe654;</i>{:lang('add')}</a>
+                {if condition="$param.select eq 1"}
+                <a data-href="" onclick="parent.onSelectResult('{$param.input}',$('.checkbox-ids:checked'))" class="pear-btn pear-btn-md pear-btn-primary">{:lang('select_return')}</a>
+                {/if}
+
+                </div>
+            </div>
+            <div class="layui-table-box">
+              <div class="layui-table-header">
+				<form class="layui-form" method="post" id="pageListForm" >
+					<table
+					cellspacing="0"
+					cellpadding="0"
+					border="0"
+					class="layui-table"
+					lay-skin="line"
+					>
+					<thead>
+						<tr>
+                            <th width="25"><input type="checkbox" lay-skin="primary" lay-filter="allChoose"></th>
+                            <th width="40">{:lang('id')}</th>
+                            <th width="40">{:lang('name')}</th>
+                            <th width="50">{:lang('admin/addon/marketfeedback/desc3')}</th>
+                            <th width="30">{:lang('admin/app/add/title2')}</th>
+                            <th width="30">{:lang('admin/app/add/title3')}</th>
+                            <th width="30">{:lang('admin/app/add/title4')}</th>
+                            <th width="80">{:lang('downurl')}</th>
+                            <th width="120">{:lang('update_time')}</th>
+                            <th width="80">{:lang('opt')}</th>
+                        </tr>
+					</thead>
+					<tbody>
+						{volist name="list" id="vo"}
+                        <tr>
+                            <td><input type="checkbox" name="ids[]" value="{$vo.id}" class="layui-checkbox checkbox-ids" lay-skin="primary"></td>
+                            <td>{$vo.id}</td>
+                            <td>{$vo.name}</td>
+                            <td>{$vo.ver_num}</td>
+                            <td>{if condition="$vo.type eq 1"}IOS{else}Android{/if}</td>
+                            <td>{if condition="$vo.is_force_update eq 1"}{:lang('yes')}{else}{:lang('not')}{/if}</td>
+                            <td>{if condition="$vo.down_type eq 1"}{:lang('online_app')}{else}{:lang('admin/app/add/title7')}{/if}</td>
+                            <td>{$vo.down_url}</td>
+                            <td>{$vo.update_time|mac_day='color'}</td>
+                            <td>
+                                <a class="pear-btn pear-btn-md pear-btn-primary j-iframe" data-full="1" data-href="{:url('edit?id='.$vo['id'])}" href="javascript:;" title="{:lang('edit')}">{:lang('edit')}</a>
+                                <a class="pear-btn pear-btn-md pear-btn-danger j-tr-del" data-href="{:url('del?id='.$vo['id'])}" href="javascript:;" title="{:lang('del')}">{:lang('del')}</a>
+                            </td>
+                        </tr>
+                        {/volist}
+					</tbody>
+					</table>
+				</form>
+              </div>
+              
+            </div>
+            
+            
+          </div>
         </div>
-    </div>
+      </div>
 
 
-    <form class="layui-form " method="post" id="pageListForm">
-        <table class="layui-table" lay-size="sm">
-            <thead>
-            <tr>
-                <th width="25"><input type="checkbox" lay-skin="primary" lay-filter="allChoose"></th>
-                <th width="40">{:lang('id')}</th>
-                <th width="40">{:lang('name')}</th>
-                <th width="50">{:lang('admin/addon/marketfeedback/desc3')}</th>
-                <th width="30">{:lang('admin/app/add/title2')}</th>
-                <th width="30">{:lang('admin/app/add/title3')}</th>
-                <th width="30">{:lang('admin/app/add/title4')}</th>
-                <th width="80">{:lang('downurl')}</th>
-                <th width="120">{:lang('update_time')}</th>
-                <th width="80">{:lang('opt')}</th>
-            </tr>
-            </thead>
 
-            {volist name="list" id="vo"}
-            <tr>
-                <td><input type="checkbox" name="ids[]" value="{$vo.id}" class="layui-checkbox checkbox-ids" lay-skin="primary"></td>
-                <td>{$vo.id}</td>
-                <td>{$vo.name}</td>
-                <td>{$vo.ver_num}</td>
-                <td>{if condition="$vo.type eq 1"}IOS{else}Android{/if}</td>
-                <td>{if condition="$vo.is_force_update eq 1"}{:lang('yes')}{else}{:lang('not')}{/if}</td>
-                <td>{if condition="$vo.down_type eq 1"}{:lang('online_app')}{else}{:lang('admin/app/add/title7')}{/if}</td>
-                <td>{$vo.down_url}</td>
-                <td>{$vo.update_time|mac_day='color'}</td>
-                <td>
-                    <a class="layui-badge-rim j-iframe" data-full="1" data-href="{:url('edit?id='.$vo['id'])}" href="javascript:;" title="{:lang('edit')}">{:lang('edit')}</a>
-                    <a class="layui-badge-rim j-tr-del" data-href="{:url('del?id='.$vo['id'])}" href="javascript:;" title="{:lang('del')}">{:lang('del')}</a>
-                </td>
-            </tr>
-            {/volist}
-            </tbody>
-        </table>
-        <div id="pages" class="center"></div>
-    </form>
+
+      <div id="pages" class="center"></div>
 </div>
 
 

@@ -186,13 +186,6 @@ function qrsearch(){
         }else{
             document.location = MAC_PATH + 'index.php/vod/search.html?wd='+ encodeURIComponent($("#wd").val())+"";
         }
-        let historyList=JSON.parse(localStorage.getItem('historyList')) || []
-        
-        historyList.unshift($(".form_control").val())
-        if(historyList.length>5){
-            historyList.pop()
-        }
-        localStorage.setItem('historyList',JSON.stringify(historyList))
         return false;
     }else{
         if($("#wd").val()=='请在此处输入影片片名或演员名称。'||$("#wd").val()==''){
@@ -203,7 +196,6 @@ function qrsearch(){
         }
         return false; 
     }
-	
 }
 checkcookie();
 $(document).ready(function() {

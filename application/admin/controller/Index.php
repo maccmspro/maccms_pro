@@ -1,5 +1,8 @@
 <?php
+
 namespace app\admin\controller;
+
+use Probe\ProviderFactory;
 use think\Hook;
 use think\Lang;
 
@@ -16,7 +19,7 @@ class Index extends Base
         // 导入多语言包
         Lang::range($lang);
         Lang::load(APP_PATH . 'lang/' . $lang . '.php', $lang);
-        if(request()->isPost()) {
+        if (request()->isPost()) {
             $data = input('post.');
             $res = model('Admin')->login($data);
             if ($res['code'] > 1) {
@@ -32,11 +35,11 @@ class Index extends Base
         }
         Hook::listen("admin_login_init", $this->request);
         // 验证码，兼容未配置伪静态模式
-        $verify_img_src = MAC_BASE_URL_FULL . '?s=verify/index';
+        $verify_img_src = MAC_BASE_URL_FULL . '/index.php?s=verify/index';
         return $this->fetch('admin@index/login', [
             'verify_img_src' => $verify_img_src,
-            'langs'          => $langs,
-            'lang'           => $lang,
+            'langs' => $langs,
+            'lang' => $lang,
         ]);
     }
 
@@ -49,17 +52,16 @@ class Index extends Base
     public function lang()
     {
         if (!request()->isGet()) {
-            return json(['msg' => '请求方式错误','code' => 500], 500);
+            return json(['msg' => '请求方式错误', 'code' => 500], 500);
         }
         $param = request()->param();
         $langs = get_supported_lang_list();
         $lang = !empty($param['lang']) && in_array($param['lang'], $langs) ? $param['lang'] : $langs[0];
         $config = config('maccms');
-        if ($config['app']['lang'] == $lang) {
-            return json(['select' => $config['app']['lang'], 'msg' => '语言切换，未作出改变','code' => 403], 403);
+        if ($config['app']['lang'] != $lang) {
+            $config['app']['lang'] = $lang;
+            mac_save_config_data(APP_PATH . 'extra/maccms.php', $config);
         }
-        $config['app']['lang'] = $lang;
-        mac_save_config_data(APP_PATH . 'extra/maccms.php', $config);
         return json(['select' => $config['app']['lang'], 'msg' => '语言切换成功', 'code' => 1], 200);
     }
 
@@ -67,13 +69,12 @@ class Index extends Base
     {
         $menus = @include MAC_ADMIN_COMM . 'auth.php';
 
-        foreach($menus as $k1=>$v1){
-            foreach($v1['sub'] as $k2=>$v2){
-                if($v2['show'] == 1) {
-                    if(strpos($v2['action'],'javascript')!==false){
+        foreach ($menus as $k1 => $v1) {
+            foreach ($v1['sub'] as $k2 => $v2) {
+                if ($v2['show'] == 1) {
+                    if (strpos($v2['action'], 'javascript') !== false) {
                         $url = $v2['action'];
-                    }
-                    else {
+                    } else {
                         $url = url('admin/' . $v2['controller'] . '/' . $v2['action']);
                     }
                     if (!empty($v2['param'])) {
@@ -84,47 +85,43 @@ class Index extends Base
                     } else {
                         unset($menus[$k1]['sub'][$k2]);
                     }
-                }
-                else{
+                } else {
                     unset($menus[$k1]['sub'][$k2]);
                 }
             }
 
-            if(empty($menus[$k1]['sub'])){
+            if (empty($menus[$k1]['sub'])) {
                 unset($menus[$k1]);
             }
         }
 
         $quickmenu = config('quickmenu');
-        if(empty($quickmenu)){
-            $quickmenu = mac_read_file( APP_PATH.'data/config/quickmenu.txt');
-            $quickmenu = explode(chr(13),$quickmenu);
+        if (empty($quickmenu)) {
+            $quickmenu = mac_read_file(APP_PATH . 'data/config/quickmenu.txt');
+            $quickmenu = explode(chr(13), $quickmenu);
         }
-        if(!empty($quickmenu)){
+        if (!empty($quickmenu)) {
             // $menus[1]['sub'][13] = ['name'=>lang('admin/index/quick_tit'), 'url'=>'javascript:void(0);return false;','controller'=>'', 'action'=>'' ];
 
-            foreach($quickmenu as $k=>$v){
-                if(empty($v)){
+            foreach ($quickmenu as $k => $v) {
+                if (empty($v)) {
                     continue;
                 }
-                $one = explode(',',trim($v));
-                if(substr($one[1],0,4)=='http' || substr($one[1],0,2)=='//'){
+                $one = explode(',', trim($v));
+                if (substr($one[1], 0, 4) == 'http' || substr($one[1], 0, 2) == '//') {
 
-                }
-                elseif(substr($one[1],0,1) =='/'){
+                } elseif (substr($one[1], 0, 1) == '/') {
 
-                }
-                elseif(strpos($one[1],'###')!==false || strpos($one[1],'javascript:')!==false){
+                } elseif (strpos($one[1], '###') !== false || strpos($one[1], 'javascript:') !== false) {
 
-                }
-                else{
+                } else {
                     $one[1] = url($one[1]);
                 }
-                $menus[1]['sub'][14 + $k] = ['name'=>$one[0], 'url'=>$one[1],'controller'=>'', 'action'=>'' ];
+                $menus[1]['sub'][14 + $k] = ['name' => $one[0], 'url' => $one[1], 'controller' => '', 'action' => ''];
             }
         }
-        $this->assign('menus',$menus);
-        $this->assign('title',lang('admin/index/title'));
+        $this->assign('menus', $menus);
+        $this->assign('title', lang('admin/index/title'));
         // 多语言
         $config_maccms = config('maccms');
         $this->assign('language_current', $config_maccms['app']['lang']);
@@ -137,12 +134,12 @@ class Index extends Base
         $version = config('version');
         $update_sql = file_exists('./application/data/update/database.php');
 
-        $this->assign('version',$version);
-        $this->assign('update_sql',$update_sql);
-        $this->assign('mac_lang',config('default_lang'));
+        $this->assign('version', $version);
+        $this->assign('update_sql', $update_sql);
+        $this->assign('mac_lang', config('default_lang'));
 
-        $this->assign('admin',$this->_admin);
-        $this->assign('title',lang('admin/index/welcome/title'));
+        $this->assign('admin', $this->_admin);
+        $this->assign('title', lang('admin/index/welcome/title'));
 
         $this->assign('serverU', $this->getServerUsedStatus());
 
@@ -151,119 +148,97 @@ class Index extends Base
 
     /**
      * 获取服务器运行状态
+     *
+     * @author joyce
      */
-    private function getServerUsedStatus(){
-        return [
-            'cpu_nums'       => '-',
-            'cpu_usage'      => '-',
-            'mem_total'      => '-',
-            'mem_usage'      => '-',
-            'hd_avail'       => '-',
-            'hd_usage'       => '-',
-            'tast_running'   => '-',
-            'detection_time' => date('Y-m-d H:i:s'),
-        ];
+    private function getServerUsedStatus()
+    {
+        $provider = ProviderFactory::create();
 
-        $fp = popen('top -b -n 2 | grep -E "^(Cpu|Mem|Tasks)"',"r");//获取某一时刻系统cpu和内存使用情况
-        $rs = "";
-        while(!feof($fp)){
-            $rs .= fread($fp,1024);
+        if (!$provider->isLinuxOs() && !$provider->isWindowsOs()) {
+            return [
+                'cpu_cores' => '-',
+                'cpu_usage' => '-',
+                'total_mem' => '-',
+                'used_mem' => '-',
+                'total_disk' => '-',
+                'free_disk' => '-',
+                'used_disk' => '-',
+                'check_time' => date('H:i:s'),
+            ];
         }
-        pclose($fp);
-        $sys_info = $rs;
-        $tast_info = explode(":",$sys_info);//进程 数组
-        //$cpu_info = explode(",",$sys_info[4]); //CPU占有量 数组
 
-        if (is_readable("/proc/stat")) {
-            $stats = @file_get_contents("/proc/stat");
-            $stats = preg_replace("/[[:blank:]]+/", " ", $stats);
-            $stats = str_replace(array("\r\n", "\n\r", "\r"), "\n", $stats);
-            $stats = explode("\n", $stats);
-            $cpu_nums = 0;
-            foreach ($stats as $statLine) {
-                if ( strpos($statLine,"cpu") === 0 ){     //以cpu开头
-                    $cpu_nums++;
-                }
+        if ($provider->isLinuxOs()) {
+
+            if (stripos(ini_get('disable_functions'), 'shell_exec') === false) {
+                $stat = shell_exec('top -b -n 1 2>&1');
+                $cpu_free = (int)rtrim(explode(",", explode("\n", $stat)[2])[3], ' id');
+                $cpu_usage = 100 - $cpu_free;
+
+                $total_disk = $provider->getDiskTotal(). 'B';
+                $free_disk = $provider->getDiskFree() . 'B';
+                $used_disk = $provider->getDiskUsage();
+            } else {
+                $cpu_usage = round(array_sum($provider->getCpuUsage()), 2);
+                $total_disk = lang('admin/system/php_shell_exec');
+                $free_disk = lang('admin/system/php_shell_exec');
             }
-            $cpu_nums--;    //减去第一个cpu开头的,第一个为总的cpu,其他以cpu0,cpu1,cpu2等开头
-        }else{
-            $cpu_nums =1;    //没有权限默认1个
+
+            $total_mem = to_byte_string($provider->getTotalMem());
+            $used_mem = to_byte_string($provider->getUsedMem());
+            $cpu_cores = $provider->getCpuCores();
         }
-        // window平台判断       walle      2021-12-17
-        if (stristr(PHP_OS,'WINNT')) {
+
+        if ($provider->isWindowsOs()) {
             if (class_exists('\COM')) {
-                $wmi = new \COM("Winmgmts://");
-                $wmi_server = $wmi->execquery("SELECT LoadPercentage FROM Win32_Processor");
-                $cpu_num_tmp = 0;
-                $load_total_tmp = 0;
-                foreach($wmi_server as $cpu_s_tmp){
-                    $cpu_num_tmp++;
-                    $load_total_tmp += $cpu_s_tmp->loadpercentage;
-                }
-                $cpu_info[0] = $load_total_tmp;
-            }else{
-                $cpu_info[0] = NULL;
+                $cpu_usage = $provider->getCpuUsage();
+                $cpu_usage = $cpu_usage[0] * 100;
+                $total_mem = to_byte_string($provider->getTotalMem());
+                // $used_mem = to_byte_string($provider->getUsedMem());
+                $cpu_cores = $provider->getCpuCores();
+            } else {
+                $not_exits_com = lang('admin/system/php_com_dotnet');
             }
-            $tast_running = isset($tast_info[1]) ? $tast_info[1] : lang('admin/system/php_com_dotnet');
-        } else {
-            $cpu_info = sys_getloadavg();
-            $tast_running = isset($tast_info[1]) ? $tast_info[1] : '-';
         }
-        $fp = popen('cat /proc/meminfo |grep MemTotal',"r");
-        $rs = "";
-        while(!feof($fp)){
-            $rs .= fread($fp,1024);
-        }
-        pclose($fp);
-        $mem_info = explode(":",$rs); //内存大小 数组
-        //$cpu_usage = $cpu_info[0]*100 . '%'; //CPU占有量//百分比
-        $cpu_usage = $cpu_info[0] ? round($cpu_info[0]/$cpu_nums * 100,2) . '%' : '-'; //CPU占有量//百分比        除以cpu个数   walle    2021-09-09
-        $mem_total = isset($mem_info[1]) ? $mem_info[1] : 0;//内存大小
-        $mem_used = memory_get_usage();
-        $mem_usage = $mem_total > 0 ? round(100*intval($mem_used)/intval($mem_total),2) : '-'; //百分比
-        /*硬盘使用率 begin*/
-        $fp = popen('df -lh | grep -E "^(/)"',"r");
-        $rs = fread($fp,1024);
-        pclose($fp);
-        $rs = preg_replace("/\s{2,}/",' ',$rs); //把多个空格换成 “_”
-        $hd = explode(" ",$rs);
-        $hd_avail = $hd[3] ? trim($hd[3],'G') : NULL;
-        $hd_avail = $hd_avail ? trim($hd_avail,'Gi') : '-';//磁盘可用空间大小 单位G
-        $hd_usage = $hd[4] ? trim($hd[4],'%') : '-'; //挂载点 百分比
-        /*硬盘使用率 end*/
-        $detection_time = date('Y-m-d H:i:s');
-        $mem_total = $mem_total > 0 ? to_byte_string(intval($mem_total) * 1024, 0) : '-';
-        return ['cpu_nums'=>$cpu_nums, 'cpu_usage'=>$cpu_usage, 'mem_total'=>$mem_total, 'mem_usage'=>$mem_usage, 'hd_avail'=>$hd_avail, 'hd_usage'=>$hd_usage, 'tast_running'=>$tast_running, 'detection_time'=>$detection_time];
+
+        return [
+            'cpu_cores' => isset($cpu_cores) ? $cpu_cores : '-',
+            'cpu_usage' => isset($cpu_usage) ? $cpu_usage : '-',
+            'total_mem' => isset($total_mem) ? $total_mem : '-',
+            'used_mem' => isset($used_mem) ? $used_mem : '-',
+            'total_disk' => isset($total_disk) ? $total_disk : '-',
+            'free_disk' => isset($free_disk) ? $free_disk : '-',
+            'used_disk' => isset($used_disk) ? end($used_disk)['usepercentage'] : '-',
+            'check_time' => isset($not_exits_com) ? $not_exits_com : date('Y-m-d H:i:s', time()),
+        ];
     }
 
     public function quickmenu()
     {
-        if(request()->isPost()){
+        if (request()->isPost()) {
             $param = input();
             $validate = \think\Loader::validate('Token');
-            if(!$validate->check($param)){
+            if (!$validate->check($param)) {
                 return $this->error($validate->getError());
             }
             $quickmenu = input('post.quickmenu');
-            $quickmenu = str_replace(chr(10),'',$quickmenu);
-            $menu_arr = explode(chr(13),$quickmenu);
+            $quickmenu = str_replace(chr(10), '', $quickmenu);
+            $menu_arr = explode(chr(13), $quickmenu);
             $res = mac_save_config_data(APP_PATH . 'extra/quickmenu.php', $menu_arr);
             if ($res === false) {
                 return $this->error(lang('save_err'));
             }
             return $this->success(lang('save_ok'));
-        }
-        else{
+        } else {
             $config_menu = config('quickmenu');
-            if(empty($config_menu)){
-                $quickmenu = mac_read_file(APP_PATH.'data/config/quickmenu.txt');
-            }
-            else{
+            if (empty($config_menu)) {
+                $quickmenu = mac_read_file(APP_PATH . 'data/config/quickmenu.txt');
+            } else {
                 $quickmenu = array_values($config_menu);
-                $quickmenu = join(chr(13),$quickmenu);
+                $quickmenu = join(chr(13), $quickmenu);
             }
-            $this->assign('quickmenu',$quickmenu);
-            $this->assign('title',lang('admin/index/quickmenu/title'));
+            $this->assign('quickmenu', $quickmenu);
+            $this->assign('title', lang('admin/index/quickmenu/title'));
             return $this->fetch('admin@index/quickmenu');
         }
     }
@@ -272,7 +247,7 @@ class Index extends Base
     {
         $res = 'no';
         $r = cache('cache_data');
-        if($r=='1'){
+        if ($r == '1') {
             $res = 'haved';
         }
         echo $res;
@@ -282,7 +257,7 @@ class Index extends Base
     {
         $res = $this->_cache_clear();
         //运行缓存
-        if(!$res) {
+        if (!$res) {
             $this->error(lang('admin/index/clear_err'));
         }
         return $this->success(lang('admin/index/clear_ok'));
@@ -307,7 +282,7 @@ class Index extends Base
         $param = input();
         $password = $param['password'];
 
-        if($this->_admin['admin_pwd'] != md5($password)){
+        if ($this->_admin['admin_pwd'] != md5($password)) {
             return $this->error(lang('admin/index/pass_err'));
         }
 
@@ -333,47 +308,44 @@ class Index extends Base
 
         $refresh = $param['refresh'];
 
-        if(empty($tpl) || empty($tab) || empty($col) || empty($ids) || empty($url)){
+        if (empty($tpl) || empty($tab) || empty($col) || empty($ids) || empty($url)) {
             return $this->error(lang('param_err'));
         }
 
-        if(is_array($ids)){
-            $ids = join(',',$ids);
+        if (is_array($ids)) {
+            $ids = join(',', $ids);
         }
 
-        if(empty($refresh)){
+        if (empty($refresh)) {
             $refresh = 'yes';
         }
 
         $url = url($url);
         $mid = 1;
-        if($tab=='art'){
+        if ($tab == 'art') {
             $mid = 2;
+        } elseif ($tab == 'actor') {
+            $mid = 8;
+        } elseif ($tab == 'website') {
+            $mid = 11;
         }
-        elseif($tab=='actor'){
-            $mid=8;
-        }
-        elseif($tab=='website'){
-            $mid=11;
-        }
-        $this->assign('mid',$mid);
+        $this->assign('mid', $mid);
 
-        if($tpl=='select_type'){
+        if ($tpl == 'select_type') {
             $type_tree = model('Type')->getCache('type_tree');
-            $this->assign('type_tree',$type_tree);
-        }
-        elseif($tpl =='select_level'){
-            $level_list = [1,2,3,4,5,6,7,8,9];
-            $this->assign('level_list',$level_list);
+            $this->assign('type_tree', $type_tree);
+        } elseif ($tpl == 'select_level') {
+            $level_list = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+            $this->assign('level_list', $level_list);
         }
 
-        $this->assign('refresh',$refresh);
-        $this->assign('url',$url);
-        $this->assign('tab',$tab);
-        $this->assign('col',$col);
-        $this->assign('ids',$ids);
-        $this->assign('val',$val);
-        return $this->fetch( 'admin@public/'.$tpl);
+        $this->assign('refresh', $refresh);
+        $this->assign('url', $url);
+        $this->assign('tab', $tab);
+        $this->assign('col', $col);
+        $this->assign('ids', $ids);
+        $this->assign('val', $val);
+        return $this->fetch('admin@public/' . $tpl);
     }
 
 }

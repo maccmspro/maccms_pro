@@ -1,3 +1,8 @@
+<style>
+    .icon-img{
+        width: 54px;
+    }
+</style>
 {if condition="$tplconfig['theme']['type']['meunbtn'] eq 1"}
 <div class="row hidden_mb">
     <div class="pannel">
@@ -5,7 +10,7 @@
             {maccms:type num="5" ids="'.$tplconfig['theme']['type']['meunid'].'" order="asc" by="sort" id="vo1" key="key1"}
             <li>
                 <a class="mob_btn mob_btn{$key1}" href="{:mac_url_type($vo1)}">
-					{include file="widget/icon"}<span class="mob_font">{$vo1.type_name}</span>
+					{include file="widget/icon3"}<span class="mob_font">{$vo1.type_name}</span>
 				</a>
             </li>
             {/maccms:type}

@@ -1,0 +1,18 @@
+{if stristr($vo1['type_name'],'纪录片')==true||stristr($vo1['parent']['type_name'],'纪录片')==true}
+<i class="iconfont">&#xe651;</i>
+{elseif stristr($vo1['type_name'],'福利')==true||stristr($vo1['parent']['type_name'],'福利')==true}
+<i class="iconfont">&#xe655;</i>
+{elseif stristr($vo1['type_name'],'明星')==true||stristr($vo1['parent']['type_name'],'明星')==true}
+<i class="iconfont">&#xe629;</i>
+{else}
+    {switch name="vo1.type_id"}
+    {case value="1"}<img class="icon-img" src="{:MAC_BASE_PATH}/template/default/images/pro/icon-dy1.png">{/case}
+    {case value="2"}<img class="icon-img" src="{:MAC_BASE_PATH}/template/default/images/pro/icon-dy2.png">{/case}
+    {case value="3"}<img class="icon-img" src="{:MAC_BASE_PATH}/template/default/images/pro/icon-dy3.png">{/case}
+    {case value="4"}<img class="icon-img" src="{:MAC_BASE_PATH}/template/default/images/pro/icon-dy4.png">{/case}
+    {case value="5"}<i class="iconfont">&#xe630;</i>{/case}
+    {case value="$tplconfig['theme']['type']['zb']"}<i class="iconfont">&#xe650;</i>
+    {/case}{default /}<i class="iconfont">&#xe647;</i>
+    {/switch}
+{/if}
+

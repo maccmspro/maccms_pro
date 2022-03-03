@@ -90,7 +90,7 @@
 			<div class="pannel layout-box">
 				<div class="pannel_head clearfix">
                     <span class="text_muted pull_right">
-						<a class="actor-more" href="{:MAC_BASE_URL}/actor/show.html"><span data-lang="string_type_more2">{:lang_web('string_type_more2')}</span><i class="iconfont more_i">&#xe623;</i></a>
+						<a class="actor-more" href="{:MAC_BASE_URL}/actor/show_all.html"><span data-lang="string_type_more2">{:lang_web('string_type_more2')}</span><i class="iconfont more_i">&#xe623;</i></a>
 					</span>
                     <h2 class="title" data-lang="string_actor_ypjx">{:lang_web('string_actor_ypjx')}</h2>	
                 </div>
@@ -99,7 +99,7 @@
 					<ul class="box-star-list">
 						{maccms:actor num="8" level="1" order="desc" by="time"}
 						<li class="col-md-1 col-sm-2 col-xs-4 "  {if condition="$key == 1"}class="active"{/if}>
-							<a class="star-pic lazyload img-circle" style="background: url({$vo.actor_pic|mac_url_img}) no-repeat;background-size:cover;" href="{:MAC_BASE_URL}/actor/detail/id/{$vo.actor_id}.html" data-original="{$vo.actor_pic|mac_url_img}">
+							<a class="star-pic lazyload img-circle" style="background: url({$vo.actor_pic|mac_url_img}) no-repeat;background-size:cover;" href="{:mac_url_actor_detail($vo)}" data-original="{$vo.actor_pic|mac_url_img}">
 							</a>
 							<span class="name">{$vo.actor_name}</span>
 						</li>
@@ -150,7 +150,7 @@
 			<div class="pannel">
 				<div class="pannel_head clearfix">
 					<span class="text_muted pull_right">
-						<a class="actor-more" href="{:MAC_BASE_URL}/actor/show.html"><span data-lang="string_type_more2">{:lang_web('string_type_more2')}</span><i class="iconfont more_i">&#xe623;</i></a>
+						<a class="actor-more" href="{:mac_url_type($vo,[],'show')}"><span data-lang="string_type_more2">{:lang_web('string_type_more2')}</span><i class="iconfont more_i">&#xe623;</i></a>
 					</span>
 					<h2 class="title">{$vo.type_name}</h2>
 				</div>

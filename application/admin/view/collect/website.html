@@ -26,14 +26,14 @@
 
     <div class="layui-card">
         <div class="layui-card-body">
-            <form class="layui-form"  method="post">
+            <form class="layui-form"  method="">
                 <div class="layui-form-item">
                     <div class="layui-input-inline">
                         <input type="text" autocomplete="off" placeholder="{:lang('wd')}" class="layui-input" name="wd" value="{$param['wd']}">
                     </div>
                     
                     <div class="layui-form-item layui-inline">
-                        <button class="pear-btn pear-btn-md pear-btn-primary j-search">
+                        <button type="button" class="pear-btn pear-btn-md pear-btn-primary j-btn">
                             <i class="layui-icon layui-icon-search"></i>
                             {:lang('btn_search')}
                         </button>

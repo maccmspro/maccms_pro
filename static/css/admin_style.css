@@ -511,3 +511,6 @@ body{background-color:#fff; font-family:"微软雅黑"; }
     display: inline-table;
     width: 48% !important;
 }
+.collect-update-bottom{
+    position: fixed !important;
+}

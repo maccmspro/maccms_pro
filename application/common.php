@@ -181,7 +181,12 @@ if (!function_exists('config')) {
             $final = 0 === strpos($name, '?') ? Config::has(substr($name, 1), $range) : Config::get($name, $range);
             // 支持配置由数据库读取
             if (Config::get('config_save_in_db') && !empty($config_db = config_db_get($name))) {
-                $final = array_merge($final, $config_db);
+                // 纯列表型的不合并，以数据库为准
+                if (array_keys_are_sorted_number($config_db)) {
+                    $final = $config_db;
+                } else {
+                    $final = array_merge($final, $config_db);
+                }
             }
             return $final;
         } else {
@@ -189,7 +194,6 @@ if (!function_exists('config')) {
         }
     }
 }
-
 
 if (!function_exists('env')) {
     /**
@@ -203,6 +207,18 @@ if (!function_exists('env')) {
     {
         return Env::get($name, $default);
     }
+}
+
+/**
+ * 是否纯数字数组
+ */
+function array_keys_are_sorted_number($array) {
+    $keys = array_keys($array);
+    $length = count($keys);
+    if ($length > 0 && $keys[0] == 0 && $keys[$length - 1] == $length - 1) {
+        return true;
+    }
+    return false;
 }
 
 function system_version() {
@@ -328,6 +344,10 @@ function mac_arr2file($f,$arr='')
     }
     $con = "<?php\nreturn $con;";
     mac_write_file($f, $con);
+    // opcache清理以实时生效配置
+    if (function_exists('opcache_invalidate')) {
+        opcache_invalidate($f, true);
+    }
 }
 
 function mac_replace_text($txt,$type=1)
@@ -990,6 +1010,7 @@ function mac_parse_sql($sql='',$limit=0,$prefix=[])
             return implode("",$pure_sql);
         }
 
+
         // 以数组形式返回sql语句
         $pure_sql = implode("\n",$pure_sql);
         $pure_sql = explode(";\n", $pure_sql);
@@ -1120,7 +1141,7 @@ function mac_rep_pse_syn($psearr,$txt)
 }
 
 function mac_get_tag($title,$content){
-    $url = base64_decode('aHR0cDovL2FwaS5tYWNjbXMubGE=').'/keyword/index?name='.rawurlencode($title).'&txt='.rawurlencode($title).rawurlencode(mac_substring(strip_tags($content),200));
+    $url = base64_decode('aHR0cDovL2FwaS5tYWNjbXMucHJv').'/keyword/index?name='.rawurlencode($title).'&txt='.rawurlencode($title).rawurlencode(mac_substring(strip_tags($content),200));
     $data = mac_curl_get($url);
     $json = @json_decode($data,true);
     if($json){
@@ -1912,7 +1933,7 @@ function mac_url($model,$param=[],$info=[])
 
     ksort($param); 
 
-    $config = $GLOBALS['config'];
+    $config = config('maccms');
     $replace_from = ['{id}','{en}','{page}','{type_id}','{type_en}','{type_pid}','{type_pen}','{md5}','{year}','{month}','{day}','{sid}','{nid}'];
     $replace_to = [];
     $page_sp = $config['path']['page_sp'];
@@ -2903,18 +2924,22 @@ function mac_label_vod_role($param)
     return $res;
 }
 
-function mac_label_type($param)
+function mac_label_type($param, $type_id_specified)
 {
-    if($GLOBALS['config']['rewrite']['type_id']==1){
+    if ($type_id_specified > 0) {
+        $type_id = $type_id_specified;
+    } else {
+        if($GLOBALS['config']['rewrite']['type_id']==1){
 
-    }
-    else{
-        if($GLOBALS['config']['rewrite']['type_id']==2) {
-            $param['id'] = mac_alphaID($param['id'], true, $GLOBALS['config']['rewrite']['encode_len'],$GLOBALS['config']['rewrite']['encode_key'] );
         }
+        else{
+            if($GLOBALS['config']['rewrite']['type_id']==2) {
+                $param['id'] = mac_alphaID($param['id'], true, $GLOBALS['config']['rewrite']['encode_len'],$GLOBALS['config']['rewrite']['encode_key'] );
+            }
+        }
+        $type_id = $param['id'];
     }
-
-    $type_info = model('Type')->getCacheInfo($param['id']);
+    $type_info = model('Type')->getCacheInfo($type_id);
 
     $GLOBALS['type_id'] =$type_info['type_id'];
     $GLOBALS['type_pid'] = $type_info['type_pid'];

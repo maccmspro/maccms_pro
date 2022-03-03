@@ -18,6 +18,8 @@
 | tag        | `string`  | 标签数组查询     | 默认NULL                                                     | 否   |
 | vod_name   | `string`  | 视频名称（模糊） | 默认NULL                                                     | 否   |
 | vod_blurb  | `string`  | 视频详情（模糊） | 默认NULL                                                     | 否   |
+| vod_year   | `string`  | 视频年份        | 默认NULL                                                     | 否   |
+| vod_area   | `string`  | 视频地区        | 默认NULL                                                     | 否   |
 | orderby    | `string`  | 排序倒序         | 点击量hits, 顶数up, 发布日期pubdate, 周点击hits_week, 月点击hits_month, 日点击hits_day, 分数score | 否   |
 
 - 返回示例：
@@ -32,12 +34,18 @@
         "total": 83400,
         "rows": [
             {
-                "vod_id": 83435,
-                "vod_name": "巴黎诱惑",
-                "vod_actor": "马丽,张大明,黄国强,叶芷玲",
-                "vod_hits": 3293,
-                "vod_time": 1619193641,
-                "vod_remarks": "HD"
+                "vod_actor": "竹达彩奈,佐仓绫音,鬼头明里,原由实",
+                "vod_area": "日本",
+                "vod_hits": 152,
+                "vod_hits_day": 1,
+                "vod_hits_month": 47,
+                "vod_hits_week": 3,
+                "vod_id": 4379,
+                "vod_name": "爱吃拉面的小泉同学",
+                "vod_remarks": "12集全/已完结",
+                "vod_score": "9.0",
+                "vod_time": 1619175655,
+                "vod_year": "2018"
             },
             ...
         ]

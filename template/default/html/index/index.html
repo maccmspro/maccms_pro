@@ -364,6 +364,15 @@
         .pannel{
             margin-top: 0.6rem;
         }
+        .mingxing .img-list{
+            display: block;
+            white-space: normal;
+        }
+        .mingxing .img-list .topiclist_item{
+            padding: 0 2%;
+            display: inline-block;
+        }
+        
     }
     
     @font-face {
@@ -604,7 +613,7 @@
                         <dd><a href="{:mac_url_type($vo3)}">{$vo3.type_name}</a></dd>
                         {/maccms:type}
                     </dl>
-                    <a class="pc_more" href="{:MAC_BASE_URL}/vod/type/id/{$vo2.type_id}.html"> <span data-lang="string_type_more2">{:lang_web('string_type_more2')}</span> <i class="iconfont more_i">&#xe623;</i></a>
+                    <a class="pc_more" href="{:mac_url_type($vo2)}"> <span data-lang="string_type_more2">{:lang_web('string_type_more2')}</span> <i class="iconfont more_i">&#xe623;</i></a>
                 </div>
                 <div class=" latest-item">
                     <ul class="img-list dis">
@@ -623,26 +632,24 @@
             {/if}
 
             {include file="ads/ads_all"}
-            {php} $config_theme = config('mctheme'); {/php}
-            {if $config_theme['theme']['actor']['hbtn'] && $config_theme['theme']['actor']['id']}
+            {if $tplconfig['theme']['actor']['hbtn'] && $tplconfig['theme']['actor']['id']}
             <!--明星模块待处理 START-->
             <div class="box mingxing">
                 <div class="title">
                     <img class="laset_new_img" src="{:MAC_BASE_PATH}/template/default/images/pro/home-icon6.png" >
-                    <h2 >{$config_theme['theme']['actor']['htitle']}</h2>
-                    <a class="pc_more" href="{:MAC_BASE_URL}/actor/index.html"><span data-lang="string_type_more2">{:lang_web('string_type_more2')}</span><i class="iconfont more_i">&#xe623;</i></a>
+                    <h2 >{$tplconfig['theme']['actor']['htitle']}</h2>
+                    <a class="pc_more" href="{:mac_url('actor/index')}"><span data-lang="string_type_more2">{:lang_web('string_type_more2')}</span><i class="iconfont more_i">&#xe623;</i></a>
                 </div>
                 <div class="latest-item">
                     <ul class="img-list dis">
                         <!--明星模块内循环待处理 START-->
-                        {maccms:actor ids="'.$config_theme['theme']['actor']['id'].'" num="8" order="desc" by="time"}
-                        <li  class="topiclist_item num_{$key}">
-                            <a class="topiclist_thumb lazyload" href="{:MAC_BASE_URL}/actor/detail/id/{$vo.actor_id}.html" data-original="{$vo.actor_pic}">
+                        {maccms:actor ids="'.$tplconfig['theme']['actor']['id'].'" num="8" order="desc" by="time"}
+                        <li class="topiclist_item num_{$key}">
+                            <a class="topiclist_thumb lazyload" href="{:mac_url_actor_detail($vo)}" data-original="{$vo.actor_pic}">
                             </a>
-                            <a href="{:MAC_BASE_URL}/actor/detail/id/{$vo.actor_id}.html">
+                            <a href="{:mac_url_actor_detail($vo)}">
                                 <p>{$vo.actor_name}</p>
                             </a>
-
                         </li>
                         {/maccms:actor}
                     </ul>
@@ -650,14 +657,14 @@
             </div>
             <!--明星模块待处理 END-->
             {/if}
-            {if $config_theme['theme']['topic']['hbtn']}
+            {if $tplconfig['theme']['topic']['hbtn']}
             <!--专题模块待处理 START-->
             <div class="box">
                 <!--专题模块待处理 START-->
                 <div class="title">
                     <img class="laset_new_img" src="{:MAC_BASE_PATH}/template/default/images/pro/home-icon7.png" >
-                    <h2 >{$config_theme['theme']['topic']['htitle']}</h2>
-                    <a class="pc_more" href="{:MAC_BASE_URL}/topic/index.html"><span data-lang="string_type_more2">{:lang_web('string_type_more2')}</span><i class="iconfont more_i">&#xe623;</i></a>
+                    <h2 >{$tplconfig['theme']['topic']['htitle']}</h2>
+                    <a class="pc_more" href="{:mac_url('topic/index')}"><span data-lang="string_type_more2">{:lang_web('string_type_more2')}</span><i class="iconfont more_i">&#xe623;</i></a>
                 </div>
                 <div class="latest-item">
                     <ul class="img-list dis">
@@ -680,45 +687,37 @@
                     <dl>
                         <dd class="font" data-lang="string_new_zx_desc">{:lang_web('string_new_zx_desc')}</dd>
                     </dl>
-                    <a class="pc_more" href="{:MAC_BASE_URL}/art/type/id/{$first_type_id}.html"><span data-lang="string_type_more2">{:lang_web('string_type_more2')}</span><i class="iconfont more_i">&#xe623;</i></a>
+                    <a class="pc_more" href="{:mac_url('art/index')}"><span data-lang="string_type_more2">{:lang_web('string_type_more2')}</span><i class="iconfont more_i">&#xe623;</i></a>
                 </div>
                 <div class="latest-item">
                     <ul class="img-list dis">
-                        {php}
-                        //$models_b = model('art')->whereIn('type_id',$art_type_array)->order('art_time desc')->limit($tplconfig['theme']['art']['hnum'])->select();
-                        $models_b = model('art')->whereIn('type_id',$art_type_array)->order('art_time desc')->limit(5)->select();
-                        $model_array_b = [];
-                        foreach ($models_b as $index => $model) {
-                            array_push($model_array_b,$model->toArray());
-                        }
-                        {/php}
-                        {foreach name="model_array_b" item="vo" key="k"}
+                        {maccms:art num="5" order="desc" by="time"}
                         <li class="vodlist_item zixun">
-                            <a class="vodlist_thumb zixun_img lazyload" href="{:MAC_BASE_URL}/art/detail/id/{$vo.art_id}.html" data-original="{:mac_url_img($vo.art_pic)}">
+                            <a class="vodlist_thumb zixun_img lazyload" href="{:mac_url_art_detail($vo)}" data-original="{:mac_url_img($vo.art_pic)}">
                             </a>
                             <h5>
-                                <a href="{:MAC_BASE_URL}/art/detail/id/{$vo.art_id}.html" title="{$vo.art_name}">{$vo.art_name}</a>
+                                <a href="{:mac_url_art_detail($vo)}" title="{$vo.art_name}">{$vo.art_name}</a>
                             </h5>
                             <p class="actor">{$vo.art_actor}</p>
                         </li>
-                        {/foreach}
+                        {/maccms:art}
                     </ul>
                 </div>
             </div>
             {/if}
             {/if}
 
-            {if $config_theme['theme']['rank']['hbtn']}
+            {if $tplconfig['theme']['rank']['hbtn']}
             <!--排名模块待处理 START-->
             <div class="box">
                 <div class="title">
                     <img class="laset_new_img" src="{:MAC_BASE_PATH}/template/default/images/pro/home-icon9.png" >
-                    <h2 >{$config_theme['theme']['rank']['htitle']}</h2>
-                    <a class="pc_more" href="{:MAC_BASE_URL}/label/rank.html"><span data-lang="string_type_more2">{:lang_web('string_type_more2')}</span><i class="iconfont more_i">&#xe623;</i></a>
+                    <h2 >{$tplconfig['theme']['rank']['htitle']}</h2>
+                    <a class="pc_more" href="{:mac_url('label/rank')}"><span data-lang="string_type_more2">{:lang_web('string_type_more2')}</span><i class="iconfont more_i">&#xe623;</i></a>
                 </div>
                 <div class="latest-item">
                     <ul class="img-list dis">
-                        {maccms:type ids="'.$config_theme['theme']['rank']['hid'].'" id="vo"}
+                        {maccms:type ids="'.$tplconfig['theme']['rank']['hid'].'" id="vo"}
                         {include file="module/hom_rank"}
                         {/maccms:type}
                     </ul>
@@ -735,7 +734,7 @@
         {include file="public/head"}
         {include file="module/banner"}
         {include file="module/home_menu"}
-        <!-- <i class="iconfont {switch name="vo1.type_id"}{case value="1"}icon-dianying2{/case}{case value="2"}icon-dianshiju1{/case}{case value="3"}icon-zongyi1{/case}{case value="4"}icon-dongman1{/case}{case value="5"}icon-dianying2{/case}{case value="$tplconfig['theme']['type']['zb']"}icon-dianying2{/case}{default /}icon-dianying2{/switch}"></i>-->
+
         {foreach name="last_updates" item="vo" key="key" }
         {if count((array)$vo['vod_detail_array']) > 0}
 
@@ -762,14 +761,15 @@
                         {/if}
                     </a>
                 </h2>
-                <a class="text_muted pull_left more_data" href="{:MAC_BASE_URL}/vod/show/id/{$key}.html"><span data-lang="string_type_more2">{:lang_web('string_type_more2')}</span><i class="iconfont more_i">&#xe623;</i></a>
+                <a class="text_muted pull_left more_data" href="{:mac_url('vod/show',['id' => $key])}"><span data-lang="string_type_more2">{:lang_web('string_type_more2')}</span><i class="iconfont more_i">&#xe623;</i></a>
             </div>
             <div class="cbox_list">
                 <div class="detail cbox1">
                     <ul class="vodlist vodlist_wi list_v6 clearfix">
                     {foreach name="$vo['vod_detail_array']" key="key" item="v"}
+                        {php}$info = $v->toArray();{/php}
                         <li class="vodlist_item num_{$key1}">
-                            <a class="vodlist_thumb lazyload" href="{:MAC_BASE_URL}/vod/detail/id/{$v['vod_id']}.html" data-original="{$v['vod_pic']}">
+                            <a class="vodlist_thumb lazyload" href="{:mac_url_vod_detail($info)}" data-original="{$v['vod_pic']}">
                                 {if $v.vod_is_trysee eq 1}
                                 <img data-num="num_{$key}" class="vod_vip" src="{:MAC_BASE_PATH}/template/default/images/pro/head-vip.png" >
                                 {/if}
@@ -789,25 +789,25 @@
         {/if}
         {/foreach}
 
-        {php} $config_theme = config('mctheme'); {/php}
-            {if $config_theme['theme']['actor']['hbtn'] && $config_theme['theme']['actor']['id']}
+        
+            {if $tplconfig['theme']['actor']['hbtn'] && $tplconfig['theme']['actor']['id']}
             <!--明星模块待处理 START-->
             <div class="pannel mingxing">
                 <div class="pannel_head data_list">
                     <h2>
                         <img class="laset_new_img" src="{:MAC_BASE_PATH}/template/default/images/pro/home-icon6.png" >
-                        <span>{$config_theme['theme']['actor']['htitle']}</span>
+                        <span>{$tplconfig['theme']['actor']['htitle']}</span>
                     </h2>
-                    <a class="ext_muted pull_left more_data" href="{:MAC_BASE_URL}/actor/index.html"><span data-lang="string_type_more2">{:lang_web('string_type_more2')}</span><i class="iconfont more_i">&#xe623;</i></a>
+                    <a class="ext_muted pull_left more_data" href="{:mac_url('actor/index')}"><span data-lang="string_type_more2">{:lang_web('string_type_more2')}</span><i class="iconfont more_i">&#xe623;</i></a>
                 </div>
                 <div class="latest-item">
                     <ul class="img-list dis">
                         <!--明星模块内循环待处理 START-->
-                        {maccms:actor ids="'.$config_theme['theme']['actor']['id'].'" num="8" order="desc" by="time"}
+                        {maccms:actor ids="'.$tplconfig['theme']['actor']['id'].'" num="8" order="desc" by="time"}
                         <li  class="topiclist_item num_{$key}">
-                            <a class="topiclist_thumb lazyload" href="{:MAC_BASE_URL}/actor/detail/id/{$vo.actor_id}.html" data-original="{$vo.actor_pic}">
+                            <a class="topiclist_thumb lazyload" href="{:mac_url_actor_detail($vo)}" data-original="{$vo.actor_pic}">
                             </a>
-                            <a href="{:MAC_BASE_URL}/actor/detail/id/{$vo.actor_id}.html">
+                            <a href="{:mac_url_actor_detail($vo)}">
                                 <p>{$vo.actor_name}</p>
                             </a>
 
@@ -818,16 +818,16 @@
             </div>
             <!--明星模块待处理 END-->
             {/if}
-            {if $config_theme['theme']['topic']['hbtn']}
+            {if $tplconfig['theme']['topic']['hbtn']}
             <!--专题模块待处理 START-->
             <div class="pannel zhuanti">
                 <!--专题模块待处理 START-->
                 <div class="pannel_head data_list">
                     <h2 >
                         <img class="laset_new_img" src="{:MAC_BASE_PATH}/template/default/images/pro/home-icon7.png" >
-                        <span>{$config_theme['theme']['topic']['htitle']}</span>
+                        <span>{$tplconfig['theme']['topic']['htitle']}</span>
                     </h2>
-                    <a class="ext_muted pull_left more_data" href="{:MAC_BASE_URL}/topic/index.html"><span data-lang="string_type_more2">{:lang_web('string_type_more2')}</span><i class="iconfont more_i">&#xe623;</i></a>
+                    <a class="ext_muted pull_left more_data" href="{:mac_url('topic/index')}"><span data-lang="string_type_more2">{:lang_web('string_type_more2')}</span><i class="iconfont more_i">&#xe623;</i></a>
                 </div>
                 <div class="latest-item">
                     <ul class="img-list dis">
@@ -855,24 +855,18 @@
                 </div>
                 <div class="latest-item">
                     <ul class="img-list dis">
-                        {php}
-                        //$models_b = model('art')->whereIn('type_id',$art_type_array)->order('art_time desc')->limit($tplconfig['theme']['art']['hnum'])->select();
-                        $models_b = model('art')->whereIn('type_id',$art_type_array)->order('art_time desc')->limit(5)->select();
-                        $model_array_b = [];
-                        foreach ($models_b as $index => $model) {
-                            array_push($model_array_b,$model->toArray());
-                        }
-                        {/php}
-                        {foreach name="model_array_b" item="vo" key="k"}
+                        {php} $art_type_str = implode(',',$art_type_array); {/php}
+                        {maccms:art ids=$art_type_str num="5" order="art_time desc"}
                         <li class="topiclist_item ">
-                            <a class="topiclist_thumb zixun_img lazyload" href="{:MAC_BASE_URL}/art/detail/id/{$vo.art_id}.html" data-original="{:mac_url_img($vo.art_pic)}">
+                            <a class="topiclist_thumb zixun_img lazyload" href="{:mac_url_art_detail($vo)}" data-original="{:mac_url_img($vo.art_pic)}">
                             </a>
                             <h5 class="name">
-                                <a  href="{:MAC_BASE_URL}/art/detail/id/{$vo.art_id}.html" title="{$vo.art_name}">{$vo.art_name}</a>
+                                <a  href="{:mac_url_art_detail($vo)}" title="{$vo.art_name}">{$vo.art_name}</a>
                             </h5>
                             <p class="actor">{$vo.art_actor}</p>
                         </li>
-                        {/foreach}
+                        {/maccms:art}
+
                     </ul>
 
                 </div>
@@ -880,22 +874,22 @@
             {/if}
             {/if}
 
-            {if $config_theme['theme']['rank']['hbtn']}
+            {if $tplconfig['theme']['rank']['hbtn']}
             <!--排名模块待处理 START-->
             <div class="pannel">
                 <div class="pannel_head data_list">
                     <h2 >
                         <img class="laset_new_img" src="{:MAC_BASE_PATH}/template/default/images/pro/home-icon9.png" >
-                        <span>{$config_theme['theme']['rank']['htitle']}</span>
+                        <span>{$tplconfig['theme']['rank']['htitle']}</span>
                     </h2>
-                    <a class="ext_muted pull_left more_data" href="{:MAC_BASE_URL}/label/rank.html"><span data-lang="string_type_more2">{:lang_web('string_type_more2')}</span><i class="iconfont more_i">&#xe623;</i></a>
+                    <a class="ext_muted pull_left more_data" href="{:mac_url('label/rank')}"><span data-lang="string_type_more2">{:lang_web('string_type_more2')}</span><i class="iconfont more_i">&#xe623;</i></a>
                 </div>
                 <div class="latest-item">
                     <div class="rank_tab_list">
 
                     </div>
                     <ul class="img-list dis">
-                        {maccms:type ids="'.$config_theme['theme']['rank']['hid'].'" id="vo"}
+                        {maccms:type ids="'.$tplconfig['theme']['rank']['hid'].'" id="vo"}
                         {include file="module/hom_rank_mobile"}
                         {/maccms:type}
                     </ul>
@@ -953,25 +947,5 @@
 </div>
     {include file="public/foot"}
 </body>
-<script>
-    // (function(){
-    //     changeLogo()
-    //     $(window).scroll(function(){
-    //         changeLogo()
-    //     })
-    //     function changeLogo(){
-    //         if($.cookie('mystyle')=='white'){
-    //             var targetTop = $(this).scrollTop();
-    //             var width = $(window).width();
-    //             if(targetTop> (width>820? 50:200)){
-    //                 $('.black_logo').hide()
-    //                 $('.white_logo').show()
-    //             }else{
-    //                 $('.black_logo').show()
-    //                 $('.white_logo').hide()
-    //             }
-    //         }
-    //     }
-    // })()
-</script>
+
 </html>

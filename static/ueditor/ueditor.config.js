@@ -10,7 +10,6 @@
  **************************提示********************************/
 
 (function () {
-
     /**
      * 编辑器资源文件根路径。它所表示的含义是：以编辑器实例化页面为当前路径，指向编辑器资源文件（即dialog等文件夹）的路径。
      * 鉴于很多同学在使用编辑器的时候出现的种种路径问题，此处强烈建议大家使用"相对于网站根目录的相对路径"进行配置。
@@ -52,7 +51,7 @@
 
         //语言配置项,默认是zh-cn。有需要的话也可以使用如下这样的方式来自动多语言切换，当然，前提条件是lang文件夹下存在对应的语言文件：
         //lang值也可以通过自动获取 (navigator.language||navigator.browserLanguage ||navigator.userLanguage).toLowerCase()
-        ,lang:"zh-cn"
+        ,lang: localStorage.getItem("language_current")&&localStorage.getItem("language_current").indexOf('en')>-1?"en":"zh-cn"
         ,langPath:URL +"lang/"
 
         //主题配置项,默认是default。有需要的话也可以使用如下这样的方式来自动多主题切换，当然，前提条件是themes文件夹下存在对应的主题文件：

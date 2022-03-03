@@ -192,9 +192,20 @@
 						<li class="data"><span data-lang="string_vod_zy">{:lang_web('string_vod_zy')}</span>{php} if($obj['vod_actor']){ echo $obj['vod_actor']; }else{ {/php}<span data-lang="unfilled">{:lang_web('unfilled')}</span>{php}}{/php} </li>
 						<li class="data"><span data-lang="string_vod_director">{:lang_web('string_vod_director')}</span>{php} if($obj['vod_director']){ echo $obj['vod_director']; }else{ {/php}<span data-lang="unfilled">{:lang_web('unfilled')}</span>{php}}{/php} </li>
 						<li class="desc hidden_xs">
-							<span class="left text_muted" data-lang="string_vod_jj">{:lang_web('string_vod_jj')}</span>{php} if($obj['vod_content']){ echo $obj['vod_content']; }else{ {/php}<span data-lang="unfilled">{:lang_web('unfilled')}</span>{php}}{/php}&nbsp;<a href="#desc" data-lang="string_vod_detail">{:lang_web('string_vod_detail')}&nbsp;></a>
+							<span class="left text_muted" data-lang="string_vod_jj">{:lang_web('string_vod_jj')}</span>{php} if($obj['vod_blurb']){ echo $obj['vod_blurb']; }else{ {/php}<span data-lang="unfilled">{:lang_web('unfilled')}</span>{php}}{/php}&nbsp;
 						</li>
 						</ul>
+
+						<div class=" content_min content_btn fl">
+							{if condition="$obj.vod_copyright eq 1 && $GLOBALS['config']['app']['copyright_status'] eq 1 "}
+							<div class="det_tips">{if $GLOBALS['config']['app']['copyright_notice']}{$GLOBALS['config']['app']['copyright_notice']}{else}<span data-lang="resources_closed">{:lang_web('resources_closed')}</span>{/if}</div>{else}
+							{include file="widget/detail_button"}
+							<div class="playbtn o_share ">
+								<a class="btn btn_share open-share" href="javascript:;"><i class="iconfont">&#xe615;</i>&nbsp; <span data-lang="string_vod_share">{:lang_web('string_vod_share')}</span>  </a>
+								{include file="widget/share"}
+							</div>
+							{/if}
+						</div>
 
 					</div>
 
@@ -265,16 +276,7 @@
 						</div>
 					</div>
 					
-					<div class="content_detail content_min content_btn fl">
-                        {if condition="$obj.vod_copyright eq 1 && $GLOBALS['config']['app']['copyright_status'] eq 1 "}
-                        <div class="det_tips">{if $GLOBALS['config']['app']['copyright_notice']}{$GLOBALS['config']['app']['copyright_notice']}{else}<span data-lang="resources_closed">{:lang_web('resources_closed')}</span>{/if}</div>{else}
-                        {include file="widget/detail_button"}
-                        <div class="playbtn o_share ">
-							<a class="btn btn_share open-share" href="javascript:;"><i class="iconfont">&#xe615;</i>&nbsp; <span data-lang="string_vod_share">{:lang_web('string_vod_share')}</span>  </a>
-							{include file="widget/share"}
-						</div>
-						{/if}
-					</div>
+					
 				</div>
          </div>
     </div>

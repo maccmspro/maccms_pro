@@ -41,11 +41,9 @@
         <div class="art_navlist" id="hl01">
             <div class="scroller">
                 <ul class="clearfix">
-                    <li><a href="{:MAC_BASE_URL}/art/index.html"> <span data-lang="string_art_home">{:lang_web('string_art_home')}</span>  </a></li>
-                    {foreach name="type_model" key="key" item="vo"}
-                    <li {if condition="($key eq $GLOBALS['type_id'])"}class="active tplconfig-01"{/if}>
-                    <a href="{:MAC_BASE_URL}/art/type/id/{$key}.html">{$vo}<span data-lang="string_art">{:lang_web('string_art')}</span> </a></li>
-                    {/foreach}
+                    {maccms:type mid="2" order="sort desc" by="sort"}
+                    <li {if condition="($vo.type_id eq $GLOBALS['type_id'] || $vo.type_id eq $GLOBALS['type_pid'])"}class="active"{/if}><a href="{:mac_url_type($vo)}" class="text_muted">{$vo.type_name}</a></li>
+                    {/maccms:type}
                     {maccms:type ids="current" order="asc" by="sort"}
                     <li {if condition="($vo.type_id eq $GLOBALS['type_id'] || $vo.type_id eq $GLOBALS['type_pid'])"}class="active tplconfig-01"{/if}><a href="{:mac_url_type($vo)}" class="text_muted">{$vo.type_name}</a></li>
                     {/maccms:type}

@@ -89,7 +89,7 @@ layui.define(['jquery', 'element'], function(exports) {
 				shade: false,
 				skin: 'pear-tab-menu',
 				closeBtn: false,
-				area: ['100px', '108px'],
+				area: ['110px', '108px'],
 				fixed: true,
 				offset: [top, left],
 				content: menu, //iframe的url,

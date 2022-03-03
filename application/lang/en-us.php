@@ -636,7 +636,8 @@ return [
 
     'model/type/to_info_err'=>'Failed to obtain target classification information',
     'model/type/move_err'=>'transfer failed',
-    'model/type/move_ok'=>'transfer failed',
+    'model/type/move_empty'=>'No data to transfer',
+    'model/type/move_ok'=>'transfer successful',
 
     'model/user/not_open_reg'=>'Not open registration',
     'model/user/access_denied'=>'Access denied',
@@ -874,7 +875,7 @@ return [
     'admin/system/config/zhx'=>'Horizontal line-',
     'admin/system/config/xhx'=>'underline_',
     'admin/system/config/suffix'=>'page suffix name',
-    
+
 
     'admin/system/config/wall_filter'=>'false wall defense',
     'admin/system/config/wall_unicode'=>'Encoding Method',
@@ -2052,14 +2053,14 @@ The length of a single parameter of the search page + filter page is limited, th
 
     'menu/others' => 'others',
     'menu/others/botcensus' => 'Crawler log',
-    'admin/system/php_com_dotnet' => 'Need php_com_dotnet extension',
+    'admin/system/php_shell_exec' => 'Shell_exec support needs to be enabled in php.ini',
     'admin/system/nuclei' => 'Number of Nuclei',
     'admin/system/nuclei_num' => 'Nuclei',
     'admin/system/usage_rate' => 'Usage Rate',
     'admin/system/memory_size' => 'Memory Size',
     'admin/system/memory_usage' => 'Memory Usage',
     'admin/system/detection_time' => 'Detection time',
-    'admin/system/process_status' => 'Process Status',
+    'admin/system/disk_size' => 'Disk Size',
     'admin/system/hard_disk_free_space' => 'Hard Disk Free Space',
     'admin/system/ext_used' => 'used',
 
@@ -2088,7 +2089,7 @@ The length of a single parameter of the search page + filter page is limited, th
     'admin/collect/index/collect_today' =>'collection day',
     'admin/collect/index/collect_week' =>'collect this week',
     'admin/collect/index/collect_all' =>'collect all',
-    
+
     'admin/banner/index/choose_loc' =>'Select advertising location',
     'admin/banner/index/choose_status' =>'choose status',
     'admin/banner/index/close' =>'Close',
@@ -2121,6 +2122,14 @@ The length of a single parameter of the search page + filter page is limited, th
     'index/ajax/watch_progress/success' =>'Success',
     'index/ajax/watch_progress/db_error' =>'DB error Or Data is not isset',
 
+    'admin/addon/config/0/title' =>'Model',
+    'admin/addon/config/1/title' =>'Fixed background',
+    'admin/addon/config/0/tip' =>'Choose according to your own interests',
+    'admin/addon/config/1/tip' =>'Please select file...',
+    'admin/addon/mode/fixed' =>'Fixed',
+    'admin/addon/mode/every_time_random' =>'Every time a random',
+    'admin/addon/mode/daily_switch' =>'Daily switch',
+
     'admin/addon/market/detail' =>'View details page',
 
     'admin/addon/marketfeedback/desc1' =>'problem feedback',
@@ -2133,7 +2142,7 @@ The length of a single parameter of the search page + filter page is limited, th
     'admin/addon/marketfeedback/desc8' =>'problem video',
     'admin/addon/marketfeedback/desc9' =>'Support video formats AVI, MP4, MPEG, each up to 3MB',
     'admin/addon/marketfeedback/desc10' =>'OK to submit',
-    
+
     'admin/addon/marketinfo/title1' =>'Developer',
     'admin/addon/marketinfo/title2' =>'Developer URL',
     'admin/addon/marketinfo/title3' =>'Description',
@@ -2158,6 +2167,20 @@ The length of a single parameter of the search page + filter page is limited, th
     'admin/addon/marketlicense/desc8' =>'Download template',
     'admin/addon/marketlicense/desc9' =>'System Information',
 
+    'admin/addon/downandinstalltheme/ext_err' =>'App extension must be zip',
+    'admin/addon/downandinstalltheme/params_miss' =>'Parameter missing',
+    'admin/addon/downandinstalltheme/install_zip_extension' =>'Please install the zip extension first',
+    'admin/addon/downandinstalltheme/unzip_failed' =>'Decompression failed',
+    'admin/addon/downandinstalltheme/tpl_auto_updated' =>'Template has been automatically updated',
+    'admin/addon/downandinstalltheme/tpl_installed_set_config' => 'The template has been installed, please go to the system - website parameter configuration to set',
+
+    'admin/addon/domarketfeedback/required_id' =>'The id must not be empty',
+    'admin/addon/domarketfeedback/required_version_number' =>'The version number cannot be empty',
+    'admin/addon/domarketfeedback/required_content' =>'The content cannot be empty',
+    'admin/addon/domarketfeedback/required_screenshot' =>'The screenshot cannot be empty',
+    'admin/addon/domarketfeedback/required_video' =>'The video cannot be empty',
+    'admin/addon/domarketfeedback/feedback_success' => 'Feedback success',
+
     'admin/app/add/title1' =>'APP name',
     'admin/app/add/title2' =>'platform',
     'admin/app/add/title3' =>'Forced update',
@@ -2165,8 +2188,8 @@ The length of a single parameter of the search page + filter page is limited, th
     'admin/app/add/title5' =>'URL address',
     'admin/app/add/title6' =>'Upgrade instructions',
     'admin/app/add/title7' =>'URL download',
-    
-    
+
+
     'admin/banner/infocat/desc1' =>'English encoding',
     'admin/banner/infocat/desc2' =>'Please enter the English code',
 
@@ -2234,7 +2257,7 @@ The length of a single parameter of the search page + filter page is limited, th
 
     'admin/extend/qcloud/desc1' =>'Tencent Cloud SMS',
     'admin/extend/qcloud/desc2' =>'Tencent Cloud SMS template example',
-    
+
     'admin/upload/alibaba/desc1' =>'Alibaba image bed',
     'admin/upload/alibaba/desc2' =>'Currently free of charge, no application is required',
 
@@ -2888,5 +2911,24 @@ The length of a single parameter of the search page + filter page is limited, th
     'admin/menu/applicationPluginUpload' => 'application Plugin Upload',
     'admin/menu/applicationPlugInUpgrade' => 'application PlugIn Upgrade',
     'admin/menu/addApplicationPlugIns' => 'add Application PlugIns',
+    
+    'layui/upload/tip1' => 'The request upload interface is abnormal',
+    'layui/upload/tip2' => 'The response information after getting uploaded is abnormal',
+    'layui/upload/tip3' => 'Please return valid JSON to the upload interface',
+    'layui/upload/tip4' => 'The selected file contains unsupported formats',
+    'layui/upload/tip5' => 'The selected video contains unsupported formats',
+    'layui/upload/tip6' => 'The selected image contains unsupported formats',
+    'layui/upload/tip7' => 'The selected audio contains unsupported formats',
+    'layui/upload/tip8' => 'The maximum number of uploads at the same time is:',
+    'layui/upload/tip9' => 'The file cannot exceed',
+    'layui/upload/tip10' => 'files',
 
+    'layui/page/total' => 'Total ',
+    'layui/page/num' => ' bar',
+    'layui/page/per_page' => ' article/page',
+    'layui/page/prev' => 'previous page',
+    'layui/page/next' => 'Next page',
+    'layui/page/go' => 'go to',
+    'layui/page/page' => 'page',
+    'layui/page/ok' => 'OK',
 ];

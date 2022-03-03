@@ -1,3 +1,4 @@
+{php} $config_maccms = config('maccms')['rewrite']['status']; {/php}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,9 +17,36 @@
         .layui-form-label{width: 120px;}
         .layui-input-block{margin-left: 150px;}
     </style>
+    <script>
+        var ROOT_PATH = "__ROOT__";
+        var ADMIN_PATH = "{$config_maccms?'':$_SERVER['SCRIPT_NAME']}";
+        var MAC_VERSION = "{:system_version()}";
+        var MAC_LANG = "{$MAC_LANG}";
+        window.i18n_layui = {
+            upload_tip1: "{:lang('layui/upload/tip1')}",
+            upload_tip2: "{:lang('layui/upload/tip2')}",
+            upload_tip3: "{:lang('layui/upload/tip3')}",
+            upload_tip4: "{:lang('layui/upload/tip4')}",
+            upload_tip5: "{:lang('layui/upload/tip5')}",
+            upload_tip6: "{:lang('layui/upload/tip6')}",
+            upload_tip7: "{:lang('layui/upload/tip7')}",
+            upload_tip8: "{:lang('layui/upload/tip8')}",
+            upload_tip9: "{:lang('layui/upload/tip9')}",
+            upload_tip10: "{:lang('layui/upload/tip10')}",
+            page_total: "{:lang('layui/page/total')}",
+            page_num: "{:lang('layui/page/num')}",
+            page_perpage: "{:lang('layui/page/per_page')}",
+            page_prev: "{:lang('layui/page/prev')}",
+            page_next: "{:lang('layui/page/next')}",
+            page_go: "{:lang('layui/page/go')}",
+            page_page: "{:lang('layui/page/page')}",
+            page_ok: "{:lang('layui/page/ok')}",
+        }
+    </script>
     <script type="text/javascript" src="{:MAC_BASE_PATH}/static/js/jquery.js?v=1024"></script>
     <script type="text/javascript" src="{:MAC_BASE_PATH}/static/layui/layui.js?v=1024"></script>
     <script type="text/javascript" src="{:MAC_BASE_PATH}/static/pear/pear.js?v=1024"></script>
+
 </head>
 <!-- <body class="layui-layout-body pear-admin pear-container"> -->
 <body class="layui-layout-body pear-admin">

@@ -36,11 +36,6 @@
         <!-- 筛选 -->
 			<div class="art_navlist">
 		    	<ul class="clearfix">
-		    	    {maccms:type order="asc" by="sort" mid="2" ids="5"}
-		    		<li {if condition="($vo.type_id eq $GLOBALS['type_id'])"}class="active"{/if}>
-						<a href="{:mac_url_type($vo)}">{$vo.type_name} <span data-lang="string_home">{:lang_web('string_home')}</span></a>
-					</li>
-		    		{/maccms:type}
 					{maccms:type mid="2" order="sort desc" by="sort"}
 					<li {if condition="($vo.type_id eq $GLOBALS['type_id'] || $vo.type_id eq $GLOBALS['type_pid'])"}class="active"{/if}><a href="{:mac_url_type($vo)}" class="text_muted">{$vo.type_name}</a></li>
 					{/maccms:type}

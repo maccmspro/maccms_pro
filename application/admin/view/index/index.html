@@ -100,6 +100,7 @@
     localStorage.setItem('tip22',"{:lang('admin/public/index/title22')}")
     localStorage.setItem('tip23',"{:lang('admin/public/index/title23')}")
     localStorage.setItem('tip24',"{:lang('admin/public/index/title24')}")
+    localStorage.setItem('language_current','<?=$language_current?>')
     
     var obj = <?=json_encode($menus)?>;
     var arr = obj2Arr(obj);
@@ -150,6 +151,12 @@
             }
         });
     }
+    // iframe中跳转到登录页，外层框架要刷新
+    window.addEventListener('message',function(event){
+        if(event.data=='reload'){
+            location.reload();
+        }
+    })
 </script>
 
 </body>

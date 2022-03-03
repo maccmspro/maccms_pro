@@ -269,9 +269,7 @@ textarea:-ms-input-placeholder {
     src: url('../fonts/iconfont.eot?#iefix') format('embedded-opentype'), url('../fonts/iconfont.woff2') format('woff2'), url('../fonts/iconfont.woff') format('woff'), url('../fonts/iconfont.ttf') format('truetype'), url('../fonts/iconfont.svg#iconfont') format('svg');
     
 }
-    
-
-
+ 
 .iconfont {
     font-family: "iconfont" !important;
     font-style: normal;
@@ -625,7 +623,9 @@ body.bstem {
     width: 10.5rem;
     position: relative;
     float: left;
+    overflow: hidden;
     transition: .3s 0s all ease-out;
+    overflow: hidden;
 }
 
 .head_search .form_control {
@@ -645,6 +645,27 @@ body.bstem {
     height: 40px;
 }
 
+.hot_keys .hot_item{
+    display: flex;
+    align-items: center;
+}
+.hot_item .s1{
+    width: 16px;
+    height: 16px;
+    line-height: 16px;
+    text-align: center;
+    border-radius: 2px;
+    font-size: 12px;
+    color: #fff;
+    display: inline-block;
+    margin-right: 5px;
+}
+.hot_keys .hot_item.a .s1{
+    background: linear-gradient(270deg, #F53E2D 0%, #FE6232 100%);
+}
+.hot_keys .hot_item.b .s1{
+    background: #A1A0A5;
+}
 .head_search i {
     display: block;
     position: absolute;

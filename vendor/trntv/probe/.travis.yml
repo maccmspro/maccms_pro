@@ -1,0 +1,16 @@
+sudo: required
+language: php
+group: edge
+dist: trusty
+php:
+  - 5.6
+  - 7.1
+
+install:
+  - travis_retry composer self-update && composer --version
+  - travis_retry composer global require "fxp/composer-asset-plugin"
+  - export PATH="$HOME/.composer/vendor/bin:$PATH"
+  - travis_retry composer install --no-interaction
+
+script:
+  - vendor/bin/phpunit --verbose $PHPUNIT_FLAGS

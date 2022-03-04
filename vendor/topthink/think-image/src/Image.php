@@ -79,9 +79,6 @@ class Image
             $this->im  = @imagecreatefromstring($this->gif->image());
         } else {
             $fun      = "imagecreatefrom{$this->info['type']}";
-            if(!function_exists($fun)){
-                return false;
-            }
             $this->im = @$fun($file->getPathname());
         }
 
@@ -137,9 +134,6 @@ class Image
             imagepng($this->im, $pathname, min((int) ($quality / 10), 9));
         } else {
             $fun = 'image' . $type;
-            if(!function_exists($fun)){
-                return false;
-            }
             $fun($this->im, $pathname);
         }
 
@@ -400,9 +394,6 @@ class Image
         }
         //创建水印图像资源
         $fun   = 'imagecreatefrom' . image_type_to_extension($info[2], false);
-        if(!function_exists($fun)){
-            return false;
-        }
         $water = $fun($source);
         //设定水印图像的混色模式
         imagealphablending($water, true);

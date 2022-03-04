@@ -85,7 +85,7 @@ class Receive extends Base
             echo json_encode(['code'=>2001,'msg'=>lang('api/require_actor_name')],JSON_UNESCAPED_UNICODE);
             exit;
         }
-        if(empty($info['actor_sex'])){
+        if(!in_array($info['actor_sex'], [0, 1])){
             echo json_encode(['code'=>2002,'msg'=>lang('api/require_sex')],JSON_UNESCAPED_UNICODE);
             exit;
         }

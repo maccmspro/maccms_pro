@@ -11,5 +11,6 @@ nohup*
 *.log
 .wepycache
 .well-known
+/upload
 node_modules/
 application/data/install/install.lock

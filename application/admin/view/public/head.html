@@ -1,4 +1,3 @@
-{php} $config_maccms = config('maccms')['rewrite']['status']; {/php}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -19,7 +18,7 @@
     </style>
     <script>
         var ROOT_PATH = "__ROOT__";
-        var ADMIN_PATH = "{$config_maccms?'':$_SERVER['SCRIPT_NAME']}";
+        var ADMIN_PATH = "{$_SERVER['SCRIPT_NAME']}";
         var MAC_VERSION = "{:system_version()}";
         var MAC_LANG = "{$MAC_LANG}";
         window.i18n_layui = {

@@ -66,8 +66,8 @@
                     </div>
                     <div class="layui-input-inline w150">
                         <select name="actor_sex">
-                            <option value="{:lang('male')}">{:lang('male')}</option>
-                            <option value="{:lang('female')}" {if condition="$info.actor_sex eq '女'"}selected{/if}>{:lang('female')}</option>
+                            <option value="1">{:lang('male')}</option>
+                            <option value="0" {if condition="$info.actor_sex eq 0"}selected{/if}>{:lang('female')}</option>
                         </select>
                     </div>
                     <div class="layui-input-inline w150">

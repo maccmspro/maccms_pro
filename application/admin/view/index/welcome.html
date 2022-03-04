@@ -1,16 +1,19 @@
 {include file="../../../application/admin/view/public/head" /}
 <script>
-    var MAC_VERSION='{:system_version()}',PHP_VERSION='{:PHP_VERSION}',THINK_VERSION='{:THINK_VERSION}',MAC_LANG='{$mac_lang}';
+    var MAC_VERSION = '{:system_version()}', PHP_VERSION = '{:PHP_VERSION}', THINK_VERSION = '{:THINK_VERSION}',
+        MAC_LANG = '{$mac_lang}';
 </script>
 <div class="page-container">
     <?php $pass="<strong class='green'>√</strong>";$error="<strong class='red'>×</strong>";?>
 
     <blockquote class="layui-elem-quote layui-quote-nm mt10">
         <p class="f-20 text-success">{:lang('admin/index/welcome/tip_warn')}</p>
-        <p>{:lang('admin/index/welcome/filed_login_num')}：{$admin.admin_login_num}  {:lang('admin/index/welcome/filed_last_login_ip')}：{$admin.admin_last_login_ip|long2ip}  {:lang('admin/index/welcome/filed_last_login_time')}：{$admin.admin_last_login_time|mac_day}</p>
+        <p>{:lang('admin/index/welcome/filed_login_num')}：{$admin.admin_login_num}
+            {:lang('admin/index/welcome/filed_last_login_ip')}：{$admin.admin_last_login_ip|long2ip}
+            {:lang('admin/index/welcome/filed_last_login_time')}：{$admin.admin_last_login_time|mac_day}</p>
     </blockquote>
 
-    <table class="layui-table table-inline" >
+    <table class="layui-table table-inline">
         <tbody>
         <tr>
             <td width="110">{:lang('admin/index/welcome/filed_os')}</td>
@@ -28,7 +31,7 @@
             <td>{:lang('admin/index/welcome/filed_date')}</td>
             <td><?php echo date('Y-m-d'); ?></td>
         </tr>
-         <tr>
+        <tr>
             <td>{:lang('admin/index/welcome/filed_php_ver')}</td>
             <td><?php echo PHP_VERSION ?></td>
         </tr>
@@ -43,41 +46,51 @@
         </tbody>
     </table>
 
-    <table class="layui-table table-inline" >
+    <table class="layui-table table-inline">
         <tbody>
         <tr>
             <td width="110">CPU {:lang('admin/system/nuclei')}</td>
-            <td>{$serverU.cpu_nums} {:lang('admin/system/nuclei_num')}</td>
+            <td>{$serverU.cpu_cores} {:lang('admin/system/nuclei_num')}</td>
         </tr>
         <tr>
             <td width="110">CPU {:lang('admin/system/usage_rate')}</td>
-            <td>{$serverU.cpu_usage}</td>
+            <td>{$serverU.cpu_usage}%</td>
         </tr>
         <tr>
             <td>{:lang('admin/system/memory_size')}</td>
-            <td>{$serverU.mem_total}</td>
+            <td>{$serverU.total_mem}</td>
         </tr>
         <tr>
             <td>{:lang('admin/system/memory_usage')}</td>
-            <td>{$serverU.mem_usage}%</td>
+            <td>{$serverU.used_mem}</td>
+        </tr>
+        <tr>
+            <td>{:lang('admin/system/disk_size')}</td>
+            <td>{$serverU.total_disk}</td>
         </tr>
         <tr>
             <td width="110">{:lang('admin/system/hard_disk_free_space')}</td>
-            <td>{$serverU.hd_avail}G, {:lang('admin/system/ext_used')}{$serverU.hd_usage}%</td>
-        </tr>
-        <tr>
-            <td>{:lang('admin/system/process_status')}</td>
-            <td>{$serverU.tast_running}</td>
+            <td>{$serverU.free_disk}, {:lang('admin/system/ext_used')}{$serverU.used_disk}</td>
         </tr>
         <tr>
             <td>{:lang('admin/system/detection_time')}</td>
-            <td>{$serverU.detection_time}</td>
+            <td>{$serverU.check_time}</td>
         </tr>
         </tbody>
     </table>
 
     {if condition="$update_sql"}
-    <table class="tbinfo pleft layui-table" ><thead><th colspan="2">{:lang('admin/index/welcome/tip_update_db')}</th></thead><tr><td colspan="2"><font class="tif s20">{:lang('admin/index/welcome/tip_update_db_txt')}</font><a class="j-iframe" title="{:lang('admin/index/welcome/tip_update_go')}" data-href="{:url('update/step2')}"><font class="tit s20">{:lang('admin/index/welcome/tip_update_go')}</font></a> </td></tr></table>
+    <table class="tbinfo pleft layui-table">
+        <thead>
+        <th colspan="2">{:lang('admin/index/welcome/tip_update_db')}</th>
+        </thead>
+        <tr>
+            <td colspan="2"><font class="tif s20">{:lang('admin/index/welcome/tip_update_db_txt')}</font><a
+                    class="j-iframe" title="{:lang('admin/index/welcome/tip_update_go')}"
+                    data-href="{:url('update/step2')}"><font class="tit s20">{:lang('admin/index/welcome/tip_update_go')}</font></a>
+            </td>
+        </tr>
+    </table>
     {/if}
 </div>
 

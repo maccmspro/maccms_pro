@@ -36,7 +36,7 @@
 		</div>
 	</div>
 
-	{php}$obj['type_mid'] = 8;$param=input();{/php}
+	{php}$obj['type_mid'] = 8;$param=input();$show=isset($all)?'show_all':'show';{/php}
      <div class="container">
         <div class="row">   
 			<div class="pannel vod_all clearfix">
@@ -49,16 +49,16 @@
 					</li>
 					<li></li>
 					<li {if condition="$param['sex'] eq ''"} class="hl tplconfig-01"{/if}>
-						<a href="{:mac_url('actor/show',['area'=>$param['area'],'blood'=>$param['blood'],'starsign'=>$param['starsign'],'letter'=>$param['letter']])}"  data-lang="string_show_all"></a>
+						<a href="{:mac_url('actor/'.$show,['area'=>$param['area'],'blood'=>$param['blood'],'starsign'=>$param['starsign'],'letter'=>$param['letter'],'id'=>$param['id']])}"  data-lang="string_show_all"></a>
 					</li>
 
 						{maccms:foreach name=":explode(',','男,女')" id="vo1" key="key1"}
 						<li {if condition="$param['sex'] eq $vo1"} class="hl tplconfig-01" {/if}>
-							<a class="actor_lang_zh" href="{:mac_url('actor/show',['area'=>$param['area'],'sex'=>$vo1,'blood'=>$param['blood'],'starsign'=>$param['starsign'],'letter'=>$param['letter']])}">{$vo1}</a></li>
+							<a class="actor_lang_zh" href="{:mac_url('actor/'.$show,['area'=>$param['area'],'sex'=>$vo1,'blood'=>$param['blood'],'starsign'=>$param['starsign'],'letter'=>$param['letter'],'id'=>$param['id']])}">{$vo1}</a></li>
 						{/maccms:foreach}
 						
 						{maccms:foreach name=":explode(',','men,women')" id="vo1" key="key1"}
-						<li {if condition="$param['sex'] eq $vo1"} class="hl tplconfig-01 " {/if}><a class="actor_lang_en" href="{:mac_url('actor/show',['area'=>$param['area'],'sex'=>$vo1,'blood'=>$param['blood'],'starsign'=>$param['starsign'],'letter'=>$param['letter']])}">{$vo1}</a></li>
+						<li {if condition="$param['sex'] eq $vo1"} class="hl tplconfig-01 " {/if}><a class="actor_lang_en" href="{:mac_url('actor/'.$show,['area'=>$param['area'],'sex'=>$vo1,'blood'=>$param['blood'],'starsign'=>$param['starsign'],'letter'=>$param['letter'],'id'=>$param['id']])}">{$vo1}</a></li>
 						{/maccms:foreach}
 				</ul>
 				</div></div>
@@ -70,9 +70,9 @@
 								<span class="text_muted" data-lang="string_show_xx">{:lang_web('string_show_xx')}</span>
 							</li>
 							<li></li>
-							<li {if condition="$param['blood'] eq ''"} class="hl tplconfig-02" {/if}><a href="{:mac_url('actor/show',['area'=>$param['area'],'sex'=>$param['sex'],'starsign'=>$param['starsign'],'letter'=>$param['letter']])}" data-lang="string_show_all"></a></li>
+							<li {if condition="$param['blood'] eq ''"} class="hl tplconfig-02" {/if}><a href="{:mac_url('actor/'.$show,['area'=>$param['area'],'sex'=>$param['sex'],'starsign'=>$param['starsign'],'letter'=>$param['letter'],'id'=>$param['id']])}" data-lang="string_show_all"></a></li>
 								{maccms:foreach name=":explode(',','A,B,AB,O')" id="vo2" key="key2"}
-								<li {if condition="$param['blood'] eq $vo2"} class="hl tplconfig-02" {/if}><a  href="{:mac_url('actor/show',['blood'=>$vo2,'sex'=>$param['sex'],'starsign'=>$param['starsign'],'letter'=>$param['letter'],'area'=>$param['area']])}">{$vo2}</a></li>
+								<li {if condition="$param['blood'] eq $vo2"} class="hl tplconfig-02" {/if}><a  href="{:mac_url('actor/'.$show,['blood'=>$vo2,'sex'=>$param['sex'],'starsign'=>$param['starsign'],'letter'=>$param['letter'],'area'=>$param['area'],'id'=>$param['id']])}">{$vo2}</a></li>
 								{/maccms:foreach}
 						</ul>
 					</div>
@@ -85,12 +85,12 @@
 						<span class="text_muted" data-lang="string_show_dq">{:lang_web('string_show_dq')}</span>
 					</li>
 					<li></li>
-					<li {if condition="urldecode($param['area']) eq ''"} class="hl tplconfig-03" {/if}><a href="{:mac_url('actor/show',['sex'=>$param['sex'],'blood'=>$param['blood'],'starsign'=>$param['starsign'],'letter'=>$param['letter']])}" data-lang="string_show_all"></a></li>
+					<li {if condition="urldecode($param['area']) eq ''"} class="hl tplconfig-03" {/if}><a href="{:mac_url('actor/'.$show,['sex'=>$param['sex'],'blood'=>$param['blood'],'starsign'=>$param['starsign'],'letter'=>$param['letter'],'id'=>$param['id']])}" data-lang="string_show_all"></a></li>
 							{maccms:foreach name=":explode(',','中国内地,中国港台,韩国,日本,新加坡,美国,英国,法国,德国,印度,俄罗斯,其他')" id="vo3" key="key3"}
-							<li {if condition="urldecode($param['area']) eq $vo3"} class="hl tplconfig-03" {/if}><a class="actor_lang_zh" href="{:mac_url('actor/show',['area'=>$vo3,'sex'=>$param['sex'],'blood'=>$param['blood'],'starsign'=>$param['starsign'],'letter'=>$param['letter']])}">{$vo3}</a></li>
+							<li {if condition="urldecode($param['area']) eq $vo3"} class="hl tplconfig-03" {/if}><a class="actor_lang_zh" href="{:mac_url('actor/'.$show,['area'=>$vo3,'sex'=>$param['sex'],'blood'=>$param['blood'],'starsign'=>$param['starsign'],'letter'=>$param['letter'],'id'=>$param['id']])}">{$vo3}</a></li>
 							{/maccms:foreach}
 							{maccms:foreach name=":explode(',','Mainland China,China Hong Kong and Taiwan,Korea,Japan,Singapore,USA,UK,France,Germany,India,Russia,others')" id="vo3" key="key3"}
-							<li {if condition="urldecode($param['area']) eq $vo3"} class="hl tplconfig-03" {/if}><a class="actor_lang_en" href="{:mac_url('actor/show',['area'=>$vo3,'sex'=>$param['sex'],'blood'=>$param['blood'],'starsign'=>$param['starsign'],'letter'=>$param['letter']])}">{$vo3}</a></li>
+							<li {if condition="urldecode($param['area']) eq $vo3"} class="hl tplconfig-03" {/if}><a class="actor_lang_en" href="{:mac_url('actor/'.$show,['area'=>$vo3,'sex'=>$param['sex'],'blood'=>$param['blood'],'starsign'=>$param['starsign'],'letter'=>$param['letter'],'id'=>$param['id']])}">{$vo3}</a></li>
 							{/maccms:foreach}
 				</ul>
 				</div></div>
@@ -101,12 +101,12 @@
 						<span class="text_muted" data-lang="string_show_xz">{:lang_web('string_show_xz')}</span>
 					</li>
 					<li></li>
-					<li {if condition="$param['starsign'] eq ''"} class="hl tplconfig-04"{/if}><a href="{:mac_url('actor/show',['area'=>$param['area'],'sex'=>$param['sex'],'blood'=>$param['blood'],'letter'=>$param['letter']])}"  data-lang="string_show_all"></a></li>
+					<li {if condition="$param['starsign'] eq ''"} class="hl tplconfig-04"{/if}><a href="{:mac_url('actor/'.$show,['area'=>$param['area'],'sex'=>$param['sex'],'blood'=>$param['blood'],'letter'=>$param['letter'],'id'=>$param['id']])}"  data-lang="string_show_all"></a></li>
 							{maccms:foreach name=":explode(',','白羊座,金牛座,双子座,巨蟹座,狮子座,处女座,天枰座,天蝎座,射手座,摩羯座,水瓶座,双鱼座')" id="vo4" key="key4"}
-							<li {if condition="$param['starsign'] eq $vo4"} class="hl tplconfig-04" {/if}><a class="actor_lang_zh" href="{:mac_url('actor/show',['area'=>$param['area'],'sex'=>$param['sex'],'blood'=>$param['blood'],'starsign'=>$vo4,'letter'=>$param['letter']])}">{$vo4}</a></li>
+							<li {if condition="$param['starsign'] eq $vo4"} class="hl tplconfig-04" {/if}><a class="actor_lang_zh" href="{:mac_url('actor/'.$show,['area'=>$param['area'],'sex'=>$param['sex'],'blood'=>$param['blood'],'starsign'=>$vo4,'letter'=>$param['letter'],'id'=>$param['id']])}">{$vo4}</a></li>
 							{/maccms:foreach}
 							{maccms:foreach name=":explode(',','Aries,Taurus,Gemini,cancer,Leo,Virgo,Libra,Scorpio,Sagittarius,Capricorn,Aquarius,Pisces')" id="vo4" key="key4"}
-							<li {if condition="$param['starsign'] eq $vo4"} class="hl tplconfig-04" {/if}><a class="actor_lang_en" href="{:mac_url('actor/show',['area'=>$param['area'],'sex'=>$param['sex'],'blood'=>$param['blood'],'starsign'=>$vo4,'letter'=>$param['letter']])}">{$vo4}</a></li>
+							<li {if condition="$param['starsign'] eq $vo4"} class="hl tplconfig-04" {/if}><a class="actor_lang_en" href="{:mac_url('actor/'.$show,['area'=>$param['area'],'sex'=>$param['sex'],'blood'=>$param['blood'],'starsign'=>$vo4,'letter'=>$param['letter'],'id'=>$param['id']])}">{$vo4}</a></li>
 							{/maccms:foreach}
 				</ul>
 				</div></div>
@@ -117,10 +117,10 @@
 						<span class="text_muted" data-lang="string_show_zm">{:lang_web('string_show_zm')}</span>
 					</li>
 					<li></li>
-					<li {if condition="$param['letter'] eq ''"} class="hl tplconfig-05"{/if}><a href="{:mac_url('actor/show',['area'=>$param['area'],'sex'=>$param['sex'],'blood'=>$param['blood'],'starsign'=>$param['starsign']],'show')}"  data-lang="string_show_all"></a></li>
+					<li {if condition="$param['letter'] eq ''"} class="hl tplconfig-05"{/if}><a href="{:mac_url('actor/'.$show,['area'=>$param['area'],'sex'=>$param['sex'],'blood'=>$param['blood'],'starsign'=>$param['starsign'],'id'=>$param['id']])}"  data-lang="string_show_all"></a></li>
 				{maccms:foreach name=":explode(',','A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z,0-9')" id="vo5" key="key5"}
-					<li {if condition="$param['letter'] eq $vo5"} class="hl tplconfig-05"{/if}><a href="{:mac_url('actor/show',['letter'=>$vo5,'area'=>$param['area'],'sex'=>$param['sex'],'blood'=>$param['blood'],'starsign'=>$param['starsign']],'show')}">{$vo5}</a></li>
-				{/maccms:foreach}				
+					<li {if condition="$param['letter'] eq $vo5"} class="hl tplconfig-05"{/if}><a href="{:mac_url('actor/'.$show,['letter'=>$vo5,'area'=>$param['area'],'sex'=>$param['sex'],'blood'=>$param['blood'],'starsign'=>$param['starsign'],'id'=>$param['id']])}">{$vo5}</a></li>
+				{/maccms:foreach}
                 </ul>
 				</div></div>
 
@@ -131,10 +131,10 @@
 				<div class="wrapper_fl wrapper_tm" style="border-top: 0;">
 					<ul class="screen_list sx_tz clearfix" style="float: left;">
 						<li {if condition="$param.by eq '' || $param.by eq 'time'"} class="hl_fl"{/if}>
-							<a href="{:mac_url_type($obj,['class'=>$param['class'],'area'=>$param['area'],'sex'=>$param['sex'],'blood'=>$param['blood'],'starsign'=>$param['starsign'],'letter'=>$param['letter'],'order'=>$param['order'],'by'=>'time' ],'show')}" data-lang="string_search_zx"></a>
+							<a href="{:mac_url_type($obj,['class'=>$param['class'],'area'=>$param['area'],'sex'=>$param['sex'],'blood'=>$param['blood'],'starsign'=>$param['starsign'],'letter'=>$param['letter'],'order'=>$param['order'],'id'=>$param['id'],'by'=>'time' ], $show)}" data-lang="string_search_zx"></a>
 						</li>
 						<li {if condition="$param.by eq 'hits'"} class="hl_fl"{/if}>
-							<a href="{:mac_url_type($obj,['class'=>$param['class'],'area'=>$param['area'],'sex'=>$param['sex'],'blood'=>$param['blood'],'starsign'=>$param['starsign'],'letter'=>$param['letter'],'order'=>$param['order'],'by'=>'hits' ],'show')}" data-lang="string_search_zr"></a>
+							<a href="{:mac_url_type($obj,['class'=>$param['class'],'area'=>$param['area'],'sex'=>$param['sex'],'blood'=>$param['blood'],'starsign'=>$param['starsign'],'letter'=>$param['letter'],'order'=>$param['order'],'id'=>$param['id'],'by'=>'hits' ], $show)}" data-lang="string_search_zr"></a>
 						</li>
 					</ul>
 					<span class="sx_total">

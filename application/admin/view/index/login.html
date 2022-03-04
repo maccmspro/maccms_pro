@@ -134,6 +134,14 @@
                 }
             }
         });
+        // iframe中跳转到登录页，外层框架要刷新
+        if(window.parent){
+            if(window.parent.parent){
+                window.parent.parent.postMessage('reload');
+            }else{
+                window.parent.postMessage('reload');
+            }
+        }
     });
 
 </script>

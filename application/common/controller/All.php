@@ -155,21 +155,21 @@ class All extends Controller
     {
         $param = mac_filter_words($param);
         $param = mac_search_len_check($param);
-
+        // vod/search 各个参数下都可能出现回显关键词
         if(!empty($GLOBALS['config']['app']['wall_filter'])){
             $param = mac_escape_param($param);
         }
         $this->assign('param',$param);
     }
 
-    protected function label_type($view=0)
+    protected function label_type($view=0, $type_id_specified = 0)
     {
         $param = mac_param_url();
         $param = mac_filter_words($param);
         $param = mac_search_len_check($param);
-        $info = mac_label_type($param);
+        $info = mac_label_type($param, $type_id_specified);
         if(!empty($GLOBALS['config']['app']['wall_filter'])){
-            $param = mac_escape_param($param);
+            $param['wd'] = mac_escape_param($param['wd']);
         }
         $this->assign('param',$param);
         $this->assign('obj',$info);
@@ -240,7 +240,7 @@ class All extends Controller
         $param = mac_filter_words($param);
         $param = mac_search_len_check($param);
         if(!empty($GLOBALS['app']['wall_filter'])){
-            $param = mac_escape_param($param);
+            $param['wd'] = mac_escape_param($param['wd']);
         }
         $this->assign('param',$param);
     }
@@ -659,7 +659,7 @@ class All extends Controller
      * @param string $url
      * @param array $fields
      * @param string $data_type
-     *
+     * @param array $header
      * @return mixed Examples:
      *         ```
      *         All::post('http://api.example.com/?a=123', array('abc'=>'123', 'efg'=>'567'), 'json');
@@ -668,17 +668,23 @@ class All extends Controller
      *         All::post('http://api.example.com/', array('abc'=>'123', 'file1'=>'@/data/1.jpg'), 'json');
      *         ```
      */
-    static public function post($url, $fields, $data_type = 'text') {
+    static public function post($url, $fields, $header = [], $data_type = 'text') {
         $cl = curl_init ();
         if (stripos ( $url, 'https://' ) !== FALSE) {
             curl_setopt ( $cl, CURLOPT_SSL_VERIFYPEER, FALSE );
             curl_setopt ( $cl, CURLOPT_SSL_VERIFYHOST, FALSE );
             curl_setopt ( $cl, CURLOPT_SSLVERSION, 1 );
         }
+
+        if (!empty($header)) {
+            curl_setopt ( $cl, CURLOPT_HTTPHEADER, $header );
+        }
+
         curl_setopt ( $cl, CURLOPT_URL, $url );
         curl_setopt ( $cl, CURLOPT_RETURNTRANSFER, 1 );
         curl_setopt ( $cl, CURLOPT_POST, true );
         curl_setopt ( $cl, CURLOPT_POSTFIELDS, $fields );
+
         $content = curl_exec ( $cl );
         $status = curl_getinfo ( $cl );
         curl_close ( $cl );

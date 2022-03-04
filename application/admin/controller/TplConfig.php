@@ -1,10 +1,12 @@
 <?php
+
 namespace app\admin\controller;
-use think\Db;
 
-class TplConfig extends Base{
+class TplConfig extends Base
+{
 
-    public function theme() {
+    public function theme()
+    {
         if (Request()->isPost()) {
             $tplconfig = input();
             $tplconfig['theme']['fnav']['ym'] = join('|', $tplconfig['theme']['fnav']['ym']);
@@ -15,9 +17,9 @@ class TplConfig extends Base{
             $tplconfig_new = array_merge($tplconfig_old, $tplconfig_new);
             $res = mac_save_config_data(APP_PATH . 'extra/mctheme.php', $tplconfig_new);
             if ($res === false) {
-                return $this->error('保存失败，请重试!');
+                return $this->error(lang('save_err'));
             }
-            return $this->success('保存成功!');
+            return $this->success(lang('save_ok'));
 
         }
 

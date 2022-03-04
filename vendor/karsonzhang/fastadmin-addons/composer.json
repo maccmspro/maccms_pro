@@ -4,11 +4,11 @@
     "homepage": "https://github.com/karsonzhang/fastadmin-addons",
     "license": "Apache-2.0",
     "minimum-stability": "dev",
-    "version": "1.1.11",
+    "version": "1.1.3",
     "authors": [
         {
-            "name": "Karson",
-            "email": "karson@fastadmin.net"
+            "name": "karsonzhang",
+            "email": "karsonzhang@163.com"
         },
         {
             "name": "xiaobo.sun",
@@ -19,7 +19,9 @@
         "issues": "https://github.com/karsonzhang/fastadmin-addons/issues"
     },
     "require": {
-        "php": ">=7.0.0"
+        "php": ">=5.4.0",
+        "topthink/think-helper": ">=1.0.4",
+        "topthink/think-installer": ">=1.0.10"
     },
     "autoload": {
         "psr-4": {

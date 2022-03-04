@@ -56,9 +56,8 @@ abstract class Addons
         if (empty($name)) {
             $name = $this->getName();
         }
-        $info = Config::get($name, $this->infoRange);
-        if ($info) {
-            return $info;
+        if (Config::has($name, $this->infoRange)) {
+            return Config::get($name, $this->infoRange);
         }
         $info_file = $this->addons_path . 'info.ini';
         if (is_file($info_file)) {
@@ -67,7 +66,7 @@ abstract class Addons
         }
         Config::set($name, $info, $this->infoRange);
 
-        return $info ? $info : [];
+        return $info;
     }
 
     /**
@@ -80,10 +79,10 @@ abstract class Addons
         if (empty($name)) {
             $name = $this->getName();
         }
-        $config = Config::get($name, $this->configRange);
-        if ($config) {
-            return $config;
+        if (Config::has($name, $this->configRange)) {
+            return Config::get($name, $this->configRange);
         }
+        $config = [];
         $config_file = $this->addons_path . 'config.php';
         if (is_file($config_file)) {
             $temp_arr = include $config_file;

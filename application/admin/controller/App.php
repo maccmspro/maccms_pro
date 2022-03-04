@@ -44,7 +44,7 @@ class App extends Base
         if($res['code']>1){
             return $this->error($res['msg']);
         }
-        return $this->success("添加成功");
+        return $this->success(lang('save_ok'));
     }
 
     public function edit(){
@@ -65,7 +65,7 @@ class App extends Base
         if($res['code']>1){
             return $this->error($res['msg']);
         }
-        return $this->success("编辑成功");
+        return $this->success(lang('save_ok'));
     }
 
     public function del(){

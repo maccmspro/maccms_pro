@@ -1,4 +1,9 @@
 {include file="../../../application/admin/view/public/head" /}
+<style>
+    .art-add-button{
+        margin-bottom: 15px;
+    }
+</style>
 <div class="">
 
     <div class="layui-card">
@@ -93,7 +98,7 @@
           >
             <div class="layui-table-tool">
               <div class="layui-table-tool-temp">
-                <a data-href="{:url('info')}" data-full="1" class="pear-btn pear-btn-primary pear-btn-md j-iframe"><i class="layui-icon">&#xe654;</i>{:lang('add')}</a>
+                <a data-href="{:url('info')}" data-full="1" class="art-add-button pear-btn pear-btn-primary pear-btn-md j-iframe"><i class="layui-icon">&#xe654;</i>{:lang('add')}</a>
                 <a data-href="{:url('del')}" class="pear-btn pear-btn-danger pear-btn-md j-page-btns confirm"><i class="layui-icon">&#xe640;</i>{:lang('del')}</a>
                 <a data-href="{:url('index/select')}?tab=art&col=type_id&tpl=select_type&url=art/field" data-width="470" data-height="200" data-checkbox="1" class="pear-btn pear-btn-primary pear-btn-md j-select"><i class="layui-icon">&#xe620;</i>{:lang('type')}</a>
                 <a data-href="{:url('index/select')}?tab=art&col=art_level&tpl=select_level&url=art/field" data-width="470" data-height="200" data-checkbox="1" class="pear-btn pear-btn-primary pear-btn-md j-select"><i class="layui-icon">&#xe620;</i>{:lang('level')}</a>
@@ -124,13 +129,13 @@
           <thead>
             <tr>
                 <th width="25"><input type="checkbox" lay-skin="primary" lay-filter="allChoose"></th>
-                <th width="80">{:lang('id')}</th>
+                <th >{:lang('id')}</th>
                 <th >{:lang('name')}</th>
-                <th width="80">{:lang('hits')}</th>
-                <th width="80">{:lang('score')}</th>
-                <th width="80">{:lang('level')}</th>
-                <th width="80">{:lang('browse')}</th>
-                <th width="80">{:lang('author')}</th>
+                <th >{:lang('hits')}</th>
+                <th >{:lang('score')}</th>
+                <th >{:lang('level')}</th>
+                <th >{:lang('browse')}</th>
+                <th >{:lang('author')}</th>
                 <th width="200">{:lang('update_time')}</th>
                 <th width="120">{:lang('opt')}</th>
             </tr>
